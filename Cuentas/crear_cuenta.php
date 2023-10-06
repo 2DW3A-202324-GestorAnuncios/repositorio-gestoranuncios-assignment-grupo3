@@ -1,12 +1,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>">
     <title>Document</title>
 </head>
-<header>
-    
-</header>
 <body>
     <?php
     session_start();
@@ -68,7 +66,7 @@
             <div class="crear_cuenta">
                 <div>
                     <p>Usuario:</p>
-                    <input type="text" class="input_text" maxlength="15" value="<?php echo $usu;?>" name="usuario"><br>
+                    <input type="text" class="input_text" autofocus maxlength="15" value="<?php echo $usu;?>" name="usuario"><br>
 
                     <span class="error"> <?php if(isset($_SESSION['usu_vacio'])){echo $_SESSION['usu_vacio'];unset($_SESSION['usu_vacio']);}?></span>
                 </div>
@@ -79,8 +77,9 @@
                 </div>
                 <div>
                     <p>Contraseña:</p>
-                    <input type="text" class="input_text" name="contraseña1" value="<?php echo $contra1;?>" name="contraseña1"><br>
-                    <span class="error"> <?php echo $contra1Err;?></span>
+                    <input type="text" class="input_text" name="contraseña1" value="<?php echo $contra1;?>" name="contraseña1" aria-laballedby="password">
+                    <div class="strength-meter" id="strength-meter"></div>
+                    <div id="reasons" class="reasons"></div>
 
                 </div>
                 <div>

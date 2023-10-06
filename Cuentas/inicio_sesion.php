@@ -4,9 +4,6 @@
     <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>">
     <title>Document</title>
 </head>
-<header>
-    
-</header>
 <body>
     <div class="form_inicio_sesion">
         <img src="../imagenes/logo.png" alt="logo" class="logo_inicio_sesion">
@@ -20,7 +17,6 @@
         <div class="link_crear_cuenta">
             <a href="crear_cuenta.php" class="link_crear_cuenta">Crear Cuenta</a>
         </div>
-
     </div>
 </body>
 </html>

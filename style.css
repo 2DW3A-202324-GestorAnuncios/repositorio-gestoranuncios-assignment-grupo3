@@ -123,11 +123,32 @@ span{
     font-size: 15px;
 }
 
-/*-------------------------------------------------------*/
 
-/***** Comienzo Indice *****/
+.strength-meter {
+    position: relative;
+    height: 7px;
+    width: 90%;
+    border: 3px solid rgb(127, 182, 255);
+    border-radius: 1rem;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 5px;
+  }
 
+  .strength-meter::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: calc(1% * var(--strength, 0));
+    background-color: hsl(261, 88%, 67%);
+    transition: width 200ms;
+  }
 
+  .reasons > * {
+    margin-top: .5rem;
+    color: hsl(261, 88%, 80%);
+  }
 
 /*-------------------------------------------------------*/
 
