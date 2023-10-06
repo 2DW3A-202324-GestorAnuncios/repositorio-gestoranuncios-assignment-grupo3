@@ -22,11 +22,28 @@ header {
   align-items: center;
   padding: 10px;
 }
+/* Estilos del logo*/
+.logo{
+  margin-left: 40px;
+}
 
 /* Estilos para los botones */
 .header-buttons {
   display: flex;
   gap: 10px;
+ 
+}
+.centrado{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+.boton-header{
+  position: relative;
+  display: inline-block;
+  text-align: center;
 }
 
 .login-button,
