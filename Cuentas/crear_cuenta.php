@@ -9,13 +9,16 @@
 </header>
 <body>
     <?php
-    // define variables and set to empty values
+    session_start();
+    
     $usuErr = $emailErr = $contra1Err = $contra2Err = $termsErr = "";
     $usu = $email = $contra1 = $contra2 = $terms = "";
+   
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['submit'])) {
     if (empty($_POST["usuario"])) {
         $usuErr = "Introduce un usuario";
+        $_SESSION['usu_vacio'] = $usuErr;
     } else {
         $usu = test_input($_POST["usuario"]);
         // check if name only contains letters and whitespace
@@ -35,7 +38,7 @@
     }
         
     if (empty($_POST["contraseña1"])) {
-        $contraErr = "Introduce una contraseña";
+        $contra1Err = "Introduce una contraseña";
     } else {
         
     }
@@ -44,10 +47,11 @@
         $contra2Err = "Las contraseñas no coinciden";
     }
 
-    if (empty($_POST["gender"])) {
-        $genderErr = "Gender is required";
+    if (!isset($_POST["terminos"])) {
+        $termsErr = "Debe aceptar los terminos y condiciones";
     } else {
-        $gender = test_input($_POST["gender"]);
+        $termsErr = "";
+        ;
     }
     }
 
@@ -66,7 +70,7 @@
                     <p>Usuario:</p>
                     <input type="text" class="input_text" maxlength="15" value="<?php echo $usu;?>" name="usuario"><br>
 
-                    <span class="error"> <?php echo $usuErr;?></span>
+                    <span class="error"> <?php if(isset($_SESSION['usu_vacio'])){echo $_SESSION['usu_vacio'];unset($_SESSION['usu_vacio']);}?></span>
                 </div>
                 <div>
                     <p>Correo:</p>
@@ -96,18 +100,7 @@
             <input type="submit" value="Crear Cuenta" name="submit" class="boton">
 
             </form>
-
-            <?php
-            echo "<h2>Your Input:</h2>";
-            echo $usu;
-            echo "<br>";
-            echo $email;
-            echo "<br>";
-            echo $contra2;
-            echo "<br>";
-            ?>
-            
-
     </div>
+    
 </body>
 </html>

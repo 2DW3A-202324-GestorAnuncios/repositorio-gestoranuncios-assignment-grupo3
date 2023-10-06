@@ -115,6 +115,10 @@ html{
 .link_crear_cuenta:visited:link{
     color: black;
 }
+.error {
+    color: #FF0000;
+}
+
 span{
     font-size: 15px;
 }
