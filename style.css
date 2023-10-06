@@ -115,6 +115,9 @@ html{
 .link_crear_cuenta:visited:link{
     color: black;
 }
+span{
+    font-size: 15px;
+}
 
 /*-------------------------------------------------------*/
 
