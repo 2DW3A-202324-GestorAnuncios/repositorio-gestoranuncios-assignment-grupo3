@@ -14,21 +14,18 @@
     <a href="inicio.php">
       <img src="img/txur.png" alt="Inicio" width="270px" height="80px" class="logo" />
     </a>
-    <div class="header-buttons">
-      <a class="boton-header" href="noticia.php">
+    <div id="buttons-container">
+      <a class="header-buttons" href="cuentas/inicio_sesion.php">
         <img src="img/boton_profesores.png" alt="Inicio" width="100px" height="80px"  />
-        <div class="centrado">boton_
-          profesores</div>
+        <div class="centrado">Crear Noticia </div>
       </a>
-      <a class="boton-header" href="noticia.php">
+      <a class="header-buttons" href="crear_publicacion.php">
         <img src="img/boton_alumnos.png" alt="Inicio" width="100px" height="80px"  />
-        <div class="centrado">boton_
-          alumnos</div>
+        <div class="centrado">Crear Anuncio</div>
       </a>
-      <a class="boton-header" href="noticia.php">
+      <a class="header-buttons" href="cuentas/inicio_sesion.php">
         <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px"  />
-        <div class="centrado">boton_
-          empresas</div>
+        <div class="centrado">Iniciar Sesion</div>
       </a>
     </div>
   </header>

@@ -21,6 +21,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  margin: 0;
 }
 /* Estilos del logo*/
 .logo{
@@ -28,10 +29,10 @@ header {
 }
 
 /* Estilos para los botones */
-.header-buttons {
+#buttons-container {
   display: flex;
   gap: 10px;
- 
+  margin-top: -30px;
 }
 .centrado{
   position: absolute;
@@ -40,7 +41,7 @@ header {
   transform: translate(-50%, -50%);
   color: white;
 }
-.boton-header{
+.header-buttons{
   position: relative;
   display: inline-block;
   text-align: center;
