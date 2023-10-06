@@ -1,0 +1,230 @@
+html{
+    background-color: rgb(240, 240, 240);
+    font-family: sans-serif;
+}
+
+/***** Comienzo Cuentas *****/
+
+.form_inicio_sesion{
+    width: 70%;
+    max-width: 600px;
+    min-width: 400px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 40px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    height: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 40px;
+    
+}
+.form_crear_cuenta{
+    width: 70%;
+    max-width: 600px;
+    min-width: 400px;
+
+    background-color: white;
+    display: grid;
+
+    border-radius: 40px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    height: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 40px;
+}
+.logo_inicio_sesion{
+    height: 210px;
+    width: 180px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.inicio_sesion{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.crear_cuenta{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap:20px;
+    width: 90%;
+    margin-left:auto;
+    margin-right: auto;
+}
+.input_text{
+    width: 100%;
+    border: 2px solid rgba( 0, 0, 0, 0.5);
+    border-radius: 10px;
+    height: 30px;
+    padding: 10px;
+    font-size: 15px;
+    transition: 0.4s;
+    
+}
+.input_text:hover{
+    border: 2px solid rgba( 0, 0, 0, 1);
+
+}
+.boton{
+    width: 125px;
+    height: 40px;
+    background-color: rgba(127, 182, 255, 0.6);
+    border-radius: 12px;
+    font-size: 17px;
+    border: 0px solid black;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: 0.4s;
+}
+.boton:hover{
+    cursor: pointer;
+    background-color: rgba(127, 182, 255, 1);
+
+}
+.terminos_crear_cuenta{
+    font-size: 17px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+.terminos_checkbox:hover{
+    cursor: pointer;
+}
+.link_crear_cuenta{
+    color: black;
+    font-size: 20px;
+    text-align: center;
+}
+.link_crear_cuenta:visited:link{
+    color: black;
+}
+
+/*-------------------------------------------------------*/
+
+/***** Comienzo Indice *****/
+
+
+
+/*-------------------------------------------------------*/
+
+/***** Comienzo Creacion de Publicacion *****/
+
+.grid_crear{
+    display: grid;
+    grid-template-columns: 19% 80%;
+    
+}
+.crear_publicacion{
+    background-color: white;
+    border-radius: 40px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    height: 350px;
+    
+}
+.creacion_p1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.input_titulo{
+    width: 250px;
+    border: 2px solid rgba( 0, 0, 0, 0.5);
+    border-radius: 10px;
+    height: 15px;
+    padding: 10px;
+    font-size: 15px;
+    transition: 0.4s;
+}
+.input_titulo:hover{
+    border: 2px solid rgba( 0, 0, 0, 1);
+}
+
+.descripcion {
+    float: left;
+    width: 100%;
+    min-height: 75px;
+    font-size: 16px;
+    outline: none;
+    resize: none;
+    border: 2px solid rgba( 0, 0, 0, 0.5);
+    border-radius: 5px;
+    transition: 0.4s;
+
+}
+.descripcion:hover{
+    border: 2px solid rgba( 0, 0, 0, 1);
+
+}
+.seleccionar_imagen {
+    position: relative;
+    display: inline-block;
+  }
+  
+  
+  .seleccionar_imagen::before {
+    background-color: rgba(127, 182, 255, 0.6);
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    content: 'Insertar Imagen'; /* testo por defecto */
+    position: absolute;
+    padding: 10px;
+    margin-left: 50px;
+    
+  }
+  
+  
+  .seleccionar_imagen input[type="file"] {
+    opacity: 0;
+    width: 10px;
+    height: auto;
+    display: inline-block;
+    margin-left: 50px;
+  }
+  #imagen{
+    height: 40px;
+    width: auto;
+  }
+
+  .texto_insertar_imagen{
+    margin-left: 50px;
+  }
+  .texto_anuncio{
+    margin-top: 110px;
+  }
+  
+  .creacion_p3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    margin-top: -10px;
+  }
+  
+
+/*-------------------------------------------------------*/
+
