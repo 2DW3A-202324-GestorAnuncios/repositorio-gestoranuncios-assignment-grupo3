@@ -65,12 +65,34 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  margin: 0;
 }
 
 /* Estilos para los botones */
-.header-buttons {
+
+#logo {
+  margin-left: 75px;
+}
+
+#buttons-container {
   display: flex;
   gap: 10px;
+  margin-top: -30px;
+}
+
+.centrado {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  color: white;
+}
+
+.header-buttons {
+  display: inline-block;
+  text-align: center;  
+  position: relative;
+
 }
 
 .login-button {

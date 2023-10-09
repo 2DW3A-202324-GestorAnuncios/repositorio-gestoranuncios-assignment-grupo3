@@ -11,21 +11,9 @@
     <title>Inicio - CIFP Txurdinaga</title>
   </head>
   <body>
-  <header>
-    <a href="index.php">
-      <img src="img/Logo_Home3.png" alt="Inicio" width="400px" height="150px">
-    </a>
-    <div class="header-buttons">
-      <button class="login-button">Iniciar Sesión</button>
-    </div>
-  </header>
-    <div class="barranav">
-      <a href="index.php" class="menu-item inicio">Inicio</a>
-      <a href="noticia.php" class="menu-item noticias">Noticias</a>
-      <a href="anuncio.php" class="menu-item anuncios">Anuncios</a>
-      <a href="contacto.php" class="menu-item contacto">Contacto</a>
-    </div>
-
+    <?php
+      include("header.php");
+    ?>
     <?php
       include('footer.php');
     ?>
