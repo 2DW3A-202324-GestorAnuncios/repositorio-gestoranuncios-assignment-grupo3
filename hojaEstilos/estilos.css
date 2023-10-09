@@ -1,12 +1,15 @@
 @import url(fuentes.css);
 
+*, ::after, ::before {
+  box-sizing: inherit;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  background-color: white;
   font-family: 'PT Sans Narrow';
 }
 
@@ -15,22 +18,84 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
+div {
+  display: block;
+}
+
+.ct-text-block {
+  max-width: 100%;
+}
+
+.ct-div-block {
+  display:flex;
+  flex-wrap:nowrap;
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.ct-new-columns {
+  display:flex;
+  width:100%;
+  flex-direction:row;
+  align-items:stretch;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.ct-new-columns > .ct-div-block {
+  padding-top: 20px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+}
+
+.ct-link {
+  display:flex;
+  flex-wrap:wrap;
+  text-align:center;
+  text-decoration:none;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
 /* Estilos para el encabezado */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  margin: 0;
 }
 
 /* Estilos para los botones */
-.header-buttons {
-  display: flex;
-  gap: 10px;
+
+#logo {
+  margin-left: 75px;
 }
 
-.login-button,
-.signup-button {
+#buttons-container {
+  display: flex;
+  gap: 10px;
+  margin-top: -30px;
+}
+
+.centrado {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  color: white;
+}
+
+.header-buttons {
+  display: inline-block;
+  text-align: center;  
+  position: relative;
+
+}
+
+.login-button {
   background-color: #ff5733; 
   color: white; 
   border: none;
@@ -71,13 +136,6 @@ header {
 .contacto {
   background-color: #ff33bf; /* Color de fondo para Contacto */
 }
-
-
-
-
-
-
-
 
 /* Estilo para el contenedor de noticias */
 .noticias2 {
@@ -123,19 +181,29 @@ header {
   padding: 10px;
   font-size: 20px;
   cursor: pointer;
-  z-index: 1; /* Coloca los botones encima de la imagen */
+
+}
+
+.noticias-carousel .noticia {
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+}
+
+.noticias-carousel img {
+  max-width: 100%;
+  height: auto;
 }
 
 #anterior {
   left: 435px; /* Posición izquierda del botón anterior */
+  z-index: 2;
 }
 
 #siguiente {
   right: 435px; /* Posición derecha del botón siguiente */
+  z-index: 2;
 }
-
-
-
 
 
 
@@ -170,8 +238,6 @@ header {
   border: none;
   cursor: pointer;
 }
-
-
 
 /*CONTACTO*/
 main {
@@ -245,62 +311,98 @@ p {
   font-weight: bold;
 }
 
-
-
-
-
 /* Estilos para el footer */
-footer {
+#footer {
+  background-color: #ffffff;
+  border-top-color: #eee;
+  border-top-width: 1px;
+  border-top-style: solid;
+  width: 100%;
+  display: block;
+}
+
+.ct-section {
+  width: 100%;
+  background-size: cover;
+  background-repeat: repeat;
+}
+
+#footer > .footer-container {
+  max-width: 100%;
+  padding-top: 2em;
+  padding-right: 50px;
+  padding-bottom: 2em;
+  padding-left: 50px;
   display: flex;
-  justify-content: space-between;
-  padding: 20px;
-}
-
-/* Estilos para la parte izquierda del footer */
-.footer-left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.logo img {
-  max-width: 100px;
-}
-/* Estilo para el primer texto de ubicación (verde) */
-.green-text {
-  color: green;
-}
-
-/* Estilo para el segundo texto de ubicación (amarillo) */
-.yellow-text {
-  color: yellow;
-}
-
-/* Estilo para el texto de teléfono (azul clarito) */
-.blue-text {
-  color: lightblue;
-}
-
-/* Estilo para el texto de correo con fondo morado */
-.purple-text {
-  color: purple;
-  font-weight: bold;
-}
-
-/* Estilos para la parte central del footer */
-.footer-center {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 
-/* Estilos para los íconos o imágenes de las redes sociales */
-/* .redes-sociales img {
-  width: 40px;
-  height: 40px;
-} */
+.footer-container {
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    min-height: inherit;
+}
+
+#footer-content {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#footer-left {
+  width: 25%;
+}
+
+#image-footer-container {
+  text-align: center;
+  align-items: flex-start;
+  margin-bottom: 3em;
+}
+
+#image-footer {
+  max-width: 100%;
+  width: 40%;
+}
+
+/* Estilo para el primer texto de ubicación (verde) */
+#ubicacion-green-text {
+  color: #229c6a;
+  font-family: 'PT Sans Narrow';
+  font-weight: 800;
+  font-size: 1em;
+}
+
+/* Estilo para el segundo texto de ubicación (amarillo) */
+#ubicacion-yellow-text {
+  color: #fcc204;
+  font-weight: 800;
+  margin-bottom: 2em;
+  font-size: 1em;
+}
+
+/* Estilo para el texto de teléfono (azul clarito) */
+#contacto-blue-text {
+  color: rgba(26,164,193,0.7);
+  font-weight: 800;
+  font-size: 1em;
+}
+
+/* Estilo para el texto de correo con fondo morado */
+#contacto-purple-text {
+  color: #60227a;
+  font-weight: 800;
+  font-size: 1em;
+}
+
+/* Estilos para la parte central del footer */
+#footer-center {
+  width: 25%;
+}
 
 .social-icons-content {
   flex-direction: row;
@@ -316,9 +418,6 @@ footer {
   width: 0.5em;
   height: 0.5em;
   color: #fff;
-}
-
-.social-icons-content a svg {
   stroke-width: 0;
   stroke: currentColor;
   fill: currentColor;
@@ -339,47 +438,51 @@ footer {
 }
 
 .social-icons.instagram {
-  background-color: #c32aa3;
+  background-color: #da0067;
 }
 
 .social-icons.twitter {
-  background-color: #00b6f1;
+  background-color: #00b6f1 !important;
 }
 
 .social-icons.linkedin {
-  background-color: #007bb6;
-}
-
-/* Estilos para los textos en el centro */
-.textos {
-  text-align: left;
-}
-
-.textos p {
-  padding: 10px;
-  margin: 5px; /* Agrega espacio entre los textos */
-  display: inline-block; /* Hacer que los elementos de texto sean inline-block */
-  white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
+  background-color: #007bb6 !important;
 }
 
 /* Estilo para el primer texto en el centro (fucsia) */
-.pink-text {
-  color: fuchsia;
+#text-pink {
+  color: #da0067;
+  margin-top: 50px;
+  font-size: 0.8em;
 }
 
 /* Estilo para el segundo texto en el centro (amarillo) */
-.yellow-text {
-  color: yellow;
+#text-yellow {
+  margin-top: 0px;
+  color: #fcc204;
+  font-size: 0.8em;
 }
 
 /* Estilo para el tercer texto en el centro (azul) */
-.blue-text {
-  color: blue;
+#text-blue {
+  margin-top: 0px;
+  color: rgba(26,164,193,0.7);
+  font-size: 0.8em;
 }
 
 /* Estilo para el cuarto texto en el centro (verde) */
-.green-text {
-  color: green;
+#text-green {
+  margin-top: 0px;
+  color: #57aa26;
+  font-size: 0.8em;
+}
+
+.etiqueta {
+  background-color: black;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+  font-weight: 800;
+  text-align: center;
 }
 
 /* Estilos para los fondos negros */
@@ -390,10 +493,41 @@ footer {
 }
 
 /* Estilos para la parte derecha del footer */
-.footer-right {
-  flex: 1;
+#footer-right {
+  width: 45%;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: justify;
+  gap: 20px;
+  justify-content: space-around;
 }
 
-.fotos {
-  /* Estilos para las fotos */
+#seccion-logos-arriba {
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  text-align: justify;
+}
+
+#fpeuskadi-img, #lanbide-img, #ivafeiei-img {
+  height: 70px;
+}
+
+#gobiernovasco-img  {
+  height: 60px;
+}
+
+#ikaslan-img {
+  height: 79px;
+}
+
+#seccion-logos-abajo {
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  text-align: justify;
 }
