@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
               noticia.style.display = "none";
           }
       });
+      
   }
 
   function avanzarNoticia() {

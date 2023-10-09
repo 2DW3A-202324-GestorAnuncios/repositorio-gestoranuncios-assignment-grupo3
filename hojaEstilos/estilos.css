@@ -79,33 +79,62 @@ header {
 
 
 
-/* Estilos para el carrusel de noticias */
-.noticias-carousel {
+/* Estilo para el contenedor de noticias */
+.noticias2 {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: #f0f0f0;
-  padding: 20px;
+  justify-content: center;
+  position: relative;
 }
 
-.noticias-carousel button {
-  background-color: #333;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-}
-
-.noticias-carousel .noticia {
-  flex: 1;
-  padding: 20px;
+/* Estilo para cada noticia */
+.noticia {
   text-align: center;
+  position: relative;
 }
 
-.noticias-carousel img {
-  max-width: 100%;
-  height: auto;
+.imagen-noticia {
+  width: 100%; /* La imagen ocupa todo el carrusel */
+  height: auto; /* Mantiene la proporción de aspecto de la imagen */
+  border-radius: 10px;
 }
+
+.titulo-noticia {
+  position: absolute;
+  bottom: 4px; /* Alinea el título en la parte inferior del elemento */
+  left: 0;
+  right: 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro para el título */
+  color: #fff; /* Color del texto del título */
+  padding: 5px;
+  border-radius: 10px;
+  z-index: 1; /* Coloca el título encima de la imagen */
+}
+
+/* Estilo para los botones */
+.carousel-button {
+  position: absolute;
+  top: 45%; /* Centra verticalmente los botones */
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro para los botones */
+  color: #fff; /* Color del texto de los botones */
+  border: none;
+  border-radius: 50%; /* Hace que los botones sean circulares */
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1; /* Coloca los botones encima de la imagen */
+}
+
+#anterior {
+  left: 435px; /* Posición izquierda del botón anterior */
+}
+
+#siguiente {
+  right: 435px; /* Posición derecha del botón siguiente */
+}
+
+
 
 
 
@@ -115,9 +144,11 @@ header {
 /* Estilos para la cuadrícula de productos */
 .productos {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
-  gap: 20px; /* Espacio entre los productos */
+  grid-template-columns: repeat(2, 1fr); /* Tres columnas de igual tamaño */
+  gap: 50px; /* Espacio entre los productos */
   padding: 20px;
+  width: 50%;
+  padding-left: 25%;
 }
 
 .producto {
