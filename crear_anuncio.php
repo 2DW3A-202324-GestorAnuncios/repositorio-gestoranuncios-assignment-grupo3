@@ -44,7 +44,7 @@
                 <p class="texto_anuncio">Es un anuncio?</p>                
                 <div class="creacion_p3">
                     <div>
-                        <input type="button" value="Crear" class="boton">
+                        <input type="button" value="Crear" class="boton" >
                     </div>
 
             

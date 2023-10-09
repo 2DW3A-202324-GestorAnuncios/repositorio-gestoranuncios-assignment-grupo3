@@ -75,7 +75,7 @@
                 $sql = "INSERT INTO info (nombre, email, contraseña)
                 VALUES ('$nom', '$email', '$contra1')";
                 $conn->exec($sql);
-                echo "Success! Form Submitted!";
+                echo "Datos eviados";
             }
             catch(PDOException $e){
                 echo $sql . "<br>" . $e->getMessage();
@@ -87,7 +87,7 @@
     ?>
     <div class="form_crear_cuenta">
         <img src="../imagenes/logo.png" alt="logo" class="logo_inicio_sesion">
-        <form onsubmit="validarContraseña()" action=""  method="post" >
+        <form  method="post" >
             <div class="crear_cuenta">
                 <div>
                     <p>Usuario:</p>
@@ -101,7 +101,7 @@
                 </div>
                 <div>
                     <p>Contraseña:</p>
-                    <input type="text" class="input_text" name="contraseña1" value="<?php echo $contra1;?>" name="contraseña1" aria-laballedby="password" id="validar_contraseña">
+                    <input type="text" onkeypress="validarContraseña()" class="input_text" name="contraseña1" value="<?php echo $contra1;?>" name="contraseña1" aria-laballedby="password" id="validar_contraseña">
                     <span class="error"> <?php echo $contra1Err;?></span>
                     <div id="expresiones">
 
@@ -121,15 +121,26 @@
                 <span class="error"> <?php echo $termsErr;?></span>
 
             </div>
-            <button type="submit" value="Crear Cuenta" name="submit" class="boton">Crear Cuenta</button>
+            <button type="submit" value="Crear Cuenta" name="submit" class="boton" id="boton" onsubmit="return false;">Crear Cuenta</button>
 
-            </form>
+        </form>
+            
     </div>
     
     <script>
         if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
         }
+        //const form = document.querySelector("form"); 
+  
+        // Prevent form submission on button click 
+        /*document 
+            .getElementById("boton") 
+            .addEventListener("click", function (event) { 
+                event.preventDefault(); 
+            });*/ 
+
+        
     </script>
 </body>
 </html>
