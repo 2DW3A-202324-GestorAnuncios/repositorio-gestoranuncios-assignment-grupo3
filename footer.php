@@ -1,55 +1,55 @@
 <footer id="footer" class="ct-section">
     <div class="footer-container">
-    <div id="footer-content" class="ct-new-columns">
-        <div id="footer-left" class="ct-div-block">
-        <a id="image-footer-container" class="ct-link" href="index.php" target="_self">
-            <img id="image-footer" src="img/Logo_Footer_y_Contacto.png" alt="Logo">
-        </a>
-        <div id="ubicacion-green-text" class="ct-text-footer">C/ Doctor Ornilla 2</div>
-        <div id="ubicacion-yellow-text" class="ct-text-footer">48004 Bilbao</div>
-        <div id="contacto-blue-text" class="ct-text-footer">+34 94 412 57 12</div>
-        <div id="contacto-purple-text" class="ct-text-footer">idazkaria@fpTXurdinaga.com</div>
+        <div id="footer-content" class="ct-new-columns">
+            <div id="footer-left" class="ct-div-block">
+                <a id="image-footer-container" class="ct-link" href="index.php" target="_self">
+                    <img id="image-footer" src="img/Logo_Footer_y_Contacto.png" alt="Logo">
+                </a>
+                <div id="ubicacion-green-text" class="ct-text-footer">C/ Doctor Ornilla 2</div>
+                <div id="ubicacion-yellow-text" class="ct-text-footer">48004 Bilbao</div>
+                <div id="contacto-blue-text" class="ct-text-footer">+34 94 412 57 12</div>
+                <div id="contacto-purple-text" class="ct-text-footer">idazkaria@fpTXurdinaga.com</div>
+            </div>
+            <div id="footer-center" class="ct-div-block">
+                <div id="social-icons" class="social-icons-content">
+                    <a href="https://www.instagram.com/fptxurdinaga/" target="_blank" class="social-icons instagram">
+                        <svg>
+                            <title>Visit our Instagram</title>
+                            <use xlink:href="#social-icons-icon-instagram"></use>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com/FPTxurdinaga" target="_blank" class="social-icons twitter">
+                        <svg>
+                            <title>Visit our Twitter</title>
+                            <use xlink:href="#social-icons-icon-twitter"></use>
+                        </svg>
+                    </a>
+                    <a href="https://es.linkedin.com/school/fptxurdinaga/" target="_blank" class="social-icons linkedin">
+                        <svg>
+                            <title>Visit our LinkedIn</title>
+                            <use xlink:href="#social-icons-icon-linkedin"></use>
+                        </svg>
+                    </a>
+                </div>
+                <div id="text-pink" class="ct-text-block etiqueta">POLÍTICA DE PRIVACIDAD<br></div>
+                <div id="text-yellow" class="ct-text-block etiqueta">COOKIES<br></div>
+                <div id="text-blue" class="ct-text-block etiqueta">MAPA WEB<br></div>
+                <a class="ct-link" href="contacto.php">
+                    <div id="text-green" class="ct-text-block etiqueta">CONTACTO<br></div>
+                </a>
+            </div>
+            <div id="footer-right" class="ct-div-block">
+                <div id="seccion-logos-arriba" class="ct-div-block">
+                    <img id="fpeuskadi-img" alt="FP Euskadi" src="img/FP-Euskadi.png" class="ct-image" srcset sizes="(max-width: 292px) 100vw, 292px">
+                    <img id="gobiernovasco-img" alt="Gobierno Vasco - Educación" src="img/Hezkuntza.png" class="ct-image" srcset="img/Hezkuntza.png 880w, img/Hezkuntza-300x53.png 300w, img/Hezkuntza-768x134.png 768w" sizes="(max-width: 880px) 100vw, 880px">
+                    <img id="lanbide-img" alt="Lanbide" src="img/Lanbide.png" class="ct-image" srcset="img/Lanbide.png 226w, img/Lanbide-217x300.png 217w" sizes="(max-width: 226px) 100vw, 226px">
+                </div>
+                <div id="seccion-logos-abajo" class="ct-div-block">
+                    <img id="ivafeiei-img" alt="IVAF EIEI" src="img/ivaf-eiei-min.png" class="ct-image" srcset="img/ivaf-eiei-min.png 1365w, img/ivaf-eiei-min-300x77.png 300w, img/ivaf-eiei-min-1024x263.png 1024w, img/ivaf-eiei-min-768x197.png 768w" sizes="(max-width: 1365px) 100vw, 1365px">
+                    <img id="ikaslan-img" alt="Ikaslan Bizkaia" src="img/Ikaslan-Bizkaia.png" class="ct-image" srcset="img/Ikaslan-Bizkaia.png 807w, img/Ikaslan-Bizkaia-300x158.png 300w, img/Ikaslan-Bizkaia-768x404.png 768w" sizes="(max-width: 807px) 100vw, 807px">
+                </div>
+            </div>
         </div>
-        <div id="footer-center" class="ct-div-block">
-        <div id="social-icons" class="social-icons-content">
-            <a href="https://www.instagram.com/fptxurdinaga/" target="_blank" class="social-icons instagram">
-            <svg>
-                <title>Visit our Instagram</title>
-                <use xlink:href="#social-icons-icon-instagram"></use>
-            </svg>
-            </a>
-            <a href="https://twitter.com/FPTxurdinaga" target="_blank" class="social-icons twitter">
-            <svg>
-                <title>Visit our Twitter</title>
-                <use xlink:href="#social-icons-icon-twitter"></use>
-            </svg>
-            </a>
-            <a href="https://es.linkedin.com/school/fptxurdinaga/" target="_blank" class="social-icons linkedin">
-            <svg>
-                <title>Visit our LinkedIn</title>
-                <use xlink:href="#social-icons-icon-linkedin"></use>
-            </svg>
-            </a>
-        </div>
-        <div id="text-pink" class="ct-text-block etiqueta">POLÍTICA DE PRIVACIDAD<br></div>
-        <div id="text-yellow" class="ct-text-block etiqueta">COOKIES<br></div>
-        <div id="text-blue" class="ct-text-block etiqueta">MAPA WEB<br></div>
-        <a class="ct-link" href="contacto.php">
-            <div id="text-green" class="ct-text-block etiqueta">CONTACTO<br></div>
-        </a>
-        </div>
-        <div id="footer-right" class="ct-div-block">
-        <div id="seccion-logos-arriba" class="ct-div-block">
-            <img id="fpeuskadi-img" alt="FP Euskadi" src="img/FP-Euskadi.png" class="ct-image" srcset sizes="(max-width: 292px) 100vw, 292px">
-            <img id="gobiernovasco-img" alt="Gobierno Vasco - Educación" src="img/Hezkuntza.png" class="ct-image" srcset="img/Hezkuntza.png 880w, img/Hezkuntza-300x53.png 300w, img/Hezkuntza-768x134.png 768w" sizes="(max-width: 880px) 100vw, 880px">
-            <img id="lanbide-img" alt="Lanbide" src="img/Lanbide.png" class="ct-image" srcset="img/Lanbide.png 226w, img/Lanbide-217x300.png 217w" sizes="(max-width: 226px) 100vw, 226px">
-        </div>
-        <div id="seccion-logos-abajo" class="ct-div-block">
-            <img id="ivafeiei-img" alt="IVAF EIEI" src="img/ivaf-eiei-min.png" class="ct-image" srcset="img/ivaf-eiei-min.png 1365w, img/ivaf-eiei-min-300x77.png 300w, img/ivaf-eiei-min-1024x263.png 1024w, img/ivaf-eiei-min-768x197.png 768w" sizes="(max-width: 1365px) 100vw, 1365px">
-            <img id="ikaslan-img" alt="Ikaslan Bizkaia" src="img/Ikaslan-Bizkaia.png" class="ct-image" srcset="img/Ikaslan-Bizkaia.png 807w, img/Ikaslan-Bizkaia-300x158.png 300w, img/Ikaslan-Bizkaia-768x404.png 768w" sizes="(max-width: 807px) 100vw, 807px">
-        </div>
-        </div>
-    </div>
     </div>
 </footer>
 
