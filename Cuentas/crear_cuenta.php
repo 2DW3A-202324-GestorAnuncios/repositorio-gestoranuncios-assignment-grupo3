@@ -1,73 +1,97 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="script.js" defer></script>
+    <script src="../script.js"></script>
     <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>">
     <title>Document</title>
 </head>
 <body>
     <?php
-    session_start();
-    
-    $usuErr = $emailErr = $contra1Err = $contra2Err = $termsErr = "";
-    $usu = $email = $contra1 = $contra2 = $terms = "";
-   
-
-    if (isset($_POST['submit'])) {
-    if (empty($_POST["usuario"])) {
-        $usuErr = "Introduce un usuario";
-        $_SESSION['usu_vacio'] = $usuErr;
-    } else {
-        $usu = test_input($_POST["usuario"]);
-        // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z0-9]*$/",$usu)) {
-        $usuErr = "Introduce solo letras y numeros";
-        }
-    }
-    
-    if (empty($_POST["email"])) {
-        $emailErr = "Introduce un email";
-    } else {
-        $email = test_input($_POST["email"]);
-        // check if e-mail address is well-formed
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emailErr = "Formato de email incorrecto";
-        }
-    }
+        session_start();
+        $usuErr = $emailErr = $contra1Err = $contra2Err = $termsErr = "";
+        $usu = $email = $contra1 = $contra2 = $terms = $action = "";
         
-    if (empty($_POST["contraseña1"])) {
-        $contra1Err = "Introduce una contraseña";
-    } else {
+        if (isset($_POST['submit'])) {
+            if (empty($_POST["usuario"])) {
+                $usuErr = "Introduce un usuario";
+                $_SESSION['usu_vacio'] = $usuErr;
+            } else {
+                $usu = test_input($_POST["usuario"]);
+                if (!preg_match("/^[a-zA-Z0-9]*$/",$usu)) {
+                $usuErr = "Introduce solo letras y numeros";
+                }
+            }
+            
+            if (empty($_POST["email"])) {
+                $emailErr = "Introduce un email";
+            } else {
+                $email = test_input($_POST["email"]);
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $emailErr = "Formato de email incorrecto";
+                }
+            }
+                
+            if (empty($_POST["contraseña1"])) {
+                $contra1Err = "Introduce una contraseña";
+            } else {
+                $contra1 = test_input($_POST["contraseña1"]);
+            }
+            if (($_POST["contraseña1"])!=($_POST["contraseña2"])) {
+                $contra2Err = "Las contraseñas no coinciden";
+            }else{
+                $contr2 = test_input($_POST["contraseña2"]);
+
+            }
+            if (empty($_POST["contraseña2"])) {
+                $contra2Err = "Confirma la contraseña";
+            }
+
+            if (!isset($_POST["terminos"])) {
+                $termsErr = "Debe aceptar los terminos y condiciones";
+            } else {
+                $terms = test_input($_POST["terminos"]);
+                $termsErr = "";
+
+            }
+
+        }
+
+        function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
         
-    }
+        if($usuErr="" && $emailErr="" && $contra1Err="" && $contra2Err="" && $termsErr=""){
 
-    if (($_POST["contraseña1"])!=($_POST["contraseña2"])) {
-        $contra2Err = "Las contraseñas no coinciden";
-    }
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "myDBPDO";
 
-    if (!isset($_POST["terminos"])) {
-        $termsErr = "Debe aceptar los terminos y condiciones";
-    } else {
-        $termsErr = "";
-        ;
-    }
-    }
+            try {
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql = "INSERT INTO info (nombre, email, contraseña)
+                VALUES ('$nom', '$email', '$contra1')";
+                $conn->exec($sql);
+                echo "Success! Form Submitted!";
+            }
+            catch(PDOException $e){
+                echo $sql . "<br>" . $e->getMessage();
+            }
 
-    function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
+        $conn = null;
+        }
     }
     ?>
     <div class="form_crear_cuenta">
         <img src="../imagenes/logo.png" alt="logo" class="logo_inicio_sesion">
-        <form action=""  method="post" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>
+        <form onsubmit="validarContraseña()" action=""  method="post" >
             <div class="crear_cuenta">
                 <div>
                     <p>Usuario:</p>
                     <input type="text" class="input_text" autofocus maxlength="15" value="<?php echo $usu;?>" name="usuario"><br>
-
                     <span class="error"> <?php if(isset($_SESSION['usu_vacio'])){echo $_SESSION['usu_vacio'];unset($_SESSION['usu_vacio']);}?></span>
                 </div>
                 <div>
@@ -77,10 +101,11 @@
                 </div>
                 <div>
                     <p>Contraseña:</p>
-                    <input type="text" class="input_text" name="contraseña1" value="<?php echo $contra1;?>" name="contraseña1" aria-laballedby="password">
-                    <div class="strength-meter" id="strength-meter"></div>
-                    <div id="reasons" class="reasons"></div>
+                    <input type="text" class="input_text" name="contraseña1" value="<?php echo $contra1;?>" name="contraseña1" aria-laballedby="password" id="validar_contraseña">
+                    <span class="error"> <?php echo $contra1Err;?></span>
+                    <div id="expresiones">
 
+                    </div>
                 </div>
                 <div>
                     <p>Confirmar contraseña:</p>
@@ -96,10 +121,15 @@
                 <span class="error"> <?php echo $termsErr;?></span>
 
             </div>
-            <input type="submit" value="Crear Cuenta" name="submit" class="boton">
+            <button type="submit" value="Crear Cuenta" name="submit" class="boton">Crear Cuenta</button>
 
             </form>
     </div>
     
+    <script>
+        if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
 </body>
 </html>

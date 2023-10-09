@@ -44,16 +44,8 @@
                 <p class="texto_anuncio">Es un anuncio?</p>                
                 <div class="creacion_p3">
                     <div>
-                        <label class="terminos_checkbox">Si</label>
-                        <input type="checkbox" name="si">
-                        <label class="terminos_checkbox">No</label>
-                        <input type="checkbox" name="no">
-                    </div>
-                    <div>
                         <input type="button" value="Crear" class="boton">
                     </div>
-
-            
                 </div>
             </form>
         </div>
