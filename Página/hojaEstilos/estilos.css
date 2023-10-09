@@ -15,47 +15,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-div {
-  display: block;
-}
-
-.ct-text-block {
-  max-width: 100%;
-}
-
-.ct-div-block {
-  display:flex;
-  flex-wrap:nowrap;
-  flex-direction:column;
-  align-items:flex-start;
-}
-
-.ct-new-columns {
-  display:flex;
-  width:100%;
-  flex-direction:row;
-  align-items:stretch;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-
-.ct-new-columns > .ct-div-block {
-  padding-top: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  padding-left: 20px;
-}
-
-.ct-link {
-  display:flex;
-  flex-wrap:wrap;
-  text-align:center;
-  text-decoration:none;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-}  
-
 /* Estilos para el encabezado */
 header {
   display: flex;
@@ -70,7 +29,8 @@ header {
   gap: 10px;
 }
 
-.login-button {
+.login-button,
+.signup-button {
   background-color: #ff5733; 
   color: white; 
   border: none;
@@ -112,6 +72,13 @@ header {
   background-color: #ff33bf; /* Color de fondo para Contacto */
 }
 
+
+
+
+
+
+
+
 /* Estilos para el carrusel de noticias */
 .noticias-carousel {
   display: flex;
@@ -140,6 +107,11 @@ header {
   height: auto;
 }
 
+
+
+
+
+
 /* Estilos para la cuadrícula de productos */
 .productos {
   display: grid;
@@ -167,6 +139,8 @@ header {
   border: none;
   cursor: pointer;
 }
+
+
 
 /*CONTACTO*/
 main {
@@ -240,97 +214,71 @@ p {
   font-weight: bold;
 }
 
+
+
+
+
 /* Estilos para el footer */
-#footer {
+footer {
   display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
 }
 
-#footer > #footer-container {
-  max-width: 100%;
-  padding-top: 2em;
-  padding-right: 50px;
-  padding-bottom: 2em;
-  padding-left: 50px;
+/* Estilos para la parte izquierda del footer */
+.footer-left {
+  flex: 1;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-#footer-content {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-#footer-left {
-  width: 25%;
-}
-
-#image-footer-container {
-  text-align: center;
+  flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 3em;
 }
 
-#image-footer {
-  max-width: 100%;
-  width: 40%;
+.logo img {
+  max-width: 100px;
 }
-
 /* Estilo para el primer texto de ubicación (verde) */
-#ubicacion-green-text {
-  color: #229c6a;
-  font-family: 'PT Sans Narrow';
-  font-weight: 800;
-  font-size: 1em;
+.green-text {
+  color: green;
 }
 
 /* Estilo para el segundo texto de ubicación (amarillo) */
-#ubicacion-yellow-text {
-  color: #fcc204;
-  font-weight: 800;
-  margin-bottom: 2em;
-  font-size: 1em;
+.yellow-text {
+  color: yellow;
 }
 
 /* Estilo para el texto de teléfono (azul clarito) */
-#contacto-blue-text {
-  color: rgba(26,164,193,0.7);
-  font-weight: 800;
-  font-size: 1em;
+.blue-text {
+  color: lightblue;
 }
 
 /* Estilo para el texto de correo con fondo morado */
-#contacto-purple-text {
-  color: #60227a;
-  font-weight: 800;
-  font-size: 1em;
+.purple-text {
+  color: purple;
+  font-weight: bold;
 }
 
 /* Estilos para la parte central del footer */
-#footer-center {
-  width: 25%;
+.footer-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Estilos para los íconos o imágenes de las redes sociales */
+/* .redes-sociales img {
+  width: 40px;
+  height: 40px;
+} */
+
 .social-icons-content {
+  flex-direction: row;
+  margin-right: -10px;
+  margin-bottom: -10px;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
-}
-
-#social-icons.social-icons-content {
-  flex-direction: row;
-  margin-right: -10px;
-  margin-bottom: -10px;
 }
 
 #social-icons.social-icons-content a svg {
@@ -371,33 +319,6 @@ p {
   background-color: #007bb6;
 }
 
-#seccion-logos {
-  width: 50%;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  text-align: justify;
-  gap: 20px;
-  justify-content: space-around;
-}
-
-#seccion-logos-arriba {
-  width: 100%;
-  flex-direction: row;
-  display: flex;
-  justify-content: space-between;
-  text-align: justify;
-}
-
-#seccion-logos-abajo {
-  width: 100%;
-  flex-direction: row;
-  display: flex;
-  justify-content: space-between;
-  text-align: justify;
-}
-
 /* Estilos para los textos en el centro */
 .textos {
   text-align: left;
@@ -411,66 +332,37 @@ p {
 }
 
 /* Estilo para el primer texto en el centro (fucsia) */
-#text-pink {
-  color: #da0067;
-  margin-top: 50px;
-  font-size: 0.8em;
+.pink-text {
+  color: fuchsia;
 }
 
 /* Estilo para el segundo texto en el centro (amarillo) */
-#text-yellow {
-  color: #fcc204;
-  margin-top: 0px;
-  font-size: 0.8em;
+.yellow-text {
+  color: yellow;
 }
 
 /* Estilo para el tercer texto en el centro (azul) */
-#text-blue {
-  margin-top: 0px;
-  color: rgba(26,164,193,0.7);
-  font-size: 0.8em;
+.blue-text {
+  color: blue;
 }
 
 /* Estilo para el cuarto texto en el centro (verde) */
-#text-green {
-  margin-top: 0px;
-  color: #57aa26;
-  font-size: 0.8em;
+.green-text {
+  color: green;
 }
 
 /* Estilos para los fondos negros */
-.etiqueta {
+.black-bg {
   background-color: black;
   padding: 0px 10px;
   margin-bottom: 10px;
-  font-weight: 800;
-  text-align: center;
 }
 
 /* Estilos para la parte derecha del footer */
-#footer-right {
-  width: 50%;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  text-align: justify;
-  gap: 20px;
-  justify-content: space-around;
+.footer-right {
+  flex: 1;
 }
 
-#seccion-logos-arriba {
-  width: 100%;
-  flex-direction: row;
-  display: flex;
-  justify-content: space-between;
-  text-align: justify;
-}
-
-#seccion-logos-abajo {
-  width: 100%;
-  flex-direction: row;
-  display: flex;
-  justify-content: space-between;
-  text-align: justify;
+.fotos {
+  /* Estilos para las fotos */
 }
