@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es-Es">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" as="style" href="hojaEstilos/fuentes.css">
@@ -9,13 +9,14 @@
     <link rel="shortcut icon" href="img/favicon.png">
     <script src="script.js"></script>
     <title>Inicio - CIFP Txurdinaga</title>
-  </head>
-  <body>
+</head>
+    <body>
     <?php
-      include("header.php");
+        include("header.php");
     ?>
+    
     <?php
-      include('footer.php');
+        include('footer.php');
     ?>
-  </body>
+</body>
 </html>
