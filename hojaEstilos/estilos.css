@@ -180,40 +180,219 @@ header {
     text-decoration: none;
 }
 
-/* Estilos para el carrusel de noticias */
-.noticias-carousel {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #f0f0f0;
-    padding: 20px;
+
+/* Estilos Carrusel Noticias página principal */
+.mySlides {display: none}
+
+.slideshow-container img {
+  vertical-align: middle;
+  border-radius: 15px;
 }
 
-.noticias-carousel button {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    border: none;
+/* Slideshow container */
+.slideshow-container {
+    max-width: 700px;
+    position: relative;
+    margin: auto;
+
+}
+
+/* Next & previous buttons */
+.prev, .next {
     cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
 }
 
-.noticias-carousel .noticia {
-    flex: 1;
-    padding: 20px;
-    text-align: center;
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+.prev{
+  left: 0;
+  border-radius: 3px 0 0 3px;
 }
 
-.noticias-carousel img {
-    max-width: 100%;
-    height: auto;
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
 }
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 10px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(51, 51, 51, 0.8); /* El último valor (0.8) controla la opacidad */
+  border-radius: 8px;
+}
+
+
+
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+
+
+
+/* Estilos para las secciones destacadas */
+.seccion-destacada {
+  box-sizing: border-box;
+  margin-top: 20px;
+  background-color: #f7f7f7; /* Fondo gris claro #f9f9f9*/
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para el título llamativo */
+.titulo-llamativo {
+  font-size: 36px;
+  color: #0077b6; /* Texto azul */
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #0077b6; /* Línea inferior azul */
+}
+
+/* Estilos para el botón "Explorar Más" */
+#ver-mas-noticias, #ver-mas-anuncios {
+  background-color: #0077b6; /* Fondo azul */
+  color: #fff; /* Texto blanco */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#ver-mas-noticias:hover, #ver-mas-anuncios:hover {
+  background-color: #005b91; /* Cambia el color al pasar el cursor */
+}
+
+/* Estilos para los productos */
+.productos2 {
+  display: flex;
+  justify-content: space-between; /* Distribuye los productos en fila */
+  gap: 20px; /* Espacio entre los productos */
+  flex-wrap: nowrap; /* Evita que los productos se envuelvan a la siguiente línea */
+  overflow-x: auto; /* Agrega desplazamiento horizontal si es necesario */
+  margin-top: 20px;
+  padding: 0 20px; /* Espacio adicional en los lados para evitar desbordamiento */
+}
+
+.producto2 {
+  background-color: #fff;
+  padding: 10px; /* Padding reducido para hacer los productos más pequeños proporcionalmente */
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 0 0 calc(25% - 20px); /* Ancho fijo reducido para hacer los productos más pequeños proporcionalmente */
+}
+
+.producto2 img {
+  max-width: 100%;
+  height: auto;
+}
+
+.producto2 h2 {
+  font-size: 18px; /* Tamaño de fuente reducido */
+  color: #333;
+  margin: 10px 0;
+}
+
+.producto2 p {
+  font-size: 14px; /* Tamaño de fuente reducido */
+  color: #666;
+}
+
+.producto2 button {
+  background-color: #0077b6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px; /* Padding reducido para hacer los botones más pequeños proporcionalmente */
+  font-size: 14px; /* Tamaño de fuente reducido */
+  margin-top: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.producto2 button:hover {
+  background-color: #005b91;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Estilos para la cuadrícula de productos */
 .productos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Tres columnas de igual tamaño */
+  gap: 50px; /* Espacio entre los productos */
+  padding: 20px;
+  width: 50%;
+  padding-left: 25%;
 }
 
 .producto {
@@ -235,6 +414,131 @@ header {
     border: none;
     cursor: pointer;
 }
+
+
+
+
+
+
+
+/*PAGINA DE NOTICIAS (NOTICIA.PHP)*/
+
+/* Estilos para la página de noticias */
+.container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.filtro {
+  width: 20%;
+  padding: 20px;
+  background-color: #f0f0f0;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  margin-left: -160px; /* Ajuste para el filtro pegado al margen izquierdo */
+}
+
+.filtro h3 {
+  margin-bottom: 10px;
+}
+
+.filtro-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.filtro-label input[type="radio"] {
+  display: none;
+}
+
+.filtro-label img {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #b6b6b6;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.filtro-label img:hover {
+  border-color: #ff6a00; /* Cambia el color del borde en hover */
+}
+
+.noticias3 {
+  width: 80%;
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* Estilos para las noticias */
+.noticias-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.noticia3 {
+  width: 48%; /* El 48% garantiza que haya dos noticias por fila con espacio entre ellas */
+  margin-bottom: 20px;
+  box-sizing: border-box; /* Incluye el padding en el ancho total */
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.imagen-noticia3 {
+  max-width: 100%;
+}
+
+.titulo-noticia3 {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+/* Asignar categoría a noticias específicas */
+.categoria-deportes {
+  background-color: red; /* Cambia el color de fondo para la categoría de Deportes */
+}
+
+.categoria-economia {
+  background-color: green; /* Cambia el color de fondo para la categoría de Economía */
+}
+
+.categoria-arte {
+  background-color: blue; /* Cambia el color de fondo para la categoría de Arte */
+}
+
+.categoria-tiempo {
+  background-color: yellow; /* Cambia el color de fondo para la categoría de Tiempo */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*CONTACTO*/
 main {
