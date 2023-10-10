@@ -364,7 +364,7 @@ header {
     background-color: #005b91;
 }
 
-/* Estilos para la cuadrícula de productos */
+/* Estilo para la sección de productos */
 .productos {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -374,25 +374,43 @@ header {
     padding-left: 25%;
 }
 
+/* Estilo para cada producto (anuncio) */
 .producto {
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
 }
 
 .producto img {
     max-width: 100%;
     height: auto;
+    margin-bottom: 10px;
+}
+
+/* Estilo para el título h2 y la descripción p */
+.producto h2::first-letter,
+.producto p::first-letter {
+    text-transform: uppercase; /* Hace que la primera letra sea mayúscula */
 }
 
 /* Estilos para el botón "Comprar" */
 .producto button {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
     border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
     cursor: pointer;
 }
+
+.producto button:hover {
+    background-color: #0056b3;
+}
+
 
 /*PAGINA DE NOTICIAS (NOTICIA.PHP)*/
 
