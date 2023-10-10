@@ -315,7 +315,7 @@ header {
 /* Estilos para los productos */
 .productos2 {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 20px;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -348,6 +348,11 @@ header {
     color: #666;
 }
 
+.producto2 h2::first-letter,
+.producto2 p::first-letter {
+    text-transform: uppercase;
+}
+
 .producto2 button {
     background-color: #0077b6;
     color: #fff;
@@ -367,11 +372,11 @@ header {
 /* Estilo para la sección de productos */
 .productos {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 50px;
     padding: 20px;
-    width: 50%;
-    padding-left: 25%;
+    width: 75%;
+    margin: 0 auto;
 }
 
 /* Estilo para cada producto (anuncio) */
@@ -393,7 +398,7 @@ header {
 /* Estilo para el título h2 y la descripción p */
 .producto h2::first-letter,
 .producto p::first-letter {
-    text-transform: uppercase; /* Hace que la primera letra sea mayúscula */
+    text-transform: uppercase;
 }
 
 /* Estilos para el botón "Comprar" */
@@ -802,7 +807,7 @@ p {
 
 /* Slideshow container */
 .slideshow-container {
-    max-width: 1000px;
+    max-width: 700px;
     position: relative;
     margin: auto;
 }

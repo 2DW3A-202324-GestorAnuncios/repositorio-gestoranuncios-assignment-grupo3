@@ -1,3 +1,9 @@
+<?php
+    include("conexion.php");
+
+    $sqlNoticias = "SELECT * FROM noticia";
+    $resultNoticias = $conn->query($sqlNoticias);
+?>
 <!DOCTYPE html>
 <html lang="es-Es">
 <head>
@@ -25,14 +31,14 @@
                     <h5>Deportes</h5>
                 </label><br>
                 <label class="filtro-label">
-                    <input type="radio" name="categoria" value="economia">
-                    <img src="img/categorias_noticias/economia.png" alt="Economía">
-                    <h5>Economia</h5>
-                </label><br>
-                <label class="filtro-label">
                     <input type="radio" name="categoria" value="arte">
                     <img src="img/categorias_noticias/arte.png" alt="Arte">
                     <h5>Arte</h5>
+                </label><br>
+                <label class="filtro-label">
+                    <input type="radio" name="categoria" value="economia">
+                    <img src="img/categorias_noticias/economia.png" alt="Economía">
+                    <h5>Economia</h5>
                 </label><br>
                 <label class="filtro-label">
                     <input type="radio" name="categoria" value="tiempo">
@@ -44,19 +50,15 @@
         <div class="noticias3">
             <h2>Noticias</h2>
             <div id="noticiasContainer" class="noticias-container">
-                <!-- Aquí se cargarán las noticias dinámicamente -->
-                <div class="noticia3 categoria-deportes">
-                    <img src="img/noticia_ansu.webp" alt="Noticia Ansu" class="imagen-noticia3">
-                    <h2 class="titulo-noticia3">Noticia Ansu</h2>
-                </div>
-                <div class="noticia3 categoria-arte">
-                    <img src="img/noticia_barca.webp" alt="Noticia Barca" class="imagen-noticia3">
-                    <h2 class="titulo-noticia3">Noticia Deudas</h2>
-                </div>
-                <div class="noticia3 categoria-economia">
-                    <img src="img/noticia_mvps_euroliga.webp" alt="MVPs EuroLiga" class="imagen-noticia3">
-                    <h2 class="titulo-noticia3">MVPs EuroLiga</h2>
-                </div>
+                <?php
+                    while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
+                        // echo '<div class="noticia3 categoria-' . $row['categoria'] . '">';
+                        echo '<div class="noticia3 categoria-' . $row['id_categoria'] . '">';
+                        echo '<img src="img/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
+                        echo '<h2 class="titulo-noticia3">' . $row['descripcion'] . '</h2>';
+                        echo '</div>';
+                    }
+                ?>
             </div>
         </div>
     </div>
@@ -64,6 +66,31 @@
     <?php
         include('footer.php');
     ?>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const filtroForm = document.getElementById("filtroForm");
+            const noticiasContainer = document.getElementById("noticiasContainer");
+            
+            // Agrega un evento de cambio a los inputs de radio
+            filtroForm.addEventListener("change", function(event) {
+                if (event.target.type === "radio") {
+                    const categoriaSeleccionada = event.target.value;
+                    
+                    // Recorre todas las noticias y muestra u oculta según la categoría
+                    const noticias = noticiasContainer.getElementsByClassName("noticia3");
+                    for (const noticia of noticias) {
+                        const categoriaNoticia = noticia.classList[1]; // La segunda clase es la categoría
+                        if (categoriaSeleccionada === categoriaNoticia || categoriaSeleccionada === "todos") {
+                            noticia.style.display = "block";
+                        } else {
+                            noticia.style.display = "none";
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 

@@ -1,3 +1,12 @@
+<?php
+    include("conexion.php");
+
+    $sqlProductos = "SELECT * FROM producto";
+    $resultProductos = $conn->query($sqlProductos);
+
+    $sqlNoticias = "SELECT * FROM noticia";
+    $resultNoticias = $conn->query($sqlNoticias);
+?>
 <!DOCTYPE html>
 <html lang="es-Es">
 <head>
@@ -20,21 +29,17 @@
             <h2 class="titulo-llamativo">¡Mantente al Día!</h2><br>
         </div>
         <div class="slideshow-container">
-            <div class="mySlides fade">
-                <div class="numbertext">1 / 3</div>
-                <img src="img/noticia_barca.webp" style="width:100%">
-                <div class="text">El Barça logró imponerse a todos sus fantasmas en Oporto</div>
-            </div>
-            <div class="mySlides fade">
-                <div class="numbertext">2 / 3</div>
-                <img src="img/noticia_ansu.webp" style="width:100%">
-                <div class="text">El plan del Brighton para poner a tope a Ansu Fati: "No queremos presionarle"</div>
-            </div>
-            <div class="mySlides fade">
-                <div class="numbertext">3 / 3</div>
-                <img src="img/noticia_mvps_euroliga.webp" style="width:100%">
-                <div class="text">Las estrellas que aspiran a coronarse MVP de la Euroliga</div>
-            </div>
+            <?php
+                $slideNumber = 1;
+                while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<div class="mySlides fade">';
+                    echo '<div class="numbertext">' . $slideNumber . ' / ' . $resultNoticias->rowCount() . '</div>';
+                    echo '<img src="img/' . $row['foto'] . '" style="width:100%">';
+                    echo '<div class="text">' . $row['descripcion'] . '</div>';
+                    echo '</div>';
+                    $slideNumber++;
+                }
+            ?>
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
@@ -87,33 +92,27 @@
         </script>
 
         <a href="noticia.php"><button id="ver-mas-noticias" class="ver-mas-button">Ver Más Noticias</button></a>
-    </section><br>
+    </section>
 
     <section id="anuncios-mas-visitados" class="seccion-destacada">
         <div class="seccion-contenido">
             <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
             <div class="productos2">
-                <div class="producto2">
-                    <img src="img/primeraEquip.webp" alt="Producto 1">
-                    <h2>Camiseta Hombre Primera Equipacion</h2>
-                    <p>Descripción del Producto 1.</p>
-                    <p>85.00€</p>
-                    <button>Comprar</button>
-                </div>
-                <div class="producto2">
-                    <img src="img/segundaEquip.webp" alt="Producto 2">
-                    <h2>Camiseta Hombre Primera Equipacion</h2>
-                    <p>Descripción del Producto 1.</p>
-                    <p>85.00€</p>
-                    <button>Comprar</button>
-                </div>
-                <div class="producto2">
-                    <img src="img/segundaEquip.webp" alt="Producto 2">
-                    <h2>Camiseta Hombre Primera Equipacion</h2>
-                    <p>Descripción del Producto 1.</p>
-                    <p>85.00€</p>
-                    <button>Comprar</button>
-                </div>
+                <?php
+                while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<div class="producto2">';
+                    
+                    // Verifica si la URL de la imagen es nula o vacía
+                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_pro']);
+                    
+                    echo '<img src="img/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                    echo '<h2>' . $row['nombre_pro'] . '</h2>';
+                    echo '<p>' . $row['descripcion'] . '</p>';
+                    echo '<p>' . $row['precio'] . '€</p>';
+                    echo '<button>Comprar</button>';
+                    echo '</div>';
+                }
+                ?>
             </div>
         </div>
         <a href="anuncio.php"><button id="ver-mas-anuncios" class="ver-mas-button">Ver Más Anuncios</button></a>
