@@ -36,8 +36,6 @@
             <!-- Agrega más productos aquí -->
         </div>
     </section>
-
-
     <?php
       include("footer.php");
     ?>
