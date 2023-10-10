@@ -17,20 +17,20 @@
 
     <section>
         <div class="productos">
-        <div class="producto">
-            <img src="producto1.jpg" alt="Producto 1">
-            <h2>Nombre del Producto 1</h2>
-            <p>Descripción del Producto 1.</p>
-            <p>Precio: $XX.XX</p>
-            <button>Comprar</button>
-        </div>
-        <div class="producto">
-            <img src="img/producto2.jpg" alt="Producto 2">
-            <h2>Nombre del Producto 2</h2>
-            <p>Descripción del Producto 2.</p>
-            <p>Precio: $XX.XX</p>
-            <button>Comprar</button>
-        </div>
+            <div class="producto">
+                <img src="img/primeraEquip.webp" alt="Producto 1">
+                <h2>Camiseta Hombre Primera Equipacion</h2>
+                <p>Descripción del Producto 1.</p>
+                <p>85.00€</p>
+                <button>Comprar</button>
+            </div>
+            <div class="producto">
+                <img src="img/segundaEquip.webp" alt="Producto 2">
+                <h2>Camiseta Hombre Primera Equipacion</h2>
+                <p>Descripción del Producto 1.</p>
+                <p>85.00€</p>
+                <button>Comprar</button>
+            </div>
         </div>
     </section>
     

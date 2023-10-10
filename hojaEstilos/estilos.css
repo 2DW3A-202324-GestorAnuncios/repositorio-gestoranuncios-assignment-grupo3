@@ -180,13 +180,12 @@ header {
     text-decoration: none;
 }
 
-
 /* Estilos Carrusel Noticias página principal */
 .mySlides {display: none}
 
 .slideshow-container img {
-  vertical-align: middle;
-  border-radius: 15px;
+    vertical-align: middle;
+    border-radius: 15px;
 }
 
 /* Slideshow container */
@@ -194,7 +193,6 @@ header {
     max-width: 700px;
     position: relative;
     margin: auto;
-
 }
 
 /* Next & previous buttons */
@@ -230,19 +228,16 @@ header {
 
 /* Caption text */
 .text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 10px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-  background-color: rgba(51, 51, 51, 0.8); /* El último valor (0.8) controla la opacidad */
-  border-radius: 8px;
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 10px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(51, 51, 51, 0.8);
+    border-radius: 8px;
 }
-
-
-
 
 /* Number text (1/3 etc) */
 .numbertext {
@@ -280,119 +275,103 @@ header {
     to {opacity: 1}
 }
 
-
-
-
 /* Estilos para las secciones destacadas */
 .seccion-destacada {
-  box-sizing: border-box;
-  margin-top: 20px;
-  background-color: #f7f7f7; /* Fondo gris claro #f9f9f9*/
-  padding: 20px;
-  text-align: center;
-  border-radius: 10px;
-  margin-bottom: 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    background-color: #f7f7f7;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 /* Estilos para el título llamativo */
 .titulo-llamativo {
-  font-size: 36px;
-  color: #0077b6; /* Texto azul */
-  margin: 0;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #0077b6; /* Línea inferior azul */
+    font-size: 36px;
+    color: #0077b6;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #0077b6;
 }
 
 /* Estilos para el botón "Explorar Más" */
 #ver-mas-noticias, #ver-mas-anuncios {
-  background-color: #0077b6; /* Fondo azul */
-  color: #fff; /* Texto blanco */
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 18px;
-  margin-top: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+    background-color: #0077b6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
 }
 
 #ver-mas-noticias:hover, #ver-mas-anuncios:hover {
-  background-color: #005b91; /* Cambia el color al pasar el cursor */
+    background-color: #005b91;
 }
 
 /* Estilos para los productos */
 .productos2 {
-  display: flex;
-  justify-content: space-between; /* Distribuye los productos en fila */
-  gap: 20px; /* Espacio entre los productos */
-  flex-wrap: nowrap; /* Evita que los productos se envuelvan a la siguiente línea */
-  overflow-x: auto; /* Agrega desplazamiento horizontal si es necesario */
-  margin-top: 20px;
-  padding: 0 20px; /* Espacio adicional en los lados para evitar desbordamiento */
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-top: 20px;
+    padding: 0 20px;
 }
 
 .producto2 {
-  background-color: #fff;
-  padding: 10px; /* Padding reducido para hacer los productos más pequeños proporcionalmente */
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  flex: 0 0 calc(25% - 20px); /* Ancho fijo reducido para hacer los productos más pequeños proporcionalmente */
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 0 0 calc(25% - 20px);
 }
 
 .producto2 img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 .producto2 h2 {
-  font-size: 18px; /* Tamaño de fuente reducido */
-  color: #333;
-  margin: 10px 0;
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
 }
 
 .producto2 p {
-  font-size: 14px; /* Tamaño de fuente reducido */
-  color: #666;
+    font-size: 14px;
+    color: #666;
 }
 
 .producto2 button {
-  background-color: #0077b6;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px; /* Padding reducido para hacer los botones más pequeños proporcionalmente */
-  font-size: 14px; /* Tamaño de fuente reducido */
-  margin-top: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+    background-color: #0077b6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .producto2 button:hover {
-  background-color: #005b91;
+    background-color: #005b91;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Estilos para la cuadrícula de productos */
 .productos {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Tres columnas de igual tamaño */
-  gap: 50px; /* Espacio entre los productos */
-  padding: 20px;
-  width: 50%;
-  padding-left: 25%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    padding: 20px;
+    width: 50%;
+    padding-left: 25%;
 }
 
 .producto {
@@ -415,130 +394,98 @@ header {
     cursor: pointer;
 }
 
-
-
-
-
-
-
 /*PAGINA DE NOTICIAS (NOTICIA.PHP)*/
 
 /* Estilos para la página de noticias */
 .container {
-  display: flex;
-  max-width: 1200px;
-  margin: 0 auto;
+    display: flex;
+    max-width: 1200px;
+    margin: 0;
 }
 
 .filtro {
-  width: 20%;
-  padding: 20px;
-  background-color: #f0f0f0;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  margin-left: -160px; /* Ajuste para el filtro pegado al margen izquierdo */
+    width: 20%;
+    padding: 20px;
+    background-color: #f0f0f0;
+    text-align: center;
+    position: sticky;
+    top: 0;
 }
 
 .filtro h3 {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .filtro-label {
-  display: block;
-  margin-bottom: 10px;
+    display: block;
+    margin-bottom: 10px;
 }
 
 .filtro-label input[type="radio"] {
-  display: none;
+    display: none;
 }
 
 .filtro-label img {
-  width: 50px;
-  height: 50px;
-  border: 3px solid #b6b6b6;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 5px;
-  transition: border-color 0.3s ease;
+    width: 50px;
+    height: 50px;
+    border: 3px solid #b6b6b6;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    transition: border-color 0.3s ease;
 }
 
 .filtro-label img:hover {
-  border-color: #ff6a00; /* Cambia el color del borde en hover */
+    border-color: #ff6a00;
 }
 
 .noticias3 {
-  width: 80%;
-  padding: 20px;
-  background-color: #fff;
+    width: 80%;
+    padding: 20px;
+    background-color: #fff;
 }
 
 /* Estilos para las noticias */
 .noticias-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .noticia3 {
-  width: 48%; /* El 48% garantiza que haya dos noticias por fila con espacio entre ellas */
-  margin-bottom: 20px;
-  box-sizing: border-box; /* Incluye el padding en el ancho total */
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #fff;
+    width: 48%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
 }
 
 .imagen-noticia3 {
-  max-width: 100%;
+    max-width: 100%;
 }
 
 .titulo-noticia3 {
-  font-size: 1.5rem;
-  margin-top: 10px;
+    font-size: 1.5rem;
+    margin-top: 10px;
 }
 
 /* Asignar categoría a noticias específicas */
 .categoria-deportes {
-  background-color: red; /* Cambia el color de fondo para la categoría de Deportes */
+    background-color: red;
 }
 
 .categoria-economia {
-  background-color: green; /* Cambia el color de fondo para la categoría de Economía */
+    background-color: green;
 }
 
 .categoria-arte {
-  background-color: blue; /* Cambia el color de fondo para la categoría de Arte */
+    background-color: blue;
 }
 
 .categoria-tiempo {
-  background-color: yellow; /* Cambia el color de fondo para la categoría de Tiempo */
+    background-color: yellow;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*CONTACTO*/
 main {
