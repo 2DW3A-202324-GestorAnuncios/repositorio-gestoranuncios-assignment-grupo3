@@ -87,7 +87,7 @@
     ?>
     <div class="form_crear_cuenta">
         <img src="../imagenes/logo.png" alt="logo" class="logo_inicio_sesion">
-        <form  method="post" >
+        <form  method="post" id="id_form">
             <div class="crear_cuenta">
                 <div>
                     <p>Usuario:</p>
@@ -101,7 +101,7 @@
                 </div>
                 <div>
                     <p>Contraseña:</p>
-                    <input type="text" onkeypress="validarContraseña()" class="input_text" name="contraseña1" value="<?php echo $contra1;?>" name="contraseña1" aria-laballedby="password" id="validar_contraseña">
+                    <input type="text"  class="input_text" name="contraseña1" value="<?php echo $contra1;?>" name="contraseña1" aria-laballedby="password" id="validar_contraseña">
                     <span class="error"> <?php echo $contra1Err;?></span>
                     <div id="expresiones">
 
@@ -115,13 +115,16 @@
                 </div>
             </div>
             <br>
+            <div>
+                <input type="button" class="boton_comprobar" value="comprobar" onclick="validarContraseña()">
+            </div>
             <div class="terminos_crear_cuenta">
                 <input type="checkbox" name="terminos" class="terminos_checkbox" id="terminos_crear_cuenta" value="<?php echo $terms;?>" name="terminos">
                 <label class="terminos_checkbox" for="terminos_crear_cuenta">Acepto los terminos y condiciones</label><br><br>
                 <span class="error"> <?php echo $termsErr;?></span>
 
             </div>
-            <button type="submit" value="Crear Cuenta" name="submit" class="boton" id="boton" onsubmit="return false;">Crear Cuenta</button>
+            <button type="submit" value="Crear Cuenta" name="submit" class="boton" id="boton">Crear Cuenta</button>
 
         </form>
             
@@ -131,14 +134,14 @@
         if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
         }
-        //const form = document.querySelector("form"); 
+
+
+        const form = document.querySelector("form"); 
   
-        // Prevent form submission on button click 
-        /*document 
-            .getElementById("boton") 
-            .addEventListener("click", function (event) { 
-                event.preventDefault(); 
-            });*/ 
+        document.getElementById("boton").addEventListener("click", function (event) { 
+            event.preventDefault(); 
+        });
+
 
         
     </script>

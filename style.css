@@ -92,7 +92,25 @@ html{
     margin-bottom: 20px;
     transition: 0.4s;
 }
+.boton_comprobar{
+    width: 85px;
+    height: 20px;
+    background-color: rgba(127, 182, 255, 0.6);
+    border-radius: 5px;
+    font-size: 13px;
+    border: 0px solid black;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+    margin-top: -10px;
+    margin-left: 5%;
+    margin-bottom: 5px;
+    transition: 0.4s;
+}
 .boton:hover{
+    cursor: pointer;
+    background-color: rgba(127, 182, 255, 1);
+
+}
+.boton_comprobar:hover{
     cursor: pointer;
     background-color: rgba(127, 182, 255, 1);
 
@@ -117,6 +135,7 @@ html{
 }
 .error {
     color: #FF0000;
+    
 }
 
 span{
