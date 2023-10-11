@@ -317,12 +317,13 @@ header {
 /* Estilos para los productos */
 .productos_anuncios_inicio {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start; /* Cambiado a 'flex-start' para que no haya espacio adicional al final */
     gap: 20px;
     flex-wrap: nowrap;
     overflow-x: auto;
     margin-top: 20px;
     padding: 0 20px;
+    width: 100%; /* Agregado un ancho del 100% para que el scroll funcione */
 }
 
 .productos_slide_anuncios {
@@ -370,7 +371,6 @@ header {
 .productos_slide_anuncios button:hover {
     background-color: #005b91;
 }
-
 /* Estilo para la sección de productos */
 .productos {
     display: grid;

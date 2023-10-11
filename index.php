@@ -108,10 +108,10 @@
                     echo '<div class="productos_slide_anuncios">';
                     
                     // Verifica si la URL de la imagen es nula o vacía
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_pro']);
+                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                     
                     echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                    echo '<h2>' . $row['nombre_pro'] . '</h2>';
+                    echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
                     echo '<p>' . $row['precio'] . '€</p>';
                     echo '<button>Comprar</button>';
