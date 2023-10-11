@@ -1,7 +1,7 @@
 <?php
     include("conexion.php");
 
-    $sqlProductos = "SELECT * FROM producto";
+    $sqlProductos = "SELECT * FROM anuncio";
     $resultProductos = $conn->query($sqlProductos);
 
     $sqlNoticias = "SELECT * FROM noticia";
@@ -104,16 +104,16 @@
     <section id="anuncios-mas-visitados" class="seccion-destacada">
         <div class="seccion-contenido">
             <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
-            <div class="productos2">
+            <div class="productos_anuncios_inicio">
                 <?php
                 while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<div class="producto2">';
+                    echo '<div class="productos_slide_anuncios">';
                     
                     // Verifica si la URL de la imagen es nula o vacía
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_pro']);
+                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                     
                     echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                    echo '<h2>' . $row['nombre_pro'] . '</h2>';
+                    echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
                     echo '<p>' . $row['precio'] . '€</p>';
                     echo '<button>Comprar</button>';

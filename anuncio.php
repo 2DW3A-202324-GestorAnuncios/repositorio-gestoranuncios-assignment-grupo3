@@ -5,7 +5,7 @@
     $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 
     // Consulta para obtener el número total de productos
-    $sqlTotalProductos = "SELECT COUNT(*) as total FROM producto";
+    $sqlTotalProductos = "SELECT COUNT(*) as total FROM anuncio";
     $resultTotalProductos = $conn->query($sqlTotalProductos);
 
     if (!$resultTotalProductos) {
@@ -18,7 +18,7 @@
 
     // Consulta para obtener los productos de la página actual
     $inicio = ($paginaActual - 1) * $elementosPorPagina;
-    $sqlProductos = "SELECT * FROM producto LIMIT $inicio, $elementosPorPagina";
+    $sqlProductos = "SELECT * FROM anuncio LIMIT $inicio, $elementosPorPagina";
     $resultProductos = $conn->query($sqlProductos);
 ?>
 
@@ -44,12 +44,12 @@
             <?php
                 while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="producto">';
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_pro']);
+                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                     echo '<div class = "imagen-producto">';
                     echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                     echo '</div>';
                     echo '<div class = "contenedor-anuncio">';
-                    echo '<h2>' . $row['nombre_pro'] . '</h2>';
+                    echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
                     echo '<p><b>' . $row['precio'] . '€</b></p>';
                     echo '</div>';
