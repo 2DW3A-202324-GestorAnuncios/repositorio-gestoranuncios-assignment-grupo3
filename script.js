@@ -1,8 +1,9 @@
-var num = 0;
+var num = 1;
 
 function deshabilitarBoton(){
   var button = document.getElementById("boton");
   button.setAttribute("disabled","");
+
 }
 
 function validarContraseña() {  
@@ -90,7 +91,7 @@ function validarUsuario() {
   const error = document.getElementById("error1");
   if (usuario.length < 3) {
     error.innerText = "El usuario debe tener 4 o mas caracteres";
-
+    num=num+1;
   }else{
     error.innerText = "";
     num = 0;
@@ -112,16 +113,18 @@ function validarEmail(){
 		return false;
 	}
 } 
-function validarTerminos() {
-  if (document.getElementById('terminos').checked) {
-    if(num == 0){
+function confirmarTerminos(){
+  var x = document.getElementById('terminos');
+  if (x.checked) {
+    num = num -1;
+    if (num == 0) {
       var button = document.getElementById("boton");
-  
       button.removeAttribute("disabled","");
     }
-  }
+  } 
   
 }
+
 
 
 

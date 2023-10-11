@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>">
-    <title>Document</title>
+    <title>Inicio Sesion</title>
 </head>
 <body>
     <div class="form_inicio_sesion">

@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <script src="../script.js"></script>
     <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>">
-    <title>Document</title>
+    <title>Registro</title>
 </head>
 <body onload='deshabilitarBoton()'>
     <?php
@@ -101,7 +101,7 @@
                 </div>
                 <div>
                     <p>Contraseña:</p>
-                    <input type="text"  class="input_text" name="contraseña1" value="<?php echo $contra1;?>" name="contraseña1" aria-laballedby="password" id="validar_contraseña">
+                    <input type="password"  class="input_text" name="contraseña1" value="<?php echo $contra1;?>" name="contraseña1" aria-laballedby="password" id="validar_contraseña">
                     <span class="error" id="error3"></span>
                     <div id="expresiones">
 
@@ -109,7 +109,7 @@
                 </div>
                 <div>
                     <p>Confirmar contraseña:</p>
-                    <input type="text" class="input_text" name="contraseña2" value="<?php echo $contra2;?>" name="contraseña2" id="validar_contraseña2" onkeyup="confirmarContraseña()"><br>
+                    <input type="password" class="input_text" name="contraseña2" value="<?php echo $contra2;?>" name="contraseña2" id="validar_contraseña2" onkeyup="confirmarContraseña()"><br>
                     <span class="error" id="error4"></span>
 
                 </div>
@@ -118,8 +118,8 @@
             <div>
                 <input type="button" class="boton_comprobar" value="comprobar" onclick="validarContraseña()">
             </div>
-            <div class="terminos_crear_cuenta" id="terminos" >
-                <input type="checkbox" name="terminos" class="terminos_checkbox" id="terminos_crear_cuenta" value="<?php echo $terms;?>" name="terminos" onclick="validarTerminos()">
+            <div class="terminos_crear_cuenta" onclick="confirmarTerminos()">
+                <input type="checkbox" name="terminos" class="terminos_checkbox" id="terminos_crear_cuenta" value="<?php echo $terms;?>" name="terminos" id="terminos" >
                 <label class="terminos_checkbox" for="terminos_crear_cuenta">Acepto los terminos y condiciones</label><br><br>
                 <span class="error" id="error5"></span>
 
