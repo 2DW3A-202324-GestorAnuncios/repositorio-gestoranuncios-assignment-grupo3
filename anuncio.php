@@ -1,3 +1,9 @@
+<?php
+    include("conexion.php");
+
+    $sqlProductos = "SELECT * FROM anuncio";
+    $resultProductos = $conn->query($sqlProductos);
+?>
 <!DOCTYPE html>
 <html lang="es-Es">
 
@@ -19,20 +25,21 @@
 
     <section>
         <div class="productos">
-            <div class="producto">
-                <img src="img/primeraEquip.webp" alt="Producto 1">
-                <h2>Camiseta Hombre Primera Equipacion</h2>
-                <p>Descripción del Producto 1.</p>
-                <p>85.00€</p>
-                <button>Comprar</button>
-            </div>
-            <div class="producto">
-                <img src="img/segundaEquip.webp" alt="Producto 2">
-                <h2>Camiseta Hombre Primera Equipacion</h2>
-                <p>Descripción del Producto 1.</p>
-                <p>85.00€</p>
-                <button>Comprar</button>
-            </div>
+            <?php
+                while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<div class="producto">';
+                    
+                    // Verifica si la URL de la imagen es nula o vacía
+                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                    
+                    echo '<img src="img/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                    echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
+                    echo '<p>' . $row['descripcion'] . '</p>';
+                    echo '<p><b>' . $row['precio'] . '€</b></p>';
+                    echo '<button>Comprar</button>';
+                    echo '</div>';
+                }
+            ?>
         </div>
     </section>
 
