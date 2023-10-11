@@ -44,16 +44,16 @@
             <?php
                 while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="producto">';
-                    $imagenAlecho '<it = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_pro']);
+                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_pro']);
                     echo '<div class = "imagen-producto">';
                     echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                     echo '</div>';
                     echo '<div class = "contenedor-anuncio">';
                     echo '<h2>' . $row['nombre_pro'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
-                    echo '<button>Comprar</button>';
                     echo '<p><b>' . $row['precio'] . '€</b></p>';
                     echo '</div>';
+                    echo '<button>Comprar</button>';
                     echo '</div>';
                 }
             ?>

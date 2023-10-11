@@ -391,22 +391,27 @@ header {
     border-radius: 5px;
 }
 
-.producto img {
+.imagen-producto {
+    flex: 1;
+}
+
+.imagen-producto img {
     max-width: 100%;
-    height: 300px; /* Tamaño fijo para todas las imágenes */
+    height: 300px;
     margin-bottom: 10px;
+}
+
+.contenedor-anuncio {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .producto h2::first-letter,
 .producto p::first-letter {
     text-transform: uppercase;
-}
-
-.producto-text {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .producto button {
@@ -423,8 +428,13 @@ header {
     background-color: #0056b3;
 }
 
+#paginacion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-/*PAGINA DE NOTICIAS (NOTICIA.PHP)*/
+/* PAGINA DE NOTICIAS (NOTICIA.PHP) */
 
 /* Estilos para la página de noticias */
 .container {
@@ -898,22 +908,4 @@ p {
 @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
-}
-
-
-#paginacion{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.imagen-producto{
-    max-height: 600px;
-    position: relative;
-    overflow: hidden;
-
-}
-
-.contenedor-anuncio{
-    margin-top: 200px;
 }
