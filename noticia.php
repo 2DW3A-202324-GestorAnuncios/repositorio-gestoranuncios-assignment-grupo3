@@ -1,7 +1,7 @@
 <?php
     include("conexion.php");
 
-    $sqlNoticias = "SELECT * FROM noticia";
+    $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1'";
     $resultNoticias = $conn->query($sqlNoticias);
 ?>
 <!DOCTYPE html>

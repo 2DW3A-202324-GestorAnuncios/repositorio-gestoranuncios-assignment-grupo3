@@ -5,7 +5,7 @@
     $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 
     // Consulta para obtener el número total de productos
-    $sqlTotalProductos = "SELECT COUNT(*) as total FROM anuncio";
+    $sqlTotalProductos = "SELECT COUNT(*) as total FROM anuncio WHERE validado = '1'";
     $resultTotalProductos = $conn->query($sqlTotalProductos);
 
     if (!$resultTotalProductos) {
@@ -18,7 +18,7 @@
 
     // Consulta para obtener los productos de la página actual
     $inicio = ($paginaActual - 1) * $elementosPorPagina;
-    $sqlProductos = "SELECT * FROM anuncio LIMIT $inicio, $elementosPorPagina";
+    $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1' LIMIT $inicio, $elementosPorPagina";
     $resultProductos = $conn->query($sqlProductos);
 ?>
 
