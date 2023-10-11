@@ -9,7 +9,7 @@
 </header>
 <body>
     <div class="form_inicio_sesion">
-        <img src="../imagenes/logo.png" alt="logo" class="logo_inicio_sesion">
+        <img src="../img/logotxur.png" alt="logo" class="logo_inicio_sesion">
         <form action="" class="inicio_sesion" method="post">
             <p>Usuario o correo:</p>
             <input type="text" class="input_text">
