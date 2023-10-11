@@ -52,10 +52,9 @@
             <div id="noticiasContainer" class="noticias-container">
                 <?php
                     while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
-                        // echo '<div class="noticia3 categoria-' . $row['categoria'] . '">';
-                        echo '<div class="noticia3 categoria-' . $row['id_categoria'] . '">';
-                        echo '<img src="img/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
-                        echo '<h2 class="titulo-noticia3">' . $row['descripcion'] . '</h2>';
+                        echo '<div class="noticia3 categoria-' . $row['categoria'] . '">';
+                        echo '<img src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
+                        echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
                         echo '</div>';
                     }
                 ?>
@@ -66,32 +65,5 @@
     <?php
         include('footer.php');
     ?>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const filtroForm = document.getElementById("filtroForm");
-            const noticiasContainer = document.getElementById("noticiasContainer");
-            
-            // Agrega un evento de cambio a los inputs de radio
-            filtroForm.addEventListener("change", function(event) {
-                if (event.target.type === "radio") {
-                    const categoriaSeleccionada = event.target.value;
-                    
-                    // Recorre todas las noticias y muestra u oculta según la categoría
-                    const noticias = noticiasContainer.getElementsByClassName("noticia3");
-                    for (const noticia of noticias) {
-                        const categoriaNoticia = noticia.classList[1]; // La segunda clase es la categoría
-                        if (categoriaSeleccionada === categoriaNoticia || categoriaSeleccionada === "todos") {
-                            noticia.style.display = "block";
-                        } else {
-                            noticia.style.display = "none";
-                        }
-                    }
-                }
-            });
-        });
-    </script>
 </body>
-</html>
-
 </html>

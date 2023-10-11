@@ -34,7 +34,11 @@
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="mySlides fade">';
                     echo '<div class="numbertext">' . $slideNumber . ' / ' . $resultNoticias->rowCount() . '</div>';
-                    echo '<img src="img/' . $row['foto'] . '" style="width:100%">';
+
+                    // Comprobar si la noticia tiene una imagen específica o no
+                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
+
+                    echo '<img src="' . $imagenURL . '" style="width:100%">';
                     echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</div>';
                     $slideNumber++;
@@ -45,9 +49,12 @@
         </div>
         <br>
         <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
+            <?php
+            // Generar puntos (indicadores) dinámicamente
+            for ($i = 1; $i <= $resultNoticias->rowCount(); $i++) {
+                echo '<span class="dot" onclick="currentSlide(' . $i . ')"></span>';
+            }
+            ?>
         </div>
 
         <script>
@@ -105,7 +112,7 @@
                     // Verifica si la URL de la imagen es nula o vacía
                     $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_pro']);
                     
-                    echo '<img src="img/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                    echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                     echo '<h2>' . $row['nombre_pro'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
                     echo '<p>' . $row['precio'] . '€</p>';
