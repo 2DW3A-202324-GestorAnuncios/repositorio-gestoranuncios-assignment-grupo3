@@ -60,13 +60,17 @@
         </div>
     </section>
     <div id="paginacion">
-        <?php if ($paginaActual > 1): ?>
-            <a href="?pagina=<?php echo $paginaActual - 1; ?>">Anterior</a>
-        <?php endif ?>
-        <?php echo $paginaActual . '/' . $paginasTotales; ?>
-        <?php if ($paginaActual < $paginasTotales): ?>
-            <a class="botonesPagina" href="?pagina=<?php echo $paginaActual + 1; ?>">Siguiente</a>
-        <?php endif ?>
+        <a href="?pagina=<?php echo $paginaActual - 1; ?>" class="botonesPagina <?php if ($paginaActual <= 1) echo 'a-disabled'; ?>">← Anterior</a>
+
+        <?php for ($i = 1; $i <= $paginasTotales; $i++): ?>
+            <?php if ($i == $paginaActual): ?>
+                <a class="botonesPagina a-disabled" href="?pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <?php else: ?>
+                <a class="botonesPagina" href="?pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <?php endif; ?>
+        <?php endfor; ?>
+
+        <a class="botonesPagina <?php if ($paginaActual >= $paginasTotales) echo 'a-disabled'; ?>" href="?pagina=<?php echo $paginaActual + 1; ?>">Siguiente →</a>
     </div>
     
     <?php
