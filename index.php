@@ -1,10 +1,10 @@
 <?php
     include("conexion.php");
 
-    $sqlProductos = "SELECT * FROM producto";
+    $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1'";
     $resultProductos = $conn->query($sqlProductos);
 
-    $sqlNoticias = "SELECT * FROM noticia";
+    $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1'";
     $resultNoticias = $conn->query($sqlNoticias);
 ?>
 <!DOCTYPE html>
@@ -34,10 +34,8 @@
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="mySlides fade">';
                     echo '<div class="numbertext">' . $slideNumber . ' / ' . $resultNoticias->rowCount() . '</div>';
-
                     // Comprobar si la noticia tiene una imagen específica o no
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
-
                     echo '<img src="' . $imagenURL . '" style="width:100%">';
                     echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</div>';
@@ -110,10 +108,11 @@
                     echo '<div class="producto2">';
                     
                     // Verifica si la URL de la imagen es nula o vacía
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_pro']);
+                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
                     
-                    echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                    echo '<h2>' . $row['nombre_pro'] . '</h2>';
+                    echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                    echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
                     echo '<p>' . $row['precio'] . '€</p>';
                     echo '<button>Comprar</button>';
@@ -123,7 +122,6 @@
             </div>
         </div>
         <a href="anuncio.php"><button id="ver-mas-anuncios" class="ver-mas-button">Ver Más Anuncios</button></a>
-        </div>
     </section>
 
     <?php
