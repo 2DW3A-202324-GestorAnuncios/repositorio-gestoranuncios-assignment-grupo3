@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-Es">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<header>
-        
-</header>
-
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+    <link rel="preload" as="style" href="hojaEstilos/fuentes.css">
+    <link rel="stylesheet" href="hojaEstilos/estilos.css">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>Crear Publicación - CIFP Txurdinaga</title>
 </head>
 <body>
     <div class="container">
         
     </div>
 <body>
+    <?php
+        include('header.php');
+    ?>
+
     <div class="grid_crear">
         <div class="barra_lateral">
 
@@ -26,7 +28,6 @@
                     <div>
                         <p>Titulo:</p>
                         <input type="text" class="input_titulo">
- 
                     </div>
                     <div>
                         <p class="texto_insertar_imagen">Imagen:</p>
@@ -52,19 +53,18 @@
             </form>
         </div>
     </div>
-    
-    
-</body>
-<footer>
 
-</footer>
+    <?php
+        include('footer.php');
+    ?>
+</body>
 <script>
-  var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src) 
-    }
-  };
+    var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src) 
+        }
+    };
 </script>
 </html>

@@ -1,11 +1,12 @@
-html{
+@import url(hojaEstilos/fuentes.css);
+
+html {
     background-color: rgb(240, 240, 240);
-    font-family: sans-serif;
+    font-family: 'PT Sans Narrow';
 }
 
 /***** Comienzo Cuentas *****/
-
-.form_inicio_sesion{
+.form_inicio_sesion {
     width: 70%;
     max-width: 600px;
     min-width: 400px;
@@ -20,16 +21,14 @@ html{
     margin-right: auto;
     margin-left: auto;
     margin-top: 40px;
-    
 }
-.form_crear_cuenta{
+
+.form_crear_cuenta {
     width: 70%;
     max-width: 600px;
     min-width: 400px;
-
     background-color: white;
     display: grid;
-
     border-radius: 40px;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
     padding: 20px;
@@ -39,15 +38,16 @@ html{
     margin-left: auto;
     margin-top: 40px;
 }
-.logo_inicio_sesion{
+
+.logo_inicio_sesion {
     height: 210px;
     width: 180px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-
 }
-.inicio_sesion{
+
+.inicio_sesion {
     display: flex;
     flex-direction: row;
     width: 80%;
@@ -55,29 +55,31 @@ html{
     margin-left: auto;
     margin-right: auto;
 }
-.crear_cuenta{
+
+.crear_cuenta {
     display: grid;
     grid-template-columns: auto auto;
-    grid-gap:20px;
+    grid-gap: 20px;
     width: 90%;
-    margin-left:auto;
+    margin-left: auto;
     margin-right: auto;
 }
-.input_text{
+
+.input_text {
     width: 100%;
     border: 2px solid rgba( 0, 0, 0, 0.5);
     border-radius: 10px;
     height: 30px;
-    padding: 10px;
     font-size: 15px;
     transition: 0.4s;
-    
 }
-.input_text:hover{
+
+.input_text:hover {
     border: 2px solid rgba( 0, 0, 0, 1);
 
 }
-.boton{
+
+.boton {
     width: 125px;
     height: 40px;
     background-color: rgba(127, 182, 255, 0.6);
@@ -92,83 +94,65 @@ html{
     margin-bottom: 20px;
     transition: 0.4s;
 }
-.boton_comprobar{
-    width: 85px;
-    height: 20px;
-    background-color: rgba(127, 182, 255, 0.6);
-    border-radius: 5px;
-    font-size: 13px;
-    border: 0px solid black;
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
-    margin-top: -10px;
-    margin-left: 5%;
-    margin-bottom: 5px;
-    transition: 0.4s;
-}
-.boton:hover{
+
+.boton:hover {
     cursor: pointer;
     background-color: rgba(127, 182, 255, 1);
-
 }
-.boton_comprobar:hover{
-    cursor: pointer;
-    background-color: rgba(127, 182, 255, 1);
 
-}
-.terminos_crear_cuenta{
+.terminos_crear_cuenta {
     font-size: 17px;
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
 }
-.terminos_checkbox:hover{
+
+.terminos_checkbox:hover {
     cursor: pointer;
 }
-.link_crear_cuenta{
+
+.link_crear_cuenta {
     color: black;
     font-size: 20px;
     text-align: center;
 }
-.link_crear_cuenta:visited:link{
+
+.link_crear_cuenta:visited:link {
     color: black;
 }
+
 .error {
     color: #FF0000;
-    
-}
-.correcto{
-    color: rgb(0, 188, 0);
+    font-size: 18px;
 }
 
-span{
+span {
     font-size: 15px;
 }
-
 /*-------------------------------------------------------*/
 
 /***** Comienzo Creacion de Publicacion *****/
-
-.grid_crear{
+.grid_crear {
     display: grid;
     grid-template-columns: 19% 80%;
-    
 }
-.crear_publicacion{
+
+.crear_publicacion {
     background-color: white;
     border-radius: 40px;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
     padding: 20px;
     height: 350px;
-    
 }
-.creacion_p1{
+
+.creacion_p1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
 }
-.input_titulo{
+
+.input_titulo {
     width: 250px;
     border: 2px solid rgba( 0, 0, 0, 0.5);
     border-radius: 10px;
@@ -177,7 +161,8 @@ span{
     font-size: 15px;
     transition: 0.4s;
 }
-.input_titulo:hover{
+
+.input_titulo:hover {
     border: 2px solid rgba( 0, 0, 0, 1);
 }
 
@@ -191,22 +176,20 @@ span{
     border: 2px solid rgba( 0, 0, 0, 0.5);
     border-radius: 5px;
     transition: 0.4s;
-
 }
-.descripcion:hover{
+
+.descripcion:hover {
     border: 2px solid rgba( 0, 0, 0, 1);
-
 }
+
 .seleccionar_imagen {
     position: relative;
     display: inline-block;
-  }
-  
-  
-  .seleccionar_imagen::before {
+}
+
+.seleccionar_imagen::before {
     background-color: rgba(127, 182, 255, 0.6);
     box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
-
     color: black;
     display: flex;
     justify-content: center;
@@ -216,38 +199,34 @@ span{
     position: absolute;
     padding: 10px;
     margin-left: 50px;
-    
-  }
-  
-  
-  .seleccionar_imagen input[type="file"] {
+}
+
+.seleccionar_imagen input[type="file"] {
     opacity: 0;
     width: 10px;
     height: auto;
     display: inline-block;
     margin-left: 50px;
-  }
-  #imagen{
+}
+#imagen {
     height: 40px;
     width: auto;
-  }
+}
 
-  .texto_insertar_imagen{
+.texto_insertar_imagen {
     margin-left: 50px;
-  }
-  .texto_anuncio{
+}
+
+.texto_anuncio {
     margin-top: 110px;
-  }
-  
-  .creacion_p3{
+}
+
+.creacion_p3 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 50px;
     margin-top: -10px;
-  }
-  
-
+}
 /*-------------------------------------------------------*/
-

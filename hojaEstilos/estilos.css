@@ -1,0 +1,913 @@
+@import url(fuentes.css);
+
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'PT Sans Narrow';
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'PT Sans Narrow';
+    font-weight: 700;
+}
+
+div {
+    display: block;
+}
+
+.ct-text-block {
+    max-width: 100%;
+}
+
+.ct-div-block {
+    display:flex;
+    flex-wrap:nowrap;
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.ct-new-columns {
+    display:flex;
+    width:100%;
+    flex-direction:row;
+    align-items:stretch;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.ct-new-columns > .ct-div-block {
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+}
+
+.ct-link {
+    display:flex;
+    flex-wrap:wrap;
+    text-align:center;
+    text-decoration:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+/* Estilos para el encabezado */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 0;
+}
+
+/* Estilos para los botones */
+
+#logo {
+    margin-left: 75px;
+}
+
+#buttons-container {
+    display: flex;
+    gap: 10px;
+    margin-top: -30px;
+}
+
+.centrado {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    color: white;
+}
+
+.header-buttons {
+    display: inline-block;
+    text-align: center;  
+    position: relative;
+
+}
+
+.login-button {
+    background-color: #ff5733; 
+    color: white; 
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Estilos barra de navegación */
+#pro-menu-principal {
+    padding-top: 4px;
+    padding-bottom: 0px;
+    font-family: 'PT Sans';
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    color: #ffffff;
+    z-index: 5;
+    position: sticky;
+}
+
+.pro-menu-list {
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.pro-menu .pro-menu-list .menu-item {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition-property: background-color, color, border-color;
+}
+
+#menu-principal li:first-child {
+    background-color: #57aa26;
+}
+
+#menu-principal li:nth-child(2) {
+    background-color: #1aa4c1;
+}
+
+#menu-principal li:nth-child(3) {
+    background-color: #fcc204;
+}
+
+#menu-principal li:nth-child(4) {
+    background-color: #e95f15;
+}
+
+#menu-principal li:nth-child(5) {
+    background-color: #229c69;
+}
+
+#menu-principal li:nth-child(6) {
+    background-color: #ba007b;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: white;
+    font-family: 'PT Sans Narrow';
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    width: 100%;
+    text-align: center;
+    transition-duration: 0.2s;
+}
+
+.menu-item a {
+    padding: 12px 0;
+}
+
+#menu-principal li:hover {
+    background-color: #000;
+}
+
+#menu-principal li a:hover {
+    text-decoration: none;
+}
+
+/* Estilos Carrusel Noticias página principal */
+.mySlides {display: none}
+
+.slideshow-container img {
+    vertical-align: middle;
+    border-radius: 15px;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 700px;
+    position: relative;
+    margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+.prev{
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 10px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(51, 51, 51, 0.8);
+    border-radius: 8px;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+/* Estilos para las secciones destacadas */
+.seccion-destacada {
+    box-sizing: border-box;
+    margin-top: 20px;
+    background-color: #f7f7f7;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+
+
+/* Estilos para el título llamativo */
+.titulo-llamativo {
+    font-size: 36px;
+    color: #0077b6;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #0077b6;
+}
+
+/* Estilos para el botón "Explorar Más" */
+#ver-mas-noticias, #ver-mas-anuncios {
+    background-color: #0077b6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#ver-mas-noticias:hover, #ver-mas-anuncios:hover {
+    background-color: #005b91;
+}
+
+/* Estilos para los productos */
+.productos_anuncios_inicio {
+    display: flex;
+    justify-content: flex-start; /* Cambiado a 'flex-start' para que no haya espacio adicional al final */
+    gap: 20px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-top: 20px;
+    padding: 0 20px;
+    width: 100%; /* Agregado un ancho del 100% para que el scroll funcione */
+}
+
+.productos_slide_anuncios {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 0 0 calc(25% - 20px);
+}
+
+.productos_slide_anuncios img {
+    max-width: 100%;
+    height: auto;
+}
+
+.productos_slide_anuncios h2 {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.productos_slide_anuncios p {
+    font-size: 14px;
+    color: #666;
+}
+
+.productos_slide_anuncios h2::first-letter,
+.productos_slide_anuncios p::first-letter {
+    text-transform: uppercase;
+}
+
+.productos_slide_anuncios button {
+    background-color: #0077b6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.productos_slide_anuncios button:hover {
+    background-color: #005b91;
+}
+/* Estilo para la sección de productos */
+.productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    padding: 20px;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.producto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.imagen-producto {
+    flex: 1;
+}
+
+.imagen-producto img {
+    max-width: 100%;
+    height: 300px;
+    margin-bottom: 10px;
+}
+
+.contenedor-anuncio {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.producto h2::first-letter,
+.producto p::first-letter {
+    text-transform: uppercase;
+}
+
+.producto button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.producto button:hover {
+    background-color: #0056b3;
+}
+
+#paginacion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* PAGINA DE NOTICIAS (NOTICIA.PHP) */
+
+/* Estilos para la página de noticias */
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0;
+}
+
+.filtro {
+    width: 20%;
+    padding: 20px;
+    background-color: #f0f0f0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+.filtro h3 {
+    margin-bottom: 10px;
+}
+
+.filtro-label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.filtro-label input[type="radio"] {
+    display: none;
+}
+
+.filtro-label img {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #b6b6b6;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.filtro-label img:hover {
+    border-color: #ff6a00;
+}
+
+.noticias3 {
+    width: 80%;
+    padding: 20px;
+    background-color: #fff;
+}
+
+/* Estilos para las noticias */
+.noticias-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.noticia3 {
+    width: 48%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.imagen-noticia3 {
+    max-width: 100%;
+}
+
+.titulo-noticia3 {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+/* Asignar categoría a noticias específicas */
+.categoria-deportes {
+    background-color: red;
+}
+
+.categoria-economia {
+    background-color: green;
+}
+
+.categoria-arte {
+    background-color: blue;
+}
+
+.categoria-tiempo {
+    background-color: yellow;
+}
+
+/*CONTACTO*/
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+p {
+    line-height: 1.5;
+}
+
+/* Estilos para la sección de contacto */
+.informacion-contacto {
+    margin-bottom: 20px;
+}
+
+.informacion-contacto h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.informacion-contacto p {
+    font-size: 16px;
+    color: #666;
+}
+
+.formulario-contacto {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.formulario-contacto h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.formulario-contacto label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.formulario-contacto input[type="text"],
+.formulario-contacto input[type="email"],
+.formulario-contacto textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.formulario-contacto button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Estilos para el footer */
+#footer {
+    background-color: #ffffff;
+    border-top-color: #eee;
+    border-top-width: 1px;
+    border-top-style: solid;
+    width: 100%;
+    display: block;
+}
+
+.ct-section {
+    width: 100%;
+    background-size: cover;
+    background-repeat: repeat;
+}
+
+#footer > .footer-container {
+    max-width: 100%;
+    padding-top: 2em;
+    padding-right: 50px;
+    padding-bottom: 2em;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footer-container {
+        margin-left: auto;
+        margin-right: auto;
+        height: 100%;
+        min-height: inherit;
+}
+
+#footer-content {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#footer-left {
+    width: 25%;
+}
+
+#image-footer-container {
+    text-align: center;
+    align-items: flex-start;
+    margin-bottom: 3em;
+}
+
+#image-footer {
+    max-width: 100%;
+    width: 40%;
+}
+
+/* Estilo para el primer texto de ubicación (verde) */
+#ubicacion-green-text {
+    color: #229c6a;
+    font-family: 'PT Sans Narrow';
+    font-weight: 800;
+    font-size: 1em;
+}
+
+/* Estilo para el segundo texto de ubicación (amarillo) */
+#ubicacion-yellow-text {
+    color: #fcc204;
+    font-weight: 800;
+    margin-bottom: 2em;
+    font-size: 1em;
+}
+
+/* Estilo para el texto de teléfono (azul clarito) */
+#contacto-blue-text {
+    color: rgba(26,164,193,0.7);
+    font-weight: 800;
+    font-size: 1em;
+}
+
+/* Estilo para el texto de correo con fondo morado */
+#contacto-purple-text {
+    color: #60227a;
+    font-weight: 800;
+    font-size: 1em;
+}
+
+/* Estilos para la parte central del footer */
+#footer-center {
+    width: 25%;
+}
+
+.social-icons-content {
+    flex-direction: row;
+    margin-right: -10px;
+    margin-bottom: -10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+#social-icons.social-icons-content a svg {
+    width: 0.5em;
+    height: 0.5em;
+    color: #fff;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+}
+
+.social-icons-content a {
+    font-size: 40px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    line-height: 1;
+    width: 1em;
+    height: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.social-icons.instagram {
+    background-color: #da0067;
+}
+
+.social-icons.twitter {
+    background-color: #00b6f1 !important;
+}
+
+.social-icons.linkedin {
+    background-color: #007bb6 !important;
+}
+
+/* Estilo para el primer texto en el centro (fucsia) */
+#text-pink {
+    margin-top: 50px;
+    color: #da0067;
+}
+
+/* Estilo para el segundo texto en el centro (amarillo) */
+#text-yellow {
+    margin-top: 0px;
+    color: #fcc204;
+}
+
+/* Estilo para el tercer texto en el centro (azul) */
+#text-blue {
+    margin-top: 0px;
+    color: rgba(26,164,193,0.7);
+}
+
+/* Estilo para el cuarto texto en el centro (verde) */
+#text-green {
+    margin-top: 0px;
+    color: #57aa26;
+}
+
+.etiqueta {
+    background-color: black;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    font-weight: 800;
+    text-align: center;
+    font-size: 1em;
+}
+
+/* Estilos para los fondos negros */
+.black-bg {
+    background-color: black;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}
+
+/* Estilos para la parte derecha del footer */
+#footer-right {
+    width: 45%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: justify;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+#seccion-logos-arriba {
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    text-align: justify;
+}
+
+#fpeuskadi-img, #lanbide-img, #ivafeiei-img {
+    height: 70px;
+}
+
+#gobiernovasco-img  {
+    height: 60px;
+}
+
+#ikaslan-img {
+    height: 79px;
+}
+
+#seccion-logos-abajo {
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    text-align: justify;
+}
+
+/* Estilos Carrusel Noticias página principal */
+.mySlides {display: none}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 50%;
+    height: 600px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.slideshow-container img {
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 30px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+    color: white;
+    font-size: 20px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 75px;
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}

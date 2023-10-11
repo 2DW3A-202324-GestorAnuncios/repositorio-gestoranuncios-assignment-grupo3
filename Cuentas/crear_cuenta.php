@@ -1,4 +1,5 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es-Es">
 <head>
     <meta charset="UTF-8">
     <script src="../script.js"></script>
