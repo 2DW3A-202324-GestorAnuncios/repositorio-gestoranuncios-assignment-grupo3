@@ -9,6 +9,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="es-Es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,7 @@
     <script src="script.js"></script>
     <title>Inicio - CIFP Txurdinaga</title>
 </head>
+
 <body>
     <?php
         include("header.php");
@@ -56,44 +58,44 @@
         </div>
 
         <script>
-            let slideIndex = 1;
-            showSlides(slideIndex);
+        let slideIndex = 1;
+        showSlides(slideIndex);
 
-            function plusSlides(n) {
-                showSlides(slideIndex += n);
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {
+                slideIndex = 1;
             }
-
-            function currentSlide(n) {
-                showSlides(slideIndex = n);
+            if (n < 1) {
+                slideIndex = slides.length;
             }
-
-            function showSlides(n) {
-                let i;
-                let slides = document.getElementsByClassName("mySlides");
-                let dots = document.getElementsByClassName("dot");
-                if (n > slides.length) {
-                    slideIndex = 1;
-                }
-                if (n < 1) {
-                    slideIndex = slides.length;
-                }
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-                for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                }
-                slides[slideIndex - 1].style.display = "block";
-                dots[slideIndex - 1].className += " active";
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
             }
-
-            // Añade esta función para cambiar de diapositiva cada 10 segundos
-            function autoSlide() {
-                plusSlides(1);
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
             }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
 
-            // Llama a autoSlide cada 10 segundos (10000 milisegundos)
-            setInterval(autoSlide, 10000);
+        // Añade esta función para cambiar de diapositiva cada 10 segundos
+        function autoSlide() {
+            plusSlides(1);
+        }
+
+        // Llama a autoSlide cada 10 segundos (10000 milisegundos)
+        setInterval(autoSlide, 10000);
         </script>
 
         <a href="noticia.php"><button id="ver-mas-noticias" class="ver-mas-button">Ver Más Noticias</button></a>
@@ -108,10 +110,10 @@
                     echo '<div class="productos_slide_anuncios">';
                     
                     // Verifica si la URL de la imagen es nula o vacía
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_pro']);
+                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                     
                     echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                    echo '<h2>' . $row['nombre_pro'] . '</h2>';
+                    echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
                     echo '<p>' . $row['precio'] . '€</p>';
                     echo '<button>Comprar</button>';
@@ -127,4 +129,5 @@
         include('footer.php');
     ?>
 </body>
+
 </html>
