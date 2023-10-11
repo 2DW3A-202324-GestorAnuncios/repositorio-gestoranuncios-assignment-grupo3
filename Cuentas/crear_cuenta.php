@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>">
     <title>Document</title>
 </head>
-<body>
+<body onload='deshabilitarBoton()'>
     <?php
         session_start();
         $usuErr = $emailErr = $contra1Err = $contra2Err = $termsErr = "";
@@ -91,26 +91,26 @@
             <div class="crear_cuenta">
                 <div>
                     <p>Usuario:</p>
-                    <input type="text" class="input_text" autofocus maxlength="15" value="<?php echo $usu;?>" name="usuario"><br>
-                    <span class="error"> <?php if(isset($_SESSION['usu_vacio'])){echo $_SESSION['usu_vacio'];unset($_SESSION['usu_vacio']);}?></span>
+                    <input type="text" class="input_text" autofocus maxlength="15" value="<?php echo $usu;?>" name="usuario" id="usuario" onkeypress='validarUsuario()'><br>
+                    <span class="error" id="error1"></span>
                 </div>
                 <div>
                     <p>Correo:</p>
-                    <input type="mail" class="input_text" value="<?php echo $email;?>" name="email"><br>
-                    <span class="error"> <?php echo $emailErr;?></span>
+                    <input type="mail" class="input_text" value="<?php echo $email;?>" name="email" id="email" onkeyup='validarEmail()'><br>
+                    <span class="error" id="error2"></span>
                 </div>
                 <div>
                     <p>Contraseña:</p>
                     <input type="text"  class="input_text" name="contraseña1" value="<?php echo $contra1;?>" name="contraseña1" aria-laballedby="password" id="validar_contraseña">
-                    <span class="error"> <?php echo $contra1Err;?></span>
+                    <span class="error" id="error3"></span>
                     <div id="expresiones">
 
                     </div>
                 </div>
                 <div>
                     <p>Confirmar contraseña:</p>
-                    <input type="text" class="input_text" name="contraseña2" value="<?php echo $contra2;?>" name="cotnraseña2"><br>
-                    <span class="error"> <?php echo $contra2Err;?></span>
+                    <input type="text" class="input_text" name="contraseña2" value="<?php echo $contra2;?>" name="contraseña2" id="validar_contraseña2" onkeyup="confirmarContraseña()"><br>
+                    <span class="error" id="error4"></span>
 
                 </div>
             </div>
@@ -118,10 +118,10 @@
             <div>
                 <input type="button" class="boton_comprobar" value="comprobar" onclick="validarContraseña()">
             </div>
-            <div class="terminos_crear_cuenta">
-                <input type="checkbox" name="terminos" class="terminos_checkbox" id="terminos_crear_cuenta" value="<?php echo $terms;?>" name="terminos">
+            <div class="terminos_crear_cuenta" id="terminos" >
+                <input type="checkbox" name="terminos" class="terminos_checkbox" id="terminos_crear_cuenta" value="<?php echo $terms;?>" name="terminos" onclick="validarTerminos()">
                 <label class="terminos_checkbox" for="terminos_crear_cuenta">Acepto los terminos y condiciones</label><br><br>
-                <span class="error"> <?php echo $termsErr;?></span>
+                <span class="error" id="error5"></span>
 
             </div>
             <button type="submit" value="Crear Cuenta" name="submit" class="boton" id="boton">Crear Cuenta</button>
@@ -133,17 +133,7 @@
     <script>
         if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
-        }
-
-
-        const form = document.querySelector("form"); 
-  
-        document.getElementById("boton").addEventListener("click", function (event) { 
-            event.preventDefault(); 
-        });
-
-
-        
+        }        
     </script>
 </body>
 </html>
