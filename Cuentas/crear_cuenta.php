@@ -1,19 +1,17 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es-Es">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>">
-    <title>Document</title>
+    <link rel="shortcut icon" href="../img/favicon.png">
+    <title>Crear Cuenta - CIFP Txurdinaga</title>
 </head>
-<header>
-    
-</header>
 <body>
     <?php
     session_start();
     
     $usuErr = $emailErr = $contra1Err = $contra2Err = $termsErr = "";
     $usu = $email = $contra1 = $contra2 = $terms = "";
-   
 
     if (isset($_POST['submit'])) {
     if (empty($_POST["usuario"])) {
@@ -63,13 +61,12 @@
     }
     ?>
     <div class="form_crear_cuenta">
-        <img src="../imagenes/logo.png" alt="logo" class="logo_inicio_sesion">
+        <img src="../img/Logo_Inicio_Sesion.png" alt="Logo CIFP Txurdinaga" class="logo_inicio_sesion">
         <form action=""  method="post" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>
             <div class="crear_cuenta">
                 <div>
                     <p>Usuario:</p>
                     <input type="text" class="input_text" maxlength="15" value="<?php echo $usu;?>" name="usuario"><br>
-
                     <span class="error"> <?php if(isset($_SESSION['usu_vacio'])){echo $_SESSION['usu_vacio'];unset($_SESSION['usu_vacio']);}?></span>
                 </div>
                 <div>
@@ -81,13 +78,11 @@
                     <p>Contraseña:</p>
                     <input type="text" class="input_text" name="contraseña1" value="<?php echo $contra1;?>" name="contraseña1"><br>
                     <span class="error"> <?php echo $contra1Err;?></span>
-
                 </div>
                 <div>
                     <p>Confirmar contraseña:</p>
                     <input type="text" class="input_text" name="contraseña2" value="<?php echo $contra2;?>" name="cotnraseña2"><br>
                     <span class="error"> <?php echo $contra2Err;?></span>
-
                 </div>
             </div>
             <br>
@@ -95,12 +90,9 @@
                 <input type="checkbox" name="terminos" class="terminos_checkbox" id="terminos_crear_cuenta" value="<?php echo $terms;?>" name="terminos">
                 <label class="terminos_checkbox" for="terminos_crear_cuenta">Acepto los terminos y condiciones</label><br><br>
                 <span class="error"> <?php echo $termsErr;?></span>
-
             </div>
             <input type="submit" value="Crear Cuenta" name="submit" class="boton">
-
-            </form>
+        </form>
     </div>
-    
 </body>
 </html>
