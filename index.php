@@ -1,15 +1,14 @@
 <?php
     include("conexion.php");
 
-    $sqlProductos = "SELECT * FROM anuncio";
+    $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1'";
     $resultProductos = $conn->query($sqlProductos);
 
-    $sqlNoticias = "SELECT * FROM noticia";
+    $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1'";
     $resultNoticias = $conn->query($sqlNoticias);
 ?>
 <!DOCTYPE html>
 <html lang="es-Es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +19,6 @@
     <script src="script.js"></script>
     <title>Inicio - CIFP Txurdinaga</title>
 </head>
-
 <body>
     <?php
         include("header.php");
@@ -36,7 +34,9 @@
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="mySlides fade">';
                     echo '<div class="numbertext">' . $slideNumber . ' / ' . $resultNoticias->rowCount() . '</div>';
-                    echo '<img src="img/' . $row['foto'] . '" style="width:100%">';
+                    // Comprobar si la noticia tiene una imagen específica o no
+                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
+                    echo '<img src="' . $imagenURL . '" style="width:100%">';
                     echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</div>';
                     $slideNumber++;
@@ -47,50 +47,53 @@
         </div>
         <br>
         <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
+            <?php
+            // Generar puntos (indicadores) dinámicamente
+            for ($i = 1; $i <= $resultNoticias->rowCount(); $i++) {
+                echo '<span class="dot" onclick="currentSlide(' . $i . ')"></span>';
+            }
+            ?>
         </div>
 
         <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
+            let slideIndex = 1;
+            showSlides(slideIndex);
 
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {
-                slideIndex = 1;
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
             }
-            if (n < 1) {
-                slideIndex = slides.length;
-            }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-        }
 
-        // Añade esta función para cambiar de diapositiva cada 10 segundos
-        function autoSlide() {
-            plusSlides(1);
-        }
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
 
-        // Llama a autoSlide cada 10 segundos (10000 milisegundos)
-        setInterval(autoSlide, 10000);
+            function showSlides(n) {
+                let i;
+                let slides = document.getElementsByClassName("mySlides");
+                let dots = document.getElementsByClassName("dot");
+                if (n > slides.length) {
+                    slideIndex = 1;
+                }
+                if (n < 1) {
+                    slideIndex = slides.length;
+                }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+            }
+
+            // Añade esta función para cambiar de diapositiva cada 10 segundos
+            function autoSlide() {
+                plusSlides(1);
+            }
+
+            // Llama a autoSlide cada 10 segundos (10000 milisegundos)
+            setInterval(autoSlide, 10000);
         </script>
 
         <a href="noticia.php"><button id="ver-mas-noticias" class="ver-mas-button">Ver Más Noticias</button></a>
@@ -99,16 +102,16 @@
     <section id="anuncios-mas-visitados" class="seccion-destacada">
         <div class="seccion-contenido">
             <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
-            <div class="productos2">
+            <div class="productos_anuncios_inicio">
                 <?php
                 while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<div class="producto2">';
+                    echo '<div class="productos_slide_anuncios">';
                     
                     // Verifica si la URL de la imagen es nula o vacía
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_pro']);
                     
-                    echo '<img src="img/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                    echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
+                    echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                    echo '<h2>' . $row['nombre_pro'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
                     echo '<p>' . $row['precio'] . '€</p>';
                     echo '<button>Comprar</button>';
@@ -118,12 +121,10 @@
             </div>
         </div>
         <a href="anuncio.php"><button id="ver-mas-anuncios" class="ver-mas-button">Ver Más Anuncios</button></a>
-        </div>
     </section>
 
     <?php
         include('footer.php');
     ?>
 </body>
-
 </html>

@@ -286,6 +286,8 @@ header {
     margin-bottom: 20px;
 }
 
+
+
 /* Estilos para el título llamativo */
 .titulo-llamativo {
     font-size: 36px;
@@ -313,9 +315,9 @@ header {
 }
 
 /* Estilos para los productos */
-.productos2 {
+.productos_anuncios_inicio {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     gap: 20px;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -323,7 +325,7 @@ header {
     padding: 0 20px;
 }
 
-.producto2 {
+.productos_slide_anuncios {
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;
@@ -332,23 +334,28 @@ header {
     flex: 0 0 calc(25% - 20px);
 }
 
-.producto2 img {
+.productos_slide_anuncios img {
     max-width: 100%;
     height: auto;
 }
 
-.producto2 h2 {
+.productos_slide_anuncios h2 {
     font-size: 18px;
     color: #333;
     margin: 10px 0;
 }
 
-.producto2 p {
+.productos_slide_anuncios p {
     font-size: 14px;
     color: #666;
 }
 
-.producto2 button {
+.productos_slide_anuncios h2::first-letter,
+.productos_slide_anuncios p::first-letter {
+    text-transform: uppercase;
+}
+
+.productos_slide_anuncios button {
     background-color: #0077b6;
     color: #fff;
     border: none;
@@ -360,41 +367,76 @@ header {
     transition: background-color 0.3s ease-in-out;
 }
 
-.producto2 button:hover {
+.productos_slide_anuncios button:hover {
     background-color: #005b91;
 }
 
-/* Estilos para la cuadrícula de productos */
+/* Estilo para la sección de productos */
 .productos {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 50px;
     padding: 20px;
-    width: 50%;
-    padding-left: 25%;
+    width: 75%;
+    margin: 0 auto;
 }
 
 .producto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
 }
 
-.producto img {
+.imagen-producto {
+    flex: 1;
+}
+
+.imagen-producto img {
     max-width: 100%;
-    height: auto;
+    height: 300px;
+    margin-bottom: 10px;
 }
 
-/* Estilos para el botón "Comprar" */
+.contenedor-anuncio {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.producto h2::first-letter,
+.producto p::first-letter {
+    text-transform: uppercase;
+}
+
 .producto button {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
     border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-/*PAGINA DE NOTICIAS (NOTICIA.PHP)*/
+.producto button:hover {
+    background-color: #0056b3;
+}
+
+#paginacion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* PAGINA DE NOTICIAS (NOTICIA.PHP) */
 
 /* Estilos para la página de noticias */
 .container {
@@ -780,26 +822,32 @@ p {
 /* Estilos Carrusel Noticias página principal */
 .mySlides {display: none}
 
-.slideshow-container img {vertical-align: middle;}
-
 /* Slideshow container */
 .slideshow-container {
-    max-width: 1000px;
+    max-width: 50%;
+    height: 600px;
+    margin: 0 auto;
     position: relative;
-    margin: auto;
+    overflow: hidden;
+}
+
+.slideshow-container img {
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
 }
 
 /* Next & previous buttons */
 .prev, .next {
     cursor: pointer;
     position: absolute;
-    top: 50%;
+    top: 40%;
     width: auto;
-    padding: 16px;
+    padding: 30px;
     margin-top: -22px;
     color: white;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
     user-select: none;
@@ -818,13 +866,14 @@ p {
 
 /* Caption text */
 .text {
-    color: #f2f2f2;
-    font-size: 15px;
+    color: white;
+    font-size: 20px;
     padding: 8px 12px;
     position: absolute;
-    bottom: 8px;
+    bottom: 75px;
     width: 100%;
     text-align: center;
+    font-style: italic;
 }
 
 /* Number text (1/3 etc) */

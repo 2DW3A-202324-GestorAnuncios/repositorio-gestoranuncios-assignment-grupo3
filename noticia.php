@@ -1,3 +1,9 @@
+<?php
+    include("conexion.php");
+
+    $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1'";
+    $resultNoticias = $conn->query($sqlNoticias);
+?>
 <!DOCTYPE html>
 <html lang="es-Es">
 <head>
@@ -25,14 +31,14 @@
                     <h5>Deportes</h5>
                 </label><br>
                 <label class="filtro-label">
-                    <input type="radio" name="categoria" value="economia">
-                    <img src="img/categorias_noticias/economia.png" alt="Economía">
-                    <h5>Economia</h5>
-                </label><br>
-                <label class="filtro-label">
                     <input type="radio" name="categoria" value="arte">
                     <img src="img/categorias_noticias/arte.png" alt="Arte">
                     <h5>Arte</h5>
+                </label><br>
+                <label class="filtro-label">
+                    <input type="radio" name="categoria" value="economia">
+                    <img src="img/categorias_noticias/economia.png" alt="Economía">
+                    <h5>Economia</h5>
                 </label><br>
                 <label class="filtro-label">
                     <input type="radio" name="categoria" value="tiempo">
@@ -44,19 +50,14 @@
         <div class="noticias3">
             <h2>Noticias</h2>
             <div id="noticiasContainer" class="noticias-container">
-                <!-- Aquí se cargarán las noticias dinámicamente -->
-                <div class="noticia3 categoria-deportes">
-                    <img src="img/noticia_ansu.webp" alt="Noticia Ansu" class="imagen-noticia3">
-                    <h2 class="titulo-noticia3">Noticia Ansu</h2>
-                </div>
-                <div class="noticia3 categoria-arte">
-                    <img src="img/noticia_barca.webp" alt="Noticia Barca" class="imagen-noticia3">
-                    <h2 class="titulo-noticia3">Noticia Deudas</h2>
-                </div>
-                <div class="noticia3 categoria-economia">
-                    <img src="img/noticia_mvps_euroliga.webp" alt="MVPs EuroLiga" class="imagen-noticia3">
-                    <h2 class="titulo-noticia3">MVPs EuroLiga</h2>
-                </div>
+                <?php
+                    while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<div class="noticia3 categoria-' . $row['categoria'] . '">';
+                        echo '<img src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
+                        echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
+                        echo '</div>';
+                    }
+                ?>
             </div>
         </div>
     </div>
@@ -65,6 +66,4 @@
         include('footer.php');
     ?>
 </body>
-</html>
-
 </html>
