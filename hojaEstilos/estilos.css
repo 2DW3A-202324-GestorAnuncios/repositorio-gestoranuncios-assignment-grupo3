@@ -899,3 +899,21 @@ p {
     from {opacity: .4}
     to {opacity: 1}
 }
+
+
+#paginacion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagen-producto{
+    max-height: 600px;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.contenedor-anuncio{
+    margin-top: 200px;
+}
