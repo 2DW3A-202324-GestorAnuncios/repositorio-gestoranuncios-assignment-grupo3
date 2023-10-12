@@ -34,7 +34,7 @@ CREATE TABLE `anuncio` (
   `descripcion` varchar(300) NOT NULL,
   `foto` varchar(80) NOT NULL,
   `nombre_usuario` varchar(30) NOT NULL,
-  `validado` enum('0','1','','') NOT NULL DEFAULT '0'
+  `validado` enum('0','1') NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -43,10 +43,10 @@ CREATE TABLE `anuncio` (
 
 INSERT INTO `anuncio` (`id_anuncio`, `nombre_anuncio`, `precio`, `descripcion`, `foto`, `nombre_usuario`, `validado`) VALUES
 (1, 'Iphone 13', 529, 'Lo vendo porque me voy a comprar el nuevo IPhone 15\r\nSalud batería: 87%\r\nGarantía vigente\r\n120gb\r\nFactura\r\nSe puede ver sin compromiso\r\nEstá totalmente nuevo\r\nPoco uso ya que utilizo el móvil de empresa con normalidad\r\nPRECIO POCO NEGOCIABLE\r\nAbstenerse ofertas ridículas', 'iphone13.webp', 'Admin_ekaitz', '1'),
-(2, 'apuntes', 20, 'son los apuntes del año pasado en limpio y con un examen de regalo', 'apuntes.jpg', 'Admin_luka', '0'),
+(2, 'apuntes', 20, 'son los apuntes del año pasado en limpio y con un examen de regalo', 'apuntes.jpg', 'Admin_luka', '1'),
 (3, 'Sillas escritorio IKEA', 25, 'Sillas escritorio modelo Logerbet / Malskar de IkEA. Silla blanca y cojín negro. Precio silla con cojín 25€. Venta 4 sillas conjuntamente 80€. NO negociable.', 'silla_ikea.webp', 'Admin_aketza', '1'),
 (4, 'CAMISETA HOMBRE PRIMERA EQUIPACIÓN', 85, 'Esta camiseta de manga corta te hará sentir como un gran profesional. Celebra la historia del Athletic Club mientras apoyas a tu equipo favorito.', 'primeraEquip.webp', 'Admin_ekaitz', '1'),
-(5, 'CAMISETA HOMBRE SEGUNDA EQUIPACIÓN', 85, 'Muévete como un león con esta camiseta de la segunda equipación para hombre. Confeccionada con un tejido ligero y transpirable y con un práctico cuello de pico, esta camiseta aporta comodidad para que te mantengas fresco en las gradas de San Mamés.', 'segundaEquip.webp', 'Admin_ekaitz', '0');
+(5, 'CAMISETA HOMBRE SEGUNDA EQUIPACIÓN', 85, 'Muévete como un león con esta camiseta de la segunda equipación para hombre. Confeccionada con un tejido ligero y transpirable y con un práctico cuello de pico, esta camiseta aporta comodidad para que te mantengas fresco en las gradas de San Mamés.', 'segundaEquip.webp', 'Admin_ekaitz', '1');
 
 -- --------------------------------------------------------
 

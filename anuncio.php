@@ -31,7 +31,6 @@
     <link rel="stylesheet" href="hojaEstilos/fuentes.css">
     <link rel="stylesheet" href="hojaEstilos/estilos.css">
     <link rel="shortcut icon" href="img/favicon.png">
-    <script src="script.js"></script>
     <title>Anuncios - CIFP Txurdinaga</title>
 </head>
 <body>

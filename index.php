@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="hojaEstilos/fuentes.css">
     <link rel="stylesheet" href="hojaEstilos/estilos.css">
     <link rel="shortcut icon" href="img/favicon.png">
-    <script src="script.js"></script>
     <title>Inicio - CIFP Txurdinaga</title>
 </head>
 <body>

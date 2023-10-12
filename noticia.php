@@ -13,7 +13,6 @@
 	<link rel="stylesheet" href="hojaEstilos/fuentes.css">
 	<link rel="stylesheet" href="hojaEstilos/estilos.css">
 	<link rel="shortcut icon" href="img/favicon.png">
-	<script src="script.js"></script>
 	<title>Noticias - CIFP Txurdinaga</title>
 </head>
 <body>
@@ -33,7 +32,7 @@
                 <label class="filtro-label">
                     <input type="radio" name="categoria" id="categoria-economia" value="economia">
                     <img src="img/categorias_noticias/economia.png" alt="Economía">
-                    <h5>Economia</h5>
+                    <h5>Economía</h5>
                 </label><br>
                 <label class="filtro-label">
                     <input type="radio" name="categoria" id="categoria-arte" value="arte">
