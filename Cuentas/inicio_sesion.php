@@ -7,17 +7,17 @@
     <title>Inicio de Sesión - CIFP Txurdinaga</title>
 </head>
 <body>
-    <div class="form_inicio_sesion">
-        <img src="../img/Logo_Inicio_Sesion.png" alt="Logo CIFP Txurdinaga" class="logo_inicio_sesion">
-        <form action="" class="inicio_sesion" method="post">
+    <div class="form-inicio-sesion">
+        <img src="../img/Logo_Inicio_Sesion.png" alt="Logo CIFP Txurdinaga" class="logo-inicio-sesion">
+        <form action="" class="inicio-sesion" method="post">
             <p>Usuario o correo:</p>
-            <input type="text" class="input_text">
+            <input type="text" class="input-text">
             <p>Contraseña:</p>
-            <input type="text" class="input_text">
+            <input type="text" class="input-text">
             <input type="button" value="Iniciar Sesion" class="boton">
         </form>
-        <div class="link_crear_cuenta">
-            <a href="crear_cuenta.php" class="link_crear_cuenta">Crear Cuenta</a>
+        <div class="link-crear-cuenta">
+            <a href="crear_cuenta.php" class="link-crear-cuenta">Crear Cuenta</a>
         </div>
     </div>
 </body>

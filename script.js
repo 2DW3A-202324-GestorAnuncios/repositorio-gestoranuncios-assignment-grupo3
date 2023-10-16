@@ -1,9 +1,9 @@
 var num = 1;
 
 function validarCampos() { 
-
+  
   //validar contraseña 
-  var c = document.getElementById('validar_contraseña').value;
+  var c = document.getElementById('validar-contraseña').value;
   var box = document.getElementById("expresiones");
   var field = document.createElement('span');
   const boton = document.getElementById("boton");
@@ -60,8 +60,8 @@ function validarCampos() {
 
   }
 //confirmar contraseña
-  var c = document.getElementById('validar_contraseña').value;
-  var c2 = document.getElementById('validar_contraseña2').value;
+  var c = document.getElementById('validar-contraseña').value;
+  var c2 = document.getElementById('validar-contraseña2').value;
   const error4 = document.getElementById("error4");
   if (c === c2) {
     error4.innerText = "";
@@ -97,16 +97,33 @@ function validarCampos() {
   if (document.getElementById('terminos').checked == false) {
     error5.innerText = "Debe aceptar los terminos";
     num = num + 1;
+  }else{
+    error5.innerText = "";
+    num = 0;
   }
+  //comprueba nombre
+  var nombre = document.getElementById('nombre').value;
+  const error6 = document.getElementById("error6");
+  if (nombre.length == 0) {
+    error6.innerText = "Introduce un nombre";
+    num = num + 1;
+  } else{
+    error6.innerText = "";
+    num = 0;
+  }
+  //comprueba apellido
+  var apellido = document.getElementById('apellido').value;
+  const error7 = document.getElementById("error7");
+  if (apellido.length == 0) {
+    error7.innerText = "Introduce un apellido";
+    num = num + 1;
+  }else{
+    error7.innerText = "";
+    num = 0;
+  } 
   if (num!=0) {
-    document.getElementById("id_form").addEventListener("click", function(event){
+    document.getElementById("id-form").addEventListener("click", function(event){
       event.preventDefault()
     });
-  }
-  
+  } 
 }
-
-
-
-
-

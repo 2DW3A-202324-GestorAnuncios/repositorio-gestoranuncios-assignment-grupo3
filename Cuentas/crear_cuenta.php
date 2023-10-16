@@ -7,60 +7,9 @@
     <link rel="shortcut icon" href="../img/favicon.png">
     <title>Creacion de Cuenta - CIFP Txurdinaga</title>
 </head>
-<body>   
-    <div class="form_crear_cuenta">
-        <img src="../img/Logo_Inicio_Sesion.png" alt="logo" class="logo_inicio_sesion">
-        <form action="../index.php" method="post" id="id_form" >
-            <div class="crear_cuenta">
-                <div>
-                    <p>Nombre:</p>
-                    <input type="text" class="input_text" autofocus maxlength="15" name="nombre">
-                </div>
-                <div>
-                    <p>Apellido:</p>
-                    <input type="text" class="input_text" maxlength="15" name="apellido">
-                </div>
-                <div>
-                    <p>Usuario:</p>
-                    <input type="text" class="input_text" maxlength="15" name="usuario">
-                    <span class="error" id="error1"></span>
-                </div>
-                <div>
-                    <p>Correo:</p>
-                    <input type="mail" class="input_text" name="email">
-                    <span class="error" id="error2"></span>
-                </div>
-                <div>
-                    <p>Contraseña:</p>
-                    <input type="password"  class="input_text" name="contraseña" aria-laballedby="password" id="validar_contraseña">
-                    <span class="error" id="error3"></span>
-                    <div id="expresiones">
-
-                    </div>
-                </div>
-                <div>
-                    <p>Confirmar contraseña:</p>
-                    <input type="password" class="input_text" id="validar_contraseña2">
-                    <span class="error" id="error4"></span>
-
-                </div>
-            </div>
-            <br>
-            <div id="imagen">
-                <input type="file" accept="image/*" name="imagen">
-            </div>
-            <div class="terminos_crear_cuenta" >
-                <input id="terminos" type="checkbox" name="terminos" class="terminos_checkbox" id="terminos_crear_cuenta" name="terminos" id="terminos" >
-                <label class="terminos_checkbox" for="terminos_crear_cuenta">Acepto los terminos y condiciones</label><br>
-                <span class="error" id="error5"></span>
-
-            </div>
-            <button type="submit" value="Crear Cuenta" name="submit" class="boton" id="boton" onclick="validarCampos()">Crear Cuenta</button>
-
-        </form>
-            
-    </div>
-    <?php
+<body> 
+<?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
         
         // Comprueba conexion
@@ -75,15 +24,75 @@
         $apellido = $_POST['apellido'];
         $email =  $_POST['email'];
         $contraseña = $_POST['contraseña'];
-        $foto = $_POST['foto'];
+        $imagen = $_POST['imagen'];
         
         // Inserta los datos a la tabla "usuario"
-        $sql = "INSERT INTO usuario (nombre_usuario, nombre,  apellido, correo, password, foto ) VALUES ('$usuario','$nombre', 
-            '$apellido','$email','$contraseña','$foto')";
-        
+        mysqli_query($conn,"INSERT INTO usuario (nombre_usuario, nombre, apellido, correo, password, foto) VALUES ('$usuario','$nombre','$apellido','$email','$contraseña','$imagen')");
+
         // Cierra conexion
-        mysqli_close($conn);
+        mysqli_close($conn); 
+        header("Location: http://localhost/Pagina%20R1/repositorio-gestoranuncios-assignment-grupo3/");
+    }
+        
+
     ?>
+    <div class="form-crear-cuenta">
+        <img src="../img/Logo_Inicio_Sesion.png" alt="logo" class="logo-inicio-sesion">
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" id="id-form">
+            <div class="crear-cuenta">
+                <div>
+                    <p>Nombre:</p>
+                    <input type="text" class="input-text" autofocus maxlength="15" name="nombre" id="nombre">
+                    <span class="error" id="error6"></span>
+
+                </div>
+                <div>
+                    <p>Apellido:</p>
+                    <input type="text" class="input-text" maxlength="15" name="apellido" id="apellido">
+                    <span class="error" id="error7"></span>
+
+                </div>
+                <div>
+                    <p>Usuario:</p>
+                    <input type="text" class="input-text" maxlength="15" name="usuario" id='usuario'>
+                    <span class="error" id="error1"></span>
+                </div>
+                <div>
+                    <p>Correo:</p>
+                    <input type="mail" class="input-text" name="email" id='email'>
+                    <span class="error" id="error2"></span>
+                </div>
+                <div>
+                    <p>Contraseña:</p>
+                    <input type="password"  class="input-text" name="contraseña" aria-laballedby="password" id="validar-contraseña">
+                    <span class="error" id="error3"></span>
+                    <div id="expresiones">
+
+                    </div>
+                </div>
+                <div>
+                    <p>Confirmar contraseña:</p>
+                    <input type="password" class="input-text" id="validar-contraseña2">
+                    <span class="error" id="error4"></span>
+
+                </div>
+            </div>
+            <br>
+            <div id="imagen">
+                <input type="file" accept="image/*" name="imagen">
+            </div>
+            <div class="terminos-crear-cuenta" >
+                <input id="terminos" type="checkbox" name="terminos" class="terminos-checkbox" id="terminos-crear-cuenta" name="terminos" id="terminos" >
+                <label class="terminos-checkbox" for="terminos-crear-cuenta">Acepto los terminos y condiciones</label><br>
+                <span class="error" id="error5"></span>
+
+            </div>
+            <button type="submit" value="Crear Cuenta" name="submit" class="boton" id="boton" onclick="validarCampos()">Crear Cuenta</button>
+
+        </form>
+            
+    </div>
+    
     
     <script>
         //para el reenvio del formulario al recargar la pagina
