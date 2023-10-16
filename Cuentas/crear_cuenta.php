@@ -9,9 +9,16 @@
 <body> 
 <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $usuarioErr = $_POST['error1'];
+        $nombreErr =  $_POST['error6'];
+        $apellidoErr = $_POST['error7'];
+        $emailErr =  $_POST['error2'];
+        $contraseñaErr = $_POST['error3'];
+        $contraseña2Err = $_POST['error4'];
+        $terminosErr = $_POST['error5'];
+
         
-        
-        if(empty($_POST["nombreErr"]) && empty($_POST["apellidoErr"]) && empty($_POST["usuarioErr"]) && empty($_POST["emailErr"]) && empty($_POST["contraseñaErr"]) && empty($_POST["contraseña2Err"]) && empty($_POST["terminosErr"])){
+        if($usuarioErr==null && $nombreErr==null && $apellidoErr==null && $emailErr==null && $contraseñaErr=null && $contraseña2Err=null && $terminosErr==null){
             $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
         
             // Comprueba conexion
@@ -44,29 +51,29 @@
                 <div>
                     <p>Nombre:</p>
                     <input type="text" class="input-text" autofocus maxlength="15" name="nombre" id="nombre">
-                    <span class="error" id="error6"><?php echo $_SESSION['nombreErr'];?></span>
+                    <span class="error" id="error6" name="error6"></span>
 
                 </div>
                 <div>
                     <p>Apellido:</p>
                     <input type="text" class="input-text" maxlength="15" name="apellido" id="apellido">
-                    <span class="error" id="error7"><?php echo $_SESSION['apelidoErr'];?></span>
+                    <span class="error" id="error7" name="error7"></span>
 
                 </div>
                 <div>
                     <p>Usuario:</p>
                     <input type="text" class="input-text" maxlength="15" name="usuario" id='usuario'>
-                    <span class="error" id="error1"><?php echo $_SESSION['usuarioErr'];?></span>
+                    <span class="error" id="error1" name="error1"></span>
                 </div>
                 <div>
                     <p>Correo:</p>
                     <input type="mail" class="input-text" name="email" id='email'>
-                    <span class="error" id="error2"><?php echo $_SESSION['emailErr'];?></span>
+                    <span class="error" id="error2" name="error2"></span>
                 </div>
                 <div>
                     <p>Contraseña:</p>
                     <input type="password"  class="input-text" name="contraseña" aria-laballedby="password" id="validar-contraseña">
-                    <span class="error" id="error3"><?php echo $_SESSION['contraseñaErr'];?></span>
+                    <span class="error" id="error3" name="error3"></span>
                     <div id="expresiones">
 
                     </div>
@@ -74,7 +81,7 @@
                 <div>
                     <p>Confirmar contraseña:</p>
                     <input type="password" class="input-text" id="validar-contraseña2">
-                    <span class="error" id="error4"><?php echo $_SESSION['contraseña2Err'];?></span>
+                    <span class="error" id="error4" name="error4"></span>
 
                 </div>
             </div>
@@ -85,7 +92,7 @@
             <div class="terminos-crear-cuenta" >
                 <input id="terminos" type="checkbox" name="terminos" class="terminos-checkbox" id="terminos-crear-cuenta" name="terminos" id="terminos" >
                 <label class="terminos-checkbox" for="terminos-crear-cuenta">Acepto los terminos y condiciones</label><br>
-                <span class="error" id="error5"><?php echo $_SESSION['terminosErr'];?></span>
+                <span class="error" id="error5" name="error5"></span>
 
             </div>
             <input type="submit" value="Crear Cuenta" name="submit" class="boton">
