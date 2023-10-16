@@ -275,7 +275,7 @@ header {
     to {opacity: 1}
 }
 
-/* Estilos para las secciones destacadas */
+/* Estilos para las secciones destacadas */left
 .seccion-destacada {
     box-sizing: border-box;
     margin-top: 20px;
@@ -585,19 +585,19 @@ header {
 
 /* Asignar categoría a noticias específicas */
 .categoria-deportes {
-    background-color: red;
+    background-color: #72a953;
 }
 
 .categoria-economia {
-    background-color: green;
+    background-color: #e68f61;
 }
 
 .categoria-arte {
-    background-color: blue;
+    background-color: #60b3c4;
 }
 
 .categoria-tiempo {
-    background-color: yellow;
+    background-color: #ffe283;
 }
 
 
