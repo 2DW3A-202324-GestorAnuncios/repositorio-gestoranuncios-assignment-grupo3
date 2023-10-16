@@ -101,10 +101,10 @@
     <section id="anuncios-mas-visitados" class="seccion-destacada">
         <div class="seccion-contenido">
             <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
-            <div class="productos2">
+            <div class="productos_anuncios_inicio">
                 <?php
                 while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<div class="producto2">';
+                    echo '<div class="productos_slide_anuncios">';
                     
                     // Verifica si la URL de la imagen es nula o vacía
                     $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);

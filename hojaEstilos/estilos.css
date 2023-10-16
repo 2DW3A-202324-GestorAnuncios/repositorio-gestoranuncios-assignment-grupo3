@@ -313,17 +313,18 @@ header {
 }
 
 /* Estilos para los productos */
-.productos2 {
+.productos_anuncios_inicio {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     gap: 20px;
     flex-wrap: nowrap;
     overflow-x: auto;
     margin-top: 20px;
     padding: 0 20px;
+    width: 100%;
 }
 
-.producto2 {
+.productos_slide_anuncios {
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;
@@ -332,28 +333,28 @@ header {
     flex: 0 0 calc(25% - 20px);
 }
 
-.producto2 img {
+.productos_slide_anuncios img {
     max-width: 100%;
     height: auto;
 }
 
-.producto2 h2 {
+.productos_slide_anuncios h2 {
     font-size: 18px;
     color: #333;
     margin: 10px 0;
 }
 
-.producto2 p {
+.productos_slide_anuncios p {
     font-size: 14px;
     color: #666;
 }
 
-.producto2 h2::first-letter,
-.producto2 p::first-letter {
+.productos_slide_anuncios h2::first-letter,
+.productos_slide_anuncios p::first-letter {
     text-transform: uppercase;
 }
 
-.producto2 button {
+.productos_slide_anuncios button {
     background-color: #0077b6;
     color: #fff;
     border: none;
@@ -365,7 +366,7 @@ header {
     transition: background-color 0.3s ease-in-out;
 }
 
-.producto2 button:hover {
+.productos_slide_anuncios button:hover {
     background-color: #005b91;
 }
 
