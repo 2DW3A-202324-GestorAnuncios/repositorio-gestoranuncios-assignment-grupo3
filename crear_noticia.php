@@ -1,50 +1,68 @@
 <!DOCTYPE html>
-<html lang="es-Es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" as="style" href="hojaEstilos/fuentes.css">
-    <link rel="stylesheet" href="hojaEstilos/fuentes.css">
-    <link rel="stylesheet" href="hojaEstilos/estilos.css">
-    <link rel="shortcut icon" href="img/favicon.png">
-    <title>Crear Noticia - CIFP Txurdinaga</title>
+    <title>Document</title>
+</head>
+<header>
+        
+</header>
+
 </head>
 <body>
-    <?php
-        include("header.php");
-    ?>
+    <div class="container">
+        
+    </div>
+<body>
+    <div class="grid_crear">
+        <div class="barra_lateral">
+
+        </div>
+        <div>
+            <form class="crear_publicacion">
+                <div class="creacion_p1">
+                    <div>
+                        <p>Titulo:</p>
+                        <input type="text" class="input_titulo">
+ 
+                    </div>
+                    <div>
+                        <p class="texto_insertar_imagen">Imagen:</p>
+                        <div class="seleccionar_imagen">
+                            <input type="file" accept="image/*" id="imagen" onchange="loadFile(event)">
+                        </div>
+                        <img id="output"/>
+
+                    </div>
+                </div>
+                <p>Descripcion:</p>
+                <div class="comment">
+                    <textarea class="descripcion" placeholder="Comment"></textarea>
+                </div>
+                <p class="texto_anuncio">Es un anuncio?</p>                
+                <div class="creacion_p3">
+                    <div>
+                        <input type="button" value="Crear" class="boton">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     
-    <main>
-        <section class="crear-noticia">
-            <h1>Crear Noticia</h1>
-            <div class="form-crear-noticia">
-                <form action="#" method="post">
-                    <label for="titulo">Título:</label>
-                    <input type="text" id="titulo" name="titulo" required>
-
-                    <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
-
-                    <label for="imagen">Imagen:</label>
-                    <input type="file" id="imagen" name="imagen" accept="image/*" required>
-
-                    <label for="categoria">Categoría:</label>
-                    <select id="categoria" name="categoria">
-                        <option value="deportes"></option>
-                        <option value="deportes">Deportes</option>
-                        <option value="economia">Economía</option>
-                        <option value="arte">Arte</option>
-                        <option value="tiempo">Tiempo</option>
-                    </select>
-
-                    <button type="submit">Crear Noticia</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <?php
-        include('footer.php');
-    ?>
+    
 </body>
+<footer>
+
+</footer>
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) 
+    }
+  };
+</script>
 </html>
