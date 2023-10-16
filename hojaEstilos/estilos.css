@@ -349,6 +349,11 @@ header {
     color: #666;
 }
 
+.producto2 h2::first-letter,
+.producto2 p::first-letter {
+    text-transform: uppercase;
+}
+
 .productos_slide_anuncios h2::first-letter,
 .productos_slide_anuncios p::first-letter {
     text-transform: uppercase;
@@ -501,8 +506,12 @@ header {
     margin: 0;
 }
 
+.filtro-container {
+    position: sticky;
+}
+
 .filtro {
-    width: 20%;
+    width: 100%;
     padding: 20px;
     background-color: #f0f0f0;
     text-align: center;
@@ -529,7 +538,7 @@ header {
     border: 3px solid #b6b6b6;
     border-radius: 5px;
     cursor: pointer;
-    padding: 5px;
+    padding: 10px;
     transition: border-color 0.3s ease;
 }
 
@@ -537,10 +546,12 @@ header {
     border-color: #ff6a00;
 }
 
+
 .noticias3 {
-    width: 80%;
+    width: 100%;
     padding: 20px;
     background-color: #fff;
+    margin-left: 250px;
 }
 
 /* Estilos para las noticias */
@@ -548,11 +559,11 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 5px;
+    gap: 15px;
 }
 
 .noticia3 {
-    width: 45%;
+    width: 49%;
     margin-bottom: 20px;
     box-sizing: border-box;
     padding: 10px;
@@ -565,9 +576,10 @@ header {
 }
 
 .titulo-noticia3-h1 {
-    font-size: 36px;
-    margin-top: 10px;
+    font-size: 15px;
+    margin-top: 5px;
     font-weight: bold;
+    color: rgb(239, 239, 239);
 }
 
 .titulo-noticia3-h1::first-letter {
@@ -580,19 +592,19 @@ header {
 
 /* Asignar categoría a noticias específicas */
 .categoria-deportes {
-    background-color: red;
+    background-color: #a6d789;
 }
 
 .categoria-economia {
-    background-color: green;
+    background-color: #ffd8c3; /*#e95f15;*/
 }
 
 .categoria-arte {
-    background-color: blue;
+    background-color:  #ffe799;
 }
 
 .categoria-tiempo {
-    background-color: yellow;
+    background-color: #9dd8e3;
 }
 
 /*CONTACTO*/
@@ -650,7 +662,7 @@ p {
 .formulario-contacto input[type="text"],
 .formulario-contacto input[type="email"],
 .formulario-contacto textarea {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
@@ -890,6 +902,9 @@ p {
 
 /* Slideshow container */
 .slideshow-container {
+    max-width: 50%;
+    height: 600px;
+    margin: 0 auto;
     max-width: 50%;
     height: 600px;
     margin: 0 auto;
