@@ -286,8 +286,6 @@ header {
     margin-bottom: 20px;
 }
 
-
-
 /* Estilos para el título llamativo */
 .titulo-llamativo {
     font-size: 36px;
@@ -315,18 +313,17 @@ header {
 }
 
 /* Estilos para los productos */
-.productos_anuncios_inicio {
+.productos2 {
     display: flex;
-    justify-content: flex-start; /* Cambiado a 'flex-start' para que no haya espacio adicional al final */
+    justify-content: space-evenly;
     gap: 20px;
     flex-wrap: nowrap;
     overflow-x: auto;
     margin-top: 20px;
     padding: 0 20px;
-    width: 100%; /* Agregado un ancho del 100% para que el scroll funcione */
 }
 
-.productos_slide_anuncios {
+.producto2 {
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;
@@ -335,28 +332,28 @@ header {
     flex: 0 0 calc(25% - 20px);
 }
 
-.productos_slide_anuncios img {
+.producto2 img {
     max-width: 100%;
     height: auto;
 }
 
-.productos_slide_anuncios h2 {
+.producto2 h2 {
     font-size: 18px;
     color: #333;
     margin: 10px 0;
 }
 
-.productos_slide_anuncios p {
+.producto2 p {
     font-size: 14px;
     color: #666;
 }
 
-.productos_slide_anuncios h2::first-letter,
-.productos_slide_anuncios p::first-letter {
+.producto2 h2::first-letter,
+.producto2 p::first-letter {
     text-transform: uppercase;
 }
 
-.productos_slide_anuncios button {
+.producto2 button {
     background-color: #0077b6;
     color: #fff;
     border: none;
@@ -368,9 +365,10 @@ header {
     transition: background-color 0.3s ease-in-out;
 }
 
-.productos_slide_anuncios button:hover {
+.producto2 button:hover {
     background-color: #005b91;
 }
+
 /* Estilo para la sección de productos */
 .productos {
     display: grid;
