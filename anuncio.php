@@ -50,7 +50,7 @@
                     echo '<div class = "contenedor-anuncio">';
                     echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
-                    echo '<p><b>' . $row['precio'] . '€</b></p>';
+                    echo '<p class="precio">' . $row['precio'] . '€</p>';
                     echo '</div>';
                     echo '<button>Comprar</button>';
                     echo '</div>';

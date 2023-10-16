@@ -11,22 +11,30 @@
             <img src="img/boton_alumnos.png" alt="Inicio" width="100px" height="80px">
             <div class="centrado">Crear Anuncio</div>
         </a>
-        <div class="header-dropdown" id="iniciar-sesion-dropdown">
-            <a class="header-buttons" href="javascript:void(0)" id="iniciar-sesion-btn">
-                <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
-                <div class="centrado">Iniciar Sesión</div>
-            </a>
-            <div id="form-inicio-sesion" class="form-sesion">
-                <h2>Iniciar Sesión</h2>
-                <form action="tu_script_de_autenticacion.php" method="POST">
-                    <label for="usuario">Usuario:</label>
-                    <input type="text" id="usuario" name="usuario" required>
-                    <label for="contrasena">Contraseña:</label>
-                    <input type="password" id="contrasena" name="contrasena" required>
-                    <button type="submit">Iniciar Sesión</button>
-                </form>
-            </div>
-        </div>
+        <?php
+            echo '
+                <div class="header-dropdown" id="iniciar-sesion-dropdown">
+                    <a class="header-buttons" href="javascript:void(0)" id="iniciar-sesion-btn">
+                        <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
+                        <div class="centrado">Iniciar Sesión</div>
+                    </a>
+                    <div id="form-inicio-sesion" class="form-sesion">
+                        <h2>Iniciar Sesión</h2>
+                        <form action="index.php" method="POST">
+                            <label for="usuario">Usuario:</label>
+                            <input type="text" id="usuario" name="usuario" required>
+                            <label for="contrasena">Contraseña:</label>
+                            <input type="password" id="contrasena" name="contrasena" required>
+                            <button type="submit">Iniciar Sesión</button>
+                            <div class="registrarseContainer">
+                                <div id="textRegistrarse">¿No tienes cuenta? </div>
+                                <a href="Cuentas/crear_cuenta.php" id="btnRegistrarse"><span>Registrarse</span></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            ';
+        ?>
     </div>
 </header>
 

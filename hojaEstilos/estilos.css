@@ -69,7 +69,6 @@ header {
 }
 
 /* Estilos para los botones */
-
 #logo {
     margin-left: 75px;
 }
@@ -92,15 +91,6 @@ header {
     display: inline-block;
     text-align: center;  
     position: relative;
-
-}
-
-.login-button {
-    background-color: #ff5733; 
-    color: white; 
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
 }
 
 /* Estilos barra de navegación */
@@ -183,72 +173,60 @@ header {
 /* Estilos Carrusel Noticias página principal */
 .mySlides {display: none}
 
+.slideshow-container {
+    max-width: 50%;
+    height: 600px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
 .slideshow-container img {
     vertical-align: middle;
+    width: 100%;
+    height: 100%;
     border-radius: 15px;
 }
 
-/* Slideshow container */
-.slideshow-container {
-    max-width: 700px;
-    position: relative;
-    margin: auto;
-}
-
-/* Next & previous buttons */
 .prev, .next {
     cursor: pointer;
     position: absolute;
-    top: 50%;
+    top: 40%;
     width: auto;
-    padding: 16px;
+    padding: 30px;
     margin-top: -22px;
     color: white;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
     transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
     user-select: none;
 }
 
-/* Position the "next button" to the right */
 .next {
     right: 0;
-    border-radius: 3px 0 0 3px;
+    border-radius: 7px 0 0 7px;
 }
 .prev{
-  left: 0;
-  border-radius: 3px 0 0 3px;
+    left: 0;
+    border-radius: 0 7px 7px 0;
 }
 
-/* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
     background-color: rgba(0,0,0,0.8);
 }
 
-/* Caption text */
 .text {
-    color: #f2f2f2;
-    font-size: 15px;
-    padding: 10px;
+    color: white;
+    font-size: 20px;
+    padding: 8px 12px;
     position: absolute;
-    bottom: 8px;
+    bottom: 75px;
     width: 100%;
     text-align: center;
     background-color: rgba(51, 51, 51, 0.8);
-    border-radius: 8px;
+    font-style: italic;
 }
 
-/* Number text (1/3 etc) */
-.numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
-}
-
-/* The dots/bullets/indicators */
 .dot {
     cursor: pointer;
     height: 15px;
@@ -264,7 +242,6 @@ header {
     background-color: #717171;
 }
 
-/* Fading animation */
 .fade {
     animation-name: fade;
     animation-duration: 1.5s;
@@ -313,7 +290,7 @@ header {
 }
 
 /* Estilos para los productos */
-.productos_anuncios_inicio {
+.productos-anuncios-nicio {
     display: flex;
     justify-content: flex-start;
     gap: 20px;
@@ -324,7 +301,7 @@ header {
     width: 100%;
 }
 
-.productos_slide_anuncios {
+.productos-slide-anuncios {
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;
@@ -333,40 +310,39 @@ header {
     flex: 0 0 calc(25% - 20px);
 }
 
-.productos_slide_anuncios img {
+.productos-slide-anuncios img {
     max-width: 100%;
     height: auto;
 }
 
-.productos_slide_anuncios h2 {
+.productos-slide-anuncios h2 {
     font-size: 18px;
     color: #333;
     margin: 10px 0;
 }
 
-.productos_slide_anuncios p {
+.productos-slide-anuncios p {
     font-size: 14px;
     color: #666;
 }
 
-.productos_slide_anuncios h2::first-letter,
-.productos_slide_anuncios p::first-letter {
+.productos-slide-anuncios h2::first-letter,
+.productos-slide-anuncios p::first-letter {
     text-transform: uppercase;
 }
 
-.productos_slide_anuncios button {
-    background-color: #0077b6;
+.productos-slide-anuncios button {
+    background-color: #007bff;
     color: #fff;
     border: none;
+    padding: 10px 20px;
+    font-size: 18px;
     border-radius: 5px;
-    padding: 5px 10px;
-    font-size: 14px;
-    margin-top: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
 
-.productos_slide_anuncios button:hover {
+.productos-slide-anuncios button:hover {
     background-color: #005b91;
 }
 
@@ -390,6 +366,11 @@ header {
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+}
+
+.producto .precio, .productos-slide-anuncios .precio {
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .imagen-producto {
@@ -423,6 +404,7 @@ header {
     font-size: 18px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .producto button:hover {
@@ -854,99 +836,6 @@ p {
     text-align: justify;
 }
 
-/* Estilos Carrusel Noticias página principal */
-.mySlides {display: none}
-
-/* Slideshow container */
-.slideshow-container {
-    max-width: 50%;
-    height: 600px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-}
-
-.slideshow-container img {
-    vertical-align: middle;
-    width: 100%;
-    height: 100%;
-}
-
-/* Next & previous buttons */
-.prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 40%;
-    width: auto;
-    padding: 30px;
-    margin-top: -22px;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
-}
-
-/* Caption text */
-.text {
-    color: white;
-    font-size: 20px;
-    padding: 8px 12px;
-    position: absolute;
-    bottom: 75px;
-    width: 100%;
-    text-align: center;
-    font-style: italic;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-    background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-
-@keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-}
-
 #iniciar-sesion-dropdown {
     position: relative;
 }
@@ -954,8 +843,8 @@ p {
 .form-sesion {
     display: none;
     position: absolute;
-    top: 100%; /* Ajusta la posición hacia abajo */
-    right: 0; /* Ajusta la posición hacia la derecha */
+    top: 100%;
+    right: 0;
     background: #fff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     padding: 10px;
@@ -992,17 +881,59 @@ p {
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin: 20px auto 0;
+    margin: 10px auto;
+    text-align: center;
 }
 
 .form-sesion button:hover {
     background-color: #0056b3;
 }
 
+.registrarseContainer {
+    color: rgb(22, 24, 35);
+    font-family: TikTokFont;
+    height: 64px;
+    border-top: 0.5px solid rgba(22, 24, 35, 0.12);
+    margin: unset;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 15px;
+    line-height: 18px;
+    font-family: 'PT Sans Narrow';
+}
+
+#btnRegistrarse {
+    color: #007BFF;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.registrarseContainer a {
+    text-decoration: none;
+}
+
+.registrarseContainer a:hover {
+    text-decoration: underline;
+}
+
+.registrarseContainer span {
+    margin-left: 5px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #007BFF;
+}
+
 /* Estilos para el formulario de creación de anuncios */
 .crear-anuncio {
-    text-align: center;
     padding: 20px;
+}
+
+.crear-anuncio h1 {
+    text-align: center;
 }
 
 .form-crear-anuncio {
@@ -1060,8 +991,11 @@ p {
 
 /* Estilos para el formulario de creación de noticias */
 .crear-noticia {
-    text-align: center;
     padding: 20px;
+}
+
+.crear-noticia h1 {
+    text-align: center;
 }
 
 .form-crear-noticia {
