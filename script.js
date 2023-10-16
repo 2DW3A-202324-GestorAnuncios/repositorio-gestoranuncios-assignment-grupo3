@@ -1,6 +1,7 @@
 var num = 1;
 
 function validarCampos() { 
+
   //validar contraseña 
   var c = document.getElementById('validar_contraseña').value;
   var box = document.getElementById("expresiones");
@@ -17,8 +18,6 @@ function validarCampos() {
     field.appendChild(salto);
     cont = cont + 1;
     num=num+1;
-
-
   }
   if (c.search(/[a-z]/i) < 0) {
     document.getElementById("expresiones").innerHTML = "";   
@@ -29,8 +28,6 @@ function validarCampos() {
     field.appendChild(salto);
     cont = cont + 1;
     num=num+1;
-
-
   }
   if (c.search(/[0-9]/) < 0) {
     document.getElementById("expresiones").innerHTML = "";   
@@ -41,8 +38,6 @@ function validarCampos() {
     field.appendChild(salto);
     cont = cont + 1;
     num=num+1;
-
-
   }
   if (c.search(/[A-Z]/) < 0) { 
     document.getElementById("expresiones").innerHTML = "";   
@@ -53,8 +48,6 @@ function validarCampos() {
     field.appendChild(salto);
     cont = cont + 1;
     num=num+1;
-
-
   }
   if(cont==0){
     document.getElementById("expresiones").innerHTML = "";   
@@ -77,7 +70,6 @@ function validarCampos() {
   }else{
     error4.innerText = "Las contraseñas tienen que ser identicas";
     num=num+1;
-
   }
 //validar usuario
   const usuario = document.getElementById("usuario").value;
@@ -88,7 +80,6 @@ function validarCampos() {
   }else{
     error1.innerText = "";
     num = 0;
-
   }
 //validar email
   var email = document.getElementById('email');
@@ -101,8 +92,16 @@ function validarCampos() {
     error2.innerText = "El email no es valido";
     num=num+1;
 	}
+  const error5 = document.getElementById("error5");
+
+  if (document.getElementById('terminos').checked == false) {
+    error5.innerText = "Debe aceptar los terminos";
+    num = num + 1;
+  }
   if (num!=0) {
-    
+    document.getElementById("id_form").addEventListener("click", function(event){
+      event.preventDefault()
+    });
   }
   
 }

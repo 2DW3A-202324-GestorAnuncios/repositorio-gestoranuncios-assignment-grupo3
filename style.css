@@ -127,10 +127,19 @@ html {
     color: #FF0000;
     font-size: 18px;
 }
+.correcto{
+    color: #00cd0a;
+    font-size: 18px;
+}
 
 span {
     font-size: 15px;
 }
+
+#imagen{
+    margin-left: 30px;
+}
+
 /*-------------------------------------------------------*/
 
 /***** Comienzo Creacion de Publicacion *****/
