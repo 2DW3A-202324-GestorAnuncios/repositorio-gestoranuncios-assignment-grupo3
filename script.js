@@ -1,4 +1,3 @@
-@@ -0,0 +1,113 @@
 var num = 1;
 
 function validarCampos() { 
