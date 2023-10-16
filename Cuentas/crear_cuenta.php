@@ -2,10 +2,9 @@
 <html lang="es-Es">
 <head>
     <meta charset="UTF-8">
-    <script src="../script.js"></script>
     <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>">
     <link rel="shortcut icon" href="../img/favicon.png">
-    <title>Creacion de Cuenta - CIFP Txurdinaga</title>
+    <title>Crear Cuenta - CIFP Txurdinaga</title>
 </head>
 <body> 
 <?php
@@ -87,10 +86,8 @@
                 <span class="error" id="error5"></span>
 
             </div>
-            <button type="submit" value="Crear Cuenta" name="submit" class="boton" id="boton" onclick="validarCampos()">Crear Cuenta</button>
-
+            <input type="submit" value="Crear Cuenta" name="submit" class="boton">
         </form>
-            
     </div>
     
     
