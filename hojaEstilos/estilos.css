@@ -286,8 +286,6 @@ header {
     margin-bottom: 20px;
 }
 
-
-
 /* Estilos para el título llamativo */
 .titulo-llamativo {
     font-size: 36px;
@@ -315,7 +313,7 @@ header {
 }
 
 /* Estilos para los productos */
-.productos_anuncios_inicio {
+.productos2 {
     display: flex;
     justify-content: space-evenly;
     gap: 20px;
@@ -325,7 +323,7 @@ header {
     padding: 0 20px;
 }
 
-.productos_slide_anuncios {
+.producto2 {
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;
@@ -334,28 +332,28 @@ header {
     flex: 0 0 calc(25% - 20px);
 }
 
-.productos_slide_anuncios img {
+.producto2 img {
     max-width: 100%;
     height: auto;
 }
 
-.productos_slide_anuncios h2 {
+.producto2 h2 {
     font-size: 18px;
     color: #333;
     margin: 10px 0;
 }
 
-.productos_slide_anuncios p {
+.producto2 p {
     font-size: 14px;
     color: #666;
 }
 
-.productos_slide_anuncios h2::first-letter,
-.productos_slide_anuncios p::first-letter {
+.producto2 h2::first-letter,
+.producto2 p::first-letter {
     text-transform: uppercase;
 }
 
-.productos_slide_anuncios button {
+.producto2 button {
     background-color: #0077b6;
     color: #fff;
     border: none;
@@ -367,7 +365,7 @@ header {
     transition: background-color 0.3s ease-in-out;
 }
 
-.productos_slide_anuncios button:hover {
+.producto2 button:hover {
     background-color: #005b91;
 }
 
@@ -434,6 +432,32 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 18px;
+}
+
+#paginacion a {
+    border-color: #888C8C;
+    border-radius: 8px;
+    color: #0F1111;
+    display: block;
+    border: 1px solid #6c6e73;
+    text-decoration: none;
+    margin: 20px 4px;
+}
+
+#paginacion .a-disabled {
+    background: #FFF;
+    border: 1px solid #D5D9D9;
+    border-radius: 8px;
+    color: #6F7373;
+    display: block;
+    pointer-events: none;
+}
+
+#paginacion a,
+#paginacion .a-disabled,
+.botonesPagina {
+    padding: 8px 14px;
 }
 
 /* PAGINA DE NOTICIAS (NOTICIA.PHP) */
@@ -492,10 +516,11 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 5px;
 }
 
 .noticia3 {
-    width: 48%;
+    width: 45%;
     margin-bottom: 20px;
     box-sizing: border-box;
     padding: 10px;
@@ -507,8 +532,17 @@ header {
     max-width: 100%;
 }
 
+.titulo-noticia3-h1 {
+    font-size: 36px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.titulo-noticia3-h1::first-letter {
+    text-transform: uppercase;
+}
+
 .titulo-noticia3 {
-    font-size: 1.5rem;
     margin-top: 10px;
 }
 
@@ -910,4 +944,184 @@ p {
 @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
+}
+
+#iniciar-sesion-dropdown {
+    position: relative;
+}
+
+.form-sesion {
+    display: none;
+    position: absolute;
+    top: 100%; /* Ajusta la posición hacia abajo */
+    right: 0; /* Ajusta la posición hacia la derecha */
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    width: 200px;
+    z-index: 999;
+    border-radius: 5px;
+}
+
+.form-sesion h2 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.form-sesion label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.form-sesion input[type="text"],
+.form-sesion input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-sesion button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 20px auto 0;
+}
+
+.form-sesion button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para el formulario de creación de anuncios */
+.crear-anuncio {
+    text-align: center;
+    padding: 20px;
+}
+
+.form-crear-anuncio {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-crear-anuncio label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.form-crear-anuncio input[type="text"],
+.form-crear-anuncio textarea {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-crear-anuncio input[type="file"] {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.form-crear-anuncio button {
+    display: block;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    margin: 20px auto 0;
+}
+
+.form-crear-anuncio button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para el formulario de creación de noticias */
+.crear-noticia {
+    text-align: center;
+    padding: 20px;
+}
+
+.form-crear-noticia {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-crear-noticia label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.form-crear-noticia input[type="text"],
+.form-crear-noticia textarea {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-crear-noticia select {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.form-crear-noticia input[type="file"] {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.form-crear-noticia button {
+    display: block;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    margin: 20px auto 0;
+}
+
+.form-crear-noticia button:hover {
+    background-color: #0056b3;
 }
