@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <script src="../script.js"></script>
     <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>">
-    <title>Registro</title>
+    <link rel="shortcut icon" href="../img/favicon.png">
+    <title>Creacion de Cuenta - CIFP Txurdinaga</title>
 </head>
-<body onload='deshabilitarBoton()'>
+<body>
     <?php
         session_start();
         $usuErr = $emailErr = $contra1Err = $contra2Err = $termsErr = "";
@@ -87,17 +88,17 @@
     }
     ?>
     <div class="form_crear_cuenta">
-        <img src="../imagenes/logo.png" alt="logo" class="logo_inicio_sesion">
+        <img src="../img/Logo_Inicio_Sesion.png" alt="logo" class="logo_inicio_sesion">
         <form  method="post" id="id_form">
             <div class="crear_cuenta">
                 <div>
                     <p>Usuario:</p>
-                    <input type="text" class="input_text" autofocus maxlength="15" value="<?php echo $usu;?>" name="usuario" id="usuario" onkeypress='validarUsuario()'><br>
+                    <input type="text" class="input_text" autofocus maxlength="15" value="<?php echo $usu;?>" name="usuario" id="usuario"><br>
                     <span class="error" id="error1"></span>
                 </div>
                 <div>
                     <p>Correo:</p>
-                    <input type="mail" class="input_text" value="<?php echo $email;?>" name="email" id="email" onkeyup='validarEmail()'><br>
+                    <input type="mail" class="input_text" value="<?php echo $email;?>" name="email" id="email"><br>
                     <span class="error" id="error2"></span>
                 </div>
                 <div>
@@ -110,22 +111,20 @@
                 </div>
                 <div>
                     <p>Confirmar contraseña:</p>
-                    <input type="password" class="input_text" name="contraseña2" value="<?php echo $contra2;?>" name="contraseña2" id="validar_contraseña2" onkeyup="confirmarContraseña()"><br>
+                    <input type="password" class="input_text" name="contraseña2" value="<?php echo $contra2;?>" name="contraseña2" id="validar_contraseña2"><br>
                     <span class="error" id="error4"></span>
 
                 </div>
             </div>
             <br>
-            <div>
-                <input type="button" class="boton_comprobar" value="comprobar" onclick="validarContraseña()">
-            </div>
-            <div class="terminos_crear_cuenta" onclick="confirmarTerminos()">
+            
+            <div class="terminos_crear_cuenta">
                 <input type="checkbox" name="terminos" class="terminos_checkbox" id="terminos_crear_cuenta" value="<?php echo $terms;?>" name="terminos" id="terminos" >
                 <label class="terminos_checkbox" for="terminos_crear_cuenta">Acepto los terminos y condiciones</label><br><br>
                 <span class="error" id="error5"></span>
 
             </div>
-            <button type="submit" value="Crear Cuenta" name="submit" class="boton" id="boton">Crear Cuenta</button>
+            <button type="submit" value="Crear Cuenta" name="submit" class="boton" id="boton" onclick="validarCampos()">Crear Cuenta</button>
 
         </form>
             

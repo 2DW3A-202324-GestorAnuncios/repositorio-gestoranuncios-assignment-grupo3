@@ -1,17 +1,12 @@
 var num = 1;
 
-function deshabilitarBoton(){
-  var button = document.getElementById("boton");
-  button.setAttribute("disabled","");
-
-}
-
-function validarContraseña() {  
+function validarCampos() { 
+  //validar contraseña 
   var c = document.getElementById('validar_contraseña').value;
   var box = document.getElementById("expresiones");
   var field = document.createElement('span');
   const boton = document.getElementById("boton");
-  const error = document.getElementById("error3");
+  const error3 = document.getElementById("error3");
   var cont = 0; 
   if (c.length < 6 ) {
     document.getElementById("expresiones").innerHTML = "";         
@@ -71,57 +66,44 @@ function validarContraseña() {
     num = 0;
 
   }
-}
-function confirmarContraseña() {
+//confirmar contraseña
   var c = document.getElementById('validar_contraseña').value;
   var c2 = document.getElementById('validar_contraseña2').value;
-  const error = document.getElementById("error4");
+  const error4 = document.getElementById("error4");
   if (c === c2) {
-    error.innerText = "";
+    error4.innerText = "";
     num = 0;
 
   }else{
-    error.innerText = "Las contraseñas tienen que ser identicas";
+    error4.innerText = "Las contraseñas tienen que ser identicas";
     num=num+1;
 
   }
-}
-function validarUsuario() {
+//validar usuario
   const usuario = document.getElementById("usuario").value;
-  const error = document.getElementById("error1");
+  const error1 = document.getElementById("error1");
   if (usuario.length < 3) {
-    error.innerText = "El usuario debe tener 4 o mas caracteres";
+    error1.innerText = "El usuario debe tener 4 o mas caracteres";
     num=num+1;
   }else{
-    error.innerText = "";
+    error1.innerText = "";
     num = 0;
 
   }
-}
-function validarEmail(){
+//validar email
   var email = document.getElementById('email');
-  const error = document.getElementById("error2");
+  const error2 = document.getElementById("error2");
   var emailRE =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 	if( emailRE.test(email.value) ){
-    error.innerText = "";
+    error2.innerText = "";
     num = 0;
-
-		return true;
 	}else{
-    error.innerText = "El email no es valido";
+    error2.innerText = "El email no es valido";
     num=num+1;
-		return false;
 	}
-} 
-function confirmarTerminos(){
-  var x = document.getElementById('terminos');
-  if (x.checked) {
-    num = num -1;
-    if (num == 0) {
-      var button = document.getElementById("boton");
-      button.removeAttribute("disabled","");
-    }
-  } 
+  if (num!=0) {
+    
+  }
   
 }
 
