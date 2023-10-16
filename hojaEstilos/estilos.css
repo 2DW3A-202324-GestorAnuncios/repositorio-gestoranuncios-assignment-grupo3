@@ -356,6 +356,37 @@ header {
     margin: 0 auto;
 }
 
+#buscador {
+    width: 80%;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
+
+#inputBuscador {
+    width: 700px;
+    border-radius: 15px;
+    margin-left: 36%;
+    height: 50px;
+    text-align: center;
+}
+
+#mensajeBusqueda {
+    margin-left: 39%;
+    width: 800px;
+    font-family: 'PT Sans Narrow';
+    font-size: xx-large;
+}
+
+#botonBuscador {
+    height: 50px;
+    border-radius: 15px;
+    width: 100px;
+    background-color:#229c69 ;
+    text-align: center;
+}
+
+
 .producto {
     display: flex;
     flex-direction: column;
