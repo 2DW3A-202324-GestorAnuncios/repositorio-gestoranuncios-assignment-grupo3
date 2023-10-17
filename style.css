@@ -136,7 +136,13 @@ span {
 }
 
 #imagen{
-    margin-left: 30px;
+    margin-left: 25px;
+}
+#repPK{
+    color: red;
+    display: block;
+    margin-left: 25px;
+    font-size: 15px;
 }
 
 /*-------------------------------------------------------*/

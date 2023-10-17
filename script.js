@@ -69,7 +69,7 @@ function validarCampos() {
 
   }else{
     error4.innerText = "Las contraseñas tienen que ser identicas";
-    num=num+1;
+    num=num+6;
   }
 //validar usuario
   const usuario = document.getElementById("usuario").value;
@@ -93,7 +93,7 @@ function validarCampos() {
     num=num+1;
 	}
   const error5 = document.getElementById("error5");
-
+  //comprobar terminos
   if (document.getElementById('terminos').checked == false) {
     error5.innerText = "Debe aceptar los terminos";
     num = num + 1;
