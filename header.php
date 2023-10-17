@@ -1,5 +1,5 @@
 <?php
-$sesion = 0 ;
+$sesion = 0;
 $admin = 1;
 ?>
 
@@ -10,45 +10,47 @@ $admin = 1;
     <div id="buttons-container">
         <?php if ($sesion === 1) {
             echo '
-            <a class="header-buttons" href="crear_noticia.php">
-            <img src="img/boton_profesores.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Crear Noticia</div>
-            </a>';
-        } else {
+                <a class="header-buttons" href="crear_noticia.php">
+                <img src="img/boton_profesores.png" alt="Inicio" width="100px" height="80px">
+                <div class="centrado">Crear Noticia</div>
+                </a>
+            ';
+
             echo '
-            <a class="header-buttons" href="javascript:void(0)" id="iniciar-sesion-btn" onclick="toggleDropdown()">
-            <img src="img/boton_profesores.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Crear Noticia</div>
-            </a>';
-        } ?>
-        <?php if ($sesion === 1) {
+                <a class="header-buttons" href="crear_anuncio.php">
+                <img src="img/boton_alumnos.png" alt="Inicio" width="100px" height="80px">
+                <div class="centrado">Crear Anuncio</div>
+                </a>
+            ';
+
             echo '
-            <a class="header-buttons" href="crear_anuncio.php">
-            <img src="img/boton_alumnos.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Crear Anuncio</div>
-            </a>';
-        } else {
-            echo '
-            <a class="header-buttons" href="javascript:void(0)" id="iniciar-sesion-btn" onclick="toggleDropdown()">
-            <img src="img/boton_alumnos.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Crear Anuncio</div>
-            </a>';
-        } ?>
-        <?php
-        if ($sesion === 1) {
-            echo '
-            <a class="header-buttons" href="mi_perfil.php" id="sesion-iniciada-btn">
-            <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Editar perfil</div>
-            </a>
+                <a class="header-buttons" href="mi_perfil.php" id="sesion-iniciada-btn">
+                <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
+                <div class="centrado">Editar perfil</div>
+                </a>
             ';
         } else {
             echo '
+            <a class="header-buttons" href="javascript:void(0)" id="iniciar-sesion-btn" onclick="toggleDropdown()">
+            <img src="img/boton_profesores.png" alt="Inicio" width="100px" height="80px">
+            <div class="centrado">Crear Noticia</div>
+            </a>';
+
+            echo '
+            <a class="header-buttons" href="javascript:void(0)" id="iniciar-sesion-btn" onclick="toggleDropdown()">
+            <img src="img/boton_alumnos.png" alt="Inicio" width="100px" height="80px">
+            <div class="centrado">Crear Anuncio</div>
+            </a>';
+
+            echo '            
+            <a class="header-buttons" href="javascript:void(0)" id="iniciar-sesion-btn" onclick="toggleDropdown()">
+            <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
+            <div class="centrado">Iniciar Sesión</div>
+            </a>';
+        } ?>
+        <?php
+            echo '
             <div class="header-dropdown" id="iniciar-sesion-dropdown">
-                <a class="header-buttons" href="javascript:void(0)" id="iniciar-sesion-btn" onclick="toggleDropdown()">
-                    <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
-                    <div class="centrado">Iniciar Sesión</div>
-                </a>
                 <div id="form-inicio-sesion" class="form-sesion">
                     <h2>Iniciar Sesión</h2>
                     <form action="index.php" method="POST">
@@ -65,7 +67,6 @@ $admin = 1;
                 </div>
             </div>
             ';
-        }
         ?>
     </div>
 </header>
