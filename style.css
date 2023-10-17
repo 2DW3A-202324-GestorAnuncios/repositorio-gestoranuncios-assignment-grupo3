@@ -82,7 +82,7 @@ html {
 .boton {
     width: 125px;
     height: 40px;
-    background-color: rgba(127, 182, 255, 0.6);
+    background-color: #007bff;
     border-radius: 12px;
     font-size: 17px;
     border: 0px solid black;
@@ -93,11 +93,12 @@ html {
     margin-top: 20px;
     margin-bottom: 20px;
     transition: 0.4s;
+    color: white;
 }
 
 .boton:hover {
     cursor: pointer;
-    background-color: rgba(127, 182, 255, 1);
+    background-color: #005b91;
 }
 
 .terminos-crear-cuenta {

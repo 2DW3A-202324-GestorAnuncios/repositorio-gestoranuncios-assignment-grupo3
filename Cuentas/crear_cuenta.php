@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="../script.js"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>">
     <link rel="shortcut icon" href="../img/favicon.png">
     <title>Crear Cuenta - CIFP Txurdinaga</title>
@@ -54,8 +55,6 @@
             $repeticionPK = "El usuario o correo ya exsisten";
         }   
     }
-        
-
     ?>
     <div class="form-crear-cuenta">
         <img src="../img/Logo_Inicio_Sesion.png" alt="logo" class="logo-inicio-sesion">
