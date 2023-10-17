@@ -23,7 +23,14 @@
 
 <body>
     <?php
-        include("header.php");
+        // Inicia la sesión en la página
+        session_start();
+
+        if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
+            include('header_sesion.php');
+        } else {
+            include('header_no_sesion.php');
+        }
     ?>
 
     <section id="ultimas-noticias" class="seccion-destacada"><br>

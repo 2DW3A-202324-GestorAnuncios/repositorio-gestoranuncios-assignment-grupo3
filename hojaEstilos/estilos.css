@@ -928,6 +928,11 @@ p {
     background-color: #0056b3;
 }
 
+.mensaje-error {
+    color: red;
+    font-weight: bold;
+}
+
 .registrarseContainer {
     color: rgb(22, 24, 35);
     font-family: TikTokFont;
