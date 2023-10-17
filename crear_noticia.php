@@ -12,6 +12,30 @@
 <body>
     <?php
         include("header.php");
+        $repeticionPK = "";
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
+        
+            // Comprueba conexion
+            if($conn === false){
+                die("ERROR: No se ha podido conectar. "
+                    . mysqli_connect_error());
+            }
+            $nomNoticioa = $_POST['titulo'];
+            $descNoticia = $_POST['descripcion'];
+            $catNoticioa = $_POST['categoria'];
+            $fotoNoticioa = $_POST['imagen'];
+            $usuNoticia = ...;
+           
+
+            //Inserta los datos a la tabla "anuncio"
+            mysqli_query($conn,"INSERT INTO anuncio (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descAnuncio','$catNoticia','$usuNoticia')");
+        
+            // Cierra conexion
+            mysqli_close($conn);    
+        
+        }
     ?>
     
     <main>

@@ -1,5 +1,5 @@
 <?php
-$sesion = 0;
+$sesion = 1;
 $admin = 1;
 ?>
 
