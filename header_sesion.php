@@ -28,5 +28,11 @@
         <li class="menu-item"><a href="noticia.php">Noticias</a></li>
         <li class="menu-item"><a href="anuncio.php">Anuncios</a></li>
         <li class="menu-item"><a href="mispublicaciones.php">Mis Publicaciones</a></li>
+        <?php
+            // Comprobar si el usuario es administrador y agregar la opción "Validar"
+            if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+                echo '<li class="menu-item"><a href="validar.php">Validar</a></li>';
+            }
+        ?>
     </ul>
 </div>

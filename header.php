@@ -4,8 +4,8 @@
     // Incluir el archivo de conexión
     include('conexion.php');
 
-    $mensaje_error = ""; // Inicializamos la variable de mensaje de error
-
+    $mensaje_error = "";
+    
     // Validar si se ha enviado el formulario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario = $_POST["usuario"];
