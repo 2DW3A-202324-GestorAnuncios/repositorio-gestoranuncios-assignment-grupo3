@@ -113,7 +113,7 @@
         <a href="noticia.php"><button id="ver-mas-noticias" class="ver-mas-button">Ver Más Noticias</button></a>
     </section>
 
-    <section id="anuncios-mas-visitados" class="seccion-destacada">
+    <section class="seccion-destacada">
         <div class="seccion-contenido">
             <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
             <div class="productos_anuncios_inicio">
@@ -135,7 +135,7 @@
                 ?>
             </div>
         </div>
-        <a href="anuncio.php"><button id="ver-mas-anuncios" class="ver-mas-button">Ver Más Anuncios</button></a>
+        <a href="anuncio.php"><button id="ver-mas-anuncios" class="ver-mas-button">Ver Más Anuncios</button></a><br><br>
     </section>
 
     <?php
