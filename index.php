@@ -4,8 +4,9 @@
     $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1'";
     $resultProductos = $conn->query($sqlProductos);
 
-    $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1'";
+    $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' ORDER BY id_noticia DESC LIMIT 3";
     $resultNoticias = $conn->query($sqlNoticias);
+
 ?>
 <!DOCTYPE html>
 <html lang="es-Es">
@@ -22,7 +23,14 @@
 
 <body>
     <?php
-        include("header.php");
+        // Inicia la sesión en la página
+        session_start();
+
+        if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
+            include('header_sesion.php');
+        } else {
+            include('header_no_sesion.php');
+        }
     ?>
 
     <section id="ultimas-noticias" class="seccion-destacada"><br>
@@ -31,16 +39,13 @@
         </div>
         <div class="slideshow-container">
             <?php
-                $slideNumber = 1;
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="mySlides fade">';
-                    echo '<div class="numbertext">' . $slideNumber . ' / ' . $resultNoticias->rowCount() . '</div>';
                     // Comprobar si la noticia tiene una imagen específica o no
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
                     echo '<img src="' . $imagenURL . '" style="width:100%">';
                     echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</div>';
-                    $slideNumber++;
                 }
             ?>
             <?php
@@ -62,10 +67,10 @@
         <br>
         <div style="text-align:center">
             <?php
-            // Generar puntos (indicadores) dinámicamente
-            for ($i = 1; $i <= $resultNoticias->rowCount(); $i++) {
-                echo '<span class="dot" onclick="currentSlide(' . $i . ')"></span>';
-            }
+                // Generar puntos (indicadores) dinámicamente
+                for ($i = 1; $i <= $resultNoticias->rowCount(); $i++) {
+                    echo '<span class="dot" onclick="currentSlide(' . $i . ')"></span>';
+                }
             ?>
         </div>
 
@@ -116,22 +121,22 @@
     <section id="anuncios-mas-visitados" class="seccion-destacada">
         <div class="seccion-contenido">
             <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
-            <div class="productos_anuncios_inicio">
+            <div class="productos-anuncios-nicio">
                 <?php
-                while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<div class="productos_slide_anuncios">';
-                    
-                    // Verifica si la URL de la imagen es nula o vacía
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
-                    
-                    echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                    echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                    echo '<p>' . $row['descripcion'] . '</p>';
-                    echo '<p>' . $row['precio'] . '€</p>';
-                    echo '<button>Comprar</button>';
-                    echo '</div>';
-                }
+                    while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<div class="productos-slide-anuncios">';
+                        
+                        // Verifica si la URL de la imagen es nula o vacía
+                        $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                        $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
+                        
+                        echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                        echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
+                        echo '<p>' . $row['descripcion'] . '</p>';
+                        echo '<p class="precio">' . $row['precio'] . '€</p>';
+                        echo '<button>Comprar</button>';
+                        echo '</div>';
+                    }
                 ?>
             </div>
         </div>

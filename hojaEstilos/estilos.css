@@ -1036,6 +1036,49 @@ p {
     background-color: #0056b3;
 }
 
+.mensaje-error {
+    color: red;
+    font-weight: bold;
+}
+
+.registrarseContainer {
+    color: rgb(22, 24, 35);
+    font-family: TikTokFont;
+    height: 64px;
+    border-top: 0.5px solid rgba(22, 24, 35, 0.12);
+    margin: unset;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 15px;
+    line-height: 18px;
+    font-family: 'PT Sans Narrow';
+}
+
+#btnRegistrarse {
+    color: #007BFF;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.registrarseContainer a {
+    text-decoration: none;
+}
+
+.registrarseContainer a:hover {
+    text-decoration: underline;
+}
+
+.registrarseContainer span {
+    margin-left: 5px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #007BFF;
+}
+
 /* Estilos para el formulario de creación de anuncios */
 .crear-anuncio {
     text-align: center;
