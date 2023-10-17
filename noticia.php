@@ -23,7 +23,6 @@
     ?>
 
     <div class="container">
-
         <div class="filtro-container">
             <div class="filtro">
                 <h3>Filtrar por Categoría</h3><br><br>
@@ -32,17 +31,17 @@
                         <input type="radio" name="categoria" id="categoria-deportes" value="deportes">
                         <img src="img/categorias_noticias/deporte.png" alt="Deportes">
                         <h5 style="margin-top: 5px;">Deportes</h5>
-                    </label><br><br>
+                    </label><br>
                     <label class="filtro-label">
                         <input type="radio" name="categoria" id="categoria-economia" value="economia">
                         <img src="img/categorias_noticias/economia.png" alt="Economía">
                         <h5 style="margin-top: 5px;">Economía</h5>
-                    </label><br><br>
+                    </label><br>
                     <label class="filtro-label">
                         <input type="radio" name="categoria" id="categoria-arte" value="arte">
                         <img src="img/categorias_noticias/arte.png" alt="Arte">
                         <h5 style="margin-top: 5px;">Arte</h5>
-                    </label><br><br>
+                    </label><br>
                     <label class="filtro-label">
                         <input type="radio" name="categoria" id="categoria-tiempo" value="tiempo">
                         <img src="img/categorias_noticias/tiempo.png" alt="Tiempo">
@@ -51,7 +50,6 @@
                 </form>
             </div>
         </div>
-        <div id="vacio"></div>
         <div class="noticias3">
             <h2>Noticias</h2>
             <div id="noticiasContainer" class="noticias-container">
