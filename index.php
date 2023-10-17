@@ -118,10 +118,10 @@
         <a href="noticia.php"><button id="ver-mas-noticias" class="ver-mas-button">Ver Más Noticias</button></a>
     </section>
 
-    <section id="anuncios-mas-visitados" class="seccion-destacada">
+    <section class="seccion-destacada">
         <div class="seccion-contenido">
             <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
-            <div class="productos-anuncios-nicio">
+            <div class="productos-anuncios-inicio">
                 <?php
                     while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
                         echo '<div class="productos-slide-anuncios">';
