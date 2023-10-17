@@ -46,7 +46,7 @@
                 exit();
             } else {
                 // Las credenciales son incorrectas
-                $mensaje_error = "Credenciales incorrectas. Inténtalo de nuevo.";
+                $mensaje_error = "El nombre de usuario/contraseña son incorrectas. Inténtalo de nuevo.";
                 // Establece la variable para mostrar el formulario como verdadera
                 $mostrar_formulario = true;
             }

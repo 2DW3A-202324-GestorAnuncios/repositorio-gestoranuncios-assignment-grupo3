@@ -126,7 +126,6 @@
                 }
             ?>
         </div>
-    </section>
     <div id="paginacion">
         <a href="?pagina=<?php echo $paginaActual - 1; ?>" class="botonesPagina <?php if ($paginaActual <= 1) echo 'a-disabled'; ?>">← Anterior</a>
         
