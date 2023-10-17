@@ -6,11 +6,9 @@
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' ORDER BY id_noticia DESC LIMIT 3";
     $resultNoticias = $conn->query($sqlNoticias);
-
 ?>
 <!DOCTYPE html>
 <html lang="es-Es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +18,6 @@
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Inicio - CIFP Txurdinaga</title>
 </head>
-
 <body>
     <?php
         // Inicia la sesión en la página
@@ -28,6 +25,8 @@
 
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
+            // Comprobar si el usuario es administrador
+            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
         } else {
             include('header_no_sesion.php');
         }
@@ -147,5 +146,4 @@
         include('footer.php');
     ?>
 </body>
-
 </html>

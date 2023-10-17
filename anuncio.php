@@ -68,8 +68,18 @@
 </head>
 <body>
     <?php
-        include("header.php");
+        // Inicia la sesión en la página
+        session_start();
+
+        if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
+            include('header_sesion.php');
+            // Comprobar si el usuario es administrador
+            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+        } else {
+            include('header_no_sesion.php');
+        }
     ?>
+
     <div id="buscador">
         <form method="GET" action="anuncio.php" id="search-form">
             <input onkeyup="submitForm()" id="inputBuscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo 🔍" value="<?php echo $busqueda; ?>">

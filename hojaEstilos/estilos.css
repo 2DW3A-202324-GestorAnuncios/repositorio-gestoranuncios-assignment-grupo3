@@ -928,7 +928,7 @@ p {
     background-color: #0056b3;
 }
 
-.mensaje-error {
+#mensaje-error {
     color: red;
     font-weight: bold;
 }
