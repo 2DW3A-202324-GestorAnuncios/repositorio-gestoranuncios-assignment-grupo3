@@ -104,11 +104,12 @@
             <p><strong>Correo Electrónico:</strong> <?php echo $correo; ?></p>
             <p><strong>Foto de Perfil:</strong></p>
             <div class="foto-container">
-                <img id="fotoPerfil" src="img/fotoPerfil/<?php echo empty($foto) ? 'sin-foto-perfil.jpg' : $foto; ?>" alt="Foto de perfil">
+                <img src="img/fotoPerfil/<?php echo empty($foto) ? 'sin-foto-perfil.jpg' : $foto; ?>" alt="Foto de perfil">
             </div>
         </div>
 
-        <button id="editar-btn" name="editar">Editar Datos</button>
+        <button id="editar-datos-btn" name="editar">Editar Datos</button>
+        <button id="cerrar-sesion-btn" name="cerrar-sesion">Cerrar Sesión</button>
 
         <form id="perfilForm" action="mi_perfil.php" method="POST" enctype="multipart/form-data" class="modo-edicion">
             <label for="nombre">Nombre:</label>
@@ -152,25 +153,34 @@
 
     <script>
         // JavaScript para cambiar entre el modo de visualización y el modo de edición
-        const editarBtn = document.getElementById('editar-btn');
+        const editarDatosBtn = document.getElementById('editar-datos-btn');
         const datosModoVisualizacion = document.getElementById('datos-modo-visualizacion');
         const perfilForm = document.getElementById('perfilForm');
         const cancelarBtn = document.getElementById('cancelar-btn');
+        const cerrarSesionBtn = document.getElementById('cerrar-sesion-btn');
 
-        editarBtn.addEventListener('click', () => {
+        editarDatosBtn.addEventListener('click', () => {
             datosModoVisualizacion.style.display = 'none';
             perfilForm.style.display = 'block';
-            editarBtn.style.display = 'none';
+            editarDatosBtn.style.display = 'none';
+            cerrarSesionBtn.style.display = 'none';
             cancelarBtn.style.display = 'inline-block';
+        });
+
+        cerrarSesionBtn.addEventListener('click', () => {
+            // Redirige al usuario a la página de cierre de sesión
+            window.location.href = 'Cuentas/cerrar_sesion.php';
         });
 
         cancelarBtn.addEventListener('click', () => {
             datosModoVisualizacion.style.display = 'block';
             perfilForm.style.display = 'none';
-            editarBtn.style.display = 'inline-block';
+            editarDatosBtn.style.display = 'block';
+            cerrarSesionBtn.style.display = 'block';
             cancelarBtn.style.display = 'none';
         });
     </script>
+
 
     <?php
         include('footer.php');

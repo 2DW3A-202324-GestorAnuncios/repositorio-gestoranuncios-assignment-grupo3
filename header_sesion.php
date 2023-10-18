@@ -15,9 +15,6 @@
             <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
             <div class="centrado">Mi Perfil</div>
         </a>
-        <a href="Cuentas/cerrar_sesion.php" id="cerrar-sesion-btn">
-            <img src="img/cerrar-sesion.jpg" alt="Cerrar Sesión" height="80px">
-        </a>
     </div>
 </header>
 

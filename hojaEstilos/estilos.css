@@ -1325,7 +1325,8 @@ p {
     display: inline-block;
 }
 
-.mi-perfil-container button[name="cancelar"] {
+.mi-perfil-container button[name="cancelar"],
+.mi-perfil-container button[name="cerrar-sesion"] {
     background-color: #b60000;
     color: #fff;
     border: none;
@@ -1335,10 +1336,18 @@ p {
     margin: 20px 0;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+}
+
+.mi-perfil-container button[name="cancelar"] {
     float: right;
 }
 
-.mi-perfil-container button[name="cancelar"]:hover {
+.mi-perfil-container button[name="cerrar-sesion"] {
+    margin-left: 30px;
+}
+
+.mi-perfil-container button[name="cancelar"]:hover,
+.mi-perfil-container button[name="cerrar-sesion"]:hover {
     background-color: #910000;
 }
 
