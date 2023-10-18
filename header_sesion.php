@@ -13,10 +13,10 @@
         </a>
         <a class="header-buttons" href="mi_perfil.php" id="sesion-iniciada-btn">
             <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Editar perfil</div>
+            <div class="centrado">Mi Perfil</div>
         </a>
         <a href="Cuentas/cerrar_sesion.php" id="cerrar-sesion-btn">
-            <img src="img/cerrar-sesion.jpg" alt="Cerrar Sesión" width="100px" >
+            <img src="img/cerrar-sesion.jpg" alt="Cerrar Sesión" height="80px">
         </a>
     </div>
 </header>
