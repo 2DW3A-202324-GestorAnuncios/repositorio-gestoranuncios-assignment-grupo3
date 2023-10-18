@@ -38,12 +38,14 @@
                 $usuario = $_POST['usuario'];
                 $nombre =  $_POST['nombre'];
                 $apellido = $_POST['apellido'];
+                $fecha = $_POST['fecha'];
+                $genero = $_POST['genero'];
                 $email =  $_POST['email'];
                 $contraseña = $_POST['contraseña'];
                 $imagen = $_POST['imagen'];
                 
                 // Inserta los datos a la tabla "usuario"
-                mysqli_query($conn,"INSERT INTO usuario (nombre_usuario, nombre, apellido, correo, password, foto) VALUES ('$usuario','$nombre','$apellido','$email','$contraseña','$imagen')");
+                mysqli_query($conn,"INSERT INTO usuario (nombre_usuario, nombre, apellido,fecha_nac,sexo, correo, password, foto) VALUES ('$usuario','$nombre','$apellido','$fecha','$genero','$email','$contraseña','$imagen')");
     
                 // Cierra conexion
                 mysqli_close($conn); 
@@ -96,19 +98,41 @@
                     <span class="error" id="error4" name="error4"></span>
 
                 </div>
+                <div>
+                    <p>Fecha de nacimiento:</p>
+                    <input type="date" class="input-text" name="fecha" id="fecha">
+                    <span class="error" id="error8" name="error8"></span>
+
+                </div>
+                <div>
+                    <p>Genero:</p>
+                    <div class="input-genero">
+                        <input type="radio" id="masculino" name="genero" value="masculino">
+                        <label for="html">Masculino</label><br>
+                        <input type="radio" id="femenino" name="genero" value="femenino">
+                        <label for="css">Femenino</label><br>
+                        <input type="radio" id="otros" name="genero" value="otros">
+                        <label for="css">Otros</label><br>
+                    </div>
+                    <span class="error" id="error9" name="error9"></span>
+
+                </div>
             </div>
             <br>
             <div id="imagen">
+                <p>Foto de perfil(no obligatorio):</p>
                 <input type="file" accept="image/*" name="imagen">
-            </div>
+            </div><br><br>
             <div class="terminos-crear-cuenta" >
                 <input id="terminos" type="checkbox" name="terminos" class="terminos-checkbox" id="terminos-crear-cuenta" name="terminos" id="terminos" >
                 <label class="terminos-checkbox" for="terminos-crear-cuenta">Acepto los terminos y condiciones</label><br>
                 <span class="error" id="error5" name="error5"></span>
-
             </div>
             <span id="repPK"><?php echo $repeticionPK ?></span>
-            <input type="submit" value="Crear Cuenta" name="submit" class="boton" onclick="validarCampos()">
+            <div class="botones-crear-cuenta">
+                <input type="button" value="Volver" class="boton" onclick="location.href='../index.php';">
+                <input type="submit" value="Crear Cuenta" name="submit" class="boton" onclick="validarCampos()">
+            </div>
         </form>
     </div>
     

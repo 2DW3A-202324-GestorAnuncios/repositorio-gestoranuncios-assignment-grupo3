@@ -11,10 +11,15 @@
 </head>
 <body>
     <?php
-        include("header.php");
-        $repeticionPK = "";
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        include("header_sesion.php");
+        include("conexion.php");
 
+        session_start();
+        $insercion = "";
+        $usuario = $_SESSION["usuario"];
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            //se conecta a la base de datos
             $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
         
             // Comprueba conexion
@@ -22,23 +27,21 @@
                 die("ERROR: No se ha podido conectar. "
                     . mysqli_connect_error());
             }
+            //coje los elementos del formulario
             $nomAnuncio = $_POST['titulo'];
             $descAnuncio = $_POST['descripcion'];
             $precAnuncio = $_POST['precio'];
-            $fotoAnuncio = $_POST['imagen'];
-            $usuAnuncio = ...;
+            $usuAnuncio = $_SESSION["usuario"];
            
-
             //Inserta los datos a la tabla "anuncio"
-            mysqli_query($conn,"INSERT INTO anuncio (nombre_anuncio, precio, descripcion, foto, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$fotoAnuncio','$usuAnuncio')");
-        
+            mysqli_query($conn,"INSERT INTO anuncio (nombre_anuncio, precio, descripcion, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$usuAnuncio')");
+            $insercion= "Se ha creado la publicacion";
             // Cierra conexion
             mysqli_close($conn);    
         
         }
         
     ?>
-    
     <main>
         <section class="crear-anuncio">
             <h1>Crear un Anuncio</h1>
@@ -54,8 +57,8 @@
                     <input type="file" id="imagen" name="imagen" accept="image/*" required>
                     
                     <label for="precio">Precio:</label>
-                    <input type="number" id="precio" name="precio" required placeholder="0">
-            
+                    <input type="number" id="precio" name="precio" required placeholder="0"><br>
+                    <span id="publicacion-creada"><?php echo $insercion ?></span>
                     <button type="submit">Crear Anuncio</button>
                 </form>
             </div>

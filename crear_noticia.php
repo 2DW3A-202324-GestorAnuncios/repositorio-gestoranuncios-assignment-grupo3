@@ -11,7 +11,12 @@
 </head>
 <body>
     <?php
-        include("header.php");
+        include("header_sesion.php");
+        include("conexion.php");
+        session_start();
+        $insercion = "";
+        $usuario = $_SESSION["usuario"];
+
         $repeticionPK = "";
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -22,16 +27,16 @@
                 die("ERROR: No se ha podido conectar. "
                     . mysqli_connect_error());
             }
-            $nomNoticioa = $_POST['titulo'];
+            $nomNoticia = $_POST['titulo'];
             $descNoticia = $_POST['descripcion'];
-            $catNoticioa = $_POST['categoria'];
-            $fotoNoticioa = $_POST['imagen'];
-            $usuNoticia = ...;
+            $catNoticia = $_POST['categoria'];
+            $fotoNoticia = $_POST['imagen'];
+            $usuNoticia = $_SESSION["usuario"];
            
 
             //Inserta los datos a la tabla "anuncio"
-            mysqli_query($conn,"INSERT INTO anuncio (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descAnuncio','$catNoticia','$usuNoticia')");
-        
+            mysqli_query($conn,"INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')");
+            $insercion= "Se ha creado la publicacion";
             // Cierra conexion
             mysqli_close($conn);    
         
@@ -60,7 +65,7 @@
                         <option value="arte">Arte</option>
                         <option value="tiempo">Tiempo</option>
                     </select>
-
+                    <span id="publicacion-creada"><?php echo $insercion ?></span>
                     <button type="submit">Crear Noticia</button>
                 </form>
             </div>
