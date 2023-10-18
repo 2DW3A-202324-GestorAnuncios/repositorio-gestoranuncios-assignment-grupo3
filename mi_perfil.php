@@ -4,17 +4,30 @@
     session_start();
 
     $usuario = $_SESSION["usuario"];
-    $nombre = $_SESSION["nombre"];
-    $apellido = $_SESSION["apellido"];
-    $fecha_nac = $_SESSION["fecha_nac"];
-    $sexo = $_SESSION["sexo"];
-    $correo = $_SESSION["correo"];
-    $contrasena = $_SESSION["contrasena"];
-    $foto = $_SESSION["foto"];
-
+    
     $mensaje_exito = '';
     $mensaje_error = '';
     $modo_edicion = false;
+
+    // Obtener los datos del usuario desde la base de datos
+    $sql = "SELECT * FROM usuario WHERE nombre_usuario = :nombre_usuario";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':nombre_usuario', $usuario);
+    $stmt->execute();
+    $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($usuario_data) {
+        // Datos del usuario obtenidos con éxito
+        $nombre = $usuario_data['nombre'];
+        $apellido = $usuario_data['apellido'];
+        $fecha_nac = $usuario_data['fecha_nac'];
+        $sexo = $usuario_data['sexo'];
+        $correo = $usuario_data['correo'];
+        $foto = $usuario_data['foto'];
+    } else {
+        // Manejar el caso en el que no se encuentren los datos del usuario
+        $mensaje_error = "No se pudieron recuperar los datos del usuario.";
+    }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['editar'])) {
