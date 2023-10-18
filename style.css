@@ -6,7 +6,7 @@ html {
 }
 
 /***** Comienzo Cuentas *****/
-.form_inicio_sesion {
+.form-inicio-sesion {
     width: 70%;
     max-width: 600px;
     min-width: 400px;
@@ -23,7 +23,7 @@ html {
     margin-top: 40px;
 }
 
-.form_crear_cuenta {
+.form-crear-cuenta {
     width: 70%;
     max-width: 600px;
     min-width: 400px;
@@ -39,7 +39,7 @@ html {
     margin-top: 40px;
 }
 
-.logo_inicio_sesion {
+.logo-inicio-sesion {
     height: 210px;
     width: 180px;
     display: block;
@@ -47,7 +47,7 @@ html {
     margin-right: auto;
 }
 
-.inicio_sesion {
+.inicio-sesion {
     display: flex;
     flex-direction: row;
     width: 80%;
@@ -56,7 +56,7 @@ html {
     margin-right: auto;
 }
 
-.crear_cuenta {
+.crear-cuenta {
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 20px;
@@ -65,7 +65,7 @@ html {
     margin-right: auto;
 }
 
-.input_text {
+.input-text {
     width: 100%;
     border: 2px solid rgba( 0, 0, 0, 0.5);
     border-radius: 10px;
@@ -74,7 +74,7 @@ html {
     transition: 0.4s;
 }
 
-.input_text:hover {
+.input-text:hover {
     border: 2px solid rgba( 0, 0, 0, 1);
 
 }
@@ -82,7 +82,7 @@ html {
 .boton {
     width: 125px;
     height: 40px;
-    background-color: rgba(127, 182, 255, 0.6);
+    background-color: #007bff;
     border-radius: 12px;
     font-size: 17px;
     border: 0px solid black;
@@ -93,14 +93,15 @@ html {
     margin-top: 20px;
     margin-bottom: 20px;
     transition: 0.4s;
+    color: white;
 }
 
 .boton:hover {
     cursor: pointer;
-    background-color: rgba(127, 182, 255, 1);
+    background-color: #005b91;
 }
 
-.terminos_crear_cuenta {
+.terminos-crear-cuenta {
     font-size: 17px;
     display: block;
     margin-left: auto;
@@ -108,17 +109,17 @@ html {
     width: 90%;
 }
 
-.terminos_checkbox:hover {
+.terminos-checkbox:hover {
     cursor: pointer;
 }
 
-.link_crear_cuenta {
+.link-crear-cuenta {
     color: black;
     font-size: 20px;
     text-align: center;
 }
 
-.link_crear_cuenta:visited:link {
+.link-crear-cuenta:visited:link {
     color: black;
 }
 
@@ -126,10 +127,25 @@ html {
     color: #FF0000;
     font-size: 18px;
 }
+.correcto{
+    color: #00cd0a;
+    font-size: 18px;
+}
 
 span {
     font-size: 15px;
 }
+
+#imagen{
+    margin-left: 25px;
+}
+#repPK{
+    color: red;
+    display: block;
+    margin-left: 25px;
+    font-size: 15px;
+}
+
 /*-------------------------------------------------------*/
 
 /***** Comienzo Indice *****/

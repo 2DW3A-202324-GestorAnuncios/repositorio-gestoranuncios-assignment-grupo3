@@ -11,16 +11,32 @@
 </head>
 <body>
     <?php
-        // Inicia la sesión en la página
-        session_start();
+        include("header.php");
+        $repeticionPK = "";
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
-            include('header_sesion.php');
-            // Comprobar si el usuario es administrador
-            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
-        } else {
-            include('header_no_sesion.php');
+            $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
+        
+            // Comprueba conexion
+            if($conn === false){
+                die("ERROR: No se ha podido conectar. "
+                    . mysqli_connect_error());
+            }
+            $nomAnuncio = $_POST['titulo'];
+            $descAnuncio = $_POST['descripcion'];
+            $precAnuncio = $_POST['precio'];
+            $fotoAnuncio = $_POST['imagen'];
+            $usuAnuncio = ...;
+           
+
+            //Inserta los datos a la tabla "anuncio"
+            mysqli_query($conn,"INSERT INTO anuncio (nombre_anuncio, precio, descripcion, foto, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$fotoAnuncio','$usuAnuncio')");
+        
+            // Cierra conexion
+            mysqli_close($conn);    
+        
         }
+        
     ?>
     
     <main>
@@ -37,6 +53,9 @@
                     <label for="imagen">Imagen:</label>
                     <input type="file" id="imagen" name="imagen" accept="image/*" required>
                     
+                    <label for="precio">Precio:</label>
+                    <input type="number" id="precio" name="precio" required placeholder="0">
+            
                     <button type="submit">Crear Anuncio</button>
                 </form>
             </div>
