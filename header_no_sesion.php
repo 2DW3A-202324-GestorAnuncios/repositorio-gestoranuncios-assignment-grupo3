@@ -37,19 +37,6 @@
                 // Las credenciales son válidas
                 $_SESSION['sesion_iniciada'] = true;
                 $_SESSION["usuario"] = $usuario;
-                $nombre = $row['nombre'];
-                $_SESSION["nombre"] = $nombre;
-                $apellido = $row['apellido'];
-                $_SESSION["apellido"] = $apellido;
-                $fecha_nac = $row['fecha_nac'];
-                $_SESSION["fecha_nac"] = $fecha_nac;
-                $sexo = $row['sexo'];
-                $_SESSION["sexo"] = $sexo;
-                $correo = $row['correo'];
-                $_SESSION["correo"] = $correo;
-                $_SESSION["contrasena"] = $contrasena;
-                $foto = $row['foto'];
-                $_SESSION["foto"] = $foto;
 
                 // Verificar si el usuario es administrador
                 if ($row['tipo_usuario'] == 'admin') {

@@ -25,16 +25,6 @@
 
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
-            $usuario = $_SESSION['usuario'];
-            $contrasena = $_SESSION['contrasena'];
-            $nombre = $_SESSION['nombre'];
-            $apellido = $_SESSION['apellido'];
-            $correo = $_SESSION['correo'];
-            // echo $usuario . '<br>';
-            // echo $contrasena . '<br>';
-            // echo $nombre . '<br>';
-            // echo $apellido . '<br>';
-            // echo $correo;
             // Comprobar si el usuario es administrador
             $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
         } else {
