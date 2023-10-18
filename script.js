@@ -159,7 +159,7 @@ function validarCampos() {
 
 
   const btn = document.getElementById('botonSubmit');
-  if (num!=9) {
+  if (num != 0) {
     btn.removeAttribute("type","submit")
     btn.setAttribute("type","button")
   }else if(num === 0){
