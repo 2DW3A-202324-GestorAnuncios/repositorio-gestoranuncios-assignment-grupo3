@@ -5,7 +5,7 @@
     $mensaje_error = '';
 
     // Inicializa la variable para mostrar el formulario como verdadera
-    $mostrar_formulario = false; 
+    $mostrar_formulario = false;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Validación de campos
@@ -36,6 +36,20 @@
             if ($row) {
                 // Las credenciales son válidas
                 $_SESSION['sesion_iniciada'] = true;
+                $_SESSION["usuario"] = $usuario;
+                $nombre = $row['nombre'];
+                $_SESSION["nombre"] = $nombre;
+                $apellido = $row['apellido'];
+                $_SESSION["apellido"] = $apellido;
+                $fecha_nac = $row['fecha_nac'];
+                $_SESSION["fecha_nac"] = $fecha_nac;
+                $sexo = $row['sexo'];
+                $_SESSION["sexo"] = $sexo;
+                $correo = $row['correo'];
+                $_SESSION["correo"] = $correo;
+                $_SESSION["contrasena"] = $contrasena;
+                $foto = $row['foto'];
+                $_SESSION["foto"] = $foto;
 
                 // Verificar si el usuario es administrador
                 if ($row['tipo_usuario'] == 'admin') {
@@ -46,7 +60,7 @@
                 exit();
             } else {
                 // Las credenciales son incorrectas
-                $mensaje_error = "Credenciales incorrectas. Inténtalo de nuevo.";
+                $mensaje_error = "El nombre de usuario/contraseña son incorrectas. Inténtalo de nuevo.";
                 // Establece la variable para mostrar el formulario como verdadera
                 $mostrar_formulario = true;
             }

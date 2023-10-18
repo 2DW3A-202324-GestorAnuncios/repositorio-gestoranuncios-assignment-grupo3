@@ -102,31 +102,32 @@
             form.submit();
         }
     </script>
-        <div class="productos">
-            <?php
-            if($totalProductos === 0){
-                echo '<div>';
-                echo'<p  id="mensajeBusqueda"> Lo sentimos, su busqueda "<b>'.$busqueda.'</b>" no se ha encontrado </p>';
-                echo '</div>';
+    
+    <div class="productos">
+        <?php
+        if($totalProductos === 0){
+            echo '<div>';
+            echo'<p  id="mensajeBusqueda"> Lo sentimos, su busqueda "<b>'.$busqueda.'</b>" no se ha encontrado </p>';
+            echo '</div>';
 
+        }
+            while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
+                echo '<div class="producto">';
+                $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                echo '<div class = "imagen-producto">';
+                echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                echo '</div>';
+                echo '<div class = "contenedor-anuncio">';
+                echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
+                echo '<p>' . $row['descripcion'] . '</p>';
+                echo '<p class="precio">' . $row['precio'] . '€</p>';
+                echo '</div>';
+                echo '<button>Comprar</button>';
+                echo '</div>';
             }
-                while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<div class="producto">';
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                    echo '<div class = "imagen-producto">';
-                    echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                    echo '</div>';
-                    echo '<div class = "contenedor-anuncio">';
-                    echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                    echo '<p>' . $row['descripcion'] . '</p>';
-                    echo '<p class="precio">' . $row['precio'] . '€</p>';
-                    echo '</div>';
-                    echo '<button>Comprar</button>';
-                    echo '</div>';
-                }
-            ?>
-        </div>
-    </section>
+        ?>
+    </div>
+
     <div id="paginacion">
         <a href="?pagina=<?php echo $paginaActual - 1; ?>" class="botonesPagina <?php if ($paginaActual <= 1) echo 'a-disabled'; ?>">← Anterior</a>
         

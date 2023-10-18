@@ -975,68 +975,6 @@ p {
     color: #007BFF;
 }
 
-/* Estilos para el formulario de creación de anuncios */
-.crear-anuncio {
-    padding: 20px;
-}
-
-.crear-anuncio h1 {
-    text-align: center;
-}
-
-.form-crear-anuncio {
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: #f2f2f2;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.form-crear-anuncio label {
-    display: block;
-    font-weight: bold;
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-.form-crear-anuncio input[type="text"],
-.form-crear-anuncio textarea {
-    width: 95%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.form-crear-anuncio input[type="file"] {
-    width: 95%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #fff;
-}
-
-.form-crear-anuncio button {
-    display: block;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 16px;
-    margin: 20px auto 0;
-}
-
-.form-crear-anuncio button:hover {
-    background-color: #0056b3;
-}
-
 /* Estilos para el formulario de creación de noticias */
 .crear-noticia {
     padding: 20px;
@@ -1107,4 +1045,187 @@ p {
 
 .form-crear-noticia button:hover {
     background-color: #0056b3;
+}
+
+/* Estilos para el formulario de creación de anuncios */
+.crear-anuncio {
+    padding: 20px;
+}
+
+.crear-anuncio h1 {
+    text-align: center;
+}
+
+.form-crear-anuncio {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-crear-anuncio label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.form-crear-anuncio input[type="text"],
+.form-crear-anuncio textarea {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-crear-anuncio input[type="file"] {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.form-crear-anuncio button {
+    display: block;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    margin: 20px auto 0;
+}
+
+.form-crear-anuncio button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para el formulario Mi Perfil */
+.mi-perfil-container {
+    max-width: 400px;
+    background-color: #fff;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.mi-perfil-container h1 {
+    font-size: 2em;
+}
+
+#datos-modo-visualizacion p {
+    margin: 10px auto;
+    font-size: 1.2em;
+}
+
+.mi-perfil-container button[name="editar"],
+.mi-perfil-container button[name="guardar"] {
+    background-color: #0077b6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.mi-perfil-container button[name="editar"]:hover,
+.mi-perfil-container button[name="guardar"]:hover {
+    background-color: #005b91;
+}
+
+.mi-perfil-container button[name="guardar"],
+.mi-perfil-container button[name="cancelar"] {
+    display: inline-block;
+}
+
+.mi-perfil-container button[name="cancelar"] {
+    background-color: #b60000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    float: right;
+}
+
+.mi-perfil-container button[name="cancelar"]:hover {
+    background-color: #910000;
+}
+
+.modo-edicion {
+    display: none;
+}
+
+.mi-perfil-container label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.mi-perfil-container input[type="text"],
+.mi-perfil-container input[type="date"],
+.mi-perfil-container input[type="email"],
+.mi-perfil-container input[type="file"] {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.foto-container {
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #0077b6;
+    width: 175px;
+    height: 175px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foto-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border: 2px solid transparent;
+}
+
+.mi-perfil-container .sexo {
+    display: inline-block;
+    font-weight: 100;
+}
+
+.mensaje-exito, .mensaje-error {
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 10px;
+    margin: 10px auto;
+}
+
+.mensaje-exito {
+    color: green;
+}
+
+.mensaje-error {
+    color: red;
 }
