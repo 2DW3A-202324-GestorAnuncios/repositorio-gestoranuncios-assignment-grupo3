@@ -252,7 +252,7 @@ header {
     to {opacity: 1}
 }
 
-/* Estilos para las secciones destacadas */left
+/* Estilos para las secciones destacadas */
 .seccion-destacada {
     box-sizing: border-box;
     margin-top: 20px;
@@ -290,7 +290,7 @@ header {
 }
 
 /* Estilos para los productos */
-.productos-anuncios-nicio {
+.productos-anuncios-inicio {
     display: flex;
     justify-content: flex-start;
     gap: 20px;
@@ -312,7 +312,8 @@ header {
 
 .productos-slide-anuncios img {
     max-width: 100%;
-    height: auto;
+    height: 300px;
+    margin-bottom: 10px;
 }
 
 .productos-slide-anuncios h2 {
@@ -326,13 +327,13 @@ header {
     color: #666;
 }
 
-.productos_slide_anuncios h2::first-letter,
-.productos_slide_anuncios p::first-letter {
+.productos-slide-anuncios h2::first-letter,
+.productos-slide-anuncios p::first-letter {
     text-transform: uppercase;
 }
 
-.productos_slide_anuncios button {
-    background-color: #0077b6;
+.productos-slide-anuncios button {
+    background-color: #007bff;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -373,7 +374,7 @@ header {
 }
 
 #mensajeBusqueda {
-    margin-left: 36%;
+    margin-left: 39%;
     width: 800px;
     font-family: 'PT Sans Narrow';
     font-size: xx-large;
@@ -479,22 +480,17 @@ header {
 
 /* Estilos para la página de noticias */
 .container {
-    max-width: 1200px;
-    margin: 0 auto; /* Para centrar el contenedor */
     display: flex;
-    justify-content: center; /* Para centrar el contenido */
+    max-width: 1200px;
+    margin: 0;
 }
 
-#vacio {
-    width: 2200px;
-}
 .filtro-container {
-    width: 300px;
-    margin-left: -160px;
+    position: sticky;
 }
 
 .filtro {
-    width: 150%;
+    width: 130%;
     padding: 20px;
     background-color: #f0f0f0;
     text-align: center;
@@ -521,7 +517,8 @@ header {
     border: 3px solid #b6b6b6;
     border-radius: 5px;
     cursor: pointer;
-    padding: 5px;
+    padding: 10px;
+    margin-top: 10PX;
     transition: border-color 0.3s ease;
 }
 
@@ -529,22 +526,31 @@ header {
     border-color: #000000;
 }
 
+
+.noticias3 {
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    margin-left: 200px;
+    margin-right: -200px;
+}
+
 /* Estilos para las noticias */
 .noticias-container {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Para centrar las noticias */
+    justify-content: space-between;
     gap: 15px;
 }
 
 .noticia3 {
-    width: calc(50% - 15px); /* Para dividir en dos columnas con espacio entre ellas */
+    width: 49%;
     margin-bottom: 20px;
     box-sizing: border-box;
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #fff;
+    
 }
 
 .imagen-noticia3 {
@@ -552,9 +558,10 @@ header {
 }
 
 .titulo-noticia3-h1 {
-    font-size: 36px;
-    margin-top: 10px;
+    font-size: 15px;
+    margin-top: 5px;
     font-weight: bold;
+    color: rgb(239, 239, 239);
 }
 
 .titulo-noticia3-h1::first-letter {
@@ -567,21 +574,20 @@ header {
 
 /* Asignar categoría a noticias específicas */
 .categoria-deportes {
-    background-color: #72a953;
+    background-color: #a6d789;
 }
 
 .categoria-economia {
-    background-color: #e68f61;
+    background-color: #ffd8c3; /*#e95f15;*/
 }
 
 .categoria-arte {
-    background-color: #60b3c4;
+    background-color:  #ffe799;
 }
 
 .categoria-tiempo {
-    background-color: #ffe283;
+    background-color: #9dd8e3;
 }
-
 
 /*CONTACTO*/
 main {
@@ -638,7 +644,7 @@ p {
 .formulario-contacto input[type="text"],
 .formulario-contacto input[type="email"],
 .formulario-contacto textarea {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
@@ -1019,6 +1025,11 @@ p {
     background-color: #0056b3;
 }
 
+#mensaje-error {
+    color: red;
+    font-weight: bold;
+}
+
 .registrarseContainer {
     color: rgb(22, 24, 35);
     font-family: TikTokFont;
@@ -1199,4 +1210,187 @@ p {
 
 .form-crear-noticia button:hover {
     background-color: #0056b3;
+}
+
+/* Estilos para el formulario de creación de anuncios */
+.crear-anuncio {
+    padding: 20px;
+}
+
+.crear-anuncio h1 {
+    text-align: center;
+}
+
+.form-crear-anuncio {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-crear-anuncio label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.form-crear-anuncio input[type="text"],
+.form-crear-anuncio textarea {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-crear-anuncio input[type="file"] {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.form-crear-anuncio button {
+    display: block;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    margin: 20px auto 0;
+}
+
+.form-crear-anuncio button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para el formulario Mi Perfil */
+.mi-perfil-container {
+    max-width: 400px;
+    background-color: #fff;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.mi-perfil-container h1 {
+    font-size: 2em;
+}
+
+#datos-modo-visualizacion p {
+    margin: 10px auto;
+    font-size: 1.2em;
+}
+
+.mi-perfil-container button[name="editar"],
+.mi-perfil-container button[name="guardar"] {
+    background-color: #0077b6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.mi-perfil-container button[name="editar"]:hover,
+.mi-perfil-container button[name="guardar"]:hover {
+    background-color: #005b91;
+}
+
+.mi-perfil-container button[name="guardar"],
+.mi-perfil-container button[name="cancelar"] {
+    display: inline-block;
+}
+
+.mi-perfil-container button[name="cancelar"] {
+    background-color: #b60000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    float: right;
+}
+
+.mi-perfil-container button[name="cancelar"]:hover {
+    background-color: #910000;
+}
+
+.modo-edicion {
+    display: none;
+}
+
+.mi-perfil-container label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.mi-perfil-container input[type="text"],
+.mi-perfil-container input[type="date"],
+.mi-perfil-container input[type="email"],
+.mi-perfil-container input[type="file"] {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.foto-container {
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #0077b6;
+    width: 175px;
+    height: 175px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foto-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border: 2px solid transparent;
+}
+
+.mi-perfil-container .sexo {
+    display: inline-block;
+    font-weight: 100;
+}
+
+.mensaje-exito, .mensaje-error {
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 10px;
+    margin: 10px auto;
+}
+
+.mensaje-exito {
+    color: green;
+}
+
+.mensaje-error {
+    color: red;
 }

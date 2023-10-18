@@ -6,11 +6,9 @@
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' ORDER BY id_noticia DESC LIMIT 3";
     $resultNoticias = $conn->query($sqlNoticias);
-
 ?>
 <!DOCTYPE html>
 <html lang="es-Es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,10 +18,28 @@
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Inicio - CIFP Txurdinaga</title>
 </head>
-
 <body>
     <?php
-        include("header.php");
+        // Inicia la sesión en la página
+        session_start();
+
+        if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
+            include('header_sesion.php');
+            $usuario = $_SESSION['usuario'];
+            $contrasena = $_SESSION['contrasena'];
+            $nombre = $_SESSION['nombre'];
+            $apellido = $_SESSION['apellido'];
+            $correo = $_SESSION['correo'];
+            // echo $usuario . '<br>';
+            // echo $contrasena . '<br>';
+            // echo $nombre . '<br>';
+            // echo $apellido . '<br>';
+            // echo $correo;
+            // Comprobar si el usuario es administrador
+            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+        } else {
+            include('header_no_sesion.php');
+        }
     ?>
 
     <section id="ultimas-noticias" class="seccion-destacada"><br>
@@ -111,10 +127,10 @@
         <a href="noticia.php"><button id="ver-mas-noticias" class="ver-mas-button">Ver Más Noticias</button></a>
     </section>
 
-    <section id="anuncios-mas-visitados" class="seccion-destacada">
+    <section class="seccion-destacada">
         <div class="seccion-contenido">
             <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
-            <div class="productos-anuncios-nicio">
+            <div class="productos-anuncios-inicio">
                 <?php
                     while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
                         echo '<div class="productos-slide-anuncios">';
@@ -140,5 +156,4 @@
         include('footer.php');
     ?>
 </body>
-
 </html>
