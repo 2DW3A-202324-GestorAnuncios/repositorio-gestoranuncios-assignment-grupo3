@@ -33,38 +33,39 @@
             include('header_no_sesion.php');
         }
     ?>
+
     <section class="seccion-destacada" >
         <div class="seccion-titulo" >
-        <h1 class="titulo-llamativo" >Validación de anuncios</h1>
-    </div>
-    <div class="productos">
-        <?php
-            while ($row = $resultAnuncios->fetch(PDO::FETCH_ASSOC)) {
-                echo '<div class="producto">';
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                    echo '<div class = "imagen-producto">';
-                        echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+            <h1 class="titulo-llamativo" >Validación de anuncios</h1>
+        </div>
+        <div class="productos">
+            <?php
+                while ($row = $resultAnuncios->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<div class="producto">';
+                        $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                        echo '<div class = "imagen-producto">';
+                            echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                        echo '</div>';
+                        echo '<div class = "contenedor-anuncio">';
+                            echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
+                            echo '<p>' . $row['descripcion'] . '</p>';
+                            echo '<p class="precio">' . $row['precio'] . '€</p>';
+                        echo '</div>';
+                        echo '<button style ="background-color: #57aa26">validar</button>';
+                        echo '<br>';
+                        echo '<button style ="background-color: red">eliminar</button>';
                     echo '</div>';
-                    echo '<div class = "contenedor-anuncio">';
-                        echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                        echo '<p>' . $row['descripcion'] . '</p>';
-                        echo '<p class="precio">' . $row['precio'] . '€</p>';
-                    echo '</div>';
-                    echo '<button style ="background-color: #57aa26">validar</button>';
-                    echo '<br>';
-                    echo '<button style ="background-color: red">eliminar</button>';
-                echo '</div>';
-            }
-        ?>
-    </div>
+                }
+            ?>
+        </div>
     </section>
     <br>
     <br>
     <section class="seccion-destacada" >
-    <div class="seccion-titulo" >
-        <h1 class="titulo-llamativo" >Validación de noticias</h1>
-    </div>
-    <div id="noticiasContainer" class="productos">
+        <div class="seccion-titulo" >
+            <h1 class="titulo-llamativo" >Validación de noticias</h1>
+        </div>
+        <div id="noticiasContainer" class="productos">
             <?php
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="producto">';
@@ -83,6 +84,9 @@
             ?>
         </div>
     </section>
-    <?php include('footer.php'); ?>
+
+    <?php
+        include('footer.php');
+    ?>
 </body>
 </html>
