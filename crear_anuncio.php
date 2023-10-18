@@ -41,15 +41,23 @@
             $descAnuncio = $_POST['descripcion'];
             $precAnuncio = $_POST['precio'];
             $usuAnuncio = $_SESSION["usuario"];
-           
-            //Inserta los datos a la tabla "anuncio"
-            mysqli_query($conn,"INSERT INTO anuncio (nombre_anuncio, precio, descripcion, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$usuAnuncio')");
-            $insercion= "Se ha creado la publicacion";
-            // Cierra conexion
+            $fotoAnuncio = $_FILES['imagen']['name'];
+            $foto_temp = $_FILES['imagen']['tmp_name'];
+
+            $directorio_destino = 'img/anuncios/' . $fotoAnuncio;
+
+            if (move_uploaded_file($foto_temp, $directorio_destino)) {
+                // Inserta los datos a la tabla "Anuncio" con el nombre de la imagen en la base de datos
+                mysqli_query($conn, "INSERT INTO anuncio (foto, nombre_anuncio, precio, descripcion, nombre_usuario) VALUES ('$fotoAnuncio','$nomAnuncio','$precAnuncio','$descAnuncio','$usuAnuncio')");
+                $insercion = "Se ha creado la publicación";
+            } else {
+                $inserción = "Error al subir la foto.";
+            }
+            
+            // Cierra conexión
             mysqli_close($conn);    
         
         }
-        
     ?>
     <main>
         <section class="crear-anuncio">
