@@ -3,9 +3,68 @@
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '0'";
     $resultNoticias = $conn->query($sqlNoticias);
+    
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["validar_noticia"])) {
+        $noticia_id = $_POST["validar_noticia"];
+        
+        // Realiza una consulta SQL para actualizar el campo validado a 1
+        $sqlValidarNoticia = "UPDATE noticia SET validado = '1' WHERE id_noticia = :noticia_id";
+        
+        $stmt = $conn->prepare($sqlValidarNoticia);
+        $stmt->bindValue(':noticia_id', $noticia_id, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        // Redirige o muestra un mensaje de éxito
+        
+        // Luego, ejecuta la consulta para obtener las noticias no validadas
+        $sqlNoticias = "SELECT * FROM noticia WHERE validado = '0'";
+        $resultNoticias = $conn->query($sqlNoticias);
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_noticia"])) {
+        $noticia_id = $_POST["eliminar_noticia"];
+        $sqlEliminarNoticia = "DELETE FROM noticia WHERE id_noticia = :noticia_id";
+        $stmt = $conn->prepare($sqlEliminarNoticia);
+        $stmt->bindParam(':noticia_id', $noticia_id, PDO::PARAM_INT);
+        $stmt->execute();
+        // Redirige o muestra un mensaje de éxito
+
+        $sqlNoticias = "SELECT * FROM noticia WHERE validado = '0'";
+        $resultNoticias = $conn->query($sqlNoticias);
+    }
 
     $sqlAnuncios = "SELECT * FROM anuncio WHERE validado = '0'";
     $resultAnuncios = $conn->query($sqlAnuncios);
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["validar_anuncio"])) {
+        $anuncio_id = $_POST["validar_anuncio"];
+        
+        // Realiza una consulta SQL para actualizar el campo validado a 1
+        $sqlValidarAnuncio = "UPDATE anuncio SET validado = '1' WHERE id_anuncio = :anuncio_id";
+        
+        $stmt = $conn->prepare($sqlValidarAnuncio);
+        $stmt->bindValue(':anuncio_id', $anuncio_id, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        // Redirige o muestra un mensaje de éxito
+        
+        // Luego, ejecuta la consulta para obtener las noticias no validadas
+        $sqlAnuncios = "SELECT * FROM anuncio WHERE validado = '0'";
+        $resultAnuncios = $conn->query($sqlAnuncios);
+
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_anuncio"])) {
+        $anuncio_id = $_POST["eliminar_anuncio"];
+        $sqlEliminarAnuncio = "DELETE FROM anuncio WHERE id_anuncio = :anuncio_id";
+        $stmt = $conn->prepare($sqlEliminarAnuncio);
+        $stmt->bindParam(':anuncio_id', $anuncio_id, PDO::PARAM_INT);
+        $stmt->execute();
+        // Redirige o muestra un mensaje de éxito
+
+        $sqlAnuncios = "SELECT * FROM anuncio WHERE validado = '0'";
+        $resultAnuncios = $conn->query($sqlAnuncios);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es-Es">
@@ -43,17 +102,20 @@
                 while ($row = $resultAnuncios->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="producto">';
                         $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                        echo '<div class = "imagen-producto">';
-                            echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                        echo '</div>';
-                        echo '<div class = "contenedor-anuncio">';
-                            echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                            echo '<p>' . $row['descripcion'] . '</p>';
-                            echo '<p class="precio">' . $row['precio'] . '€</p>';
-                        echo '</div>';
-                        echo '<button style ="background-color: #57aa26">validar</button>';
-                        echo '<br>';
-                        echo '<button style ="background-color: red">eliminar</button>';
+                        echo '<form method="POST" action="validar.php">';
+                            echo '<div class = "imagen-validar">';
+                                echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                            echo '</div>';
+                            echo '<div class = "contenedor-anuncio">';
+                                echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
+                                echo '<p>' . $row['descripcion'] . '</p>';
+                                echo '<p class="precio">' . $row['precio'] . '€</p>';
+                            echo '</div>';
+                            echo '<button style="background-color: #57aa26" name="validar_anuncio" value="' . $row['id_anuncio'] . '">Validar</button>';
+                            echo '<br>';
+                            echo '<br>';
+                            echo '<button style="background-color: red" name="eliminar_anuncio" value="' . $row['id_anuncio'] . '">Eliminar</button>';
+                            echo '</form>';
                     echo '</div>';
                 }
             ?>
@@ -61,24 +123,27 @@
     </section>
     <br>
     <br>
-    <section class="seccion-destacada" >
+    <section class="seccion-destacada">
         <div class="seccion-titulo" >
-            <h1 class="titulo-llamativo" >Validación de noticias</h1>
+            <h1 class="titulo-llamativo" >Validación de Noticias</h1>
         </div>
         <div id="noticiasContainer" class="productos">
             <?php
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="producto">';
-                        echo '<div class = "imagen-producto">';
-                            echo '<img src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
-                        echo '</div>';
-                            echo '<div class = "contenedor-anuncio">';
-                            echo '<h1 class="titulo-noticia3-h1">' . $row['categoria'] . '</h1>';
-                            echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
-                            echo '<button style ="background-color: #57aa26" >validar</button>';
-                            echo '<br>';
-                            echo '<button style ="background-color: red">eliminar</button>';
-                        echo '</div>';
+                        echo '<form method="POST" action="validar.php">'; // Reemplaza 'tu_script.php' por la URL correcta
+                            echo '<div class="imagen-validar">';
+                                echo '<img src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
+                            echo '</div>';
+                            echo '<div class="contenedor-anuncio">';
+                                echo '<h1 style="color: black" class="titulo-noticia3-h1">' . $row['categoria'] . '</h1>';
+                                echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
+                                echo '<button style="background-color: #57aa26" name="validar_noticia" value="' . $row['id_noticia'] . '">Validar</button>';
+                                echo '<br>';
+                                echo '<br>';
+                                echo '<button style="background-color: red" name="eliminar_noticia" value="' . $row['id_noticia'] . '">Eliminar</button>';
+                            echo '</div>';
+                        echo '</form>';
                     echo '</div>';
                 }
             ?>

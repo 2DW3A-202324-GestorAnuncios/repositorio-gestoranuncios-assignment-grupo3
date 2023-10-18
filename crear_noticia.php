@@ -10,7 +10,8 @@
     <title>Crear Noticia - CIFP Txurdinaga</title>
 </head>
 <body>
-    <?php
+<?php
+        include("conexion.php");
         // Inicia la sesión en la página
         session_start();
 
@@ -20,6 +21,34 @@
             $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
         } else {
             include('header_no_sesion.php');
+        }
+        
+        $insercion = "";
+        $usuario = $_SESSION["usuario"];
+
+        $repeticionPK = "";
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
+        
+            // Comprueba conexion
+            if($conn === false){
+                die("ERROR: No se ha podido conectar. "
+                    . mysqli_connect_error());
+            }
+            $nomNoticia = $_POST['titulo'];
+            $descNoticia = $_POST['descripcion'];
+            $catNoticia = $_POST['categoria'];
+            $fotoNoticia = $_POST['imagen'];
+            $usuNoticia = $_SESSION["usuario"];
+           
+
+            //Inserta los datos a la tabla "anuncio"
+            mysqli_query($conn,"INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')");
+            $insercion= "Se ha creado la publicacion";
+            // Cierra conexion
+            mysqli_close($conn);    
+        
         }
     ?>
     
@@ -45,7 +74,7 @@
                         <option value="arte">Arte</option>
                         <option value="tiempo">Tiempo</option>
                     </select>
-
+                    <span id="publicacion-creada"><?php echo $insercion ?></span>
                     <button type="submit">Crear Noticia</button>
                 </form>
             </div>

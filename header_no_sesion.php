@@ -26,28 +26,35 @@
             $mostrar_formulario = true;
         } else {
             // Realiza una consulta SQL para verificar las credenciales en la base de datos
-            $sql = "SELECT * FROM usuario WHERE nombre_usuario = :usuario and password = :contrasena";
+            $sql = "SELECT * FROM usuario WHERE nombre_usuario = :usuario";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':usuario', $usuario);
-            $stmt->bindParam(':contrasena', $contrasena);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($row) {
-                // Las credenciales son válidas
-                $_SESSION['sesion_iniciada'] = true;
-                $_SESSION["usuario"] = $usuario;
+                // Verifica si la contraseña proporcionada coincide con la contraseña almacenada en la base de datos (hasheada)
+                if (password_verify($contrasena, $row['password'])) {
+                    // Las credenciales son válidas
+                    $_SESSION['sesion_iniciada'] = true;
+                    $_SESSION["usuario"] = $usuario;
 
-                // Verificar si el usuario es administrador
-                if ($row['tipo_usuario'] == 'admin') {
-                    $_SESSION['admin'] = true;
+                    // Verificar si el usuario es administrador
+                    if ($row['tipo_usuario'] == 'admin') {
+                        $_SESSION['admin'] = true;
+                    }
+
+                    header("Location: index.php");
+                    exit();
+                } else {
+                    // La contraseña es incorrecta
+                    $mensaje_error = "La contraseña es incorrecta. Inténtalo de nuevo.";
+                    // Establece la variable para mostrar el formulario como verdadera
+                    $mostrar_formulario = true;
                 }
-
-                header("Location: index.php");
-                exit();
             } else {
-                // Las credenciales son incorrectas
-                $mensaje_error = "El nombre de usuario/contraseña son incorrectas. Inténtalo de nuevo.";
+                // El nombre de usuario no se encontró en la base de datos
+                $mensaje_error = "El nombre de usuario no existe. Inténtalo de nuevo.";
                 // Establece la variable para mostrar el formulario como verdadera
                 $mostrar_formulario = true;
             }
