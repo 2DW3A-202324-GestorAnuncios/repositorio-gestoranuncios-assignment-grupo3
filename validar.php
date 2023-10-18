@@ -43,7 +43,7 @@
                 while ($row = $resultAnuncios->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="producto">';
                         $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                        echo '<div class = "imagen-producto">';
+                        echo '<div class = "imagen-validar">';
                             echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                         echo '</div>';
                         echo '<div class = "contenedor-anuncio">';
@@ -69,11 +69,11 @@
             <?php
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="producto">';
-                        echo '<div class = "imagen-producto">';
+                        echo '<div class = "imagen-validar">';
                             echo '<img src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
                         echo '</div>';
                             echo '<div class = "contenedor-anuncio">';
-                            echo '<h1 class="titulo-noticia3-h1">' . $row['categoria'] . '</h1>';
+                            echo '<h1 style = "color: black" class="titulo-noticia3-h1">' . $row['categoria'] . '</h1>';
                             echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
                             echo '<button style ="background-color: #57aa26" >validar</button>';
                             echo '<br>';
