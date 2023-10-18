@@ -26,6 +26,7 @@
         $corr = $_POST['email'];
         $c1 = $_POST['contraseña'];
         $c2 = $_POST['contraseña2'];
+
         $claveUsu = "SELECT nombre_usuario FROM usuario where nombre_usuario = '".$usu."' ";
         $resultUsu = mysqli_query($conn, $claveUsu);
         $claveCorr = "SELECT correo FROM usuario where correo = '".$corr."' ";
@@ -50,9 +51,7 @@
    
                 // Cierra conexion
                 mysqli_close($conn);
-                header("Location: http://localhost/Pagina%20R1/repositorio-gestoranuncios-assignment-grupo3/");
-            }else{
-               
+                header("Location: ../index.php");
             }
         }else{
             $repeticionPK = "El usuario o correo ya exsisten";
@@ -127,7 +126,7 @@
             </div>
             <br>
             <div id="imagen">
-                <p>Foto de perfil(no obligatorio):</p>
+                <p>Foto de perfil(opcional):</p>
                 <input type="file" accept="image/*" name="imagen">
             </div><br><br>
             <div class="terminos-crear-cuenta" >
@@ -137,7 +136,7 @@
             </div>
             <span id="repPK"><?php echo $repeticionPK ?></span>
             <div class="botones-crear-cuenta">
-                <input type="submit" value="Crear Cuenta" name="submit" class="boton" onclick="validarCampos()">
+                <input type="submit" value="Crear Cuenta" name="submit" class="boton" id="botonSubmit" onclick="validarCampos()">
                 <input type="button" style = "background-color:red" value="Cancelar" class="boton" onclick="location.href='../index.php';">
             </div>
         </form>
@@ -145,7 +144,7 @@
    
    
     <script>
-        //para el reenvio del formulario al recargar la pagina
+        //para no reenviar el formulario al recargar la pagina
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
         }  
