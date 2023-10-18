@@ -1,7 +1,26 @@
 var num = 1;
 
 function validarCampos() { 
-  
+  //comprueba nombre
+  var nombre = document.getElementById('nombre').value;
+  const error6 = document.getElementById("error6");
+  if (nombre.length == 0) {
+    error6.innerText = "Introduce un nombre";
+    num = num + 1;
+  } else{
+    error6.innerText = "";
+    num = 0;
+  }
+  //comprueba apellido
+  var apellido = document.getElementById('apellido').value;
+  const error7 = document.getElementById("error7");
+  if (apellido.length == 0) {
+    error7.innerText = "Introduce un apellido";
+    num = num + 1;
+  }else{
+    error7.innerText = "";
+    num = 0;
+  } 
   //validar contraseña 
   var c = document.getElementById('validar-contraseña').value;
   var box = document.getElementById("expresiones");
@@ -86,6 +105,32 @@ function validarCampos() {
     error2.innerText = "El email no es valido";
     num=num+1;
 	}
+
+  //validar fechaNacimiento
+  var fechaNac = document.getElementById('fecha').value;
+  const error8 = document.getElementById("error8");
+
+  if(!fechaNac){
+    error8.innerText = "Introduce una fecha";
+    num=num+1;
+  }else{
+    error8.innerText = "";
+    num = 0;
+  }
+  //validar genero
+  const error9 = document.getElementById("error9");
+  var masc = document.getElementById('masculino');
+  var fem = document.getElementById('femenino');
+  var otros = document.getElementById('otros');
+
+
+  if(masc.checked || fem.checked || otros.checked) {
+    error9.innerText = "";
+    num = 0;
+  }else{
+    error9.innerText = "Seleccione su genero";
+    num=num+1;
+  }
   const error5 = document.getElementById("error5");
   //comprobar terminos
   if (document.getElementById('terminos').checked == false) {
@@ -95,26 +140,7 @@ function validarCampos() {
     error5.innerText = "";
     num = 0;
   }
-  //comprueba nombre
-  var nombre = document.getElementById('nombre').value;
-  const error6 = document.getElementById("error6");
-  if (nombre.length == 0) {
-    error6.innerText = "Introduce un nombre";
-    num = num + 1;
-  } else{
-    error6.innerText = "";
-    num = 0;
-  }
-  //comprueba apellido
-  var apellido = document.getElementById('apellido').value;
-  const error7 = document.getElementById("error7");
-  if (apellido.length == 0) {
-    error7.innerText = "Introduce un apellido";
-    num = num + 1;
-  }else{
-    error7.innerText = "";
-    num = 0;
-  } 
+  
   if (num!=0) {
     document.getElementById("id-form").addEventListener("click", function(event){
       event.preventDefault()
