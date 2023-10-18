@@ -114,7 +114,7 @@
                             echo '<button style="background-color: #57aa26" name="validar_anuncio" value="' . $row['id_anuncio'] . '">Validar</button>';
                             echo '<br>';
                             echo '<br>';
-                            echo '<button style="background-color: red" name="eliminar_anuncio" value="' . $row['id_anuncio'] . '">Eliminar</button>';
+                            echo '<button style="background-color: red" name="eliminar_anuncio" value="' . $row['id_anuncio'] . ' id = "btn_eliminar_anuncio">Eliminar</button>';
                             echo '</form>';
                     echo '</div>';
                 }
@@ -147,9 +147,42 @@
                     echo '</div>';
                 }
             ?>
+            <div id="confirmar-cierre" class="modal" style="display: none;">
+            <div class="modal-content">
+                <p>¿Estás seguro de que deseas cerrar la sesión?</p>
+                <button id="confirmar-si">Sí</button>
+                <button id="confirmar-no">No</button>
+            </div>
+        </div>
+
         </div>
     </section>
+    <script>
+        // JavaScript para cambiar entre el modo de visualización y el modo de edición
+        const btn_eliminar_anuncio = document.getElementById('btn_eliminar_anuncio');
+        const modal = document.querySelector('.modal');
+        const confirmarSiBtn = document.getElementById('confirmar-si');
+        const confirmarNoBtn = document.getElementById('confirmar-no');
+        const btn_eliminar_anuncio_value = Document.getElementById('btn_eliminar_anuncio').value;
 
+        btn_eliminar_anuncio.addEventListener('click', () => {
+            // Muestra el desplegable
+            modal.style.display = 'block'
+            document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+        });
+
+        confirmarSiBtn.addEventListener('click', () => {
+            // Aquí debes agregar la lógica para cerrar la sesión
+            // Puedes usar una redirección a la página de cierre de sesión
+            btn_eliminar_anuncio_value.submit();// Esto es un ejemplo, asegúrate de ajustar la URL a tu configuración
+        });
+
+        confirmarNoBtn.addEventListener('click', () => {
+            // Cierra el desplegable y restaura el scroll
+            modal.style.display = 'none';
+            document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
+        });
+    </script>
     <?php
         include('footer.php');
     ?>
