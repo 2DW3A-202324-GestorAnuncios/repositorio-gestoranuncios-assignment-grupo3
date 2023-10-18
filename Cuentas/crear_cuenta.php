@@ -9,55 +9,52 @@
     <title>Crear Cuenta - CIFP Txurdinaga</title>
 </head>
 <body>
-<?php
-   
-   
-   
-    $repeticionPK = "";
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
-       
-        // Comprueba conexion
-        if($conn === false){
-            die("ERROR: No se ha podido conectar. "
-                . mysqli_connect_error());
-        }
-        $usu = $_POST['usuario'];
-        $corr = $_POST['email'];
-        $c1 = $_POST['contraseña'];
-        $c2 = $_POST['contraseña2'];
-        $claveUsu = "SELECT nombre_usuario FROM usuario where nombre_usuario = '".$usu."' ";
-        $resultUsu = mysqli_query($conn, $claveUsu);
-        $claveCorr = "SELECT correo FROM usuario where correo = '".$corr."' ";
-        $resultCorr = mysqli_query($conn, $claveCorr);
+    <?php
+        $repeticionPK = "";
 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
 
-        if (mysqli_num_rows($resultUsu) == 0 && mysqli_num_rows($resultCorr) == 0){
-           
-            if ($c1 === $c2 && !empty($c1) && !empty($c2)) {
-                // Coje los datos del formulario
-                $usuario = $_POST['usuario'];
-                $nombre =  $_POST['nombre'];
-                $apellido = $_POST['apellido'];
-                $fecha = $_POST['fecha'];
-                $genero = $_POST['genero'];
-                $email =  $_POST['email'];
-                $contraseña = $_POST['contraseña'];
-                $imagen = $_POST['imagen'];
-               
-                // Inserta los datos a la tabla "usuario"
-                mysqli_query($conn,"INSERT INTO usuario (nombre_usuario, nombre, apellido,fecha_nac,sexo, correo, password, foto) VALUES ('$usuario','$nombre','$apellido','$fecha','$genero','$email','$contraseña','$imagen')");
-   
-                // Cierra conexion
-                mysqli_close($conn);
-                header("Location: http://localhost/Pagina%20R1/repositorio-gestoranuncios-assignment-grupo3/");
-            }else{
-               
+            // Comprueba conexión
+            if ($conn === false) {
+                die("ERROR: No se ha podido conectar. " . mysqli_connect_error());
             }
-        }else{
-            $repeticionPK = "El usuario o correo ya exsisten";
-        }  
-    }
+
+            $usu = $_POST['usuario'];
+            $corr = $_POST['email'];
+            $c1 = $_POST['contraseña'];
+            $c2 = $_POST['contraseña2'];
+            $claveUsu = "SELECT nombre_usuario FROM usuario where nombre_usuario = '" . $usu . "' ";
+            $resultUsu = mysqli_query($conn, $claveUsu);
+            $claveCorr = "SELECT correo FROM usuario where correo = '" . $corr . "' ";
+            $resultCorr = mysqli_query($conn, $claveCorr);
+
+            if (mysqli_num_rows($resultUsu) == 0 && mysqli_num_rows($resultCorr) == 0) {
+
+                if ($c1 === $c2 && !empty($c1) && !empty($c2)) {
+                    // Coje los datos del formulario
+                    $usuario = $_POST['usuario'];
+                    $nombre = $_POST['nombre'];
+                    $apellido = $_POST['apellido'];
+                    $fecha = $_POST['fecha'];
+                    $genero = $_POST['genero'];
+                    $email = $_POST['email'];
+                    $contraseña = password_hash($_POST['contraseña'], PASSWORD_BCRYPT); // Hashear la contraseña
+                    $imagen = $_POST['imagen'];
+
+                    // Inserta los datos en la tabla "usuario"
+                    mysqli_query($conn, "INSERT INTO usuario (nombre_usuario, nombre, apellido, fecha_nac, sexo, correo, password, foto) VALUES ('$usuario', '$nombre', '$apellido', '$fecha', '$genero', '$email', '$contraseña', '$imagen')");
+
+                    // Cierra conexión
+                    mysqli_close($conn);
+                    header("Location: ../index.php");
+                } else {
+                    // Las contraseñas no coinciden o están en blanco
+                }
+            } else {
+                $repeticionPK = "El usuario o correo ya existen";
+            }
+        }
     ?>
     <div class="form-crear-cuenta">
         <img src="../img/Logo_Inicio_Sesion.png" alt="logo" class="logo-inicio-sesion">
