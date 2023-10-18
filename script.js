@@ -1,15 +1,16 @@
-var num = 9;
+var num = 0;
 
 function validarCampos() { 
-  num = 9;
+  num = 0;
   //comprueba nombre
   var nombre = document.getElementById('nombre').value;
   const error6 = document.getElementById("error6");
   if (nombre.length == 0) {
     error6.innerText = "Introduce un nombre";
+    num=num+1;
+
   } else{
     error6.innerText = "";
-    num=num+1;
 
   }
   //comprueba apellido
@@ -23,7 +24,6 @@ function validarCampos() {
     error7.innerText = "";
 
   } 
-  //validar contraseña 
   var c = document.getElementById('validar-contraseña').value;
   var box = document.getElementById("expresiones");
   var field = document.createElement('span');
@@ -75,7 +75,12 @@ function validarCampos() {
 
   }
   if(cont==0){
-    error3.innerText = "";
+    document.getElementById("expresiones").innerHTML = "";   
+    var salto = document.createElement('br');
+    field.appendChild(document.createTextNode("Tu contraseña es adecuada"));
+    field.setAttribute('class','correcto');
+    box.appendChild(field);
+    field.appendChild(salto);
 
   }
 //confirmar contraseña
@@ -94,7 +99,7 @@ function validarCampos() {
   const usuario = document.getElementById("usuario").value;
   const error1 = document.getElementById("error1");
   if (usuario.length < 3) {
-    error1.innerText = "El usuario debe tener 4 o mas caracteres";
+    error1.innerText = "El usuario debe tener 3 o mas caracteres";
     num=num+1;
 
   }else{
@@ -157,7 +162,7 @@ function validarCampos() {
   if (num!=9) {
     btn.removeAttribute("type","submit")
     btn.setAttribute("type","button")
-  }else if(num == 9){
+  }else if(num === 0){
     
     btn.removeAttribute("type","submit")
     btn.setAttribute("type","submit")
