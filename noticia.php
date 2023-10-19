@@ -34,7 +34,9 @@
     <div class="container">
         <div class="filtro-container">
             <div class="filtro">
-                <h3>Filtrar por Categoría</h3><br><br>
+                <h3>Filtrar por Categoría</h3>
+                <!-- Agrega el enlace "Borrar filtros" debajo del título -->
+                <a href="noticia.php" id="borrarFiltros" style="display: none;">Borrar filtros</a><br>
                 <form id="filtroForm">
                     <label class="filtro-label">
                         <input type="radio" name="categoria" id="categoria-deportes" value="deportes">
@@ -83,6 +85,9 @@
         // Obtén una referencia al formulario de filtro
         const filtroForm = document.getElementById("filtroForm");
 
+        // Obtén una referencia al enlace "Borrar filtros"
+        const borrarFiltrosLink = document.getElementById("borrarFiltros");
+
         // Agrega un evento de cambio al formulario
         filtroForm.addEventListener("change", function() {
             // Obtén el valor de la categoría seleccionada
@@ -101,7 +106,26 @@
                     noticia.style.display = "none";
                 }
             });
+
+            // Muestra el enlace "Borrar filtros" cuando se aplique algún filtro
+            borrarFiltrosLink.style.display = "block";
+        });
+
+        // Agrega un evento de clic al enlace "Borrar filtros"
+        borrarFiltrosLink.addEventListener("click", function() {
+            // Restablece el formulario de filtro (quita todas las selecciones)
+            filtroForm.reset();
+
+            // Muestra todas las noticias nuevamente
+            noticias.forEach(function(noticia) {
+                noticia.style.display = "block";
+            });
+
+            // Oculta el enlace "Borrar filtros" nuevamente
+            borrarFiltrosLink.style.display = "none";
         });
     });
     </script>
 </body>
+
+</html>
