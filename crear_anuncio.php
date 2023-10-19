@@ -10,7 +10,8 @@
     <title>Crear Anuncio - CIFP Txurdinaga</title>
 </head>
 <body>
-<?php
+    <?php
+        include("conexion.php");
         // Inicia la sesión en la página
         session_start();
 
@@ -22,9 +23,8 @@
             include('header_no_sesion.php');
         }
 
-        include("conexion.php");
-
-        $insercion = "";
+        $mensaje_exito = '';
+        $mensaje_error = '';
         $usuario = $_SESSION["usuario"];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -49,14 +49,24 @@
             if (move_uploaded_file($foto_temp, $directorio_destino)) {
                 // Inserta los datos a la tabla "Anuncio" con el nombre de la imagen en la base de datos
                 mysqli_query($conn, "INSERT INTO anuncio (foto, nombre_anuncio, precio, descripcion, nombre_usuario) VALUES ('$fotoAnuncio','$nomAnuncio','$precAnuncio','$descAnuncio','$usuAnuncio')");
-                $insercion = "Se ha creado la publicación";
+                $mensaje_exito = "Se ha creado la publicación exitosamente.";
             } else {
-                $inserción = "Error al subir la foto.";
+                $mensaje_error = "Error al subir la foto.";
             }
             
             // Cierra conexión
             mysqli_close($conn);    
         
+        }
+
+        if (!empty($mensaje_exito)) {
+            echo '<div class="mensaje-exito">';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
+            echo '</div>';
+        } elseif (!empty($mensaje_error)) {
+            echo '<div class="mensaje-error">';
+                echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+            echo '</div>';
         }
     ?>
     <main>

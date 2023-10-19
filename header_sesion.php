@@ -16,7 +16,7 @@
             <div class="centrado-header">Mi Perfil</div>
         </a>
         <a class="header-buttons" href="carrito_compra.php">
-            <img src="img/carrito_compra.png" alt="Inicio" width="100px" height="80px">
+            <img src="img/carrito_compra.png" alt="Inicio" width="50px" height="50px" style="margin-top: 20px;">
         </a>
     </div>
 </header>
@@ -33,5 +33,6 @@
                 echo '<li class="menu-item"><a href="validar.php">Validar</a></li>';
             }
         ?>
+        <li class="menu-item"><a href="contacto.php">Contacto</a></li>
     </ul>
 </div>
