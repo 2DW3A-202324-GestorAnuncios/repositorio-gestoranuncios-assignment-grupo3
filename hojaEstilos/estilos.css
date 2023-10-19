@@ -498,6 +498,7 @@ header {
     top: 0;
 }
 
+
 .filtro h3 {
     margin-bottom: 10px;
 }
@@ -522,20 +523,22 @@ header {
     transition: border-color 0.3s ease;
 }
 
-.filtro-label img:hover {
-    border-color: #000000;
-}
+.filtro-label:hover {transform: scale(1.2);}
+
+.filtro-label img:hover{border-color: #000000;}
 
 #borrarFiltros {
-    display: block; /* Mostrar el enlace */
-    color: black; /* Color del texto */
-    text-decoration: underline; /* Subrayar el texto para que parezca un enlace */
-    cursor: pointer; /* Cambiar el cursor al pasar sobre el enlace */
-    margin-top: 10px; /* Agregar un espacio entre el título y el enlace */
+    display: block;
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
 #borrarFiltros:hover {
-    color: blue; /* Cambiar el color del texto al pasar el cursor sobre el enlace */
+    color: blue;
+    transform: scale(1.2);
+    
 }
 
 
