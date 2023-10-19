@@ -1,29 +1,27 @@
-var num = 0;
+var num = 1;
 
 function validarCampos() { 
-  num = 0;
   //comprueba nombre
   var nombre = document.getElementById('nombre').value;
   const error6 = document.getElementById("error6");
   if (nombre.length == 0) {
     error6.innerText = "Introduce un nombre";
-    num=num+1;
-
+    num = num + 1;
   } else{
     error6.innerText = "";
-
+    num = 0;
   }
   //comprueba apellido
   var apellido = document.getElementById('apellido').value;
   const error7 = document.getElementById("error7");
   if (apellido.length == 0) {
     error7.innerText = "Introduce un apellido";
-    num=num+1;
-
+    num = num + 1;
   }else{
     error7.innerText = "";
-
+    num = 0;
   } 
+  //validar contraseña 
   var c = document.getElementById('validar-contraseña').value;
   var box = document.getElementById("expresiones");
   var field = document.createElement('span');
@@ -39,7 +37,6 @@ function validarCampos() {
     field.appendChild(salto);
     cont = cont + 1;
     num=num+1;
-
   }
   if (c.search(/[a-z]/i) < 0) {
     document.getElementById("expresiones").innerHTML = "";   
@@ -50,7 +47,6 @@ function validarCampos() {
     field.appendChild(salto);
     cont = cont + 1;
     num=num+1;
-
   }
   if (c.search(/[0-9]/) < 0) {
     document.getElementById("expresiones").innerHTML = "";   
@@ -61,7 +57,6 @@ function validarCampos() {
     field.appendChild(salto);
     cont = cont + 1;
     num=num+1;
-
   }
   if (c.search(/[A-Z]/) < 0) { 
     document.getElementById("expresiones").innerHTML = "";   
@@ -72,16 +67,10 @@ function validarCampos() {
     field.appendChild(salto);
     cont = cont + 1;
     num=num+1;
-
   }
   if(cont==0){
-    document.getElementById("expresiones").innerHTML = "";   
-    var salto = document.createElement('br');
-    field.appendChild(document.createTextNode("Tu contraseña es adecuada"));
-    field.setAttribute('class','correcto');
-    box.appendChild(field);
-    field.appendChild(salto);
-
+    error3.innerText = "";
+    num = 0;
   }
 //confirmar contraseña
   var c = document.getElementById('validar-contraseña').value;
@@ -89,22 +78,21 @@ function validarCampos() {
   const error4 = document.getElementById("error4");
   if (c === c2) {
     error4.innerText = "";
+    num = 0;
 
   }else{
     error4.innerText = "Las contraseñas tienen que ser identicas";
-    num=num+1;
-
+    num=num+6;
   }
 //validar usuario
   const usuario = document.getElementById("usuario").value;
   const error1 = document.getElementById("error1");
   if (usuario.length < 3) {
-    error1.innerText = "El usuario debe tener 3 o mas caracteres";
+    error1.innerText = "El usuario debe tener 4 o mas caracteres";
     num=num+1;
-
   }else{
     error1.innerText = "";
-
+    num = 0;
   }
 //validar email
   var email = document.getElementById('email');
@@ -112,11 +100,10 @@ function validarCampos() {
   var emailRE =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 	if( emailRE.test(email.value) ){
     error2.innerText = "";
-
+    num = 0;
 	}else{
     error2.innerText = "El email no es valido";
     num=num+1;
-
 	}
 
   //validar fechaNacimiento
@@ -126,10 +113,9 @@ function validarCampos() {
   if(!fechaNac){
     error8.innerText = "Introduce una fecha";
     num=num+1;
-
   }else{
     error8.innerText = "";
-
+    num = 0;
   }
   //validar genero
   const error9 = document.getElementById("error9");
@@ -140,31 +126,24 @@ function validarCampos() {
 
   if(masc.checked || fem.checked || otros.checked) {
     error9.innerText = "";
-
+    num = 0;
   }else{
     error9.innerText = "Seleccione su genero";
     num=num+1;
-
   }
   const error5 = document.getElementById("error5");
   //comprobar terminos
   if (document.getElementById('terminos').checked == false) {
     error5.innerText = "Debe aceptar los terminos";
-    num=num+1;
-
+    num = num + 1;
   }else{
     error5.innerText = "";
-
+    num = 0;
   }
-
-
-  const btn = document.getElementById('botonSubmit');
-  if (num != 0) {
-    btn.removeAttribute("type","submit")
-    btn.setAttribute("type","button")
-  }else if(num === 0){
-    
-    btn.removeAttribute("type","submit")
-    btn.setAttribute("type","submit")
-  }
+  
+  if (num!=0) {
+    document.getElementById("id-form").addEventListener("click", function(event){
+      event.preventDefault()
+    });
+  } 
 }

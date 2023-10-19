@@ -72,24 +72,6 @@ header {
 #logo {
     margin-left: 75px;
 }
-#logo2{
-    visibility: hidden;
-    margin-left: -280px;
-    width: 1px;
-    height: 1px;
-
-}
-
-@media only screen and (max-width: 670px) {
-    #logo {
-        visibility: hidden;
-    }
-    #logo2{
-        visibility: visible;
-        height: 90px;
-        width: auto;
-    }
-}
 
 #buttons-container {
     display: flex;
@@ -98,6 +80,14 @@ header {
 }
 
 .centrado {
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+}
+
+.centrado-header {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -197,7 +187,6 @@ header {
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    border: 1px solid red;
 }
 
 .slideshow-container img {
@@ -205,7 +194,6 @@ header {
     width: 100%;
     height: 100%;
     border-radius: 15px;
-    
 }
 
 .prev, .next {
@@ -442,36 +430,44 @@ header {
 }
 
 #buscador {
-    width: 80%;
-    display: inline-block;
+    width: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
+    margin: 20px auto;
 }
 
-#inputBuscador {
-    width: 700px;
-    border-radius: 15px;
-    margin-left: 36%;
-    height: 50px;
-    text-align: center;
-    font-size: large;
+#input-buscador {
+    background-image: url('../img/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 18px;
+    padding: 12px 20px 12px 40px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin-left: -28px;
+    text-decoration: none;   
+}
+
+#input-buscador::placeholder {
+    color: #777;
+}
+
+#input-buscador:focus {
+    background-color: #fff; /* Cambia el fondo al enfocar */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega una suave sombra al enfocar */
 }
 
 #mensajeBusqueda {
-    margin-left: 39%;
-    width: 800px;
-    font-family: 'PT Sans Narrow';
-    font-size: xx-large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    font-size: larger;
 }
-
-#botonBuscador {
-    height: 50px;
-    border-radius: 15px;
-    width: 100px;
-    background-color:#229c69 ;
-    text-align: center;
-}
-
 
 .producto {
     display: flex;
@@ -490,20 +486,13 @@ header {
     font-size: 20px;
 }
 
+.imagen-producto,
 .imagen-validar {
     flex: 1;
 }
 
+.imagen-producto img,
 .imagen-validar img {
-    max-width: 100%;
-    margin-bottom: 10px;
-}
-
-.imagen-producto {
-    flex: 1;
-}
-
-.imagen-producto img {
     max-width: 100%;
     height: 300px;
     margin-bottom: 10px;
@@ -618,6 +607,19 @@ header {
 .filtro-label img:hover {
     border-color: #000000;
 }
+
+#borrarFiltros {
+    display: block; /* Mostrar el enlace */
+    color: black; /* Color del texto */
+    text-decoration: underline; /* Subrayar el texto para que parezca un enlace */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el enlace */
+    margin-top: 10px; /* Agregar un espacio entre el título y el enlace */
+}
+
+#borrarFiltros:hover {
+    color: blue; /* Cambiar el color del texto al pasar el cursor sobre el enlace */
+}
+
 
 
 .noticias3 {
@@ -1196,6 +1198,11 @@ p {
     font-size: 16px;
 }
 
+.form-crear-anuncio textarea,
+.form-crear-noticia textarea {
+    resize: none;
+}
+
 .form-crear-anuncio input[type="file"] {
     width: 95%;
     padding: 10px;
@@ -1458,6 +1465,53 @@ p {
     font-size: 16px;
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(81, 81, 81, 0.7);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Clase para desactivar el scroll */
+.no-scroll {
+    overflow: hidden;
+}
+.modal-content {
+    margin-top: 15%;
+    width: 27%;
+    margin-left: 35.25%;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    
+}
+
+.modal button {
+    background-color: transparent; /* Establece el fondo del botón como transparente */
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.modal #confirmar-si {
+    color: blue;
+    border-color: blue;
+}
+
+.modal #confirmar-no {
+    background-color: blue; /* Fondo de "No" en azul */
+    border-color: blue;
+    color: white; /* Texto en blanco */
+}
+
 .foto-container {
     border-radius: 50%;
     overflow: hidden;
@@ -1496,3 +1550,4 @@ p {
 .mensaje-error {
     color: red;
 }
+
