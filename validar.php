@@ -1,54 +1,77 @@
 <?php
-    include("conexion.php");
+include("conexion.php");
 
-    $sqlNoticias = "SELECT * FROM noticia WHERE validado = '0'";
+function eliminarFoto($nombreArchivo) {
+    $directorio_destino = 'img/anuncios/' . $nombreArchivo;
+    if (file_exists($directorio_destino)) {
+        unlink($directorio_destino);
+    }
+}
+
+$sqlNoticias = "SELECT * FROM noticia WHERE validado = '0'";
+$resultNoticias = $conn->query($sqlNoticias);
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["validar_noticia"])) {
+    $id_noticia = $_POST["validar_noticia"];
+
+    // Realiza una consulta SQL para actualizar el campo validado a 1
+    $sqlValidarNoticia = "UPDATE noticia SET validado = '1' WHERE id_noticia = :id_noticia";
+
+    $stmt = $conn->prepare($sqlValidarNoticia);
+    $stmt->bindValue(':id_noticia', $id_noticia, PDO::PARAM_INT);
+    $stmt->execute();
     $resultNoticias = $conn->query($sqlNoticias);
-    
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["validar_noticia"])) {
-        $id_noticia = $_POST["validar_noticia"];
-        
-        // Realiza una consulta SQL para actualizar el campo validado a 1
-        $sqlValidarNoticia = "UPDATE noticia SET validado = '1' WHERE id_noticia = :id_noticia";
-        
-        $stmt = $conn->prepare($sqlValidarNoticia);
-        $stmt->bindValue(':id_noticia', $id_noticia, PDO::PARAM_INT);
-        $stmt->execute();
-        $resultNoticias = $conn->query($sqlNoticias);
-    }
+}
 
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_noticia"])) {
-        $id_noticia = $_POST["eliminar_noticia"];
-        $sqlEliminarNoticia = "DELETE FROM noticia WHERE id_noticia = :id_noticia";
-        $stmt = $conn->prepare($sqlEliminarNoticia);
-        $stmt->bindParam(':id_noticia', $id_noticia, PDO::PARAM_INT);
-        $stmt->execute();
-        $resultNoticias = $conn->query($sqlNoticias);
-    }
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_noticia"])) {
+    $id_noticia = $_POST["eliminar_noticia"];
+    $sqlEliminarNoticia = "DELETE FROM noticia WHERE id_noticia = :id_noticia";
+    $stmt = $conn->prepare($sqlEliminarNoticia);
+    $stmt->bindParam(':id_noticia', $id_noticia, PDO::PARAM_INT);
+    $stmt->execute();
+    $resultNoticias = $conn->query($sqlNoticias);
+}
 
-    $sqlAnuncios = "SELECT * FROM anuncio WHERE validado = '0'";
+$sqlAnuncios = "SELECT * FROM anuncio WHERE validado = '0'";
+$resultAnuncios = $conn->query($sqlAnuncios);
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["validar_anuncio"])) {
+    $id_anuncio = $_POST["validar_anuncio"];
+
+    // Realiza una consulta SQL para actualizar el campo validado a 1
+    $sqlValidarAnuncio = "UPDATE anuncio SET validado = '1' WHERE id_anuncio = :id_anuncio";
+
+    $stmt = $conn->prepare($sqlValidarAnuncio);
+    $stmt->bindValue(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
+    $stmt->execute();
     $resultAnuncios = $conn->query($sqlAnuncios);
 
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["validar_anuncio"])) {
-        $id_anuncio = $_POST["validar_anuncio"];
-        
-        // Realiza una consulta SQL para actualizar el campo validado a 1
-        $sqlValidarAnuncio = "UPDATE anuncio SET validado = '1' WHERE id_anuncio = :id_anuncio";
-        
-        $stmt = $conn->prepare($sqlValidarAnuncio);
-        $stmt->bindValue(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
-        $stmt->execute();
-        $resultAnuncios = $conn->query($sqlAnuncios);
+}
 
-    }
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_anuncio"])) {
+    $id_anuncio = $_POST["eliminar_anuncio"];
+    $sqlEliminarAnuncio = "DELETE FROM anuncio WHERE id_anuncio = :id_anuncio";
+    $stmt = $conn->prepare($sqlEliminarAnuncio);
+    $stmt->bindParam(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
+    $stmt->execute();
+    $resultAnuncios = $conn->query($sqlAnuncios);
 
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_anuncio"])) {
-        $id_anuncio = $_POST["eliminar_anuncio"];
-        $sqlEliminarAnuncio = "DELETE FROM anuncio WHERE id_anuncio = :id_anuncio";
-        $stmt = $conn->prepare($sqlEliminarAnuncio);
-        $stmt->bindParam(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
-        $stmt->execute();
-        $resultAnuncios = $conn->query($sqlAnuncios);
+    // Obtener el nombre del archivo de la base de datos
+    $sqlFoto = "SELECT foto FROM anuncio WHERE id_anuncio = :id_anuncio";
+    $stmtFoto = $conn->prepare($sqlFoto);
+    $stmtFoto->bindValue(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
+    $stmtFoto->execute();
+    $row = $stmtFoto->fetch(PDO::FETCH_ASSOC);
+
+    // Verificar si la consulta fue exitosa
+    if ($row && isset($row['foto'])) {
+        // Directorio de destino de la foto
+        $directorio_destino = 'img/anuncios/' . $row['foto'];
+
+        // Eliminar el archivo utilizando la función eliminarFoto
+        eliminarFoto($row['foto']);
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es-Es">
@@ -77,31 +100,32 @@
         }
     ?>
 
-    <section class="seccion-destacada" >
-        <div class="seccion-titulo" >
-            <h1 class="titulo-llamativo" >Validación de anuncios</h1>
+<section class="seccion-destacada">
+        <div class="seccion-titulo">
+            <h1 class="titulo-llamativo">Validación de anuncios</h1>
         </div>
         <div class="productos">
             <?php
-                while ($row = $resultAnuncios->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<div class="producto">';
-                        $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                        echo '<form method="POST" action="validar.php">';
-                            echo '<div class="imagen-validar">';
-                                echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                            echo '</div>';
-                            echo '<div class = "contenedor-anuncio">';
-                                echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                                echo '<p>' . $row['descripcion'] . '</p>';
-                                echo '<p class="precio">' . $row['precio'] . '€</p>';
-                            echo '</div>';
-                            echo '<button style="background-color: #57aa26" name="validar_anuncio" value="' . $row['id_anuncio'] . '">Validar</button>';
-                            echo '<br>';
-                            echo '<br>';
-                            echo '<button style="background-color: red" name="eliminar_anuncio" value="' . $row['id_anuncio'] . '">Eliminar</button>';
-                        echo '</form>';
-                    echo '</div>';
-                }
+            while ($row = $resultAnuncios->fetch(PDO::FETCH_ASSOC)) {
+                $nombre_anuncio = $row['nombre_anuncio'];
+                echo '<div class="producto">';
+                $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                echo '<form method="POST" action="validar.php">';
+                echo '<div class="imagen-validar">';
+                echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                echo '</div>';
+                echo '<div class="contenedor-anuncio">';
+                echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
+                echo '<p>' . $row['descripcion'] . '</p>';
+                echo '<p class="precio">' . $row['precio'] . '€</p>';
+                echo '</div>';
+                echo '<button style="background-color: #57aa26" name="validar_anuncio" value="' . $row['id_anuncio'] . '">Validar</button>';
+                echo '<br>';
+                echo '<br>';
+                echo '<button style="background-color: red" name="eliminar_anuncio" value="' . $row['id_anuncio'] . '">Eliminar</button>';
+                echo '</form>';
+                echo '</div>';
+            }
             ?>
         </div>
     </section>
