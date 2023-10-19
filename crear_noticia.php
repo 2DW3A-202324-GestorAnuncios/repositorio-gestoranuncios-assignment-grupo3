@@ -10,7 +10,7 @@
     <title>Crear Noticia - CIFP Txurdinaga</title>
 </head>
 <body>
-<?php
+    <?php
         include("conexion.php");
         // Inicia la sesión en la página
         session_start();
@@ -23,7 +23,8 @@
             include('header_no_sesion.php');
         }
         
-        $insercion = "";
+        $mensaje_exito = '';
+        $mensaje_error = '';
         $usuario = $_SESSION["usuario"];
 
         $repeticionPK = "";
@@ -49,29 +50,38 @@
             if (move_uploaded_file($foto_temp, $directorio_destino)) {
                 // Inserta los datos a la tabla "noticia" con el nombre de la imagen en la base de datos
                 mysqli_query($conn, "INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')");
-                $insercion = "Se ha creado la publicación";
+                $mensaje_exito = "Se ha creado la publicación";
             } else {
-                $inserción = "Error al subir la foto.";
+                $mensaje_error = "Error al subir la foto.";
             }
             
             // Cierra conexión
-            mysqli_close($conn);    
+            mysqli_close($conn);  
+        }
+
+        if (!empty($mensaje_exito)) {
+            echo '<div class="mensaje-exito">';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
+            echo '</div>';
+        } elseif (!empty($mensaje_error)) {
+            echo '<div class="mensaje-error">';
+                echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+            echo '</div>';
         }
     ?>
-    
+
     <main>
         <section class="crear-noticia">
             <h1>Crear Noticia</h1>
-            <div class="form-crear-noticia">
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form class="form-crear-noticia" action="#" method="post" enctype="multipart/form-data">
                 <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" required>
+                <input type="text" id="titulo" name="titulo">
 
                 <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                <textarea id="descripcion" name="descripcion" rows="4" ></textarea>
 
                 <label for="imagen">Imagen:</label>
-                <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                <input type="file" id="imagen" name="imagen" accept="image/*">
 
                 <label for="categoria">Categoría:</label>
                 <select id="categoria" name="categoria">
@@ -80,10 +90,8 @@
                     <option value="arte">Arte</option>
                     <option value="tiempo">Tiempo</option>
                 </select>
-                <span id="publicacion-creada"><?php echo $insercion ?></span>
                 <button type="submit">Crear Noticia</button>
             </form>
-            </div>
         </section>
     </main>
 

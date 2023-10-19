@@ -94,6 +94,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <?php
         include('header_sesion.php');
+        
+        if (!empty($mensaje_exito)) {
+            echo '<div class="mensaje-exito">';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
+            echo '</div>';
+        } elseif (!empty($mensaje_error)) {
+            echo '<div class="mensaje-error">';
+                echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+            echo '</div>';
+        }
     ?>
 
     <div class="mi-perfil-container">
@@ -120,8 +130,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button id="confirmar-no">No</button>
             </div>
         </div>
-
-
 
         <form id="perfilForm" action="mi_perfil.php" method="POST" enctype="multipart/form-data" class="modo-edicion">
             <label for="nombre">Nombre:</label>
@@ -156,14 +164,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit" name="guardar">Guardar Cambios</button>
             <button id="cancelar-btn" name="cancelar">Cancelar</button>
         </form>
-
-        <?php
-            if (!empty($mensaje_exito)) {
-                echo '<p class="mensaje-exito">' . $mensaje_exito . '</p>';
-            } elseif (!empty($mensaje_error)) {
-                echo '<p class="mensaje-error">' . $mensaje_error . '</p>';
-            }
-        ?>
     </div>
 
     <script>

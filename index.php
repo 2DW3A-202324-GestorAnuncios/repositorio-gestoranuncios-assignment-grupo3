@@ -124,16 +124,15 @@
                 <?php
                     while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
                         echo '<div class="productos-slide-anuncios">';
-                        
-                        // Verifica si la URL de la imagen es nula o vacía
-                        $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                        $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
-                        
-                        echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                        echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                        echo '<p>' . $row['descripcion'] . '</p>';
-                        echo '<p class="precio">' . $row['precio'] . '€</p>';
-                        echo '<button>Comprar</button>';
+                            // Verifica si la URL de la imagen es nula o vacía
+                            $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                            $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
+                            
+                            echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                            echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
+                            echo '<p>' . $row['descripcion'] . '</p>';
+                            echo '<p class="precio">' . $row['precio'] . '€</p>';
+                            echo '<button>Comprar</button>';
                         echo '</div>';
                     }
                 ?>

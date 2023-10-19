@@ -69,16 +69,16 @@
     <div id="buttons-container">
         <a class="header-buttons" href="javascript:void(0)" onclick="toggleDropdown()">
             <img src="img/boton_profesores.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Crear Noticia</div>
+            <div class="centrado-header">Crear Noticia</div>
         </a>
         <a class="header-buttons" href="javascript:void(0)" onclick="toggleDropdown()">
             <img src="img/boton_alumnos.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Crear Anuncio</div>
+            <div class="centrado-header">Crear Anuncio</div>
         </a>
         <div class="header-dropdown" id="iniciar-sesion-dropdown">
             <a class="header-buttons" href="javascript:void(0)" onclick="toggleDropdown()">
                 <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
-                <div class="centrado">Iniciar Sesión</div>
+                <div class="centrado-header">Iniciar Sesión</div>
             </a>
             <div id="form-inicio-sesion" class="form-sesion">
                 <h2>Iniciar Sesión</h2>
