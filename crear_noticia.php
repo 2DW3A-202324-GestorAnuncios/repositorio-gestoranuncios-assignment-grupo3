@@ -28,27 +28,34 @@
 
         $repeticionPK = "";
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
-        
-            // Comprueba conexion
+            
+            // Comprueba conexión
             if($conn === false){
-                die("ERROR: No se ha podido conectar. "
-                    . mysqli_connect_error());
+                die("ERROR: No se ha podido conectar. " . mysqli_connect_error());
             }
+            
             $nomNoticia = $_POST['titulo'];
             $descNoticia = $_POST['descripcion'];
             $catNoticia = $_POST['categoria'];
-            $fotoNoticia = $_POST['imagen'];
             $usuNoticia = $_SESSION["usuario"];
-           
-
-            //Inserta los datos a la tabla "anuncio"
-            mysqli_query($conn,"INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')");
-            $insercion= "Se ha creado la publicacion";
-            // Cierra conexion
+            $fotoNoticia = $_FILES['imagen']['name'];
+            $foto_temp = $_FILES['imagen']['tmp_name'];
+            
+            // Directorio de destino para la foto
+            $directorio_destino = 'img/noticias/' . $fotoNoticia;
+            
+            // Mueve el archivo temporal al directorio de fotos
+            if (move_uploaded_file($foto_temp, $directorio_destino)) {
+                // Inserta los datos a la tabla "noticia" con el nombre de la imagen en la base de datos
+                mysqli_query($conn, "INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')");
+                $insercion = "Se ha creado la publicación";
+            } else {
+                $inserción = "Error al subir la foto.";
+            }
+            
+            // Cierra conexión
             mysqli_close($conn);    
-        
         }
     ?>
     
@@ -56,27 +63,26 @@
         <section class="crear-noticia">
             <h1>Crear Noticia</h1>
             <div class="form-crear-noticia">
-                <form action="#" method="post">
-                    <label for="titulo">Título:</label>
-                    <input type="text" id="titulo" name="titulo" required>
+            <form action="#" method="post" enctype="multipart/form-data">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" required>
 
-                    <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
 
-                    <label for="imagen">Imagen:</label>
-                    <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                <label for="imagen">Imagen:</label>
+                <input type="file" id="imagen" name="imagen" accept="image/*" required>
 
-                    <label for="categoria">Categoría:</label>
-                    <select id="categoria" name="categoria">
-                        <option value="deportes"></option>
-                        <option value="deportes">Deportes</option>
-                        <option value="economia">Economía</option>
-                        <option value="arte">Arte</option>
-                        <option value="tiempo">Tiempo</option>
-                    </select>
-                    <span id="publicacion-creada"><?php echo $insercion ?></span>
-                    <button type="submit">Crear Noticia</button>
-                </form>
+                <label for="categoria">Categoría:</label>
+                <select id="categoria" name="categoria">
+                    <option value="deportes">Deportes</option>
+                    <option value="economia">Economía</option>
+                    <option value="arte">Arte</option>
+                    <option value="tiempo">Tiempo</option>
+                </select>
+                <span id="publicacion-creada"><?php echo $insercion ?></span>
+                <button type="submit">Crear Noticia</button>
+            </form>
             </div>
         </section>
     </main>

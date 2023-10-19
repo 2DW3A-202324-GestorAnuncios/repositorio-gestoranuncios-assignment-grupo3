@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2023 a las 00:48:38
+-- Tiempo de generación: 18-10-2023 a las 12:44:01
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -89,10 +89,10 @@ CREATE TABLE `usuario` (
   `nombre` varchar(30) NOT NULL,
   `apellido` varchar(30) NOT NULL,
   `fecha_nac` date NOT NULL,
-  `sexo` enum('Mujer','Hombre','Otros','') NOT NULL,
+  `sexo` enum('Masculino','Femenino','Otros') NOT NULL,
   `correo` varchar(100) NOT NULL,
   `password` varchar(250) NOT NULL,
-  `tipo_usuario` enum('usuario','admin','','') NOT NULL,
+  `tipo_usuario` enum('usuario','admin','') NOT NULL,
   `foto` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -101,11 +101,12 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`nombre_usuario`, `nombre`, `apellido`, `fecha_nac`, `sexo`, `correo`, `password`, `tipo_usuario`, `foto`) VALUES
-('Admin_aketza', 'Aketza', 'Calle', '2002-12-08', 'Hombre', 'aketzacb@gmail.com', 'admin', 'admin', '0'),
-('Admin_dwayne', 'Dwayne', 'Lucas', '2004-01-04', 'Hombre', 'dwaynelucas1119@gmail.com', 'admin', 'admin', '0'),
-('Admin_ekaitz', 'Ekaitz', 'Angulo', '2004-01-12', 'Hombre', 'ekaitzanguloo@gmail.com', 'admin', 'admin', '0'),
-('Admin_luka', 'Luka', 'Carmona', '2003-06-14', 'Hombre', 'lukacarmona115@gmail.com', 'admin', 'admin', '0'),
-('usuario_1', 'usuario', 'usuario', '2001-01-01', 'Mujer', 'usuario@gmail.com', 'usuario_1', 'usuario', 'usuario_1.jpg');
+('Admin_aketza', 'Aketza', 'Calle', '2002-12-08', 'Masculino', 'aketzacb@gmail.com', '$2y$10$hRlXAU03Sjik.MTM2earrOChszA3XuNSCHi5k37TZNtJb8x1I898m', 'admin', ''),
+('Admin_dwayne', 'Dwayne', 'Lucas', '2004-01-04', 'Masculino', 'dwaynelucas1119@gmail.com', '$2y$10$4HqSnlG1Z857SydiazLQ0eQimg2T93QZdvd9JpJydeSChtuAcNy4S', 'admin', ''),
+('Admin_ekaitz', 'Ekaitz', 'Angulo', '2004-01-12', 'Otros', 'ekaitzanguloo@gmail.com', '$2y$10$IxmyDv.2.boBD9iQpzKhJeSWPyOiudz.RudPwbLoSKRyviDcU06Om', 'admin', ''),
+('Admin_luka', 'Luka', 'Carmona ', '2003-06-14', 'Masculino', 'lukacarmona115@gmail.com', '$2y$10$BQr1vofIZwB80kJJiFwtqu2l/bYy97aDXQ8dHUi.FoeScJyqAqxmS', 'admin', ''),
+('Neli', 'Eneritz', 'Marcos', '1221-12-12', 'Femenino', 'brujapiruja@gmail.com', '$2y$10$dULrc4R0aum.lCr6sTKuX.kcM6QruMKjhnlHs1CM8v3laLYowB86K', 'usuario', 'Captura de pantalla 2023-09-29 134408.png'),
+('usuario1', 'usuario1', 'usuario1', '1111-11-11', 'Otros', 'usuario1@gmail.com', '$2y$10$pAXNJM/MicYNirkSjxo77ujh3IwOPwrt9ctxoatisUKu.VmJdm8gm', 'usuario', '');
 
 --
 -- Índices para tablas volcadas
