@@ -72,6 +72,24 @@ header {
 #logo {
     margin-left: 75px;
 }
+#logo2{
+    visibility: hidden;
+    margin-left: -280px;
+    width: 1px;
+    height: 1px;
+
+}
+
+@media only screen and (max-width: 670px) {
+    #logo {
+        visibility: hidden;
+    }
+    #logo2{
+        visibility: visible;
+        height: 90px;
+        width: auto;
+    }
+}
 
 #buttons-container {
     display: flex;
