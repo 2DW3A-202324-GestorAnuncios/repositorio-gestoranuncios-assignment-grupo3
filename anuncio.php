@@ -123,8 +123,6 @@
                         echo '<p>' . $row['descripcion'] . '</p>';
                         echo '<p class="precio">' . $row['precio'] . '€</p>';
                     echo '</div>';
-                    echo '<button name="btn-comprar-producto">Comprar</button>';
-                    echo '<button name="btn-comprar-producto">Cancelar</button>';
                 echo '</div>';
             }
         ?>
