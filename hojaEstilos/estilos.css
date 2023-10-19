@@ -475,8 +475,8 @@ header {
 }
 
 #input-buscador:focus {
-    background-color: #fff; /* Cambia el fondo al enfocar */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega una suave sombra al enfocar */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #mensajeBusqueda {
@@ -492,7 +492,7 @@ header {
     flex-direction: column;
     align-items: center;
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 10px 20px;
     text-align: center;
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -504,15 +504,17 @@ header {
     font-size: 20px;
 }
 
-.imagen-producto,
-.imagen-validar {
+.imagen-producto {
     flex: 1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
-.imagen-producto img,
-.imagen-validar img {
+.imagen-producto img {
     max-width: 100%;
-    height: 300px;
+    height: 100%;
+    object-fit: cover;
     margin-bottom: 10px;
 }
 
@@ -529,8 +531,31 @@ header {
     text-transform: uppercase;
 }
 
-.producto button {
+.producto button[name="btn-anadir-carrito"] {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
     background-color: #007bff;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.producto button[name="btn-anadir-carrito"]:hover {
+    opacity: 0.7;
+}
+
+.btn-container {
+    display: inline;
+}
+
+.producto button[name="validar-anuncio"],
+.producto button[name="eliminar-anuncio"],
+.producto button[name="validar-noticia"],
+.producto button[name="eliminar-noticia"] {
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -538,10 +563,27 @@ header {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    margin: 0 20px 20px;
 }
 
-.producto button:hover {
-    background-color: #0056b3;
+.producto button[name="validar-anuncio"],
+.producto button[name="validar-noticia"] {
+    background-color: #57aa26;
+}
+
+.producto button[name="validar-anuncio"]:hover,
+.producto button[name="validar-noticia"]:hover {
+    background-color: #56aa26c3;
+}
+
+.producto button[name="eliminar-anuncio"],
+.producto button[name="eliminar-noticia"] {
+    background-color: red;
+}
+
+.producto button[name="eliminar-anuncio"]:hover,
+.producto button[name="eliminar-noticia"]:hover {
+    background-color: rgba(255, 0, 0, 0.673);
 }
 
 #paginacion{
@@ -622,20 +664,22 @@ header {
     transition: border-color 0.3s ease;
 }
 
-.filtro-label img:hover {
-    border-color: #000000;
-}
+.filtro-label:hover {transform: scale(1.2);}
+
+.filtro-label img:hover{border-color: #000000;}
 
 #borrarFiltros {
-    display: block; /* Mostrar el enlace */
-    color: black; /* Color del texto */
-    text-decoration: underline; /* Subrayar el texto para que parezca un enlace */
-    cursor: pointer; /* Cambiar el cursor al pasar sobre el enlace */
-    margin-top: 10px; /* Agregar un espacio entre el título y el enlace */
+    display: block;
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
 #borrarFiltros:hover {
-    color: blue; /* Cambiar el color del texto al pasar el cursor sobre el enlace */
+    color: blue;
+    transform: scale(1.2);
+    
 }
 
 
@@ -1392,6 +1436,12 @@ p {
     background-color: #0056b3;
 }
 
+.mensaje-success {
+    background-color: #ddffdd;
+    border-left: 6px solid #04AA6D;
+    padding: 4px 12px;
+}
+
 /* Estilos para el formulario Mi Perfil */
 .mi-perfil-container {
     max-width: 400px;
@@ -1555,17 +1605,18 @@ p {
 }
 
 .mensaje-exito, .mensaje-error {
-    font-weight: bold;
-    font-size: 1.2em;
-    padding: 10px;
-    margin: 10px auto;
+    font-size: 1.6em;
+    margin: 15px 30px;
+    padding: 4px 12px;
 }
 
 .mensaje-exito {
-    color: green;
+    background-color: #ddffdd;
+    border-left: 6px solid #04AA6D;
 }
 
 .mensaje-error {
-    color: red;
+    background-color: #ffdddd;
+    border-left: 6px solid #f44336;
 }
 

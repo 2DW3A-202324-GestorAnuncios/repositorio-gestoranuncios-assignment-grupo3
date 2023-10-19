@@ -133,26 +133,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_anuncio"])) 
     <br>
     <section class="seccion-destacada">
         <div class="seccion-titulo" >
-            <h1 class="titulo-llamativo" >Validación de Noticias</h1>
+            <h1 class="titulo-llamativo">Validación de Noticias</h1>
         </div>
         <div id="noticiasContainer" class="productos">
             <?php
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<div class="producto">';
-                        echo '<form method="POST" action="validar.php">'; // Reemplaza 'tu_script.php' por la URL correcta
-                            echo '<div>';
-                                echo '<img src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
-                            echo '</div>';
-                            echo '<div class="contenedor-anuncio">';
-                                echo '<h1 style="color: black" class="titulo-noticia3-h1">' . $row['categoria'] . '</h1>';
-                                echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
-                            echo '</div>';
-                            echo '<button style="background-color: #57aa26;" name="validar_noticia" value="' . $row['id_noticia'] . '">Validar</button>';
-                            echo '<br>';
-                            echo '<br>';
-                            echo '<button style="background-color: red;" name="eliminar_noticia" value="' . $row['id_noticia'] . '">Eliminar</button>';
-                        echo '</form>';
-                    echo '</div>';
+                    echo '<form class="producto" method="POST" action="validar.php">'; // Reemplaza 'tu_script.php' por la URL correcta
+                        echo '<div class="imagen-producto">';
+                            echo '<img src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
+                        echo '</div>';
+                        echo '<div class="contenedor-anuncio">';
+                            echo '<h1 style="color: black" class="titulo-noticia3-h1">' . $row['categoria'] . '</h1>';
+                            echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
+                        echo '</div>';
+                        echo '<div class="btn-container">';
+                            echo '<button name="validar-noticia" value="' . $row['id_noticia'] . '">Validar</button>';
+                            echo '<button name="eliminar-noticia" value="' . $row['id_noticia'] . '">Eliminar</button>';
+                        echo '</div>';
+                    echo '</form>';
                 }
             ?>
         </div>
