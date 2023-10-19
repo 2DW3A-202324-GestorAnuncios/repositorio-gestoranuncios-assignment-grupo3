@@ -22,20 +22,14 @@
             include('header_no_sesion.php');
         }
 
-        include("conexion.php");
 
         $insercion = "";
         $usuario = $_SESSION["usuario"];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            //se conecta a la base de datos
-            $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
-        
-            // Comprueba conexion
-            if($conn === false){
-                die("ERROR: No se ha podido conectar. "
-                    . mysqli_connect_error());
-            }
+
+            include("conexion.php");
+
             //coje los elementos del formulario
             $nomAnuncio = $_POST['titulo'];
             $descAnuncio = $_POST['descripcion'];
@@ -43,11 +37,12 @@
             $usuAnuncio = $_SESSION["usuario"];
            
             //Inserta los datos a la tabla "anuncio"
-            mysqli_query($conn,"INSERT INTO anuncio (nombre_anuncio, precio, descripcion, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$usuAnuncio')");
+            $sql = "INSERT INTO anuncio (nombre_anuncio, precio, descripcion, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$usuAnuncio')";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
             $insercion= "Se ha creado la publicacion";
-            // Cierra conexion
-            mysqli_close($conn);    
-        
+           
         }
         
     ?>
