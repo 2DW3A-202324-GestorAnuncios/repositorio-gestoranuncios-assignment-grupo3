@@ -481,7 +481,7 @@ header {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-    margin: 20px;
+    margin: 0 20px 20px;
 }
 
 .producto button[name="validar-anuncio"],
@@ -1352,6 +1352,12 @@ p {
     background-color: #0056b3;
 }
 
+.mensaje-success {
+    background-color: #ddffdd;
+    border-left: 6px solid #04AA6D;
+    padding: 4px 12px;
+}
+
 /* Estilos para el formulario Mi Perfil */
 .mi-perfil-container {
     max-width: 400px;
@@ -1515,17 +1521,18 @@ p {
 }
 
 .mensaje-exito, .mensaje-error {
-    font-weight: bold;
-    font-size: 1.2em;
-    padding: 10px;
-    margin: 10px auto;
+    font-size: 1.6em;
+    margin: 15px 30px;
+    padding: 4px 12px;
 }
 
 .mensaje-exito {
-    color: green;
+    background-color: #ddffdd;
+    border-left: 6px solid #04AA6D;
 }
 
 .mensaje-error {
-    color: red;
+    background-color: #ffdddd;
+    border-left: 6px solid #f44336;
 }
 
