@@ -5,15 +5,15 @@
     <div id="buttons-container">
         <a class="header-buttons" href="crear_noticia.php">
             <img src="img/boton_profesores.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Crear Noticia</div>
+            <div class="centrado-header">Crear Noticia</div>
         </a>
         <a class="header-buttons" href="crear_anuncio.php">
             <img src="img/boton_alumnos.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Crear Anuncio</div>
+            <div class="centrado-header">Crear Anuncio</div>
         </a>
         <a class="header-buttons" href="mi_perfil.php">
             <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Mi Perfil</div>
+            <div class="centrado-header">Mi Perfil</div>
         </a>
         <a class="header-buttons" href="carrito_compra.php">
             <img src="img/carrito_compra.png" alt="Inicio" width="100px" height="80px">

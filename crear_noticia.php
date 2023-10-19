@@ -58,7 +58,11 @@
             mysqli_close($conn);    
         }
     ?>
-    
+    <?php 
+        echo'<div>';
+            echo'<h3 class="centrado">'.$insercion.'</h3>';
+        echo'</div>';
+    ?>
     <main>
         <section class="crear-noticia">
             <h1>Crear Noticia</h1>
@@ -80,7 +84,6 @@
                     <option value="arte">Arte</option>
                     <option value="tiempo">Tiempo</option>
                 </select>
-                <span id="publicacion-creada"><?php echo $insercion ?></span>
                 <button type="submit">Crear Noticia</button>
             </form>
             </div>

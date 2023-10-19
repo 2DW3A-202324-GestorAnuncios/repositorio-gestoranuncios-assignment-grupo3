@@ -82,36 +82,18 @@
 
     <div id="buscador">
         <form method="GET" action="anuncio.php" id="search-form">
-            <input onkeyup="submitForm()" id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
+            <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
         </form>
     </div>
-
-    <script>
-        var inputBuscador = document.getElementById("input-buscador");
-
-        window.addEventListener('load', function() {
-            inputBuscador.focus();
-
-            // Colocar el foco al final del campo de entrada
-            inputBuscador.setSelectionRange(inputBuscador.value.length, inputBuscador.value.length);
-        });
-        
-        function submitForm() {
-            // Obtener el formulario por su ID
-            var form = document.getElementById("search-form");
-            // Enviar el formulario
-            form.submit();
-        }
-    </script>
-    
+    <?php
+            if($totalProductos === 0){
+                echo '<div>';
+                echo'<p  id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
+                echo '</div>';
+            }
+    ?>
     <div class="productos">
         <?php
-        if($totalProductos === 0){
-            echo '<div>';
-            echo'<p  id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
-            echo '</div>';
-
-        }
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
                 $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                 echo '<form class="producto" method="POST" action="anuncio.php">';
@@ -138,7 +120,25 @@
 
         <a href="?pagina=<?php echo $paginaActual + 1; ?>" class="botonesPagina <?php if ($paginaActual >= $paginasTotales) echo 'a-disabled'; ?>">Siguiente →</a>
     </div>
+    <script>
+        var inputBuscador = document.getElementById("input-buscador");
 
+        window.addEventListener('load', function() {
+            inputBuscador.focus();
+
+            // Colocar el foco al final del campo de entrada
+            inputBuscador.setSelectionRange(inputBuscador.value.length, inputBuscador.value.length);
+        });
+
+        inputBuscador.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13 || event.key === "Enter") {
+                var form = document.getElementById("search-form");
+                // Enviar el formulario
+                form.submit();
+            }
+
+        });
+    </script>
     <?php include('footer.php'); ?>
 </body>
 </html>
