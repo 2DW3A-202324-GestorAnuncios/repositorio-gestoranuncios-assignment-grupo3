@@ -34,3 +34,15 @@
         ?>
     </ul>
 </div>
+<nav>
+    <ul class="navdesp">
+        <li><img class="FlechaAbajo" src="img/desplegable.png" alt="">
+            <ul>
+                <li class="menu-item"><a href="index.php">Inicio</a></li>
+                <li class="menu-item"><a href="noticia.php">Noticias</a></li>
+                <li class="menu-item"><a href="anuncio.php">Anuncios</a></li>
+                <li class="menu-item"><a href="mis_publicaciones.php">Mis Publicaciones</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
