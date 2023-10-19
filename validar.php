@@ -5,31 +5,23 @@
     $resultNoticias = $conn->query($sqlNoticias);
     
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["validar_noticia"])) {
-        $noticia_id = $_POST["validar_noticia"];
+        $id_noticia = $_POST["validar_noticia"];
         
         // Realiza una consulta SQL para actualizar el campo validado a 1
-        $sqlValidarNoticia = "UPDATE noticia SET validado = '1' WHERE id_noticia = :noticia_id";
+        $sqlValidarNoticia = "UPDATE noticia SET validado = '1' WHERE id_noticia = :id_noticia";
         
         $stmt = $conn->prepare($sqlValidarNoticia);
-        $stmt->bindValue(':noticia_id', $noticia_id, PDO::PARAM_INT);
+        $stmt->bindValue(':id_noticia', $id_noticia, PDO::PARAM_INT);
         $stmt->execute();
-        
-        // Redirige o muestra un mensaje de éxito
-        
-        // Luego, ejecuta la consulta para obtener las noticias no validadas
-        $sqlNoticias = "SELECT * FROM noticia WHERE validado = '0'";
         $resultNoticias = $conn->query($sqlNoticias);
     }
 
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_noticia"])) {
-        $noticia_id = $_POST["eliminar_noticia"];
-        $sqlEliminarNoticia = "DELETE FROM noticia WHERE id_noticia = :noticia_id";
+        $id_noticia = $_POST["eliminar_noticia"];
+        $sqlEliminarNoticia = "DELETE FROM noticia WHERE id_noticia = :id_noticia";
         $stmt = $conn->prepare($sqlEliminarNoticia);
-        $stmt->bindParam(':noticia_id', $noticia_id, PDO::PARAM_INT);
+        $stmt->bindParam(':id_noticia', $id_noticia, PDO::PARAM_INT);
         $stmt->execute();
-        // Redirige o muestra un mensaje de éxito
-
-        $sqlNoticias = "SELECT * FROM noticia WHERE validado = '0'";
         $resultNoticias = $conn->query($sqlNoticias);
     }
 
@@ -37,32 +29,24 @@
     $resultAnuncios = $conn->query($sqlAnuncios);
 
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["validar_anuncio"])) {
-        $anuncio_id = $_POST["validar_anuncio"];
+        $id_anuncio = $_POST["validar_anuncio"];
         
         // Realiza una consulta SQL para actualizar el campo validado a 1
-        $sqlValidarAnuncio = "UPDATE anuncio SET validado = '1' WHERE id_anuncio = :anuncio_id";
+        $sqlValidarAnuncio = "UPDATE anuncio SET validado = '1' WHERE id_anuncio = :id_anuncio";
         
         $stmt = $conn->prepare($sqlValidarAnuncio);
-        $stmt->bindValue(':anuncio_id', $anuncio_id, PDO::PARAM_INT);
+        $stmt->bindValue(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
         $stmt->execute();
-        
-        // Redirige o muestra un mensaje de éxito
-        
-        // Luego, ejecuta la consulta para obtener las noticias no validadas
-        $sqlAnuncios = "SELECT * FROM anuncio WHERE validado = '0'";
         $resultAnuncios = $conn->query($sqlAnuncios);
 
     }
 
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_anuncio"])) {
-        $anuncio_id = $_POST["eliminar_anuncio"];
-        $sqlEliminarAnuncio = "DELETE FROM anuncio WHERE id_anuncio = :anuncio_id";
+        $id_anuncio = $_POST["eliminar_anuncio"];
+        $sqlEliminarAnuncio = "DELETE FROM anuncio WHERE id_anuncio = :id_anuncio";
         $stmt = $conn->prepare($sqlEliminarAnuncio);
-        $stmt->bindParam(':anuncio_id', $anuncio_id, PDO::PARAM_INT);
+        $stmt->bindParam(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
         $stmt->execute();
-        // Redirige o muestra un mensaje de éxito
-
-        $sqlAnuncios = "SELECT * FROM anuncio WHERE validado = '0'";
         $resultAnuncios = $conn->query($sqlAnuncios);
     }
 ?>
@@ -103,7 +87,7 @@
                     echo '<div class="producto">';
                         $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                         echo '<form method="POST" action="validar.php">';
-                            echo '<div class = "imagen-validar">';
+                            echo '<div class="imagen-validar">';
                                 echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                             echo '</div>';
                             echo '<div class = "contenedor-anuncio">';
@@ -115,7 +99,7 @@
                             echo '<br>';
                             echo '<br>';
                             echo '<button style="background-color: red" name="eliminar_anuncio" value="' . $row['id_anuncio'] . '">Eliminar</button>';
-                            echo '</form>';
+                        echo '</form>';
                     echo '</div>';
                 }
             ?>
@@ -138,11 +122,11 @@
                             echo '<div class="contenedor-anuncio">';
                                 echo '<h1 style="color: black" class="titulo-noticia3-h1">' . $row['categoria'] . '</h1>';
                                 echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
-                                echo '<button style="background-color: #57aa26" name="validar_noticia" value="' . $row['id_noticia'] . '">Validar</button>';
-                                echo '<br>';
-                                echo '<br>';
-                                echo '<button style="background-color: red" name="eliminar_noticia" value="' . $row['id_noticia'] . '">Eliminar</button>';
                             echo '</div>';
+                            echo '<button style="background-color: #57aa26;" name="validar_noticia" value="' . $row['id_noticia'] . '">Validar</button>';
+                            echo '<br>';
+                            echo '<br>';
+                            echo '<button style="background-color: red;" name="eliminar_noticia" value="' . $row['id_noticia'] . '">Eliminar</button>';
                         echo '</form>';
                     echo '</div>';
                 }
