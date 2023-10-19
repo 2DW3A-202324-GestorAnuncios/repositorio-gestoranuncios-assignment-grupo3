@@ -11,9 +11,12 @@
             <img src="img/boton_alumnos.png" alt="Inicio" width="100px" height="80px">
             <div class="centrado">Crear Anuncio</div>
         </a>
-        <a class="header-buttons" href="mi_perfil.php" id="sesion-iniciada-btn">
+        <a class="header-buttons" href="mi_perfil.php">
             <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
             <div class="centrado">Mi Perfil</div>
+        </a>
+        <a class="header-buttons" href="carrito_compra.php">
+            <img src="img/carrito_compra.png" alt="Inicio" width="100px" height="80px">
         </a>
     </div>
 </header>

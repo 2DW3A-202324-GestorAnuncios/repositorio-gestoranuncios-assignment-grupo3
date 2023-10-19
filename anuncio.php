@@ -113,8 +113,8 @@
 
         }
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
-                echo '<div class="producto">';
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                echo '<form class="producto" method="POST" action="anuncio.php">';
                     echo '<div class = "imagen-producto">';
                         echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                     echo '</div>';
@@ -123,7 +123,8 @@
                         echo '<p>' . $row['descripcion'] . '</p>';
                         echo '<p class="precio">' . $row['precio'] . '€</p>';
                     echo '</div>';
-                echo '</div>';
+                    echo '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
+                echo '</form>';
             }
         ?>
     </div>
