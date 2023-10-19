@@ -11,7 +11,6 @@
 </head>
 <body>
 <?php
-        include("conexion.php");
         // Inicia la sesión en la página
         session_start();
 
@@ -28,37 +27,29 @@
 
         $repeticionPK = "";
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
-            
-            // Comprueba conexión
-            if($conn === false){
-                die("ERROR: No se ha podido conectar. " . mysqli_connect_error());
-            }
-            
+
+            include("conexion.php");
+
             $nomNoticia = $_POST['titulo'];
             $descNoticia = $_POST['descripcion'];
             $catNoticia = $_POST['categoria'];
             $usuNoticia = $_SESSION["usuario"];
-            $fotoNoticia = $_FILES['imagen']['name'];
-            $foto_temp = $_FILES['imagen']['tmp_name'];
-            
-            // Directorio de destino para la foto
-            $directorio_destino = 'img/noticias/' . $fotoNoticia;
-            
-            // Mueve el archivo temporal al directorio de fotos
-            if (move_uploaded_file($foto_temp, $directorio_destino)) {
-                // Inserta los datos a la tabla "noticia" con el nombre de la imagen en la base de datos
-                mysqli_query($conn, "INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')");
-                $insercion = "Se ha creado la publicación";
-            } else {
-                $inserción = "Error al subir la foto.";
-            }
-            
-            // Cierra conexión
-            mysqli_close($conn);    
+           
+
+            //Inserta los datos a la tabla "anuncio"
+            $sql = "INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
+            $insercion= "Se ha creado la publicacion";   
+        
         }
     ?>
-    
+    <?php 
+        echo'<div>';
+            echo'<h3 class="centrado">'.$insercion.'</h3>';
+        echo'</div>';
+    ?>
     <main>
         <section class="crear-noticia">
             <h1>Crear Noticia</h1>
@@ -80,7 +71,6 @@
                     <option value="arte">Arte</option>
                     <option value="tiempo">Tiempo</option>
                 </select>
-                <span id="publicacion-creada"><?php echo $insercion ?></span>
                 <button type="submit">Crear Noticia</button>
             </form>
             </div>

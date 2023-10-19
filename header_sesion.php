@@ -1,19 +1,21 @@
 <header>
     <a href="index.php">
         <img src="img/Logo_Home3.png" alt="Inicio" height="80px" id="logo">
+        <img src="img/logotxur.png" alt="Inicio" height="90px" id="logo2">
+
     </a>
     <div id="buttons-container">
         <a class="header-buttons" href="crear_noticia.php">
             <img src="img/boton_profesores.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Crear Noticia</div>
+            <div class="centrado-header">Crear Noticia</div>
         </a>
         <a class="header-buttons" href="crear_anuncio.php">
             <img src="img/boton_alumnos.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Crear Anuncio</div>
+            <div class="centrado-header">Crear Anuncio</div>
         </a>
         <a class="header-buttons" href="mi_perfil.php" id="sesion-iniciada-btn">
             <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
-            <div class="centrado">Mi Perfil</div>
+            <div class="centrado-header">Mi Perfil</div>
         </a>
     </div>
 </header>

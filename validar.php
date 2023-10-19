@@ -116,7 +116,7 @@
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="producto">';
                         echo '<form method="POST" action="validar.php">'; // Reemplaza 'tu_script.php' por la URL correcta
-                            echo '<div class="imagen-validar">';
+                            echo '<div>';
                                 echo '<img src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
                             echo '</div>';
                             echo '<div class="contenedor-anuncio">';
