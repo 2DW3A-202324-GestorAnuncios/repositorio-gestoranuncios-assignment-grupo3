@@ -2,9 +2,11 @@
 include("conexion.php");
 
 function eliminarFoto($nombreArchivo) {
-    $directorio_destino = 'img/anuncios/' . $nombreArchivo;
+    $directorio_destino = './img/anuncios/' . $nombreArchivo;
+    echo $directorio_destino;
     if (file_exists($directorio_destino)) {
         unlink($directorio_destino);
+        echo 'entra';
     }
 }
 
@@ -61,15 +63,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_anuncio"])) 
     $stmtFoto = $conn->prepare($sqlFoto);
     $stmtFoto->bindValue(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
     $stmtFoto->execute();
-    $row = $stmtFoto->fetch(PDO::FETCH_ASSOC);
+    $row = $stmtFoto->fetch();
 
+    print_r($stmtFoto);
+    print_r($row);
     // Verificar si la consulta fue exitosa
+    echo $row['foto'];
     if ($row && isset($row['foto'])) {
-        // Directorio de destino de la foto
-        $directorio_destino = 'img/anuncios/' . $row['foto'];
-
-        // Eliminar el archivo utilizando la función eliminarFoto
         eliminarFoto($row['foto']);
+        echo 'entra 2';
+
     }
 }
 ?>
@@ -110,20 +113,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_anuncio"])) 
                 $nombre_anuncio = $row['nombre_anuncio'];
                 echo '<div class="producto">';
                 $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                echo '<form method="POST" action="validar.php">';
-                echo '<div class="imagen-validar">';
-                echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                echo '</div>';
-                echo '<div class="contenedor-anuncio">';
-                echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                echo '<p>' . $row['descripcion'] . '</p>';
-                echo '<p class="precio">' . $row['precio'] . '€</p>';
-                echo '</div>';
-                echo '<button style="background-color: #57aa26" name="validar_anuncio" value="' . $row['id_anuncio'] . '">Validar</button>';
-                echo '<br>';
-                echo '<br>';
-                echo '<button style="background-color: red" name="eliminar_anuncio" value="' . $row['id_anuncio'] . '">Eliminar</button>';
-                echo '</form>';
+                    echo '<form method="POST" action="validar.php">';
+                        echo '<div class="imagen-validar">';
+                            echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                        echo '</div>';
+                        echo '<div class="contenedor-anuncio">';
+                            echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
+                            echo '<p>' . $row['descripcion'] . '</p>';
+                            echo '<p class="precio">' . $row['precio'] . '€</p>';
+                        echo '</div>';
+                            echo '<button style="background-color: #57aa26" name="validar_anuncio" value="' . $row['id_anuncio'] . '">Validar</button>';
+                            echo '<br>';
+                            echo '<br>';
+                            echo '<button style="background-color: red" name="eliminar_anuncio" value="' . $row['id_anuncio'] . '">Eliminar</button>';
+                    echo '</form>';
                 echo '</div>';
             }
             ?>
@@ -147,8 +150,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_anuncio"])) 
                             echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
                         echo '</div>';
                         echo '<div class="btn-container">';
-                            echo '<button name="validar-noticia" value="' . $row['id_noticia'] . '">Validar</button>';
-                            echo '<button name="eliminar-noticia" value="' . $row['id_noticia'] . '">Eliminar</button>';
+                            echo '<button name="validar_noticia" value="' . $row['id_noticia'] . '">Validar</button>';
+                            echo '<button name="eliminar_noticia" value="' . $row['id_noticia'] . '">Eliminar</button>';
                         echo '</div>';
                     echo '</form>';
                 }
