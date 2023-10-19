@@ -72,24 +72,6 @@ header {
 #logo {
     margin-left: 75px;
 }
-#logo2{
-    visibility: hidden;
-    margin-left: -280px;
-    width: 1px;
-    height: 1px;
-
-}
-
-@media only screen and (max-width: 670px) {
-    #logo {
-        visibility: hidden;
-    }
-    #logo2{
-        visibility: visible;
-        height: 90px;
-        width: auto;
-    }
-}
 
 #buttons-container {
     display: flex;
@@ -205,7 +187,6 @@ header {
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    border: 1px solid red;
 }
 
 .slideshow-container img {
@@ -213,7 +194,6 @@ header {
     width: 100%;
     height: 100%;
     border-radius: 15px;
-    
 }
 
 .prev, .next {
@@ -328,34 +308,6 @@ header {
     padding: 0 20px;
     width: 100%;
 }
-@media only screen and (max-width: 1200px) {
-    .productos-anuncios-inicio {
-        display: flex;
-        justify-content: flex-start;
-        gap: 20px;
-        flex-wrap: wrap;
-        flex: 50%;
-        overflow-x: auto;
-        margin-top: 20px;
-        padding: 0 20px;
-        width: 100%;
-        border: 1px solid red;
-    }
-}
-
-@media only screen and (max-width: 650px) {
-    .productos-anuncios-inicio {
-        display: flex;
-        gap: 20px;
-        flex-direction: column;
-        flex-wrap: wrap;
-        overflow-x: auto;
-        margin-top: 20px;
-        padding: 0 20px;
-        width: 100%;
-    }
-}
-
 
 .productos-slide-anuncios {
     background-color: #fff;
@@ -364,17 +316,6 @@ header {
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     flex: 0 0 calc(25% - 20px);
-}
-@media only screen and (max-width: 1200px) {
-    .productos-slide-anuncios {
-        background-color: #fff;
-        padding: 10px;
-        min-width: 48%;
-        border-radius: 10px;
-        text-align: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        flex: 0 0 calc(25% - 20px);
-    }
 }
 
 .productos-slide-anuncios img {

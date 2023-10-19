@@ -1,8 +1,6 @@
 <header>
     <a href="index.php">
         <img src="img/Logo_Home3.png" alt="Inicio" height="80px" id="logo">
-        <img src="img/logotxur.png" alt="Inicio" height="90px" id="logo2">
-
     </a>
     <div id="buttons-container">
         <a class="header-buttons" href="crear_noticia.php">
