@@ -80,6 +80,14 @@ header {
 }
 
 .centrado {
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 200px;
+}
+
+.centrado-header {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -376,6 +384,8 @@ header {
     border: 1px solid #ddd;
     margin-bottom: 12px;
     transition: background-color 0.3s, box-shadow 0.3s;
+    margin-left: -28px;
+    text-decoration: none;   
 }
 
 #input-buscador::placeholder {
@@ -385,6 +395,14 @@ header {
 #input-buscador:focus {
     background-color: #fff; /* Cambia el fondo al enfocar */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega una suave sombra al enfocar */
+}
+
+#mensajeBusqueda {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    font-size: larger;
 }
 
 .producto {
@@ -1455,3 +1473,4 @@ p {
 .mensaje-error {
     color: red;
 }
+
