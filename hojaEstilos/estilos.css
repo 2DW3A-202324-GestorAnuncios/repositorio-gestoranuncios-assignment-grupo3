@@ -320,13 +320,27 @@ header {
     padding: 0 20px;
     width: 100%;
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1100px) {
     .productos-anuncios-inicio {
         display: flex;
         justify-content: flex-start;
         gap: 20px;
         flex-wrap: wrap;
-        flex: 50%;
+        flex: 100%;
+        overflow-x: auto;
+        margin-top: 20px;
+        padding: 0 20px;
+        width: 100%;
+        border: 1px solid red;
+    }
+}
+@media only screen and (max-width: 1500px) and (min-width: 1101px) {
+    .productos-anuncios-inicio {
+        display: flex;
+        justify-content: flex-start;
+        gap: 20px;
+        flex-wrap: wrap;
+        flex: 80%;
         overflow-x: auto;
         margin-top: 20px;
         padding: 0 20px;
@@ -357,11 +371,22 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     flex: 0 0 calc(25% - 20px);
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1100px) {
     .productos-slide-anuncios {
         background-color: #fff;
         padding: 10px;
-        min-width: 48%;
+        min-width: 48.1%;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        flex: 0 0 calc(25% - 20px);
+    }
+}
+@media only screen and (max-width: 1500px) and (min-width: 1101px) {
+    .productos-slide-anuncios {
+        background-color: #fff;
+        padding: 10px;
+        min-width: 31%;
         border-radius: 10px;
         text-align: center;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
