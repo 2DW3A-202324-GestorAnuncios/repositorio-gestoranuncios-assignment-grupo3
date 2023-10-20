@@ -50,7 +50,7 @@
             if (move_uploaded_file($foto_temp, $directorio_destino)) {
                 // Inserta los datos a la tabla "noticia" con el nombre de la imagen en la base de datos
                 mysqli_query($conn, "INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')");
-                $mensaje_exito = "Se ha creado la publicación";
+                $mensaje_exito = "Se ha creado la publicación exitosamente.";
             } else {
                 $mensaje_error = "Error al subir la foto.";
             }

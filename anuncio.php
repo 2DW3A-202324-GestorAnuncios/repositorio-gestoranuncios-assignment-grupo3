@@ -97,10 +97,10 @@
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
                 $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                 echo '<form class="producto" method="POST" action="anuncio.php">';
-                    echo '<div class = "imagen-producto">';
+                    echo '<div class="imagen-producto">';
                         echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                     echo '</div>';
-                    echo '<div class = "contenedor-anuncio">';
+                    echo '<div class="contenedor-anuncio">';
                         echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
                         echo '<p>' . $row['descripcion'] . '</p>';
                         echo '<p class="precio">' . $row['precio'] . '€</p>';
