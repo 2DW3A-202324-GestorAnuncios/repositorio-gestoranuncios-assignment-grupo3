@@ -22,20 +22,15 @@
             include('header_no_sesion.php');
         }
 
-        include("conexion.php");
 
         $insercion = "";
         $usuario = $_SESSION["usuario"];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            //se conecta a la base de datos
-            $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
-        
-            // Comprueba conexion
-            if($conn === false){
-                die("ERROR: No se ha podido conectar. "
-                    . mysqli_connect_error());
-            }
+            
+            include("conexion.php");
+
+
             //coje los elementos del formulario
             $nomAnuncio = $_POST['titulo'];
             $descAnuncio = $_POST['descripcion'];
@@ -48,16 +43,23 @@
 
             if (move_uploaded_file($foto_temp, $directorio_destino)) {
                 // Inserta los datos a la tabla "Anuncio" con el nombre de la imagen en la base de datos
-                mysqli_query($conn, "INSERT INTO anuncio (foto, nombre_anuncio, precio, descripcion, nombre_usuario) VALUES ('$fotoAnuncio','$nomAnuncio','$precAnuncio','$descAnuncio','$usuAnuncio')");
+                $sql = "INSERT INTO anuncio (nombre_anuncio, precio, descripcion, foto,nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$fotoAnuncio','$usuAnuncio')";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
+
                 $insercion = "Se ha creado la publicación";
             } else {
                 $inserción = "Error al subir la foto.";
             }
             
-            // Cierra conexión
-            mysqli_close($conn);    
-        
+            
         }
+    ?>
+    <?php 
+        echo'<div>';
+            echo'<h3 class="centrado">'.$insercion.'</h3>';
+        echo'</div>';
     ?>
     <main>
         <section class="crear-anuncio">
