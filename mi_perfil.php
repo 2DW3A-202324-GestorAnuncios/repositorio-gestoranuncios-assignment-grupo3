@@ -3,7 +3,8 @@
 
     session_start();
 
-    $usuario = $_SESSION["usuario"];
+    $usuario = $_SESSION['usuario'];
+    $tipo_usuario = $_SESSION['admin'];
 
     $mensaje_exito = '';
     $mensaje_error = '';
@@ -27,6 +28,12 @@
     } else {
         // Manejar el caso en el que no se encuentren los datos del usuario
         $mensaje_error = "No se pudieron recuperar los datos del usuario.";
+    }
+    
+    if ($tipo_usuario == 1) {
+        $tipo_usuario = "Administrador";
+    } else if ($tipo_usuario == 0) {
+        $tipo_usuario = "Usuario";
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -107,7 +114,7 @@
     ?>
 
     <div class="mi-perfil-container">
-        <h1>Mi Perfil</h1>
+        <h1>Mi Perfil - <?php echo $tipo_usuario; ?></h1>
 
         <div id="datos-modo-visualizacion">
             <p><strong>Nombre Completo:</strong> <?php echo ucwords($nombre) . ' ' . ucwords($apellido); ?></p>
@@ -158,7 +165,7 @@
             <label for="foto">Foto de Perfil:</label>
             <input type="file" id="foto" name="foto" accept="image/*">
             <?php if ($modo_edicion) : ?>
-            <input type="hidden" name="foto_actual" value="<?php echo $foto; ?>">
+                <input type="hidden" name="foto_actual" value="<?php echo $foto; ?>">
             <?php endif; ?>
 
             <button type="submit" name="guardar">Guardar Cambios</button>

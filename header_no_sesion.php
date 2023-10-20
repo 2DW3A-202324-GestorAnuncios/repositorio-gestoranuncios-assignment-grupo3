@@ -37,7 +37,8 @@
                 if (password_verify($contrasena, $row['password'])) {
                     // Las credenciales son válidas
                     $_SESSION['sesion_iniciada'] = true;
-                    $_SESSION["usuario"] = $usuario;
+                    $_SESSION['usuario'] = $usuario;
+                    $_SESSION['admin'] = $tipo_usuario;
 
                     // Verificar si el usuario es administrador
                     if ($row['tipo_usuario'] == 'admin') {

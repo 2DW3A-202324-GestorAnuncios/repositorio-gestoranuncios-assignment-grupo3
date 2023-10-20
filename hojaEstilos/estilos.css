@@ -275,7 +275,7 @@ header {
 .titulo-llamativo {
     font-size: 36px;
     color: #0077b6;
-    margin: 0;
+    margin: 10px 0 30px;
     padding-bottom: 10px;
     border-bottom: 2px solid #0077b6;
 }
@@ -1339,10 +1339,12 @@ p {
     justify-content: center;
     align-items: center;
 }
+
 /* Clase para desactivar el scroll */
 .no-scroll {
     overflow: hidden;
 }
+
 .modal-content {
     margin-top: 15%;
     width: 27%;
@@ -1355,7 +1357,7 @@ p {
 }
 
 .modal button {
-    background-color: transparent; /* Establece el fondo del botón como transparente */
+    background-color: transparent;
     border-radius: 5px;
     padding: 10px 20px;
     margin: 10px;
@@ -1363,14 +1365,15 @@ p {
 }
 
 .modal #confirmar-si {
+    background-color: white;
     color: blue;
     border-color: blue;
 }
 
 .modal #confirmar-no {
-    background-color: blue; /* Fondo de "No" en azul */
+    background-color: blue;
     border-color: blue;
-    color: white; /* Texto en blanco */
+    color: white;
 }
 
 .foto-container {

@@ -32,30 +32,28 @@
         }
     ?>
 
-    <section id="ultimas-noticias" class="seccion-destacada"><br>
-        <div class="seccion-titulo">
-            <h2 class="titulo-llamativo">¡Mantente al Día!</h2><br>
-        </div>
+    <section id="ultimas-noticias" class="seccion-destacada">
+        <h2 class="titulo-llamativo">¡Mantente al Día!</h2>
         <div class="slideshow-container">
             <?php
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<div class="mySlides fade">';
                     // Comprobar si la noticia tiene una imagen específica o no
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
-                    echo '<img src="' . $imagenURL . '" style="width:100%">';
-                    echo '<div class="text">' . $row['descripcion'] . '</div>';
+                    echo '<div class="mySlides fade">';
+                        echo '<img src="' . $imagenURL . '" style="width:100%">';
+                        echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</div>';
                 }
             ?>
             <?php
                 $slideNumber = 1;
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<div class="mySlides fade">';
-                    echo '<div class="numbertext">' . $slideNumber . ' / ' . $resultNoticias->rowCount() . '</div>';
                     // Comprobar si la noticia tiene una imagen específica o no
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
-                    echo '<img src="' . $imagenURL . '" style="width:100%">';
-                    echo '<div class="text">' . $row['descripcion'] . '</div>';
+                    echo '<div class="mySlides fade">';
+                        echo '<div class="numbertext">' . $slideNumber . ' / ' . $resultNoticias->rowCount() . '</div>';
+                        echo '<img src="' . $imagenURL . '" style="width:100%">';
+                        echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</div>';
                     $slideNumber++;
                 }
@@ -63,7 +61,7 @@
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
-        <br>
+
         <div style="text-align:center">
             <?php
                 // Generar puntos (indicadores) dinámicamente
@@ -74,73 +72,70 @@
         </div>
 
         <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
+            let slideIndex = 1;
+            showSlides(slideIndex);
 
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {
-                slideIndex = 1;
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
             }
-            if (n < 1) {
-                slideIndex = slides.length;
-            }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-        }
 
-        // Añade esta función para cambiar de diapositiva cada 10 segundos
-        function autoSlide() {
-            plusSlides(1);
-        }
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
 
-        // Llama a autoSlide cada 10 segundos (10000 milisegundos)
-        setInterval(autoSlide, 10000);
+            function showSlides(n) {
+                let i;
+                let slides = document.getElementsByClassName("mySlides");
+                let dots = document.getElementsByClassName("dot");
+                if (n > slides.length) {
+                    slideIndex = 1;
+                }
+                if (n < 1) {
+                    slideIndex = slides.length;
+                }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+            }
+
+            // Añade esta función para cambiar de diapositiva cada 10 segundos
+            function autoSlide() {
+                plusSlides(1);
+            }
+
+            // Llama a autoSlide cada 10 segundos (10000 milisegundos)
+            setInterval(autoSlide, 10000);
         </script>
 
         <a href="noticia.php"><button id="ver-mas-noticias" class="ver-mas-button">Ver Más Noticias</button></a>
     </section>
 
-    <section class="seccion-destacada">
-        <div class="seccion-contenido">
-            <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
-            <div class="productos-anuncios-inicio">
-                <?php
-                    while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
-                        // Verifica si la URL de la imagen es nula o vacía
-                        $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                        $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
-                        
-                        echo '<div class="productos-slide-anuncios">';
-                            echo '<div class = "imagen-producto">';
-                                echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                            echo '</div>';
-                            echo '<div class = "contenedor-anuncio">';
-                                echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                                echo '<p>' . $row['descripcion'] . '</p>';
-                                echo '<p class="precio">' . $row['precio'] . '€</p>';
-                            echo '</div>';
-                            echo '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
+    <section id="ultimos-anuncios" class="seccion-destacada">
+        <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
+        <div class="productos-anuncios-inicio">
+            <?php
+                while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
+                    // Verifica si la URL de la imagen es nula o vacía
+                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
+                    echo '<div class="productos-slide-anuncios">';
+                        echo '<div class = "imagen-producto">';
+                            echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                         echo '</div>';
-                    }
-                ?>
-            </div>
+                        echo '<div class = "contenedor-anuncio">';
+                            echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
+                            echo '<p>' . $row['descripcion'] . '</p>';
+                            echo '<p class="precio">' . $row['precio'] . '€</p>';
+                        echo '</div>';
+                        echo '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
+                    echo '</div>';
+                }
+            ?>
         </div>
         <a href="anuncio.php"><button id="ver-mas-anuncios" class="ver-mas-button">Ver Más Anuncios</button></a>
     </section>
