@@ -116,10 +116,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_anuncio"])) 
                             echo '<p>' . $row['descripcion'] . '</p>';
                             echo '<p class="precio">' . $row['precio'] . '€</p>';
                         echo '</div>';
-                            echo '<button style="background-color: #57aa26" name="validar_anuncio" value="' . $row['id_anuncio'] . '">Validar</button>';
+                            echo '<button type = "button" style="background-color: #57aa26" id="confirmacionA">Validar</button>';
+                                echo ' 
+                                <div id="confirmar-cierre" class="modalValidarA" style="display: none;">
+                                    <div class="modal-content" display ="none">
+                                        <p>¿Esta seguro de validar el anuncio?</p>
+                                        <button id="confirmar-si" name="validar_anuncio" value="' . $row['id_anuncio'] . '">Sí</button>
+                                        <button type = "button" id="confirmar-no-validarA" >No</button>
+                                    </div>
+                                </div>
+                                ';
                             echo '<br>';
                             echo '<br>';
-                            echo '<button style="background-color: red" name="eliminar_anuncio" value="' . $row['id_anuncio'] . '">Eliminar</button>';
+                            echo '<button  type = "button" style="background-color: red" id="confirmacionEliminarA">Eliminar</button>';
+                            echo ' 
+                                <div id="confirmar-cierre" class="modalEliminarA" style="display: none;">
+                                    <div class="modal-content" display ="none">
+                                        <p>¿Esta seguro de eliminar el anuncio?</p>
+                                        <button id="confirmar-si" name="eliminar_anuncio" value="' . $row['id_anuncio'] . '">Sí</button>
+                                        <button type = "button" id="confirmar-no-eliminarA" >No</button>
+                                    </div>
+                                </div>
+                                ';
                     echo '</form>';
                 echo '</div>';
             }
@@ -144,14 +162,116 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_anuncio"])) 
                             echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
                         echo '</div>';
                         echo '<div class="btn-container">';
-                            echo '<button name="validar_noticia" value="' . $row['id_noticia'] . '">Validar</button>';
-                            echo '<button name="eliminar_noticia" value="' . $row['id_noticia'] . '">Eliminar</button>';
+                            echo '<button type = "button" style="background-color: #57aa26" id="confirmacionN">Validar</button>';
+                            echo ' 
+                            <div id="confirmar-cierre" class="modalValidarN" style="display: none;">
+                                <div class="modal-content" display ="none">
+                                    <p>¿Esta seguro de validar el anuncio?</p>
+                                    <button id="confirmar-si" name="validar_noticia" value="' . $row['id_noticia'] . '">Sí</button>
+                                    <button type = "button" id="confirmar-no-validarN" >No</button>
+                                </div>
+                            </div>
+                            ';
+                            echo '<button type= "button" style="background-color: red" id="confirmacionEliminarN" >Eliminar</button>';
+                            echo ' 
+                            <div id="confirmar-cierre" class="modalEliminarN"  style="display: none;">
+                                <div class="modal-content" display ="none">
+                                    <p>¿Esta seguro de eliminar el anuncio?</p>
+                                    <button id="confirmar-si" name="eliminar_noticia" value="' . $row['id_noticia'] . '">Sí</button>
+                                    <button type = "button" id="confirmar-no-eliminarN" >No</button>
+                                </div>
+                            </div>
+                            ';
                         echo '</div>';
                     echo '</form>';
                 }
             ?>
         </div>
     </section>
+    <script>
+        // JavaScript para cambiar entre el modo de visualización y el modo de edición
+        const confirmacionA = document.getElementById('confirmacionA');
+        const confirmacionEliminarA = document.getElementById('confirmacionEliminarA');
+        const confirmacionN = document.getElementById('confirmacionN');
+        const confirmacionEliminarN = document.getElementById('confirmacionEliminarN');
+        const modalValidarA = document.querySelector('.modalValidarA');
+        const modalEliminarA = document.querySelector('.modalEliminarA');
+        const modalValidarN = document.querySelector('.modalValidarN');
+        const modalEliminarN = document.querySelector('.modalEliminarN');
+        const confirmarSiBtn = document.getElementById('confirmar-si');
+        const confirmarNoBtnValidarA = document.getElementById('confirmar-no-validarA');
+        const confirmarNoBtnEliminarA = document.getElementById('confirmar-no-eliminarA');
+        const confirmarNoBtnValidarN = document.getElementById('confirmar-no-validarN');
+        const confirmarNoBtnEliminarN = document.getElementById('confirmar-no-eliminarN');
+
+        confirmacionA.addEventListener('click', () => {
+            // Muestra el desplegable
+            modalValidarA.style.display = 'block';
+            modalValidarN.style.display = 'block';
+            document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+        });
+
+        confirmacionN.addEventListener('click', () => {
+            // Muestra el desplegable
+            modalValidarN.style.display = 'block';
+            document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+        });
+
+        confirmacionEliminarA.addEventListener('click', () => {
+            // Muestra el desplegable
+            modalEliminarA.style.display = 'block';
+            modalEliminarN.style.display = 'block';
+            document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+        });
+
+        confirmacionEliminarN.addEventListener('click', () => {
+            // Muestra el desplegable
+            modalEliminarN.style.display = 'block';
+            document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+        });
+
+        confirmarSiBtn.addEventListener('click', () => {
+            // Aquí debes agregar la lógica para cerrar la sesión
+            // Puedes usar una redirección a la página de cierre de sesión
+            window.location.href =
+            'validar.php'; // Esto es un ejemplo, asegúrate de ajustar la URL a tu configuración
+        });
+
+        confirmarNoBtnValidarA.addEventListener('click', () => {
+            // Cierra el desplegable y restaura el scroll
+            modalValidarA.style.display = 'none';
+            modalValidarN.style.display = 'none';
+            document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
+        });
+        
+        confirmarNoBtnValidarN.addEventListener('click', () => {
+            // Cierra el desplegable y restaura el scroll
+            modalValidarN.style.display = 'none';
+            document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
+        });
+
+        confirmarNoBtnEliminarA.addEventListener('click', () => {
+            // Cierra el desplegable y restaura el scroll
+            modalEliminarA.style.display = 'none';
+            modalEliminarN.style.display = 'none';
+            document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
+        });
+        
+        confirmarNoBtnEliminarN.addEventListener('click', () => {
+            // Cierra el desplegable y restaura el scroll
+            modalEliminarN.style.display = 'none';
+            document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
+        });
+
+        cancelarBtn.addEventListener('click', () => {
+            datosModoVisualizacion.style.display = 'block';
+            perfilForm.style.display = 'none';
+            editarDatosBtn.style.display = 'block';
+            confirmacionA.style.display = 'block';
+            confirmacionEliminarA.style.display = 'block'
+            cancelarBtn.style.display = 'none';
+        });
+    </script>
 
     <?php
         include('footer.php');
