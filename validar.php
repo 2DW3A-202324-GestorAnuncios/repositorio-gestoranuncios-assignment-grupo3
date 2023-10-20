@@ -3,10 +3,8 @@ include("conexion.php");
 
 function eliminarFoto($nombreArchivo) {
     $directorio_destino = './img/anuncios/' . $nombreArchivo;
-    echo $directorio_destino;
     if (file_exists($directorio_destino)) {
-        unlink($directorio_destino);
-        echo 'entra';
+        unlink($directorio_destino); // Borra el archivo
     }
 }
 
@@ -52,27 +50,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["validar_anuncio"])) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_anuncio"])) {
     $id_anuncio = $_POST["eliminar_anuncio"];
-    $sqlEliminarAnuncio = "DELETE FROM anuncio WHERE id_anuncio = :id_anuncio";
-    $stmt = $conn->prepare($sqlEliminarAnuncio);
-    $stmt->bindParam(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
-    $stmt->execute();
-    $resultAnuncios = $conn->query($sqlAnuncios);
-
-    // Obtener el nombre del archivo de la base de datos
     $sqlFoto = "SELECT foto FROM anuncio WHERE id_anuncio = :id_anuncio";
     $stmtFoto = $conn->prepare($sqlFoto);
     $stmtFoto->bindValue(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
     $stmtFoto->execute();
-    $row = $stmtFoto->fetch();
+    $sacarFoto = $stmtFoto->fetch();
 
-    print_r($stmtFoto);
-    print_r($row);
+    $sqlEliminarAnuncio = "DELETE FROM anuncio WHERE id_anuncio = :id_anuncio";
+    $stmt = $conn->prepare($sqlEliminarAnuncio);
+    $stmt->bindParam(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $resultAnuncios = $conn->query($sqlAnuncios);
+
+    // Obtener el nombre del archivo de la base de datos
     // Verificar si la consulta fue exitosa
-    echo $row['foto'];
-    if ($row && isset($row['foto'])) {
-        eliminarFoto($row['foto']);
-        echo 'entra 2';
-
+    if ($sacarFoto && isset($sacarFoto['foto'])) {
+        eliminarFoto($sacarFoto['foto']); // Llama a la función eliminarFoto
     }
 }
 ?>
