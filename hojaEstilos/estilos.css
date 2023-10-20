@@ -118,6 +118,20 @@ header {
     text-align: center;  
     position: relative;
 }
+@media only screen and (max-width: 670px) {
+    .header-buttons img {
+        height: 60px;
+        width: 80px;
+        display: inline-block;
+        text-align: center;  
+        position: relative;
+        margin-top: -20px;
+    }
+    .centrado-header{
+        margin-top: -15px;
+    }
+}
+
 
 /* Estilos barra de navegación */
 #pro-menu-principal {
@@ -175,7 +189,6 @@ header {
         list-style:none;
     }  
     .navdesp {
-        border: 1px solid red;
         height: auto;
         visibility: visible;
         padding-top: 30px;
@@ -188,17 +201,18 @@ header {
     .navdesp li a {
         color: white;
         text-decoration:none;
-        padding:10px 12px;
         display:block;
+        width: 150px;
         text-align: center;
         font-size: 20px;
     }
     .navdesp li ul {
-        border: 1px solid red;
-        width: auto;
+        margin-top: -5px;
         display:none;
         position:absolute;
         z-index: 12121212;
+        width: 150px;
+        margin-left: -118px;
     }
     .navdesp li:hover > ul {
         display:block;
@@ -207,7 +221,6 @@ header {
         position:relative;
     }
     .navdesp li ul li ul {
-        right:-140px;
         top:0px;
     }
     .coloresDesp li:first-child {
@@ -316,7 +329,6 @@ header {
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    border: 1px solid red;
     
 }
 @media screen and (max-width:1000px) {
@@ -325,7 +337,6 @@ header {
         height: 380px;
         margin: 0 auto;
         overflow: hidden;
-        border: 1px solid red;
         display: block;
         margin-top: auto;
         margin-bottom: auto;
@@ -503,7 +514,6 @@ header {
         margin-top: 20px;
         padding: 0 20px;
         width: 100%;
-        border: 1px solid red;
     }
 }
 @media only screen and (max-width: 1500px) and (min-width: 1101px) {
@@ -517,7 +527,6 @@ header {
         margin-top: 20px;
         padding: 0 20px;
         width: 100%;
-        border: 1px solid red;
     }
 }
 
@@ -942,17 +951,19 @@ p {
 
 /* Estilos para el footer */
 #footer {
-    border: 1px solid red;
     background-color: #ffffff;
     border-top-color: #eee;
     border-top-width: 1px;
     border-top-style: solid;
-    width: 100%;
+    width: auto;
     display: block;
 }
 
+
+
+
+
 .ct-section {
-    border: 1px solid red;
 
     width: 100%;
     background-size: cover;
@@ -960,6 +971,7 @@ p {
 }
 
 #footer > .footer-container {
+
     max-width: 100%;
     padding-top: 2em;
     padding-right: 50px;
@@ -971,7 +983,6 @@ p {
 }
 
 .footer-container {
-    border: 1px solid red;
 
         margin-left: auto;
         margin-right: auto;
@@ -980,7 +991,6 @@ p {
 }
 
 #footer-content {
-    border: 1px solid red;
 
     display: flex;
     width: 100%;
@@ -991,18 +1001,19 @@ p {
 }
 
 #footer-left {
-    border: 1px solid red;
 
     width: 25%;
 }
 
 #image-footer-container {
+
     text-align: center;
     align-items: flex-start;
     margin-bottom: 3em;
 }
 
 #image-footer {
+
     max-width: 100%;
     width: 40%;
 }
@@ -1039,13 +1050,11 @@ p {
 
 /* Estilos para la parte central del footer */
 #footer-center {
-    border: 1px solid red;
 
     width: 25%;
 }
 
 .social-icons-content {
-    border: 1px solid red;
 
     flex-direction: row;
     margin-right: -10px;
@@ -1057,6 +1066,7 @@ p {
 }
 
 #social-icons.social-icons-content a svg {
+
     width: 0.5em;
     height: 0.5em;
     color: #fff;
@@ -1066,6 +1076,7 @@ p {
 }
 
 .social-icons-content a {
+
     font-size: 40px;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -1134,7 +1145,6 @@ p {
 
 /* Estilos para la parte derecha del footer */
 #footer-right {
-    border: 1px solid red;
 
     width: 45%;
     flex-direction: column;
@@ -1147,7 +1157,6 @@ p {
 }
 
 #seccion-logos-arriba {
-    border: 1px solid red;
 
     width: 100%;
     flex-direction: row;
@@ -1157,25 +1166,98 @@ p {
 }
 
 #fpeuskadi-img, #lanbide-img, #ivafeiei-img {
+
     height: 70px;
 }
 
 #gobiernovasco-img  {
+
     height: 60px;
 }
 
 #ikaslan-img {
+
     height: 79px;
 }
 
 #seccion-logos-abajo {
-    border: 1px solid red;
 
     width: 100%;
     flex-direction: row;
     display: flex;
     justify-content: space-between;
     text-align: justify;
+}
+
+@media only screen and (max-width: 1184px) {
+    #footer {
+        background-color: #ffffff;
+        border-top-color: #eee;
+        border-top-width: 1px;
+        border-top-style: solid;
+        width: auto;
+        display: block;
+    }
+    #footer-right{
+        width: 500px;
+    }
+    #seccion-logos-arriba{
+        width: 500px;
+        
+    }
+}
+@media only screen and (max-width: 764px) {
+    #footer {
+        background-color: #ffffff;
+        border-top-color: #eee;
+        border-top-width: 1px;
+        border-top-style: solid;
+        width: auto;
+        display: block;
+    }
+    #footer-left{
+        min-width: 200px;
+    }
+    #footer-center{
+        min-width: 200px;
+    }
+    #footer-right{
+        width: 500px;
+    }
+    #seccion-logos-arriba{
+        width: 500px;
+        
+    }
+}
+@media only screen and (max-width: 647px) {
+    #footer {
+        background-color: #ffffff;
+        border-top-color: #eee;
+        border-top-width: 1px;
+        border-top-style: solid;
+        width: auto;
+        display: block;
+    }
+    #footer-right{
+        width: 400px;
+        
+    }
+    #seccion-logos-arriba{
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;        
+    }
+    #seccion-logos-abajo{
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;        
+    }
 }
 
 
