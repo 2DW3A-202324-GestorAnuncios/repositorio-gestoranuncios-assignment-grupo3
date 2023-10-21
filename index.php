@@ -23,10 +23,20 @@
         // Inicia la sesión en la página
         session_start();
 
+        $btnAnadirCarrito = '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
+
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
             // Comprobar si el usuario es administrador
             $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+
+            $tipo_usuario = $_SESSION['admin'];
+
+            if ($tipo_usuario == 1) {
+                $btnAnadirCarrito = '';
+            } else if ($tipo_usuario == 0) {
+                $btnAnadirCarrito = '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
+            }
         } else {
             include('header_no_sesion.php');
         }
@@ -132,7 +142,7 @@
                             echo '<p>' . $row['descripcion'] . '</p>';
                             echo '<p class="precio">' . $row['precio'] . '€</p>';
                         echo '</div>';
-                        echo '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
+                        echo $btnAnadirCarrito;
                     echo '</div>';
                 }
             ?>

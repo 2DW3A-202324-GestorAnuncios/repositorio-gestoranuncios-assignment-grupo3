@@ -17,9 +17,16 @@
             <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
             <div class="centrado-header">Mi Perfil</div>
         </a>
-        <a class="header-buttons" href="carrito_compra.php">
-            <img src="img/carrito_compra.png" alt="Inicio" width="50px" height="50px" style="margin-top: 20px;">
-        </a>
+        <?php
+            // Comprobar si el usuario es administrador y agregar la opción "Validar"
+            if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+                
+            } else {
+                echo '<a class="header-buttons" href="carrito_compra.php">';
+                    echo '<img src="img/carrito_compra.png" alt="Inicio" width="50px" height="50px" style="margin-top: 20px;">';
+                echo '</a>';
+            }
+        ?>
     </div>
 </header>
 

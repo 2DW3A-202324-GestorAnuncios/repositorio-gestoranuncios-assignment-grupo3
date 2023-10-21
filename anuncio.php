@@ -1,6 +1,9 @@
 <?php
     include("conexion.php");
 
+    // Inicia la sesión en la página
+    session_start();
+
     $elementosPorPagina = 9;
     $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 
@@ -68,13 +71,20 @@
 </head>
 <body>
     <?php
-        // Inicia la sesión en la página
-        session_start();
-
+        $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito">Añadir al Carrito</button>';
+        
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
             // Comprobar si el usuario es administrador
             $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+
+            $tipo_usuario = $_SESSION['admin'];
+
+            if ($tipo_usuario == 1) {
+                $btnAnadirCarrito = '';
+            } else if ($tipo_usuario == 0) {
+                $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito">Añadir al Carrito</button>';
+            }
         } else {
             include('header_no_sesion.php');
         }
@@ -85,13 +95,15 @@
             <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
         </form>
     </div>
+
     <?php
-            if($totalProductos === 0){
-                echo '<div>';
-                echo'<p  id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
-                echo '</div>';
-            }
+        if($totalProductos === 0){
+            echo '<div>';
+            echo'<p  id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
+            echo '</div>';
+        }
     ?>
+
     <div class="productos">
         <?php
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
@@ -105,7 +117,7 @@
                         echo '<p>' . $row['descripcion'] . '</p>';
                         echo '<p class="precio">' . $row['precio'] . '€</p>';
                     echo '</div>';
-                    echo '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
+                    echo $btnAnadirCarrito;
                 echo '</form>';
             }
         ?>
@@ -120,6 +132,7 @@
 
         <a href="?pagina=<?php echo $paginaActual + 1; ?>" class="botonesPagina <?php if ($paginaActual >= $paginasTotales) echo 'a-disabled'; ?>">Siguiente →</a>
     </div>
+
     <script>
         var inputBuscador = document.getElementById("input-buscador");
 
@@ -136,9 +149,11 @@
                 // Enviar el formulario
                 form.submit();
             }
-
         });
     </script>
-    <?php include('footer.php'); ?>
+
+    <?php
+        include('footer.php');
+    ?>
 </body>
 </html>

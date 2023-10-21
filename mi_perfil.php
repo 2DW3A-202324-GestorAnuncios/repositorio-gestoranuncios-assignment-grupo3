@@ -174,54 +174,51 @@
     </div>
 
     <script>
-    // JavaScript para cambiar entre el modo de visualización y el modo de edición
-    const editarDatosBtn = document.getElementById('editar-datos-btn');
-    const datosModoVisualizacion = document.getElementById('datos-modo-visualizacion');
-    const perfilForm = document.getElementById('perfilForm');
-    const cancelarBtn = document.getElementById('cancelar-btn');
-    const cerrarSesionBtn = document.getElementById('cerrar-sesion-btn');
-    const modal = document.querySelector('.modal');
-    const confirmarSiBtn = document.getElementById('confirmar-si');
-    const confirmarNoBtn = document.getElementById('confirmar-no');
+        // JavaScript para cambiar entre el modo de visualización y el modo de edición
+        const editarDatosBtn = document.getElementById('editar-datos-btn');
+        const datosModoVisualizacion = document.getElementById('datos-modo-visualizacion');
+        const perfilForm = document.getElementById('perfilForm');
+        const cancelarBtn = document.getElementById('cancelar-btn');
+        const cerrarSesionBtn = document.getElementById('cerrar-sesion-btn');
+        const modal = document.querySelector('.modal');
+        const confirmarSiBtn = document.getElementById('confirmar-si');
+        const confirmarNoBtn = document.getElementById('confirmar-no');
 
-    editarDatosBtn.addEventListener('click', () => {
-        datosModoVisualizacion.style.display = 'none';
-        perfilForm.style.display = 'block';
-        editarDatosBtn.style.display = 'none';
-        cerrarSesionBtn.style.display = 'none';
-        cancelarBtn.style.display = 'inline-block';
-    });
+        editarDatosBtn.addEventListener('click', () => {
+            datosModoVisualizacion.style.display = 'none';
+            perfilForm.style.display = 'block';
+            editarDatosBtn.style.display = 'none';
+            cerrarSesionBtn.style.display = 'none';
+            cancelarBtn.style.display = 'inline-block';
+        });
 
-    cerrarSesionBtn.addEventListener('click', () => {
-        // Muestra el desplegable
-        modal.style.display = 'block';
-        document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
-    });
+        cerrarSesionBtn.addEventListener('click', () => {
+            // Muestra el desplegable
+            modal.style.display = 'block';
+            document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+        });
 
-    confirmarSiBtn.addEventListener('click', () => {
-        // Aquí debes agregar la lógica para cerrar la sesión
-        // Puedes usar una redirección a la página de cierre de sesión
-        window.location.href =
-        'Cuentas/cerrar_sesion.php'; // Esto es un ejemplo, asegúrate de ajustar la URL a tu configuración
-    });
+        confirmarSiBtn.addEventListener('click', () => {
+            // Aquí debes agregar la lógica para cerrar la sesión
+            // Puedes usar una redirección a la página de cierre de sesión
+            window.location.href =
+            'Cuentas/cerrar_sesion.php'; // Esto es un ejemplo, asegúrate de ajustar la URL a tu configuración
+        });
 
+        confirmarNoBtn.addEventListener('click', () => {
+            // Cierra el desplegable y restaura el scroll
+            modal.style.display = 'none';
+            document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
+        });
 
-    confirmarNoBtn.addEventListener('click', () => {
-        // Cierra el desplegable y restaura el scroll
-        modal.style.display = 'none';
-        document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
-    });
-
-    cancelarBtn.addEventListener('click', () => {
-        datosModoVisualizacion.style.display = 'block';
-        perfilForm.style.display = 'none';
-        editarDatosBtn.style.display = 'block';
-        cerrarSesionBtn.style.display = 'block';
-        cancelarBtn.style.display = 'none';
-    });
+        cancelarBtn.addEventListener('click', () => {
+            datosModoVisualizacion.style.display = 'block';
+            perfilForm.style.display = 'none';
+            editarDatosBtn.style.display = 'block';
+            cerrarSesionBtn.style.display = 'block';
+            cancelarBtn.style.display = 'none';
+        });
     </script>
-
-
 
     <?php
         include('footer.php');
