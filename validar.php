@@ -1,35 +1,11 @@
 <?php
     include("conexion.php");
 
-    function eliminarFoto($nombreArchivo) {
-        $directorio_destino = './img/anuncios/' . $nombreArchivo;
+    function eliminarFotoAnuncios($nombreArchivo) {
+        $directorio_destino = 'img/anuncios/' . $nombreArchivo;
         if (file_exists($directorio_destino)) {
             unlink($directorio_destino); // Borra el archivo
         }
-    }
-
-    $sqlNoticias = "SELECT * FROM noticia WHERE validado = '0'";
-    $resultNoticias = $conn->query($sqlNoticias);
-
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["validar_noticia"])) {
-        $id_noticia = $_POST["validar_noticia"];
-
-        // Realiza una consulta SQL para actualizar el campo validado a 1
-        $sqlValidarNoticia = "UPDATE noticia SET validado = '1' WHERE id_noticia = :id_noticia";
-
-        $stmt = $conn->prepare($sqlValidarNoticia);
-        $stmt->bindValue(':id_noticia', $id_noticia, PDO::PARAM_INT);
-        $stmt->execute();
-        $resultNoticias = $conn->query($sqlNoticias);
-    }
-
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_noticia"])) {
-        $id_noticia = $_POST["eliminar_noticia"];
-        $sqlEliminarNoticia = "DELETE FROM noticia WHERE id_noticia = :id_noticia";
-        $stmt = $conn->prepare($sqlEliminarNoticia);
-        $stmt->bindParam(':id_noticia', $id_noticia, PDO::PARAM_INT);
-        $stmt->execute();
-        $resultNoticias = $conn->query($sqlNoticias);
     }
 
     $sqlAnuncios = "SELECT * FROM anuncio WHERE validado = '0'";
@@ -44,6 +20,7 @@
         $stmt = $conn->prepare($sqlValidarAnuncio);
         $stmt->bindValue(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
         $stmt->execute();
+
         $resultAnuncios = $conn->query($sqlAnuncios);
     }
 
@@ -65,13 +42,38 @@
         // Obtener el nombre del archivo de la base de datos
         // Verificar si la consulta fue exitosa
         if ($sacarFoto && isset($sacarFoto['foto'])) {
-            eliminarFoto($sacarFoto['foto']); // Llama a la función eliminarFoto
+            eliminarFotoAnuncios($sacarFoto['foto']); // Llama a la función eliminarFoto
         }
+    }
+    
+    $sqlNoticias = "SELECT * FROM noticia WHERE validado = '0'";
+    $resultNoticias = $conn->query($sqlNoticias);
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["validar_noticia"])) {
+        $id_noticia = $_POST["validar_noticia"];
+
+        // Realiza una consulta SQL para actualizar el campo validado a 1
+        $sqlValidarNoticia = "UPDATE noticia SET validado = '1' WHERE id_noticia = :id_noticia";
+
+        $stmt = $conn->prepare($sqlValidarNoticia);
+        $stmt->bindValue(':id_noticia', $id_noticia, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $resultNoticias = $conn->query($sqlNoticias);
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar_noticia"])) {
+        $id_noticia = $_POST["eliminar_noticia"];
+        $sqlEliminarNoticia = "DELETE FROM noticia WHERE id_noticia = :id_noticia";
+        $stmt = $conn->prepare($sqlEliminarNoticia);
+        $stmt->bindParam(':id_noticia', $id_noticia, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $resultNoticias = $conn->query($sqlNoticias);
     }
 ?>
 <!DOCTYPE html>
 <html lang="es-Es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +83,6 @@
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Validación - CIFP Txurdinaga</title>
 </head>
-
 <body>
     <?php
         // Inicia la sesión en la página
@@ -96,7 +97,7 @@
         }
     ?>
 
-<section class="seccion-destacada">
+    <section class="seccion-destacada">
         <div class="seccion-titulo">
             <h1 class="titulo-llamativo">Validación de anuncios</h1>
         </div>
@@ -137,8 +138,7 @@
             ?>
         </div>
     </section>
-    <br>
-    <br>
+    
     <section class="seccion-destacada">
         <div class="seccion-titulo">
             <h1 class="titulo-llamativo">Validación de Noticias</h1>
@@ -158,15 +158,15 @@
                             echo '<button type="button" name="validar-noticia" id="confirmacionN">Validar</button>';
                             echo '<div id="confirmar-cierre" class="modalValidarN" style="display: none;">';
                                 echo '<div class="modal-content" display="none">';
-                                    echo '<p>¿Esta seguro de validar el anuncio?</p>';
+                                    echo '<p>¿Esta seguro de validar la noticia?</p>';
                                     echo '<button id="confirmar-si" name="validar_noticia" value="' . $row['id_noticia'] . '">Sí</button>';
                                     echo '<button type="button" id="confirmar-no-validarN">No</button>';
                                 echo '</div>';
                             echo '</div>';
                             echo '<button type="button" name="eliminar-noticia" id="confirmacionEliminarN">Eliminar</button>';
-                            echo '<div id="confirmar-cierre" class="modalEliminarN"  style="display: none;">';
+                            echo '<div id="confirmar-cierre" class="modalEliminarN" style="display: none;">';
                                 echo '<div class="modal-content" display="none">';
-                                    echo '<p>¿Esta seguro de eliminar el anuncio?</p>';
+                                    echo '<p>¿Esta seguro de eliminar la noticia?</p>';
                                     echo '<button id="confirmar-si" name="eliminar_noticia" value="' . $row['id_noticia'] . '">Sí</button>';
                                     echo '<button type="button" id="confirmar-no-eliminarN">No</button>';
                                 echo '</div>';
@@ -196,69 +196,55 @@
         confirmacionA.addEventListener('click', () => {
             // Muestra el desplegable
             modalValidarA.style.display = 'block';
-            modalValidarN.style.display = 'block';
-            document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+            document.body.classList.add('no-scroll');
         });
 
         confirmacionN.addEventListener('click', () => {
             // Muestra el desplegable
             modalValidarN.style.display = 'block';
-            document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+            document.body.classList.add('no-scroll');
         });
 
         confirmacionEliminarA.addEventListener('click', () => {
             // Muestra el desplegable
             modalEliminarA.style.display = 'block';
-            modalEliminarN.style.display = 'block';
-            document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+            document.body.classList.add('no-scroll');
         });
 
         confirmacionEliminarN.addEventListener('click', () => {
             // Muestra el desplegable
             modalEliminarN.style.display = 'block';
-            document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+            document.body.classList.add('no-scroll');
         });
 
         confirmarSiBtn.addEventListener('click', () => {
             // Aquí debes agregar la lógica para cerrar la sesión
             // Puedes usar una redirección a la página de cierre de sesión
-            window.location.href =
-            'validar.php'; // Esto es un ejemplo, asegúrate de ajustar la URL a tu configuración
+            window.location.href = 'validar.php'; // Esto es un ejemplo, asegúrate de ajustar la URL a tu configuración
         });
 
         confirmarNoBtnValidarA.addEventListener('click', () => {
             // Cierra el desplegable y restaura el scroll
             modalValidarA.style.display = 'none';
-            modalValidarN.style.display = 'none';
-            document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
+            document.body.classList.remove('no-scroll');
         });
         
         confirmarNoBtnValidarN.addEventListener('click', () => {
             // Cierra el desplegable y restaura el scroll
             modalValidarN.style.display = 'none';
-            document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
+            document.body.classList.remove('no-scroll');
         });
 
         confirmarNoBtnEliminarA.addEventListener('click', () => {
             // Cierra el desplegable y restaura el scroll
             modalEliminarA.style.display = 'none';
-            modalEliminarN.style.display = 'none';
-            document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
+            document.body.classList.remove('no-scroll');
         });
         
         confirmarNoBtnEliminarN.addEventListener('click', () => {
             // Cierra el desplegable y restaura el scroll
             modalEliminarN.style.display = 'none';
-            document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
-        });
-
-        cancelarBtn.addEventListener('click', () => {
-            datosModoVisualizacion.style.display = 'block';
-            perfilForm.style.display = 'none';
-            editarDatosBtn.style.display = 'block';
-            confirmacionA.style.display = 'block';
-            confirmacionEliminarA.style.display = 'block'
-            cancelarBtn.style.display = 'none';
+            document.body.classList.remove('no-scroll');
         });
     </script>
 

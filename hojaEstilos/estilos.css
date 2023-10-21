@@ -1731,10 +1731,10 @@ p {
 }
 
 .modal #confirmar-no,
-.modalValidarA #confirmar-no,
-.modalEliminarA #confirmar-no,
-.modalValidarN #confirmar-no,
-.modalEliminarN #confirmar-no {
+.modalValidarA #confirmar-no-validarA,
+.modalEliminarA #confirmar-no-eliminarA,
+.modalValidarN #confirmar-no-validarN,
+.modalEliminarN #confirmar-no-eliminarN {
     background-color: blue;
     border-color: blue;
     color: white;
