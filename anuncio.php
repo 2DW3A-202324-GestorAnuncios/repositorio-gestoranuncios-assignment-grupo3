@@ -67,26 +67,24 @@
     <link rel="stylesheet" href="hojaEstilos/fuentes.css">
     <link rel="stylesheet" href="hojaEstilos/estilos.css">
     <link rel="shortcut icon" href="img/favicon.png">
+    <script src="script.js"></script>
     <title>Anuncios - CIFP Txurdinaga</title>
 </head>
 <body>
     <?php
-        $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito">Añadir al Carrito</button>';
-        
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
             // Comprobar si el usuario es administrador
             $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
 
-            $tipo_usuario = $_SESSION['admin'];
-
-            if ($tipo_usuario == 1) {
+            if ($admin == 1) {
                 $btnAnadirCarrito = '';
-            } else if ($tipo_usuario == 0) {
-                $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito">Añadir al Carrito</button>';
+            } else if ($admin == 0) {
+                $btnAnadirCarrito = '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
             }
         } else {
             include('header_no_sesion.php');
+            $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
         }
     ?>
 
@@ -108,7 +106,7 @@
         <?php
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
                 $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                echo '<form class="producto" method="POST" action="anuncio.php">';
+                echo '<div class="producto">';
                     echo '<div class="imagen-producto">';
                         echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                     echo '</div>';
@@ -118,7 +116,7 @@
                         echo '<p class="precio">' . $row['precio'] . '€</p>';
                     echo '</div>';
                     echo $btnAnadirCarrito;
-                echo '</form>';
+                echo '</div>';
             }
         ?>
     </div>

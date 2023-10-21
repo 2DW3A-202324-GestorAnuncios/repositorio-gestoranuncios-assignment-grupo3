@@ -124,22 +124,6 @@
 </nav>
 
 <script>
-    function toggleDropdown() {
-        var formSesion = document.getElementById("form-inicio-sesion");
-        if (formSesion.style.display === "none" || formSesion.style.display === "") {
-            formSesion.style.display = "block";
-        } else {
-            formSesion.style.display = "none";
-        }
-    }
-
-    // Función para mostrar el mensaje de error
-    function mostrarError(mensaje) {
-        var mensajeError = document.getElementById("mensaje-error");
-        mensajeError.textContent = mensaje;
-        mensajeError.style.display = "block";  // Muestra el mensaje de error
-    }
-
     // Verifica si hay un mensaje de error y lo muestra si es necesario
     <?php
         if (!empty($mensaje_error)) {

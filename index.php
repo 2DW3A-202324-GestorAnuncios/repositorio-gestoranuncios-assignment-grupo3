@@ -1,5 +1,8 @@
 <?php
     include("conexion.php");
+    
+    // Inicia la sesión en la página
+    session_start();
 
     $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1'";
     $resultProductos = $conn->query($sqlProductos);
@@ -16,29 +19,24 @@
     <link rel="stylesheet" href="hojaEstilos/fuentes.css">
     <link rel="stylesheet" href="hojaEstilos/estilos.css">
     <link rel="shortcut icon" href="img/favicon.png">
+    <script src="script.js"></script>
     <title>Inicio - CIFP Txurdinaga</title>
 </head>
 <body>
     <?php
-        // Inicia la sesión en la página
-        session_start();
-
-        $btnAnadirCarrito = '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
-
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
             // Comprobar si el usuario es administrador
             $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
 
-            $tipo_usuario = $_SESSION['admin'];
-
-            if ($tipo_usuario == 1) {
+            if ($admin == 1) {
                 $btnAnadirCarrito = '';
-            } else if ($tipo_usuario == 0) {
+            } else if ($admin == 0) {
                 $btnAnadirCarrito = '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
             }
         } else {
             include('header_no_sesion.php');
+            $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
         }
     ?>
 
@@ -53,19 +51,6 @@
                         echo '<img src="' . $imagenURL . '" style="width:100%">';
                         echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</div>';
-                }
-            ?>
-            <?php
-                $slideNumber = 1;
-                while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
-                    // Comprobar si la noticia tiene una imagen específica o no
-                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
-                    echo '<div class="mySlides fade">';
-                        echo '<div class="numbertext">' . $slideNumber . ' / ' . $resultNoticias->rowCount() . '</div>';
-                        echo '<img src="' . $imagenURL . '" style="width:100%">';
-                        echo '<div class="text">' . $row['descripcion'] . '</div>';
-                    echo '</div>';
-                    $slideNumber++;
                 }
             ?>
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -134,7 +119,7 @@
                     $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
                     echo '<div class="productos-slide-anuncios">';
-                        echo '<div class = "imagen-producto">';
+                        echo '<div class="imagen-producto">';
                             echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                         echo '</div>';
                         echo '<div class = "contenedor-anuncio">';
