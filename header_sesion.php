@@ -40,9 +40,10 @@
             // Comprobar si el usuario es administrador y agregar la opción "Validar"
             if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
                 echo '<li class="menu-item"><a href="validar.php">Validar</a></li>';
+            } else {
+                echo '<li class="menu-item"><a href="contacto.php">Contacto</a></li>';
             }
         ?>
-        <li class="menu-item"><a href="contacto.php">Contacto</a></li>
     </ul>
 </div>
 <nav>
@@ -54,7 +55,6 @@
                 <li class="menu-item"><a href="anuncio.php">Anuncios</a></li>
                 <li class="menu-item"><a href="mis_publicaciones.php">Mis Publicaciones</a></li>
                 <li class="menu-item"><a href="validar.php">Validar</a></li>
-
             </ul>
         </li>
     </ul>

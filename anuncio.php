@@ -74,17 +74,8 @@
     <?php
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
-            // Comprobar si el usuario es administrador
-            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
-
-            if ($admin == 1) {
-                $btnAnadirCarrito = '';
-            } else if ($admin == 0) {
-                $btnAnadirCarrito = '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
-            }
         } else {
             include('header_no_sesion.php');
-            $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
         }
     ?>
 
@@ -106,6 +97,18 @@
         <?php
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
                 $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+
+                $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+                if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
+                    if ($admin == 1) {
+                        $btnAnadirCarrito = '';
+                    } else if ($admin == 0) {
+                        $btnAnadirCarrito = '<button name="btn-anadir-carrito" onclick="agregarAlCarrito(' . $row['nombre_anuncio'] . ', ' . $row['precio'] . ')">Añadir al Carrito</button>';
+                    }
+                } else {
+                    $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
+                }
+
                 echo '<div class="producto">';
                     echo '<div class="imagen-producto">';
                         echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
@@ -148,6 +151,24 @@
                 form.submit();
             }
         });
+        
+        function agregarAlCarrito(nombreProducto, precio) {
+            // Obtener carrito actual o crear uno si no existe
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+            // Verificar si el producto ya está en el carrito
+            const productoExistente = carrito.find(item => item.nombre === nombreProducto);
+
+            if (productoExistente) {
+                productoExistente.cantidad += 1;
+            } else {
+                // Agregar el producto al carrito con cantidad 1
+                carrito.push({ nombre: nombreProducto, precio, cantidad: 1 });
+            }
+
+            // Guardar el carrito actualizado en localStorage
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+        }
     </script>
 
     <?php

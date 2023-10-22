@@ -87,7 +87,6 @@
 
 <!DOCTYPE html>
 <html lang="es-Es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -97,7 +96,6 @@
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Mi Perfil - CIFP Txurdinaga</title>
 </head>
-
 <body>
     <?php
         include('header_sesion.php');
@@ -224,5 +222,4 @@
         include('footer.php');
     ?>
 </body>
-
 </html>

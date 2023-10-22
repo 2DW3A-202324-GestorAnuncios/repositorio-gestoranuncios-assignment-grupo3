@@ -3,13 +3,30 @@
     
     // Inicia la sesión en la página
     session_start();
+    
+    // Inicializa un array para almacenar los productos seleccionados
+    if (!isset($_SESSION['carrito'])) {
+        $_SESSION['carrito'] = array();
+    }
 
     $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1'";
     $resultProductos = $conn->query($sqlProductos);
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' ORDER BY id_noticia DESC LIMIT 3";
     $resultNoticias = $conn->query($sqlNoticias);
+
+    // Verifica si se hizo clic en "Añadir al Carrito"
+    if (isset($_POST['btn-anadir-carrito'])) {
+        // Recuperar los valores del producto
+        $fotoProducto = $_POST['foto_producto'];
+        $nombreProducto = $_POST['nombre_producto'];
+        $precioProducto = $_POST['precio_producto'];
+
+        // Agrega el producto al array de carrito de la sesión
+        $_SESSION['carrito'][] = array('foto' => $fotoProducto, 'nombre' => $nombreProducto, 'precio' => $precioProducto);
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="es-Es">
 <head>
@@ -26,17 +43,8 @@
     <?php
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
-            // Comprobar si el usuario es administrador
-            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
-
-            if ($admin == 1) {
-                $btnAnadirCarrito = '';
-            } else if ($admin == 0) {
-                $btnAnadirCarrito = '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
-            }
         } else {
             include('header_no_sesion.php');
-            $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
         }
     ?>
 
@@ -118,6 +126,24 @@
                     // Verifica si la URL de la imagen es nula o vacía
                     $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
+                    
+                    $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+                    if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
+                        if ($admin == 1) {
+                            $btnAnadirCarrito = '';
+                        } else if ($admin == 0) {
+                            $btnAnadirCarrito = '
+                            <form method="post" action="carrito_compra.php">
+                                <input type="hidden" name="foto_producto" value="' . $row['foto'] . '">
+                                <input type="hidden" name="nombre_producto" value="' . $row['nombre_anuncio'] . '">
+                                <input type="hidden" name="precio_producto" value="' . $row['precio'] . '">
+                                <button type="submit" name="btn-anadir-carrito">Añadir al Carrito</button>
+                            </form>';
+                        }
+                    } else {
+                        $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
+                    }
+
                     echo '<div class="productos-slide-anuncios">';
                         echo '<div class="imagen-producto">';
                             echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';

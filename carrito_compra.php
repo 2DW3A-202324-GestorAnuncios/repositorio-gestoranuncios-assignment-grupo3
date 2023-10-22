@@ -14,16 +14,52 @@
         // Inicia la sesión en la página
         session_start();
 
-        if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
-            include('header_sesion.php');
-            // Comprobar si el usuario es administrador
-            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
-        } else {
-            include('header_no_sesion.php');
-        }
+        include('header_sesion.php');
     ?>
 
-    
+    <div class="carrito-container">
+        <h2>Carrito de Compra</h2>
+        
+        <?php
+            if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
+                echo '<table>';
+                    echo '<thead>';
+                        echo '<tr>';
+                            echo '<th></th>';
+                            echo '<th>Producto</th>';
+                            echo '<th>Precio</th>';
+                        echo '</tr>';
+                    echo '</thead>';
+                    echo '<tbody>';
+
+                        foreach ($_SESSION['carrito'] as $producto) {
+                            echo '<tr>';
+                                echo '<td>' . $producto['foto'] . '</td>';
+                                echo '<td>' . $producto['nombre'] . '</td>';
+                                echo '<td>' . $producto['precio'] . '€</td>';
+                            echo '</tr>';
+                        }
+
+                    echo '</tbody>';
+                echo '</table>';
+            } else {
+                echo '<p>El carrito está vacío.</p>';
+            }
+        ?>
+
+        <?php
+            // Calcular el total del carrito
+            $total = 0;
+
+            if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
+                foreach ($_SESSION['carrito'] as $producto) {
+                    $total += $producto['precio'];
+                }
+            }
+
+            echo '<p>Total del carrito: ' . $total . '€</p>';
+        ?>
+    </div>
 
     <?php
         include('footer.php');
