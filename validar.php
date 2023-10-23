@@ -117,8 +117,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar-anuncio"])) 
                         echo '<p class="precio">' . $row['precio'] . '€</p>';
                     echo '</div>';
                     echo '<div class="btn-container">';
-                        echo '<button name="validar-anuncio" onclick="confirmacion()" value="' . $row['id_anuncio'] . '">Validar</button>';
-                        echo '<button name="eliminar-anuncio" onclick="confirmacion()" value="' . $row['id_anuncio'] . '">Eliminar</button>';
+                        echo '<button name="validar-anuncio" onclick="confirmacionA(' . $row['id_anuncio'] . ')">Validar</button>';
+                        echo '<button name="eliminar-anuncio" onclick="confirmacionEliminarA(' . $row['id_anuncio'] . ')">Eliminar</button>';
                     echo'</div>';
                 echo '</form>';
             }
@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar-anuncio"])) 
         <div id="noticiasContainer" class="productos">
             <?php
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<form class="producto" method="POST" action="validar.php">'; // Reemplaza 'tu_script.php' por la URL correcta
+                    echo '<form class="producto" method="POST" action="validar.php">';
                         echo '<div class="imagen-producto">';
                             echo '<img src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
                         echo '</div>';
@@ -143,8 +143,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar-anuncio"])) 
                             echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
                         echo '</div>';
                         echo '<div class="btn-container">';
-                            echo '<button type = "button" name="validar-noticia" id="confirmacionN" onclick="confirmacion()" value="' . $row['id_noticia'] . '">Validar</button>';
-                            echo '<button name="eliminar-noticia" onclick="confirmacion()"value="' . $row['id_noticia'] . '">Eliminar</button>';
+                            echo '<button type="submit" name="validar-noticia" value=" '. $row['id_noticia'] .'" onclick="confirmacionN( ' . $row['id_noticia'] .' )">Validar</button>';
+                            echo '<button type="submit" name="eliminar-noticia" value=" '. $row['id_noticia'] .'" onclick="confirmacionEliminarN(' . $row['id_noticia'] . ')">Eliminar</button>';
                         echo '</div>';
                     echo '</form>';
                 }
@@ -152,14 +152,87 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar-anuncio"])) 
         </div>
     </section>
     <script>
-        function confirmacion() {
-            let text = "Estas seguro de ELIMINAR/VALIDAR la publicacion";
-            if (confirm(text) == true) {
-                const producto = document.getElementsByClassName("producto").submit("validar-noticia");
+        function confirmacionN(id) {
+            let text = "¿Estás seguro de validar la publicación?";
+            if (confirm(text)) {
+                // Si se confirma, envía la solicitud de validación
+                const form = document.createElement("form");
+                form.method = "post";
+                form.action = "validar.php"; // Reemplaza "validar.php" con la URL correcta
+
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "validar-noticia";
+                input.value = id;
+
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
             } else {
-                alert("has cancelado");
+                alert("Has cancelado la accion");
             }
-        }   
+        }
+        function confirmacionEliminarN(id) {
+            let text = "¿Estás seguro de eliminar la publicación?";
+            if (confirm(text)) {
+                // Si se confirma, envía la solicitud de validación
+                const form = document.createElement("form");
+                form.method = "post";
+                form.action = "validar.php"; // Reemplaza "validar.php" con la URL correcta
+
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "eliminar-noticia";
+                input.value = id;
+
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            } else {
+                alert("Has cancelado la accion");
+            }
+        }
+
+        function confirmacionA(id) {
+            let text = "¿Estás seguro de validar la publicación?";
+            if (confirm(text)) {
+                // Si se confirma, envía la solicitud de validación
+                const form = document.createElement("form");
+                form.method = "post";
+                form.action = "validar.php"; // Reemplaza "validar.php" con la URL correcta
+
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "validar-anuncio";
+                input.value = id;
+
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            } else {
+                alert("Has cancelado la accion");
+            }
+        }
+        function confirmacionEliminarA(id) {
+            let text = "¿Estás seguro de eliminar la publicación?";
+            if (confirm(text)) {
+                // Si se confirma, envía la solicitud de validación
+                const form = document.createElement("form");
+                form.method = "post";
+                form.action = "validar.php"; // Reemplaza "validar.php" con la URL correcta
+
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "eliminar-anuncio";
+                input.value = id;
+
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            } else {
+                alert("Has cancelado la accion");
+            }
+        }
     </script>            
     <?php
         include('footer.php');
