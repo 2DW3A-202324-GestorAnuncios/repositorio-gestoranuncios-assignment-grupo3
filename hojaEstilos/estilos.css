@@ -633,6 +633,16 @@ header {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+#buscador-encima {
+    z-index: 1;
+}
+
+#buscador-debajo {
+    z-index: 2;
+    margin-top: -47px;
+    margin-left: 270px;
+}
+
 #mensajeBusqueda {
     display: flex;
     align-items: center;
