@@ -800,13 +800,14 @@ header {
 /* Estilos para la página de noticias */
 .container {
     display: flex;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0;
 }
 
 .filtro-container {
     position: sticky;
 }
+
 
 .filtro {
     width: 130%;
@@ -815,6 +816,16 @@ header {
     text-align: center;
     position: sticky;
     top: 0;
+}
+@media only screen and (max-width: 800px) {
+    .filtro {
+        width: 80%;
+        padding: 20px;
+        background-color: #f0f0f0;
+        text-align: center;
+        position: sticky;
+        top: 0;
+    }
 }
 
 .filtro h3 {
@@ -865,18 +876,23 @@ header {
     background-color: #fff;
     margin-left: 200px;
     margin-right: -200px;
+    text-align: center;
+    display: block;
+    margin-left: 85px;
+    margin-right: auto;
+    justify-content: center;
 }
 
 /* Estilos para las noticias */
 .noticias-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
 }
 
+
 .noticia3 {
-    width: 49%;
+    width: 100%;
     margin-bottom: 20px;
     box-sizing: border-box;
     padding: 10px;
@@ -888,6 +904,41 @@ header {
 .imagen-noticia3 {
     max-width: 100%;
 }
+
+@media only screen and (max-width: 1000px) and (min-width: 801px) {
+    .noticias-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+}
+@media only screen and (max-width: 800px) {
+    .container {
+        display: flex;
+        width: 99%;
+        margin: 0;
+        
+    }
+    .noticias3 {
+        width: 100%;
+        padding: 20px;
+        background-color: #fff;
+        margin-left: 200px;
+        margin-right: -200px;
+        text-align: center;
+        display: block;
+        margin-left: 20px;
+        margin-right: auto;
+        justify-content: center;
+    }
+    .noticias-container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 15px;
+    }
+}
+
 
 .titulo-noticia3-h1 {
     font-size: 15px;

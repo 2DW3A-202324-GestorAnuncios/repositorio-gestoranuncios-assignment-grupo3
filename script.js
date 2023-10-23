@@ -24,6 +24,7 @@ function validarCampos() {
     error7.innerText = "";
 
   } 
+  //validar contraseña 
   var c = document.getElementById('validar-contraseña').value;
   var box = document.getElementById("expresiones");
   var field = document.createElement('span');
@@ -77,13 +78,24 @@ function validarCampos() {
     field.setAttribute('class','correcto');
     box.appendChild(field);
     field.appendChild(salto);
-
   }
 //confirmar contraseña
+  var c = document.getElementById('validar-contraseña').value;
+  var c2 = document.getElementById('validar-contraseña2').value;
+  const error4 = document.getElementById("error4");
+  if (c === c2) {
+    error4.innerText = "";
+
+  }else{
+    error4.innerText = "Las contraseñas tienen que ser identicas";
+    num=num+1;
+
+  }
+//validar usuario
   const usuario = document.getElementById("usuario").value;
   const error1 = document.getElementById("error1");
   if (usuario.length < 3) {
-    error1.innerText = "El usuario debe tener 3 o mas caracteres";
+    error1.innerText = "El usuario debe tener 4 o mas caracteres";
     num=num+1;
 
   }else{
