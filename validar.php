@@ -117,8 +117,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar-anuncio"])) 
                         echo '<p class="precio">' . $row['precio'] . '€</p>';
                     echo '</div>';
                     echo '<div class="btn-container">';
-                        echo '<button name="validar-anuncio" value="' . $row['id_anuncio'] . '">Validar</button>';
-                        echo '<button name="eliminar-anuncio" value="' . $row['id_anuncio'] . '">Eliminar</button>';
+                        echo '<button name="validar-anuncio" onclick="confirmacion()" value="' . $row['id_anuncio'] . '">Validar</button>';
+                        echo '<button name="eliminar-anuncio" onclick="confirmacion()" value="' . $row['id_anuncio'] . '">Eliminar</button>';
                     echo'</div>';
                 echo '</form>';
             }
@@ -143,80 +143,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["eliminar-anuncio"])) 
                             echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
                         echo '</div>';
                         echo '<div class="btn-container">';
-                            echo '<button name="validar-noticia" id="confirmacionN" value="' . $row['id_noticia'] . '">Validar</button>';
-                            echo '<button name="eliminar-noticia" value="' . $row['id_noticia'] . '">Eliminar</button>';
+                            echo '<button type = "button" name="validar-noticia" id="confirmacionN" onclick="confirmacion()" value="' . $row['id_noticia'] . '">Validar</button>';
+                            echo '<button name="eliminar-noticia" onclick="confirmacion()"value="' . $row['id_noticia'] . '">Eliminar</button>';
                         echo '</div>';
                     echo '</form>';
                 }
             ?>
         </div>
     </section>
-
+    <script>
+        function confirmacion() {
+            let text = "Estas seguro de ELIMINAR/VALIDAR la publicacion";
+            if (confirm(text) == true) {
+                const producto = document.getElementsByClassName("producto").submit("validar-noticia");
+            } else {
+                alert("has cancelado");
+            }
+        }   
+    </script>            
     <?php
         include('footer.php');
     ?>
 </body>
 </html>
-<!-- 
-                    echo '<form class="producto" method="POST" action="validar.php">'; // Reemplaza 'tu_script.php' por la URL correcta
-                        echo '<div class="imagen-producto">';
-                            echo '<img src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
-                        echo '</div>';
-                        echo '<div class="contenedor-anuncio">';
-                            echo '<h1 style="color: black" class="titulo-noticia3-h1">' . $row['categoria'] . '</h1>';
-                            echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
-                        echo '</div>';
-                        echo '<div class="btn-container">';
-                            echo '<button type="button" name="validar-noticia" id="confirmacionN">Validar</button>';
-                            echo '<div id="confirmar-cierre" class="modalValidarN" style="display: none;">';
-                                echo '<div class="modal-content" display="none">';
-                                    echo '<p>¿Esta seguro de validar la noticia?</p>';
-                                    echo '<button id="confirmar-si" name="validar_noticia" value="' . $row['id_noticia'] . '">Sí</button>';
-                                    echo '<button type="button" id="confirmar-no-validarN">No</button>';
-                                echo '</div>';
-                            echo '</div>';
-                            echo '<button type="button" name="eliminar-noticia" id="confirmacionEliminarN">Eliminar</button>';
-                            echo '<div id="confirmar-cierre" class="modalEliminarN" style="display: none;">';
-                                echo '<div class="modal-content" display="none">';
-                                    echo '<p>¿Esta seguro de eliminar la noticia?</p>';
-                                    echo '<button id="confirmar-si" name="eliminar_noticia" value="' . $row['id_noticia'] . '">Sí</button>';
-                                    echo '<button type="button" id="confirmar-no-eliminarN">No</button>';
-                                echo '</div>';
-                            echo '</div>';
-                        echo '</div>';
-                    echo '</form>';
-            
-
-
-                    $nombre_anuncio = $row['nombre_anuncio'];
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                    echo '<form class="producto" method="POST" action="validar.php">';
-                        echo '<div class="imagen-producto">';
-                            echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                        echo '</div>';
-                        echo '<div class="contenedor-anuncio">';
-                            echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                            echo '<p>' . $row['descripcion'] . '</p>';
-                            echo '<p class="precio">' . $row['precio'] . '€</p>';
-                        echo '</div>';
-                        echo '<div class="btn-container">';
-                            echo '<button type="button" name="validar-anuncio" id="confirmacionA">Validar</button>';
-                            echo '<div id="confirmar-cierre" class="modalValidarA" style="display: none;">';
-                                echo '<div class="modal-content" display="none">';
-                                    echo '<p>¿Esta seguro de validar el anuncio?</p>';
-                                    echo '<button id="confirmar-si" name="validar_anuncio" value="' . $row['id_anuncio'] . '">Sí</button>';
-                                    echo '<button type="button" id="confirmar-no-validarA">No</button>';
-                                echo '</div>';
-                            echo '</div>';
-                            echo '<button type="button" name="eliminar-anuncio" id="confirmacionEliminarA">Eliminar</button>';
-                            echo '<div id="confirmar-cierre" class="modalEliminarA" style="display: none;">';
-                                echo '<div class="modal-content" display="none">';
-                                    echo '<p>¿Esta seguro de eliminar el anuncio?</p>';
-                                    echo '<button id="confirmar-si" name="eliminar_anuncio" value="' . $row['id_anuncio'] . '">Sí</button>';
-                                    echo '<button type ="button" id="confirmar-no-eliminarA">No</button>';
-                                echo '</div>';
-                            echo '</div>';
-                        echo '</div>';
-                    echo '</form>';
-                
-                 -->
