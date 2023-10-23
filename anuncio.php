@@ -81,7 +81,12 @@
 
     <div id="buscador">
         <form method="GET" action="anuncio.php" id="search-form">
-            <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
+            <div id="buscador-encima">
+                <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
+            </div>    
+            <div id="buscador-debajo">
+                <a href="anuncio.php"><img src="img/botonX.png" width="25px"></a>
+            </div>
         </form>
     </div>
 
