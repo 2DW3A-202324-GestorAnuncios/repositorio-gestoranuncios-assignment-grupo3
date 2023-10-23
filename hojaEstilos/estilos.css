@@ -880,7 +880,7 @@ p {
 
 /* Estilos para el footer */
 #footer {
-    border: 1px solid red;
+    
     background-color: #ffffff;
     border-top-color: #eee;
     border-top-width: 1px;
@@ -890,7 +890,7 @@ p {
 }
 
 .ct-section {
-    border: 1px solid red;
+    
 
     width: 100%;
     background-size: cover;
@@ -909,7 +909,7 @@ p {
 }
 
 .footer-container {
-    border: 1px solid red;
+   
 
         margin-left: auto;
         margin-right: auto;
@@ -918,7 +918,7 @@ p {
 }
 
 #footer-content {
-    border: 1px solid red;
+
 
     display: flex;
     width: 100%;
@@ -929,7 +929,7 @@ p {
 }
 
 #footer-left {
-    border: 1px solid red;
+
 
     width: 25%;
 }
@@ -977,13 +977,13 @@ p {
 
 /* Estilos para la parte central del footer */
 #footer-center {
-    border: 1px solid red;
+ 
 
     width: 25%;
 }
 
 .social-icons-content {
-    border: 1px solid red;
+
 
     flex-direction: row;
     margin-right: -10px;
@@ -1072,7 +1072,7 @@ p {
 
 /* Estilos para la parte derecha del footer */
 #footer-right {
-    border: 1px solid red;
+
 
     width: 45%;
     flex-direction: column;
@@ -1085,7 +1085,6 @@ p {
 }
 
 #seccion-logos-arriba {
-    border: 1px solid red;
 
     width: 100%;
     flex-direction: row;
@@ -1107,7 +1106,6 @@ p {
 }
 
 #seccion-logos-abajo {
-    border: 1px solid red;
 
     width: 100%;
     flex-direction: row;
@@ -1247,7 +1245,6 @@ p {
     border-radius: 5px;
     font-size: 16px;
 }
-
 .form-crear-anuncio textarea,
 .form-crear-noticia textarea {
     resize: none;

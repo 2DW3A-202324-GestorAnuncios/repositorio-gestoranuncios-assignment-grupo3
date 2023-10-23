@@ -60,7 +60,7 @@ $resultNoticias = $conn->query($sqlNoticias);
             </div>
         </div>
         <div class="noticias3">
-            <h2>Noticias <span id="categoriaSeleccionadaSpan" style="color: #333;"></span></h2>
+            <h2>NOTICIAS <span id="categoriaSeleccionadaSpan" style="color: #333;"></span></h2>
             <div id="noticiasContainer" class="noticias-container">
                 <?php
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
