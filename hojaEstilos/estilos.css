@@ -366,6 +366,7 @@ header {
     position: absolute;
     left: 0;
     right: 0;
+    border-radius: 15px 15px 0 0;
 }
 
 @media screen and (max-width:1000px) {
@@ -376,6 +377,7 @@ header {
         border-radius: 15px;
         position: absolute;
         margin: auto;
+        border-radius: 15px 15px 0 0;
     }
 }
 
@@ -416,10 +418,11 @@ header {
     background-color: rgba(51, 51, 51, 0.8);
     font-style: italic;
     position: absolute;
-    bottom: 0;
+    bottom: 30px;
     left: 0;
     right: 0;
     margin: auto;
+    border-radius: 0 0 15px 15px;
 }
 
 @media screen and (max-width:1000px) {
@@ -437,6 +440,7 @@ header {
         right: 0;
         margin: auto;
         height: 90px;
+        border-radius: 0 0 15px 15px;
     }
 }
 
