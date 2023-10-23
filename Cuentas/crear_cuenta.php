@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="../script.js"></script>
-    <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../hojaEstilos/estilos.css?v=<?php echo time(); ?>">
     <link rel="shortcut icon" href="../img/favicon.png">
     <title>Crear Cuenta - CIFP Txurdinaga</title>
 </head>

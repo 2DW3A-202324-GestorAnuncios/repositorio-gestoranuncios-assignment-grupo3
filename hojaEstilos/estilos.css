@@ -8,11 +8,13 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Aplica un tipo de letra a todo el contenido del body */
 body {
     margin: 0;
     font-family: 'PT Sans Narrow';
 }
 
+/* Asigna tipo de letra a todos los titulos */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'PT Sans Narrow';
     font-weight: 700;
@@ -77,9 +79,9 @@ header {
     margin-left: -280px;
     width: 1px;
     height: 1px;
-
 }
 
+/* Media query para cambiar el logo del header */
 @media only screen and (max-width: 670px) {
     #logo {
         visibility: hidden;
@@ -91,6 +93,7 @@ header {
     }
 }
 
+/* Da forma a los botones del header  */
 #buttons-container {
     display: flex;
     gap: 10px;
@@ -105,6 +108,7 @@ header {
     width: 200px;
 }
 
+/* Centra el texto de los botones */
 .centrado-header {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -113,11 +117,14 @@ header {
     color: white;
 }
 
+/* Ajusta los botones del header */
 .header-buttons {
     display: inline-block;
     text-align: center;  
     position: relative;
 }
+
+/* Media query para hacer los botones del header mas pequeños */
 @media only screen and (max-width: 670px) {
     .header-buttons img {
         height: 60px;
@@ -132,7 +139,6 @@ header {
     }
 }
 
-
 /* Estilos barra de navegación */
 #pro-menu-principal {
     padding-top: 4px;
@@ -146,18 +152,24 @@ header {
     z-index: 5;
     position: sticky;
 }
+
+/* Esconde el desplegable */
 .navdesp{
     visibility: hidden;
     height: 1px;
     width: 1px;
 }
 
+/* Ajusta la barra de navegacion verticalmente */
 .pro-menu-list {
     padding: 0;
     display: flex;
     justify-content: space-around;
 }
+
+/* Media query para la visualicacion del desplegable */
 @media only screen and (max-width: 800px) {
+    /* Esconde y minimiza la barra de navegacion */
     .pro-menu-list{
         overflow: hidden;
         background-color: #c6c6f6;
@@ -172,7 +184,7 @@ header {
         margin-right: -8px; 
         visibility: hidden;
     }
-    
+    /* Ajusta la imagen del desplegable */
     .despImg{
         height: 60px;
         border: 3px solid rgba(0,0,0, 0.3);
@@ -185,20 +197,19 @@ header {
     .despImg:hover{
         cursor: pointer;
         border: 3px solid rgba(0,0,0, 1);
-
-
     }
-
     ul, ol {
         list-style:none;
     }  
+    /* Hace visible la imagen del desplegable */
     .navdesp {
         height: auto;
         visibility: visible;
         padding-top: 30px;
-        width:auto; /*Le establecemos un ancho*/
+        width:auto; 
     }
-    
+
+    /* Da estilo a cada apartado del desplegable */
     .navdesp > li {
         float:right;
     }
@@ -227,43 +238,41 @@ header {
     .navdesp li ul li ul {
         top:0px;
     }
+
+    /* Asigna un color de fondo a cada apartado del desplegable */
     .coloresDesp li:first-child {
         background-color: #57aa26;
     }
     .coloresDesp li:first-child:hover {
         background-color: #3d771b;
     }
-    
     .coloresDesp li:nth-child(2) {
         background-color: #1aa4c1;
     }
     .coloresDesp li:nth-child(2):hover {
         background-color: #106c7e;
     }
-    
     .coloresDesp li:nth-child(3) {
         background-color: #fcc204;
     }
     .coloresDesp li:nth-child(3):hover {
         background-color: #c09404;
     }
-    
     .coloresDesp li:nth-child(4) {
         background-color: #e95f15;
     }
     .coloresDesp li:nth-child(4):hover {
         background-color: #bb4d11;
     }
-    
     .coloresDesp li:nth-child(5) {
         background-color: #229c69;
     }
     .coloresDesp li:nth-child(5):hover {
         background-color: #19734e;
     }
-    
 }
 
+/* Da forma a los apartados de la barra de navegacion */
 .pro-menu .pro-menu-list .menu-item {
     list-style-type: none;
     display: flex;
@@ -272,6 +281,7 @@ header {
     transition-property: background-color, color, border-color;
 }
 
+/* Asigna colores de fondo a los apartados de la barra de navegacion */
 #menu-principal li:first-child {
     background-color: #57aa26;
 }
@@ -296,6 +306,7 @@ header {
     background-color: #ba007b;
 }
 
+/* Da forma al texto apartados de la barra de navegacion  */
 .menu-item a {
     text-decoration: none;
     color: white;
@@ -311,7 +322,6 @@ header {
 
 .menu-item a {
     padding: 12px 0;
-
 }
 
 #menu-principal li:hover {
@@ -325,16 +335,18 @@ header {
 /* Estilos Carrusel Noticias página principal */
 .mySlides {display: none}
 
+/* Da tamaño y posiciona el carrusel  */
 .slideshow-container {
     max-width: 700px;
     min-width: 700px;
-
     height: 500px;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
     
 }
+
+/* Media query para ajustar el tamaño del carrusel a la pagina */
 @media screen and (max-width:1000px) {
     .slideshow-container {
         min-width: 300px;
@@ -345,11 +357,10 @@ header {
         margin-top: auto;
         margin-bottom: auto;
         position: relative;
-
     }   
-
 }
 
+/* Ajusta el tamaño de las imagenes en el carrusel  */
 .slideshow-container img {
     vertical-align: middle;
     max-width: 700px;
@@ -361,6 +372,8 @@ header {
     left: 0;
     right: 0;
 }
+
+/* Media query para ajustar las imagenes del carrusel a la pagina */
 @media screen and (max-width:1000px) {
     .slideshow-container img {
         vertical-align: middle;
@@ -370,9 +383,9 @@ header {
         position: absolute;
         margin: auto;
     }  
-
 }
 
+/* Da estilo a las flechas */
 .prev, .next {
     cursor: pointer;
     position: absolute;
@@ -400,6 +413,7 @@ header {
     background-color: rgba(0,0,0,0.8);
 }
 
+/* Ajusta y da estilo al texto del carrusel */
 .text {
     color: white;
     font-size: 20px;
@@ -415,6 +429,8 @@ header {
     right: 0;
     margin: auto;
 }
+
+/* Media query para ajustar el texto del carrusel a la pagina */
 @media screen and (max-width:1000px) {
     .text {
         color: white;
@@ -431,9 +447,9 @@ header {
         margin: auto;
         height: 90px;
     } 
-
 }
 
+/* Da forma y estilo a los puntos del carrusel */
 .dot {
     cursor: pointer;
     height: 15px;
@@ -507,19 +523,9 @@ header {
     padding: 0 20px;
     width: 100%;
 }
-@media only screen and (max-width: 1100px) {
-    .productos-anuncios-inicio {
-        display: flex;
-        justify-content: flex-start;
-        gap: 20px;
-        flex-wrap: wrap;
-        flex: 100%;
-        overflow-x: auto;
-        margin-top: 20px;
-        padding: 0 20px;
-        width: 100%;
-    }
-}
+
+/* Media queries para ajustar el apartado de 
+anuncios del indice a dispositivos distintos */
 @media only screen and (max-width: 1500px) and (min-width: 1101px) {
     .productos-anuncios-inicio {
         display: flex;
@@ -527,6 +533,20 @@ header {
         gap: 20px;
         flex-wrap: wrap;
         flex: 80%;
+        overflow-x: auto;
+        margin-top: 20px;
+        padding: 0 20px;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .productos-anuncios-inicio {
+        display: flex;
+        justify-content: flex-start;
+        gap: 20px;
+        flex-wrap: wrap;
+        flex: 100%;
         overflow-x: auto;
         margin-top: 20px;
         padding: 0 20px;
@@ -547,7 +567,6 @@ header {
     }
 }
 
-
 .productos-slide-anuncios {
     background-color: #fff;
     padding: 10px;
@@ -556,6 +575,7 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     flex: 0 0 calc(25% - 20px);
 }
+
 @media only screen and (max-width: 1100px) {
     .productos-slide-anuncios {
         background-color: #fff;
@@ -567,6 +587,7 @@ header {
         flex: 0 0 calc(25% - 20px);
     }
 }
+
 @media only screen and (max-width: 1500px) and (min-width: 1101px) {
     .productos-slide-anuncios {
         background-color: #fff;
@@ -579,12 +600,14 @@ header {
     }
 }
 
+/* Ajusta el tamaño de las imagenes del deslizable */
 .productos-slide-anuncios img {
     max-width: 100%;
     height: 300px;
     margin-bottom: 10px;
 }
 
+/* Estilo para los textos del deslizable */
 .productos-slide-anuncios h2 {
     font-size: 18px;
     color: #333;
@@ -601,6 +624,7 @@ header {
     text-transform: uppercase;
 }
 
+/* Da forma a los botones del deslizable en el indice */
 .productos-slide-anuncios button {
     background-color: #007bff;
     color: #fff;
@@ -625,6 +649,10 @@ header {
     width: 75%;
     margin: 0 auto;
 }
+
+/* Media queries para que los productos 
+se adapten a dispositivos distintos */
+
 @media only screen and (max-width: 1100px) {
     .productos {
         display: flex;
@@ -635,6 +663,7 @@ header {
         margin: 0 auto;
     }
 }
+
 @media only screen and (min-width: 1001px) {
     .productos {
         display: grid;
@@ -645,6 +674,7 @@ header {
         margin: 0 auto;
     }
 }
+
 @media only screen and (max-width: 1000px) and (min-width: 651px) {
     .productos {
         display: grid;
@@ -655,6 +685,7 @@ header {
         margin: 0 auto;
     }
 }
+
 @media only screen and (max-width: 650px) {
     .productos {
         display: grid;
@@ -666,6 +697,7 @@ header {
     }
 }
 
+/* Da forma al buscador de anuncios */
 #buscador {
     width: 100%;
     display: flex;
@@ -674,6 +706,7 @@ header {
     margin: 20px auto;
 }
 
+/* Añado imagen y animaciones al buscador */
 #input-buscador {
     background-image: url('../img/searchicon.png');
     background-position: 10px 10px;
@@ -706,6 +739,7 @@ header {
     font-size: larger;
 }
 
+/* Da forma a los anuncios */
 .producto {
     display: flex;
     flex-direction: column;
@@ -728,6 +762,7 @@ header {
     flex: 1;
 }
 
+/* Ajusta el tamaño de las fotos en los anuncios */
 .imagen-producto img,
 .imagen-validar img {
     max-width: 100%;
@@ -748,6 +783,7 @@ header {
     text-transform: uppercase;
 }
 
+/* Da forma a los botones de validar */
 .producto button {
     background-color: #007bff;
     color: #fff;
@@ -804,11 +840,12 @@ header {
     margin: 0;
 }
 
+/* Mantiene el apartado de filtro fijo */
 .filtro-container {
     position: sticky;
 }
 
-
+/* Da forma a la seccion de filtrado */
 .filtro {
     width: 130%;
     padding: 20px;
@@ -817,6 +854,11 @@ header {
     position: sticky;
     top: 0;
 }
+
+
+/* Media query para hacer el filtro de noticias
+mas pequeño */
+
 @media only screen and (max-width: 800px) {
     .filtro {
         width: 80%;
@@ -841,6 +883,7 @@ header {
     display: none;
 }
 
+/* Ajusta el tamaño de las imagenes en la seccion de filtrado */
 .filtro-label img {
     width: 50px;
     height: 50px;
@@ -868,8 +911,7 @@ header {
     color: blue; /* Cambiar el color del texto al pasar el cursor sobre el enlace */
 }
 
-
-
+/* Da forma al container de noticias */
 .noticias3 {
     width: 100%;
     padding: 20px;
@@ -884,41 +926,43 @@ header {
 }
 
 /* Estilos para las noticias */
+/* Crea un grid en el container de las noticia */
 .noticias-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
 }
 
-
+/* Da forma a las noticias */
 .noticia3 {
     width: 100%;
     margin-bottom: 20px;
     box-sizing: border-box;
     padding: 10px;
     border: 1px solid #ccc;
-    background-color: #fff;
-    
+    background-color: #fff;    
 }
 
+/* Da tamaño maximo a las imagenes */
 .imagen-noticia3 {
     max-width: 100%;
 }
 
+/* Media queries para que las noticias se
+adapten a dispositivos distintos */
 @media only screen and (max-width: 1000px) and (min-width: 801px) {
     .noticias-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
-    
 }
+
 @media only screen and (max-width: 800px) {
     .container {
         display: flex;
         width: 99%;
-        margin: 0;
-        
+        margin: 0;       
     }
     .noticias3 {
         width: 100%;
@@ -939,7 +983,7 @@ header {
     }
 }
 
-
+/* Ajusta y da tamaño al titulo en la pagina de noticias */
 .titulo-noticia3-h1 {
     font-size: 15px;
     margin-top: 5px;
@@ -955,7 +999,7 @@ header {
     margin-top: 10px;
 }
 
-/* Asignar categoría a noticias específicas */
+/* Asigna colores de fondo a las noticias de cada categorías en la pagina de "noticias" */
 .categoria-deportes {
     background-color: #a6d789;
 }
@@ -991,6 +1035,7 @@ p {
 }
 
 /* Estilos para la sección de contacto */
+/* Da forma y ajusta tamaños de letra en la pagina de "contacto" */
 .informacion-contacto {
     margin-bottom: 20px;
 }
@@ -1024,6 +1069,7 @@ p {
     font-size: 16px;
 }
 
+/* Da forma a los inputs el la pagina de "contacto" */
 .formulario-contacto input[type="text"],
 .formulario-contacto input[type="email"],
 .formulario-contacto textarea {
@@ -1034,6 +1080,7 @@ p {
     border-radius: 3px;
 }
 
+/* Da forma al boton del formulario en "contacto" */
 .formulario-contacto button {
     background-color: #333;
     color: white;
@@ -1045,6 +1092,7 @@ p {
 }
 
 /* Estilos para el footer */
+/* Da color y tamaño al footer */
 #footer {
     background-color: #ffffff;
     border-top-color: #eee;
@@ -1054,19 +1102,13 @@ p {
     display: block;
 }
 
-
-
-
-
 .ct-section {
-
     width: 100%;
     background-size: cover;
     background-repeat: repeat;
 }
 
 #footer > .footer-container {
-
     max-width: 100%;
     padding-top: 2em;
     padding-right: 50px;
@@ -1078,15 +1120,13 @@ p {
 }
 
 .footer-container {
-
-        margin-left: auto;
-        margin-right: auto;
-        height: 100%;
-        min-height: inherit;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    min-height: inherit;
 }
 
 #footer-content {
-
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -1096,19 +1136,16 @@ p {
 }
 
 #footer-left {
-
     width: 25%;
 }
 
 #image-footer-container {
-
     text-align: center;
     align-items: flex-start;
     margin-bottom: 3em;
 }
 
 #image-footer {
-
     max-width: 100%;
     width: 40%;
 }
@@ -1145,12 +1182,11 @@ p {
 
 /* Estilos para la parte central del footer */
 #footer-center {
-
     width: 25%;
 }
 
+/* Da forma a los iconos de redes sociales en el footer */
 .social-icons-content {
-
     flex-direction: row;
     margin-right: -10px;
     margin-bottom: -10px;
@@ -1161,7 +1197,6 @@ p {
 }
 
 #social-icons.social-icons-content a svg {
-
     width: 0.5em;
     height: 0.5em;
     color: #fff;
@@ -1171,7 +1206,6 @@ p {
 }
 
 .social-icons-content a {
-
     font-size: 40px;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -1184,6 +1218,8 @@ p {
     justify-content: center;
     text-decoration: none;
 }
+
+/* Color de fondo para los iconos de redes sociales en le footer */
 
 .social-icons.instagram {
     background-color: #da0067;
@@ -1221,8 +1257,9 @@ p {
     color: #57aa26;
 }
 
+/* Estilo para las etiquetas de fondo negro del footer */
+
 .etiqueta {
-    
     background-color: black;
     padding: 0px 10px;
     margin-bottom: 10px;
@@ -1240,7 +1277,6 @@ p {
 
 /* Estilos para la parte derecha del footer */
 #footer-right {
-
     width: 45%;
     flex-direction: column;
     display: flex;
@@ -1251,8 +1287,8 @@ p {
     justify-content: space-around;
 }
 
+/* Estilos para los logos de la parte de arriba del footer */
 #seccion-logos-arriba {
-
     width: 100%;
     flex-direction: row;
     display: flex;
@@ -1260,23 +1296,20 @@ p {
     text-align: justify;
 }
 
+/* Da tamaño al las imagenes */
 #fpeuskadi-img, #lanbide-img, #ivafeiei-img {
-
     height: 70px;
 }
 
 #gobiernovasco-img  {
-
     height: 60px;
 }
 
 #ikaslan-img {
-
     height: 79px;
 }
 
 #seccion-logos-abajo {
-
     width: 100%;
     flex-direction: row;
     display: flex;
@@ -1284,6 +1317,8 @@ p {
     text-align: justify;
 }
 
+/* Media queries para ajustar el footer
+a dispositivos distintos */
 @media only screen and (max-width: 1184px) {
     #footer {
         background-color: #ffffff;
@@ -1320,10 +1355,10 @@ p {
         width: 500px;
     }
     #seccion-logos-arriba{
-        width: 500px;
-        
+        width: 500px;  
     }
 }
+
 @media only screen and (max-width: 647px) {
     #footer {
         background-color: #ffffff;
@@ -1335,7 +1370,6 @@ p {
     }
     #footer-right{
         width: 400px;
-        
     }
     #seccion-logos-arriba{
         width: 400px;
@@ -1355,11 +1389,13 @@ p {
     }
 }
 
+/* Hace visible el pop-up de "inciar sesion" */
 
 #iniciar-sesion-dropdown {
     position: relative;
 }
 
+/* Da forma al formulario en el pop-up de "inciar sesion" */
 .form-sesion {
     display: none;
     position: absolute;
@@ -1384,6 +1420,7 @@ p {
     margin-top: 10px;
 }
 
+/* Da forma a los inputs en el pop-up de "inciar sesion" */
 .form-sesion input[type="text"],
 .form-sesion input[type="password"] {
     width: 90%;
@@ -1393,6 +1430,7 @@ p {
     border-radius: 5px;
 }
 
+/* Da forma al boton en el pop-up de "inciar sesion" */
 .form-sesion button {
     background-color: #007BFF;
     color: white;
@@ -1414,6 +1452,7 @@ p {
     font-weight: bold;
 }
 
+/* Da forma al apartado de registro en el pop-up de "inciar sesion" */
 .registrarseContainer {
     color: rgb(22, 24, 35);
     font-family: TikTokFont;
@@ -1452,6 +1491,134 @@ p {
     color: #007BFF;
 }
 
+/* Estilos para la creacion de cuenta */
+/* Da forma al formulario en "crear cuenta" */
+.form-crear-cuenta {
+    width: 70%;
+    max-width: 600px;
+    min-width: 400px;
+    background-color: white;
+    display: grid;
+    border-radius: 40px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    height: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* Da forma al logo en "crear cuenta" */
+.logo-inicio-sesion {
+    height: 190px;
+    width: 160px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Da forma a la estructura de "crear cuenta" */
+.crear-cuenta {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Da forma a los inputs en "crear cuenta" */
+.input-text {
+    width: 100%;
+    border: 2px solid rgba( 0, 0, 0, 0.5);
+    border-radius: 10px;
+    height: 30px;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.input-text:hover {
+    border: 2px solid rgba( 0, 0, 0, 1);
+
+}
+
+/* Da forma a los botones en "crear cuenta" */
+.boton {
+    width: 125px;
+    height: 40px;
+    background-color: #007bff;
+    border-radius: 12px;
+    font-size: 17px;
+    border: 0px solid black;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: 0.4s;
+    color: white;
+}
+
+.boton:hover {
+    cursor: pointer;
+    background-color: #005b91;
+}
+
+.botones-crear-cuenta{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: -20px;
+}
+
+/* Da forma al checkbox en "crear cuenta" */
+.terminos-crear-cuenta {
+    font-size: 17px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+.terminos-checkbox:hover {
+    cursor: pointer;
+}
+
+/* Da color a los spans de error y correcto en "crear cuenta" */
+.error {
+    color: #FF0000;
+    font-size: 18px;
+}
+.correcto{
+    color: #00cd0a;
+    font-size: 18px;
+}
+
+span {
+    font-size: 15px;
+}
+
+#imagen{
+    margin-left: 25px;
+}
+
+/* Da color al mensaje de repeticion en "crear cuenta" */
+#repPK{
+    color: red;
+    display: block;
+    margin-left: 25px;
+    font-size: 15px;
+}
+
+.input-genero{
+    font-size: 18px;
+    margin-top: -8px;
+    margin-left: 10px;
+}
+
 /* Estilos para el formulario de creación de anuncios */
 .crear-anuncio {
     padding: 20px;
@@ -1461,6 +1628,7 @@ p {
     text-align: center;
 }
 
+/* Da forma al formulario en "crear anuncio" */
 .form-crear-anuncio {
     max-width: 500px;
     margin: 0 auto;
@@ -1477,6 +1645,7 @@ p {
     font-size: 18px;
 }
 
+/* Da forma al contenido del formulario en "crear anuncio" */
 .form-crear-anuncio input[type="text"],
 .form-crear-anuncio textarea {
     width: 95%;
@@ -1502,6 +1671,17 @@ p {
     background-color: #fff;
 }
 
+.form-crear-anuncio input[type="number"]{
+    width: 16%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+/* Da forma al boton en el formulario en "crear anuncio" */
 .form-crear-anuncio button {
     display: block;
     background-color: #007BFF;
@@ -1519,16 +1699,6 @@ p {
     background-color: #0056b3;
 }
 
-.form-crear-anuncio input[type="number"]{
-    width: 16%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #fff;
-}
-
 /* Estilos para el formulario de creación de noticias */
 .crear-noticia {
     padding: 20px;
@@ -1538,6 +1708,7 @@ p {
     text-align: center;
 }
 
+/* Da forma al formulario en "crear noticia" */
 .form-crear-noticia {
     max-width: 500px;
     margin: 0 auto;
@@ -1554,6 +1725,7 @@ p {
     font-size: 18px;
 }
 
+/* Da forma al los apartados del formulario en "crear noticia" */
 .form-crear-noticia input[type="text"],
 .form-crear-noticia textarea {
     width: 95%;
@@ -1584,6 +1756,7 @@ p {
     background-color: #fff;
 }
 
+/* Da forma al boton en el formulario en "crear noticia" */
 .form-crear-noticia button {
     display: block;
     background-color: #007BFF;
@@ -1610,6 +1783,7 @@ p {
     text-align: center;
 }
 
+/* Da forma al formulario de crear anuncio */
 .form-crear-anuncio {
     max-width: 500px;
     margin: 0 auto;
@@ -1626,6 +1800,7 @@ p {
     font-size: 18px;
 }
 
+/* Da forma a los inputs */
 .form-crear-anuncio input[type="text"],
 .form-crear-anuncio textarea {
     width: 95%;
@@ -1646,6 +1821,7 @@ p {
     background-color: #fff;
 }
 
+/* Da forma a los botones */
 .form-crear-anuncio button {
     display: block;
     background-color: #007BFF;
@@ -1682,6 +1858,7 @@ p {
     font-size: 1.2em;
 }
 
+/* Da forma a los botones de edicion y guardado en "mi perfil" */
 .mi-perfil-container button[name="editar"],
 .mi-perfil-container button[name="guardar"] {
     background-color: #0077b6;
@@ -1700,11 +1877,13 @@ p {
     background-color: #005b91;
 }
 
+
 .mi-perfil-container button[name="guardar"],
 .mi-perfil-container button[name="cancelar"] {
     display: inline-block;
 }
 
+/* Da forma a los botones de cancelar y cerrar-sesion en "mi perfil" */
 .mi-perfil-container button[name="cancelar"],
 .mi-perfil-container button[name="cerrar-sesion"] {
     background-color: #b60000;
@@ -1742,6 +1921,7 @@ p {
     font-size: 1.2em;
 }
 
+/* Da forma a los inputs en "mi perfil" */
 .mi-perfil-container input[type="text"],
 .mi-perfil-container input[type="date"],
 .mi-perfil-container input[type="email"],
@@ -1754,6 +1934,7 @@ p {
     font-size: 16px;
 }
 
+/* Da forma al pop-up de cerrar sesion en "mi perfil" */
 .modal {
     display: none;
     position: fixed;
@@ -1801,6 +1982,7 @@ p {
     color: white; /* Texto en blanco */
 }
 
+/* Da forma al apartado de foto de perfil en "mi perfil" */
 .foto-container {
     border-radius: 50%;
     overflow: hidden;
@@ -1825,6 +2007,7 @@ p {
     font-weight: 100;
 }
 
+/* Da forma a los mensajes de exito y error en "mi perfil" */
 .mensaje-exito, .mensaje-error {
     font-weight: bold;
     font-size: 1.2em;
