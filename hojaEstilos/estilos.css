@@ -763,12 +763,13 @@ se adapten a dispositivos distintos */
 }
 
 /* Ajusta el tamaño de las fotos en los anuncios */
-.imagen-producto img,
+.imagen-producto input,
 .imagen-validar img {
     max-width: 100%;
     height: 300px;
     margin-bottom: 10px;
 }
+
 
 .contenedor-anuncio {
     flex: 1;

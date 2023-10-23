@@ -42,11 +42,12 @@
                     echo '<div class="mySlides fade">';
                     // Comprobar si la noticia tiene una imagen específica o no
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
-                    echo '<img src="' . $imagenURL . '" style="width:100%">';
+                    echo '<a href=""><img src="' . $imagenURL . '" style="width:100%"></a>';
                     echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</div>';
                 }
             ?>
+            
             <?php
                 $slideNumber = 1;
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
@@ -54,7 +55,7 @@
                     echo '<div class="numbertext">' . $slideNumber . ' / ' . $resultNoticias->rowCount() . '</div>';
                     // Comprobar si la noticia tiene una imagen específica o no
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
-                    echo '<img src="' . $imagenURL . '" style="width:100%">';
+                    echo '<a href=""><img src="' . $imagenURL . '" style="width:100%"></a>';
                     echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</div>';
                     $slideNumber++;
@@ -129,7 +130,7 @@
                         $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                         $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
                         
-                        echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                        echo '<a href="pagina_anuncio.php"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
                         echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
                         echo '<p>' . $row['descripcion'] . '</p>';
                         echo '<p class="precio">' . $row['precio'] . '€</p>';

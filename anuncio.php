@@ -53,6 +53,7 @@
     }
 
     $stmtProductos->execute();
+    
 ?>
 
 <!DOCTYPE html>
@@ -93,20 +94,37 @@
             }
     ?>
     <div class="productos">
-        <?php
+        <?php 
+             
+
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
+                $_SESSION['foto'] = $row['foto']; 
+
+            
+                $_SESSION['descripcion'] = $row['descripcion']; 
+                        
+                $_SESSION['precio'] = $row['precio'];
+
                 echo '<div class="producto">';
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                    echo '<div class = "imagen-producto">';
-                        echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                    echo '</div>';
-                    echo '<div class = "contenedor-anuncio">';
-                        echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                        echo '<p>' . $row['descripcion'] . '</p>';
-                        echo '<p class="precio">' . $row['precio'] . '€</p>';
-                    echo '</div>';
+
+                echo '<form method="post" action="pagina_anuncio.php">';
+                        $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                        echo '<div class = "imagen-producto">';
+                            echo '<input type="image" src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '" value="" name="foto" />';
+                        echo '</div>';
+                        echo '<div class = "contenedor-anuncio">';
+                            echo '<h2 name="nombre">' . $row['nombre_anuncio'] . '</h2>';
+
+                            echo '<p name="descripcion">' . $row['descripcion'] . '</p>';
+                        
+                            echo '<p class="precio" name="precio">' . $row['precio'] . '€</p>';
+
+                        echo '</div>';
+                echo '</form>';
                 echo '</div>';
             }
+            
+            
         ?>
     </div>
 
