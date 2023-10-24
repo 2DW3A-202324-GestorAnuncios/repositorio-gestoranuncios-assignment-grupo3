@@ -1602,10 +1602,6 @@ span {
     font-size: 15px;
 }
 
-#imagen{
-    margin-left: 25px;
-}
-
 /* Da color al mensaje de repeticion en "crear cuenta" */
 #repPK{
     color: red;
@@ -2028,30 +2024,64 @@ span {
 
 
 
-.ver-publicacion{
-    max-width: 55%;
+.ver-anuncio{
+    max-width: 700px;
+    height: auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
     background-color: #f1f1f15f;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.ver-publicacion-img{
+.ver-anuncio-img{
+    margin-top: 15px;
     padding: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     height: auto;
-    width: 100%;
-
+    max-width: 700px;
+    min-width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
-.ver-publicacion-contenido{
+.ver-anuncio-contenido{
     padding: 25px;
 }
-.ver-publicacion-contenido h2{
+.ver-anuncio-contenido h2{
     padding: 25px;
     text-align: end;
 }
-.ver-publicacion-contenido input{
-    margin-top: 100px;
+.ver-anuncio-contenido input{
+    margin-top: auto;
 }
+
+
+
+.ver-noticia{
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    background-color: #f1f1f15f;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
+    height: 500px;
+}
+
+.ver-noticia-img{
+    padding: 15px;
+    padding-bottom: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 350px;
+    width: 50%;
+    float: left;
+    margin-right: 15px;
+}
+.ver-noticia-img h3{
+    margin-top: -12px;
+    margin-bottom: 3px;
+    
+}
+

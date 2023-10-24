@@ -98,15 +98,7 @@
              
 
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
-                $_SESSION['foto'] = $row['foto']; 
-            
-                $_SESSION['descripcion'] = $row['descripcion']; 
-                        
-                $_SESSION['precio'] = $row['precio'];
-
-                $_SESSION['nombre'] = $row['nombre_anuncio']; 
-
-
+                
                 echo '<div class="producto">';
 
                 echo '<form action="pagina_anuncio.php?nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'" method="POST">';
