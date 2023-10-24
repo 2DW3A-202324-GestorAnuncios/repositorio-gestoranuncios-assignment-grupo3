@@ -14,17 +14,6 @@
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' ORDER BY id_noticia DESC LIMIT 3";
     $resultNoticias = $conn->query($sqlNoticias);
-
-    // Verifica si se hizo clic en "Añadir al Carrito"
-    if (isset($_POST['btn-anadir-carrito'])) {
-        // Recuperar los valores del producto
-        $fotoProducto = $_POST['foto_producto'];
-        $nombreProducto = $_POST['nombre_producto'];
-        $precioProducto = $_POST['precio_producto'];
-
-        // Agrega el producto al array de carrito de la sesión
-        $_SESSION['carrito'][] = array('foto' => $fotoProducto, 'nombre' => $nombreProducto, 'precio' => $precioProducto);
-    }
 ?>
 
 <!DOCTYPE html>
@@ -55,21 +44,9 @@
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     // Comprobar si la noticia tiene una imagen específica o no
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
-                    echo '<a href=""><img src="' . $imagenURL . '" style="width:100%"></a>';
-                    echo '<div class="text">' . $row['descripcion'] . '</div>';
-                    echo '</div>';
-                }
-            ?>
-            
-            <?php
-                $slideNumber = 1;
-                while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="mySlides fade">';
-                    echo '<div class="numbertext">' . $slideNumber . ' / ' . $resultNoticias->rowCount() . '</div>';
-                    // Comprobar si la noticia tiene una imagen específica o no
-                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
-                    echo '<a href=""><img src="' . $imagenURL . '" style="width:100%"></a>';
-                    echo '<div class="text">' . $row['descripcion'] . '</div>';
+                        echo '<img src="' . $imagenURL . '" style="width:100%">';
+                        echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</div>';
                 }
             ?>
@@ -146,10 +123,10 @@
                         } else if ($admin == 0) {
                             $btnAnadirCarrito = '
                             <form method="post" action="carrito_compra.php">
-                                <input type="hidden" name="foto_producto" value="' . $row['foto'] . '">
-                                <input type="hidden" name="nombre_producto" value="' . $row['nombre_anuncio'] . '">
-                                <input type="hidden" name="precio_producto" value="' . $row['precio'] . '">
-                                <button type="submit" name="btn-anadir-carrito">Añadir al Carrito</button>
+                                <input id="foto_producto" type="hidden" name="foto_producto" value="' . $row['foto'] . '">
+                                <input id="nombre_producto" type="hidden" name="nombre_producto" value="' . $row['nombre_anuncio'] . '">
+                                <input id="precio_producto" type="hidden" name="precio_producto" value="' . $row['precio'] . '">
+                                <button id="btn-anadir-carrito" type="submit" name="btn-anadir-carrito">Añadir al Carrito</button>
                             </form>';
                         }
                     } else {
@@ -167,10 +144,35 @@
                         echo '</div>';
                         echo $btnAnadirCarrito;
                     echo '</div>';
+                }
             ?>
         </div>
         <a href="anuncio.php"><button id="ver-mas-anuncios" class="ver-mas-button">Ver Más Anuncios</button></a>
     </section>
+
+    <script>
+        const btnAnadirCarrito = document.getElementById('btn-anadir-carrito');
+
+        btnAnadirCarrito.addEventListener('click', () => {
+            const fotoProducto = document.getElementById('foto_producto').value;
+            const nombreProducto = document.getElementById('nombre_producto').value;
+            const precioProducto = document.getElementById('precio_producto').value;
+
+            // Paso 1: Obtener la lista de productos del carrito desde localStorage (si existe)
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+            // Paso 2: Agregar el nuevo producto a la lista
+            const nuevoProducto = {
+                foto: fotoProducto,
+                nombre: nombreProducto,
+                precio: precioProducto
+            };
+            carrito.push(nuevoProducto);
+
+            // Paso 3: Almacenar la lista actualizada en localStorage
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+        });
+    </script>
 
     <?php
         include('footer.php');

@@ -4,12 +4,7 @@
     // Inicia la sesión en la página
     session_start();
 
-    if (isset($_GET['elementosPorPagina'])) {
-        $elementosPorPagina = $_GET['elementosPorPagina'];
-        // Ahora puedes usar $elementosPorPagina en tu script PHP
-    } else {
-        $elementosPorPagina = 9;    
-    }
+    $elementosPorPagina = 9;
     $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 
     // Inicializa la variable de búsqueda
@@ -61,7 +56,6 @@
     }
 
     $stmtProductos->execute();
-    
 ?>
 
 <!DOCTYPE html>
@@ -85,16 +79,6 @@
         }
     ?>
 
-    <form id="miFormulario" method="GET" action="anuncio.php">
-        <label for="elementosPorPagina">Elementos por página:</label>
-        <select id="elementosPorPagina" name="elementosPorPagina">
-            <option value="3" <?php if ($elementosPorPagina == 3) echo 'selected'; ?>>3</option>
-            <option value="6" <?php if ($elementosPorPagina == 6) echo 'selected'; ?>>6</option>
-            <option value="9" <?php if ($elementosPorPagina == 9) echo 'selected'; ?>>9</option>
-        </select>
-        <input type="submit" value="Enviar"> <!-- Agrega un botón para enviar el formulario -->
-    </form>
-    
     <div id="buscador">
         <form method="GET" action="anuncio.php" id="search-form">
             <div id="buscador-encima">
@@ -105,7 +89,6 @@
             </div>
         </form>
     </div>
-    
 
     <?php
         if($totalProductos === 0){
@@ -116,36 +99,33 @@
     ?>
 
     <div class="productos">
-        <?php 
-             
-
+        <?php
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
-                $_SESSION['foto'] = $row['foto']; 
-            
-                $_SESSION['descripcion'] = $row['descripcion']; 
-                        
-                $_SESSION['precio'] = $row['precio'];
+                $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
 
-                $_SESSION['nombre'] = $row['nombre_anuncio']; 
-
+                $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+                if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
+                    if ($admin == 1) {
+                        $btnAnadirCarrito = '';
+                    } else if ($admin == 0) {
+                        $btnAnadirCarrito = '<button name="btn-anadir-carrito" onclick="agregarAlCarrito(' . $row['nombre_anuncio'] . ', ' . $row['precio'] . ')">Añadir al Carrito</button>';
+                    }
+                } else {
+                    $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
+                }
 
                 echo '<div class="producto">';
-
-                echo '<form action="pagina_anuncio.php?nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'" method="POST">';
-                        $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                        echo '<div class = "imagen-producto">';
-                            echo '<input type="image" src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '" value="" name="foto" />';
-                        echo '</div>';
-                        echo '<div class = "contenedor-anuncio">';
-                            echo '<h2 name="nombre">' . $row['nombre_anuncio'] . '</h2>';
-                            echo '<p name="descripcion">' . $row['descripcion'] . '</p>';
-                            echo '<p class="precio" name="precio">' . $row['precio'] . '€</p>';
-                        echo '</div>';
-                echo '</form>';
+                    echo '<div class="imagen-producto">';
+                        echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                    echo '</div>';
+                    echo '<div class="contenedor-anuncio">';
+                        echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
+                        echo '<p>' . $row['descripcion'] . '</p>';
+                        echo '<p class="precio">' . $row['precio'] . '€</p>';
+                    echo '</div>';
+                    echo $btnAnadirCarrito;
                 echo '</div>';
             }
-            
-            
         ?>
     </div>
 
@@ -160,40 +140,6 @@
     </div>
 
     <script>
-
-        const elementosPorPaginaSelector = document.getElementById("elementosPorPagina");
-
-        elementosPorPaginaSelector.addEventListener("change", function () {
-            const nuevosElementosPorPagina = elementosPorPaginaSelector.value;
-
-            // Guardar el nuevo valor en localStorage
-            localStorage.setItem("elementosPorPagina", nuevosElementosPorPagina);
-
-            // Actualizar la URL con el nuevo valor
-            const url = new URL(window.location.href);
-            url.searchParams.set("elementos", nuevosElementosPorPagina);
-            window.location.href = url.toString();
-        });
-
-        // Recuperar el valor de elementos por página desde localStorage
-        const elementosGuardados = localStorage.getItem("elementosPorPagina");
-
-        if (elementosGuardados) {
-            elementosPorPaginaSelector.value = elementosGuardados;
-        }
-
-        const elementosPorPagina = localStorage.getItem("elementosPorPagina");
-
-        // Establecer el valor en un campo de formulario oculto
-        const hiddenInput = document.createElement("input");
-        hiddenInput.type = "hidden";
-        hiddenInput.name = "elementosPorPagina";
-        hiddenInput.value = elementosPorPagina;
-
-        // Agregar el campo de formulario oculto al formulario existente
-        const form = document.getElementById("miFormulario"); // Reemplaza con el ID de tu formulario
-        form.appendChild(hiddenInput);
-
         var inputBuscador = document.getElementById("input-buscador");
 
         window.addEventListener('load', function() {
