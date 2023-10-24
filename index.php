@@ -44,9 +44,21 @@
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     // Comprobar si la noticia tiene una imagen específica o no
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
+                    echo '<a href=""><img src="' . $imagenURL . '" style="width:100%"></a>';
+                    echo '<div class="text">' . $row['descripcion'] . '</div>';
+                    echo '</div>';
+                }
+            ?>
+            
+            <?php
+                $slideNumber = 1;
+                while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="mySlides fade">';
-                        echo '<img src="' . $imagenURL . '" style="width:100%">';
-                        echo '<div class="text">' . $row['descripcion'] . '</div>';
+                    echo '<div class="numbertext">' . $slideNumber . ' / ' . $resultNoticias->rowCount() . '</div>';
+                    // Comprobar si la noticia tiene una imagen específica o no
+                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
+                    echo '<a href=""><img src="' . $imagenURL . '" style="width:100%"></a>';
+                    echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</div>';
                 }
             ?>
@@ -108,30 +120,24 @@
         <a href="noticia.php"><button id="ver-mas-noticias" class="ver-mas-button">Ver Más Noticias</button></a>
     </section>
 
-    <section id="ultimos-anuncios" class="seccion-destacada">
-        <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
-        <div class="productos-anuncios-inicio">
-            <?php
-                while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
-                    // Verifica si la URL de la imagen es nula o vacía
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
-                    
-                    $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
-                    if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
-                        if ($admin == 1) {
-                            $btnAnadirCarrito = '';
-                        } else if ($admin == 0) {
-                            $btnAnadirCarrito = '
-                            <form method="post" action="carrito_compra.php">
-                                <input id="foto_producto" type="hidden" name="foto_producto" value="' . $row['foto'] . '">
-                                <input id="nombre_producto" type="hidden" name="nombre_producto" value="' . $row['nombre_anuncio'] . '">
-                                <input id="precio_producto" type="hidden" name="precio_producto" value="' . $row['precio'] . '">
-                                <button id="btn-anadir-carrito" type="submit" name="btn-anadir-carrito">Añadir al Carrito</button>
-                            </form>';
-                        }
-                    } else {
-                        $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
+    <section class="seccion-destacada">
+        <div class="seccion-contenido">
+            <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
+            <div class="productos-anuncios-inicio">
+                <?php
+                    while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<div class="productos-slide-anuncios">';
+                        
+                        // Verifica si la URL de la imagen es nula o vacía
+                        $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                        $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
+                        
+                        echo '<a href="pagina_anuncio.php"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
+                        echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
+                        echo '<p>' . $row['descripcion'] . '</p>';
+                        echo '<p class="precio">' . $row['precio'] . '€</p>';
+                        echo '<button>Comprar</button>';
+                        echo '</div>';
                     }
 
                     echo '<div class="productos-slide-anuncios">';
@@ -145,7 +151,6 @@
                         echo '</div>';
                         echo $btnAnadirCarrito;
                     echo '</div>';
-                }
             ?>
         </div>
         <a href="anuncio.php"><button id="ver-mas-anuncios" class="ver-mas-button">Ver Más Anuncios</button></a>

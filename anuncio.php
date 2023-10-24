@@ -61,6 +61,7 @@
     }
 
     $stmtProductos->execute();
+    
 ?>
 
 <!DOCTYPE html>
@@ -115,33 +116,36 @@
     ?>
 
     <div class="productos">
-        <?php
-            while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
-                $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+        <?php 
+             
 
-                $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
-                if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
-                    if ($admin == 1) {
-                        $btnAnadirCarrito = '';
-                    } else if ($admin == 0) {
-                        $btnAnadirCarrito = '<button name="btn-anadir-carrito" onclick="agregarAlCarrito(' . $row['nombre_anuncio'] . ', ' . $row['precio'] . ')">Añadir al Carrito</button>';
-                    }
-                } else {
-                    $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
-                }
+            while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
+                $_SESSION['foto'] = $row['foto']; 
+            
+                $_SESSION['descripcion'] = $row['descripcion']; 
+                        
+                $_SESSION['precio'] = $row['precio'];
+
+                $_SESSION['nombre'] = $row['nombre_anuncio']; 
+
 
                 echo '<div class="producto">';
-                    echo '<div class="imagen-producto">';
-                        echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
-                    echo '</div>';
-                    echo '<div class="contenedor-anuncio">';
-                        echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                        echo '<p>' . $row['descripcion'] . '</p>';
-                        echo '<p class="precio">' . $row['precio'] . '€</p>';
-                    echo '</div>';
-                    echo $btnAnadirCarrito;
+
+                echo '<form action="pagina_anuncio.php?nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'" method="POST">';
+                        $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                        echo '<div class = "imagen-producto">';
+                            echo '<input type="image" src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '" value="" name="foto" />';
+                        echo '</div>';
+                        echo '<div class = "contenedor-anuncio">';
+                            echo '<h2 name="nombre">' . $row['nombre_anuncio'] . '</h2>';
+                            echo '<p name="descripcion">' . $row['descripcion'] . '</p>';
+                            echo '<p class="precio" name="precio">' . $row['precio'] . '€</p>';
+                        echo '</div>';
+                echo '</form>';
                 echo '</div>';
             }
+            
+            
         ?>
     </div>
 
