@@ -113,6 +113,7 @@
 
             // Llama a autoSlide cada 10 segundos (10000 milisegundos)
             setInterval(autoSlide, 10000);
+
         </script>
 
         <a href="noticia.php"><button id="ver-mas-noticias" class="ver-mas-button">Ver Más Noticias</button></a>
