@@ -80,6 +80,13 @@ $resultNoticias = $conn->query($sqlNoticias);
 
     <?php
     include('footer.php');
+
+
+
+
+
+
+    
     ?>
 
     <script>
