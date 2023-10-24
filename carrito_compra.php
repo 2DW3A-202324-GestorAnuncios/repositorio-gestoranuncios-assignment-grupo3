@@ -14,78 +14,50 @@
         // Inicia la sesión en la página
         session_start();
 
+        $usuario = $_SESSION['usuario'];
+
         include('header_sesion.php');
     ?>
-
-    <script>
-        localStorage.getItem("carrito");
-    </script>
-
+    
     <div class="carrito-container">
         <h2>Carrito de Compra</h2>
-        
-        <?php
-            echo '
-            <script>
-                localStorage.getItem("carrito");
-            </script>';
-
-            // Obtener el carrito del Local Storage y decodificarlo
-            $carrito = json_decode("carrito", true);
-
-            if (!empty($carrito)) {
-                echo '<table>';
-                echo '<thead>';
-                echo '<tr>';
-                echo '<th></th>';
-                echo '<th>Producto</th>';
-                echo '<th>Precio</th>';
-                echo '</tr>';
-                echo '</thead>';
-                echo '<tbody>';
-
-                foreach ($carrito as $producto) {
-                    echo '<tr>';
-                    echo '<td><img src="img/anuncios/' . $producto['foto'] . '" alt="' . $producto['nombre'] . '"></td>';
-                    echo '<td>' . $producto['nombre'] . '</td>';
-                    echo '<td>' . $producto['precio'] . '€</td>';
-                    echo '</tr>';
-                }
-
-                echo '</tbody>';
-                echo '</table>';
-            } else {
-                echo '<p>El carrito está vacío.</p>';
-            }
-        ?>
-
-        <?php
-            // Calcular el total del carrito
-            $total = 0;
-
-            if (!empty($carrito)) {
-                foreach ($carrito as $producto) {
-                    $total += $producto['precio'];
-                }
-            }
-
-            echo '<p>Total del carrito: ' . $total . '€</p>';
-        ?>
+        <table id="carrito-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
 
-    <div id="datos"></div>
-
     <script>
-        // Obtener los datos de localStorage
-        const datosLocalStorage = localStorage.getItem('carrito');
+        // Obtener los datos del carrito desde el Local Storage
+        const usuario = "<?php echo $usuario; ?>";
+        const carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario));
 
-        // Verificar si hay datos en localStorage
-        if (datosLocalStorage) {
-            // Crear un elemento HTML para mostrar los datos
-            const divDatos = document.getElementById('datos');
-            divDatos.textContent = datosLocalStorage;
+        // Verificar si hay datos en el carrito
+        if (carrito && carrito.length > 0) {
+            const tableBody = document.querySelector("#carrito-table tbody");
+
+            // Iterar a través de los productos en el carrito y agregarlos a la tabla
+            carrito.forEach(producto => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td id="celdaImg"><img src="img/anuncios/${producto.foto}" alt="${producto.nombre}"></td>
+                    <td>${producto.nombre}</td>
+                    <td>${producto.precio}€</td>
+                `;
+                tableBody.appendChild(row);
+            });
         } else {
-            document.getElementById('datos').innerText = 'No hay datos en LocalStorage.';
+            // Si el carrito está vacío, muestra un mensaje
+            const table = document.getElementById("carrito-table");
+            table.innerHTML = `
+                <p>El carrito está vacío.</p>
+            `;
         }
     </script>
 

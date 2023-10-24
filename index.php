@@ -3,6 +3,8 @@
     
     // Inicia la sesión en la página
     session_start();
+
+    $usuario = "";
     
     // Inicializa un array para almacenar los productos seleccionados
     if (!isset($_SESSION['carrito'])) {
@@ -32,8 +34,10 @@
     <?php
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
+            $usuario = $_SESSION['usuario'];
         } else {
             include('header_no_sesion.php');
+            $usuario = "";
         }
     ?>
 
@@ -152,6 +156,7 @@
 
     <script>
         const btnAnadirCarrito = document.getElementById('btn-anadir-carrito');
+        const usuario = "<?php echo $usuario; ?>";
 
         btnAnadirCarrito.addEventListener('click', () => {
             const fotoProducto = document.getElementById('foto_producto').value;
@@ -159,7 +164,7 @@
             const precioProducto = document.getElementById('precio_producto').value;
 
             // Paso 1: Obtener la lista de productos del carrito desde localStorage (si existe)
-            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
 
             // Paso 2: Agregar el nuevo producto a la lista
             const nuevoProducto = {
@@ -170,7 +175,7 @@
             carrito.push(nuevoProducto);
 
             // Paso 3: Almacenar la lista actualizada en localStorage
-            localStorage.setItem('carrito', JSON.stringify(carrito));
+            localStorage.setItem('carrito => ' + usuario, JSON.stringify(carrito));
         });
     </script>
 
