@@ -381,7 +381,6 @@ header {
     position: absolute;
     left: 0;
     right: 0;
-    border-radius: 15px 15px 0 0;
 }
 
 /* Media query para ajustar las imagenes del carrusel a la pagina */
@@ -393,8 +392,7 @@ header {
         border-radius: 15px;
         position: absolute;
         margin: auto;
-    }  
-
+    }
 }
 
 /* Da estilo a las flechas */
@@ -436,11 +434,10 @@ header {
     background-color: rgba(51, 51, 51, 0.8);
     font-style: italic;
     position: absolute;
-    bottom: 30px;
+    bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
-    border-radius: 0 0 15px 15px;
 }
 
 /* Media query para ajustar el texto del carrusel a la pagina */
@@ -459,7 +456,7 @@ header {
         right: 0;
         margin: auto;
         height: 90px;
-    } 
+    }
 }
 
 /* Da forma y estilo a los puntos del carrusel */

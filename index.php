@@ -14,6 +14,17 @@
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' ORDER BY id_noticia DESC LIMIT 3";
     $resultNoticias = $conn->query($sqlNoticias);
+
+    // Verifica si se hizo clic en "Añadir al Carrito"
+    if (isset($_POST['btn-anadir-carrito'])) {
+        // Recuperar los valores del producto
+        $fotoProducto = $_POST['foto_producto'];
+        $nombreProducto = $_POST['nombre_producto'];
+        $precioProducto = $_POST['precio_producto'];
+
+        // Agrega el producto al array de carrito de la sesión
+        $_SESSION['carrito'][] = array('foto' => $fotoProducto, 'nombre' => $nombreProducto, 'precio' => $precioProducto);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -120,24 +131,30 @@
         <a href="noticia.php"><button id="ver-mas-noticias" class="ver-mas-button">Ver Más Noticias</button></a>
     </section>
 
-    <section class="seccion-destacada">
-        <div class="seccion-contenido">
-            <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
-            <div class="productos-anuncios-inicio">
-                <?php
-                    while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<div class="productos-slide-anuncios">';
-                        
-                        // Verifica si la URL de la imagen es nula o vacía
-                        $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                        $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
-                        
-                        echo '<a href="pagina_anuncio.php"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
-                        echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                        echo '<p>' . $row['descripcion'] . '</p>';
-                        echo '<p class="precio">' . $row['precio'] . '€</p>';
-                        echo '<button>Comprar</button>';
-                        echo '</div>';
+    <section id="ultimos-anuncios" class="seccion-destacada">
+        <h2 class="titulo-llamativo">Descubre lo Más Popular</h2>
+        <div class="productos-anuncios-inicio">
+            <?php
+                while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
+                    // Verifica si la URL de la imagen es nula o vacía
+                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
+                    
+                    $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+                    if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
+                        if ($admin == 1) {
+                            $btnAnadirCarrito = '';
+                        } else if ($admin == 0) {
+                            $btnAnadirCarrito = '
+                            <form method="post" action="carrito_compra.php">
+                                <input type="hidden" name="foto_producto" value="' . $row['foto'] . '">
+                                <input type="hidden" name="nombre_producto" value="' . $row['nombre_anuncio'] . '">
+                                <input type="hidden" name="precio_producto" value="' . $row['precio'] . '">
+                                <button type="submit" name="btn-anadir-carrito">Añadir al Carrito</button>
+                            </form>';
+                        }
+                    } else {
+                        $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
                     }
 
                     echo '<div class="productos-slide-anuncios">';
@@ -155,30 +172,6 @@
         </div>
         <a href="anuncio.php"><button id="ver-mas-anuncios" class="ver-mas-button">Ver Más Anuncios</button></a>
     </section>
-
-    <script>
-        const btnAnadirCarrito = document.getElementById('btn-anadir-carrito');
-
-        btnAnadirCarrito.addEventListener('click', () => {
-            const fotoProducto = document.getElementById('foto_producto').value;
-            const nombreProducto = document.getElementById('nombre_producto').value;
-            const precioProducto = document.getElementById('precio_producto').value;
-
-            // Paso 1: Obtener la lista de productos del carrito desde localStorage (si existe)
-            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-            // Paso 2: Agregar el nuevo producto a la lista
-            const nuevoProducto = {
-                foto: fotoProducto,
-                nombre: nombreProducto,
-                precio: precioProducto
-            };
-            carrito.push(nuevoProducto);
-
-            // Paso 3: Almacenar la lista actualizada en localStorage
-            localStorage.setItem('carrito', JSON.stringify(carrito));
-        });
-    </script>
 
     <?php
         include('footer.php');
