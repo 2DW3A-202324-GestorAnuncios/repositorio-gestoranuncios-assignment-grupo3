@@ -124,12 +124,18 @@
     </ul>
 </nav>
 
-<?php
-    if (!empty($mensaje_error)) {
-        echo 'mostrarError("' . $mensaje_error . '");';
-    }
+<script>
+    // Verifica si hay un mensaje de error y lo muestra si es necesario
+    <?php
+        if (!empty($mensaje_error)) {
+            echo 'mostrarError("' . $mensaje_error . '");';
+        }
+    ?>
 
-    if ($mostrar_formulario) {
-        echo 'toggleDropdown();';
-    }
-?>
+    // Verifica si se debe mostrar el formulario
+    <?php
+        if ($mostrar_formulario) {
+            echo 'toggleDropdown();';
+        }
+    ?>
+</script>
