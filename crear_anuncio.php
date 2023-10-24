@@ -12,7 +12,6 @@
 <body>
     <?php
         include("conexion.php");
-        
         // Inicia la sesión en la página
         session_start();
 
@@ -29,6 +28,14 @@
         $usuario = $_SESSION["usuario"];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            //se conecta a la base de datos
+            $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
+        
+            // Comprueba conexion
+            if($conn === false){
+                die("ERROR: No se ha podido conectar. "
+                    . mysqli_connect_error());
+            }
             //coje los elementos del formulario
             $nomAnuncio = $_POST['titulo'];
             $descAnuncio = $_POST['descripcion'];
@@ -41,16 +48,15 @@
 
             if (move_uploaded_file($foto_temp, $directorio_destino)) {
                 // Inserta los datos a la tabla "Anuncio" con el nombre de la imagen en la base de datos
-                $sql = "INSERT INTO anuncio (nombre_anuncio, precio, descripcion, foto,nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$fotoAnuncio','$usuAnuncio')";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-                $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                $mensaje_exito = "Se ha creado la publicación";
+                mysqli_query($conn, "INSERT INTO anuncio (foto, nombre_anuncio, precio, descripcion, nombre_usuario) VALUES ('$fotoAnuncio','$nomAnuncio','$precAnuncio','$descAnuncio','$usuAnuncio')");
+                $mensaje_exito = "Se ha creado la publicación exitosamente.";
             } else {
                 $mensaje_error = "Error al subir la foto.";
             }
             
+            // Cierra conexión
+            mysqli_close($conn);    
+        
         }
 
         if (!empty($mensaje_exito)) {
@@ -63,7 +69,6 @@
             echo '</div>';
         }
     ?>
-
     <main>
         <section class="crear-anuncio">
             <h1>Crear un Anuncio</h1>
@@ -79,22 +84,22 @@
                     <input type="file" id="imagen" name="imagen" accept="image/*" required>
                     
                     <label for="precio">Precio:</label>
-                    <input type="number" id="precio" name="precio" required placeholder="0">
+                    <input type="number" id="precio" name="precio" required placeholder="0"><br>
+                    <span id="publicacion-creada"><?php echo $insercion ?></span>
                     <button type="submit">Crear Anuncio</button>
                 </form>
             </div>
         </section>
     </main>
-    
+
+    <?php
+        include('footer.php');
+    ?>
     <script>
         //para prevenir el reenvio del formulario al recargar la pagina
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
         }  
     </script>
-
-    <?php
-        include('footer.php');
-    ?>
 </body>
 </html>

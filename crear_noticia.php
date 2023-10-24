@@ -12,7 +12,6 @@
 <body>
     <?php
         include("conexion.php");
-        
         // Inicia la sesión en la página
         session_start();
 
@@ -30,8 +29,14 @@
 
         $repeticionPK = "";
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-			$nomNoticia = $_POST['titulo'];
+            $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
+            
+            // Comprueba conexión
+            if($conn === false){
+                die("ERROR: No se ha podido conectar. " . mysqli_connect_error());
+            }
+            
+            $nomNoticia = $_POST['titulo'];
             $descNoticia = $_POST['descripcion'];
             $catNoticia = $_POST['categoria'];
             $usuNoticia = $_SESSION["usuario"];
@@ -44,14 +49,24 @@
             // Mueve el archivo temporal al directorio de fotos
             if (move_uploaded_file($foto_temp, $directorio_destino)) {
                 // Inserta los datos a la tabla "noticia" con el nombre de la imagen en la base de datos
-                $sql = "INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-                $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
-                $mensaje_exito = "Se ha creado la publicación";
+                mysqli_query($conn, "INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')");
+                $mensaje_exito = "Se ha creado la publicación exitosamente.";
             } else {
                 $mensaje_error = "Error al subir la foto.";
-            }  
+            }
+            
+            // Cierra conexión
+            mysqli_close($conn);  
+        }
+
+        if (!empty($mensaje_exito)) {
+            echo '<div class="mensaje-exito">';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
+            echo '</div>';
+        } elseif (!empty($mensaje_error)) {
+            echo '<div class="mensaje-error">';
+                echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+            echo '</div>';
         }
     ?>
 
@@ -79,16 +94,15 @@
             </form>
         </section>
     </main>
-    
+
+    <?php
+        include('footer.php');
+    ?>
     <script>
         //para prevenir el reenvio del formulario al recargar la pagina
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
         }  
     </script>
-
-    <?php
-        include('footer.php');
-    ?>
 </body>
 </html>

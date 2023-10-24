@@ -1,9 +1,6 @@
 <?php
     include("conexion.php");
 
-    // Inicia la sesión en la página
-    session_start();
-
     $elementosPorPagina = 9;
     $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 
@@ -67,13 +64,17 @@
     <link rel="stylesheet" href="hojaEstilos/fuentes.css">
     <link rel="stylesheet" href="hojaEstilos/estilos.css">
     <link rel="shortcut icon" href="img/favicon.png">
-    <script src="script.js"></script>
     <title>Anuncios - CIFP Txurdinaga</title>
 </head>
 <body>
     <?php
+        // Inicia la sesión en la página
+        session_start();
+
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
+            // Comprobar si el usuario es administrador
+            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
         } else {
             include('header_no_sesion.php');
         }
@@ -81,40 +82,21 @@
 
     <div id="buscador">
         <form method="GET" action="anuncio.php" id="search-form">
-            <div id="buscador-encima">
-                <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
-            </div>    
-            <div id="buscador-debajo">
-                <a href="anuncio.php"><img src="img/botonX.png" width="25px"></a>
-            </div>
+            <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
         </form>
     </div>
-
     <?php
-        if($totalProductos === 0){
-            echo '<div>';
-            echo'<p  id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
-            echo '</div>';
-        }
+            if($totalProductos === 0){
+                echo '<div>';
+                echo'<p  id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
+                echo '</div>';
+            }
     ?>
-
     <div class="productos">
         <?php
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
                 $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-
-                $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
-                if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
-                    if ($admin == 1) {
-                        $btnAnadirCarrito = '';
-                    } else if ($admin == 0) {
-                        $btnAnadirCarrito = '<button name="btn-anadir-carrito" onclick="agregarAlCarrito(' . $row['nombre_anuncio'] . ', ' . $row['precio'] . ')">Añadir al Carrito</button>';
-                    }
-                } else {
-                    $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
-                }
-
-                echo '<div class="producto">';
+                echo '<form class="producto" method="POST" action="anuncio.php">';
                     echo '<div class="imagen-producto">';
                         echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                     echo '</div>';
@@ -123,8 +105,8 @@
                         echo '<p>' . $row['descripcion'] . '</p>';
                         echo '<p class="precio">' . $row['precio'] . '€</p>';
                     echo '</div>';
-                    echo $btnAnadirCarrito;
-                echo '</div>';
+                    echo '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
+                echo '</form>';
             }
         ?>
     </div>
@@ -150,7 +132,6 @@
             ?>
         <a href="?pagina=<?php echo $paginaActual + 1; ?>" class="botonesPagina <?php if ($paginaActual >= $paginasTotales) echo 'a-disabled'; ?>">Siguiente →</a>
     </div>
-
     <script>
         var inputBuscador = document.getElementById("input-buscador");
 
@@ -167,29 +148,9 @@
                 // Enviar el formulario
                 form.submit();
             }
+
         });
-        
-        function agregarAlCarrito(nombreProducto, precio) {
-            // Obtener carrito actual o crear uno si no existe
-            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-            // Verificar si el producto ya está en el carrito
-            const productoExistente = carrito.find(item => item.nombre === nombreProducto);
-
-            if (productoExistente) {
-                productoExistente.cantidad += 1;
-            } else {
-                // Agregar el producto al carrito con cantidad 1
-                carrito.push({ nombre: nombreProducto, precio, cantidad: 1 });
-            }
-
-            // Guardar el carrito actualizado en localStorage
-            localStorage.setItem('carrito', JSON.stringify(carrito));
-        }
     </script>
-
-    <?php
-        include('footer.php');
-    ?>
+    <?php include('footer.php'); ?>
 </body>
 </html>

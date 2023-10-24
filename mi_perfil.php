@@ -3,8 +3,7 @@
 
     session_start();
 
-    $usuario = $_SESSION['usuario'];
-    $tipo_usuario = $_SESSION['admin'];
+    $usuario = $_SESSION["usuario"];
 
     $mensaje_exito = '';
     $mensaje_error = '';
@@ -28,12 +27,6 @@
     } else {
         // Manejar el caso en el que no se encuentren los datos del usuario
         $mensaje_error = "No se pudieron recuperar los datos del usuario.";
-    }
-    
-    if ($tipo_usuario == 1) {
-        $tipo_usuario = "Administrador";
-    } else if ($tipo_usuario == 0) {
-        $tipo_usuario = "Usuario";
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -87,6 +80,7 @@
 
 <!DOCTYPE html>
 <html lang="es-Es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,6 +90,7 @@
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Mi Perfil - CIFP Txurdinaga</title>
 </head>
+
 <body>
     <?php
         include('header_sesion.php');
@@ -112,7 +107,7 @@
     ?>
 
     <div class="mi-perfil-container">
-        <h1>Mi Perfil - <?php echo $tipo_usuario; ?></h1>
+        <h1>Mi Perfil</h1>
 
         <div id="datos-modo-visualizacion">
             <p><strong>Nombre Completo:</strong> <?php echo ucwords($nombre) . ' ' . ucwords($apellido); ?></p>
@@ -163,7 +158,7 @@
             <label for="foto">Foto de Perfil:</label>
             <input type="file" id="foto" name="foto" accept="image/*">
             <?php if ($modo_edicion) : ?>
-                <input type="hidden" name="foto_actual" value="<?php echo $foto; ?>">
+            <input type="hidden" name="foto_actual" value="<?php echo $foto; ?>">
             <?php endif; ?>
 
             <button type="submit" name="guardar">Guardar Cambios</button>
@@ -172,54 +167,58 @@
     </div>
 
     <script>
-        // JavaScript para cambiar entre el modo de visualización y el modo de edición
-        const editarDatosBtn = document.getElementById('editar-datos-btn');
-        const datosModoVisualizacion = document.getElementById('datos-modo-visualizacion');
-        const perfilForm = document.getElementById('perfilForm');
-        const cancelarBtn = document.getElementById('cancelar-btn');
-        const cerrarSesionBtn = document.getElementById('cerrar-sesion-btn');
-        const modal = document.querySelector('.modal');
-        const confirmarSiBtn = document.getElementById('confirmar-si');
-        const confirmarNoBtn = document.getElementById('confirmar-no');
+    // JavaScript para cambiar entre el modo de visualización y el modo de edición
+    const editarDatosBtn = document.getElementById('editar-datos-btn');
+    const datosModoVisualizacion = document.getElementById('datos-modo-visualizacion');
+    const perfilForm = document.getElementById('perfilForm');
+    const cancelarBtn = document.getElementById('cancelar-btn');
+    const cerrarSesionBtn = document.getElementById('cerrar-sesion-btn');
+    const modal = document.querySelector('.modal');
+    const confirmarSiBtn = document.getElementById('confirmar-si');
+    const confirmarNoBtn = document.getElementById('confirmar-no');
 
-        editarDatosBtn.addEventListener('click', () => {
-            datosModoVisualizacion.style.display = 'none';
-            perfilForm.style.display = 'block';
-            editarDatosBtn.style.display = 'none';
-            cerrarSesionBtn.style.display = 'none';
-            cancelarBtn.style.display = 'inline-block';
-        });
+    editarDatosBtn.addEventListener('click', () => {
+        datosModoVisualizacion.style.display = 'none';
+        perfilForm.style.display = 'block';
+        editarDatosBtn.style.display = 'none';
+        cerrarSesionBtn.style.display = 'none';
+        cancelarBtn.style.display = 'inline-block';
+    });
 
-        cerrarSesionBtn.addEventListener('click', () => {
-            // Muestra el desplegable
-            modal.style.display = 'block';
-            document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
-        });
+    cerrarSesionBtn.addEventListener('click', () => {
+        // Muestra el desplegable
+        modal.style.display = 'block';
+        document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+    });
 
-        confirmarSiBtn.addEventListener('click', () => {
-            // Aquí debes agregar la lógica para cerrar la sesión
-            // Puedes usar una redirección a la página de cierre de sesión
-            window.location.href =
-            'Cuentas/cerrar_sesion.php'; // Esto es un ejemplo, asegúrate de ajustar la URL a tu configuración
-        });
+    confirmarSiBtn.addEventListener('click', () => {
+        // Aquí debes agregar la lógica para cerrar la sesión
+        // Puedes usar una redirección a la página de cierre de sesión
+        window.location.href =
+        'Cuentas/cerrar_sesion.php'; // Esto es un ejemplo, asegúrate de ajustar la URL a tu configuración
+    });
 
-        confirmarNoBtn.addEventListener('click', () => {
-            // Cierra el desplegable y restaura el scroll
-            modal.style.display = 'none';
-            document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
-        });
 
-        cancelarBtn.addEventListener('click', () => {
-            datosModoVisualizacion.style.display = 'block';
-            perfilForm.style.display = 'none';
-            editarDatosBtn.style.display = 'block';
-            cerrarSesionBtn.style.display = 'block';
-            cancelarBtn.style.display = 'none';
-        });
+    confirmarNoBtn.addEventListener('click', () => {
+        // Cierra el desplegable y restaura el scroll
+        modal.style.display = 'none';
+        document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
+    });
+
+    cancelarBtn.addEventListener('click', () => {
+        datosModoVisualizacion.style.display = 'block';
+        perfilForm.style.display = 'none';
+        editarDatosBtn.style.display = 'block';
+        cerrarSesionBtn.style.display = 'block';
+        cancelarBtn.style.display = 'none';
+    });
     </script>
+
+
 
     <?php
         include('footer.php');
     ?>
 </body>
+
 </html>
