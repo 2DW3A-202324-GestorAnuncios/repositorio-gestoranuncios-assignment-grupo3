@@ -99,26 +99,25 @@
 
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
                 $_SESSION['foto'] = $row['foto']; 
-
             
                 $_SESSION['descripcion'] = $row['descripcion']; 
                         
                 $_SESSION['precio'] = $row['precio'];
 
+                $_SESSION['nombre'] = $row['nombre_anuncio']; 
+
+
                 echo '<div class="producto">';
 
-                echo '<form method="post" action="pagina_anuncio.php">';
+                echo '<form action="pagina_anuncio.php?nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'" method="POST">';
                         $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                         echo '<div class = "imagen-producto">';
                             echo '<input type="image" src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '" value="" name="foto" />';
                         echo '</div>';
                         echo '<div class = "contenedor-anuncio">';
                             echo '<h2 name="nombre">' . $row['nombre_anuncio'] . '</h2>';
-
                             echo '<p name="descripcion">' . $row['descripcion'] . '</p>';
-                        
                             echo '<p class="precio" name="precio">' . $row['precio'] . '€</p>';
-
                         echo '</div>';
                 echo '</form>';
                 echo '</div>';

@@ -7,6 +7,7 @@
     // Inicializa la variable para mostrar el formulario como verdadera
     $mostrar_formulario = false;
 
+   
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Validación de campos
         $usuario = $_POST['usuario'];
