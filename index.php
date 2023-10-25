@@ -25,10 +25,10 @@
 
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
-            // Comprobar si el usuario es administrador
-            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+            $usuario = $_SESSION['usuario'];
         } else {
             include('header_no_sesion.php');
+            $usuario = "";
         }
     ?>
 
@@ -144,6 +144,31 @@
         </div>
         <a href="anuncio.php"><button id="ver-mas-anuncios" class="ver-mas-button">Ver Más Anuncios</button></a>
     </section>
+
+    <script>
+        const btnAnadirCarrito = document.getElementById('btn-anadir-carrito');
+        const usuario = "<?php echo $usuario; ?>";
+
+        btnAnadirCarrito.addEventListener('click', () => {
+            const fotoProducto = document.getElementById('foto_producto').value;
+            const nombreProducto = document.getElementById('nombre_producto').value;
+            const precioProducto = document.getElementById('precio_producto').value;
+
+            // Paso 1: Obtener la lista de productos del carrito desde localStorage (si existe)
+            let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
+
+            // Paso 2: Agregar el nuevo producto a la lista
+            const nuevoProducto = {
+                foto: fotoProducto,
+                nombre: nombreProducto,
+                precio: precioProducto
+            };
+            carrito.push(nuevoProducto);
+
+            // Paso 3: Almacenar la lista actualizada en localStorage
+            localStorage.setItem('carrito => ' + usuario, JSON.stringify(carrito));
+        });
+    </script>
 
     <?php
         include('footer.php');

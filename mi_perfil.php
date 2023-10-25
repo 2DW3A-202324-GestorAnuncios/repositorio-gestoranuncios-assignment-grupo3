@@ -3,7 +3,9 @@
 
     session_start();
 
-    $usuario = $_SESSION["usuario"];
+    $usuario = $_SESSION['usuario'];
+    // echo '<input id="usuario" type="hidden" name="usuario" value="' . $usuario . '">';
+    $tipo_usuario = $_SESSION['admin'];
 
     $mensaje_exito = '';
     $mensaje_error = '';
@@ -167,15 +169,16 @@
     </div>
 
     <script>
-    // JavaScript para cambiar entre el modo de visualización y el modo de edición
-    const editarDatosBtn = document.getElementById('editar-datos-btn');
-    const datosModoVisualizacion = document.getElementById('datos-modo-visualizacion');
-    const perfilForm = document.getElementById('perfilForm');
-    const cancelarBtn = document.getElementById('cancelar-btn');
-    const cerrarSesionBtn = document.getElementById('cerrar-sesion-btn');
-    const modal = document.querySelector('.modal');
-    const confirmarSiBtn = document.getElementById('confirmar-si');
-    const confirmarNoBtn = document.getElementById('confirmar-no');
+        // JavaScript para cambiar entre el modo de visualización y el modo de edición
+        const editarDatosBtn = document.getElementById('editar-datos-btn');
+        const datosModoVisualizacion = document.getElementById('datos-modo-visualizacion');
+        const perfilForm = document.getElementById('perfilForm');
+        const cancelarBtn = document.getElementById('cancelar-btn');
+        const cerrarSesionBtn = document.getElementById('cerrar-sesion-btn');
+        const modal = document.querySelector('.modal');
+        const confirmarSiBtn = document.getElementById('confirmar-si');
+        const confirmarNoBtn = document.getElementById('confirmar-no');
+        // const usuario = document.getElementById('usuario').value;
 
     editarDatosBtn.addEventListener('click', () => {
         datosModoVisualizacion.style.display = 'none';
@@ -191,12 +194,12 @@
         document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
     });
 
-    confirmarSiBtn.addEventListener('click', () => {
-        // Aquí debes agregar la lógica para cerrar la sesión
-        // Puedes usar una redirección a la página de cierre de sesión
-        window.location.href =
-        'Cuentas/cerrar_sesion.php'; // Esto es un ejemplo, asegúrate de ajustar la URL a tu configuración
-    });
+        confirmarSiBtn.addEventListener('click', () => {
+            // Borrar el carrito del Local Storage del usuario
+            // localStorage.removeItem('carrito => ' + usuario);
+            // Puedes usar una redirección a la página de cierre de sesión
+            window.location.href = 'Cuentas/cerrar_sesion.php';
+        });
 
 
     confirmarNoBtn.addEventListener('click', () => {
