@@ -123,10 +123,10 @@
                         if ($admin == 1) {
                             $btnAnadirCarrito = '';
                         } else if ($admin == 0) {
-                            $btnAnadirCarrito = '<button class="btn-anadir-carrito" name="btn-anadir-carrito" data-id="' . $row['id_anuncio'] . '" data-foto="' . $row['foto'] . '" data-nombre="' . $row['nombre_anuncio'] . '" data-precio="' . $row['precio'] . '">Añadir al Carrito</button>';
+                            $btnAnadirCarrito = '<button class="btn-anadir-carrito" name="btn-anadir-carrito" data-id="' . $row['id_anuncio'] . '" data-foto="' . $row['foto'] . '" data-nombre="' . $row['nombre_anuncio'] . '" data-descripcion="' . $row['descripcion'] . '" data-precio="' . $row['precio'] . '">Añadir al Carrito</button>';
                         }
                     } else {
-                        $btnAnadirCarrito = '<button class="btn-anadir-carrito" type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
+                        $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
                     }
 
                     echo '<div class="productos-slide-anuncios">';
@@ -150,37 +150,50 @@
         const btnAnadirCarrito = document.getElementsByClassName('btn-anadir-carrito');
         const usuario = "<?php echo $usuario; ?>";
 
+        // Obtener la lista de productos del carrito desde localStorage (si existe)
+        const carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
+
+        // Recorre los botones y deshabilita los que estén en el carrito
         for (const btn of btnAnadirCarrito) {
+            const idAnuncio = btn.getAttribute('data-id');
+            const estaEnCarrito = carrito.some(item => item.id === idAnuncio);
+
+            if (estaEnCarrito) {
+                btn.disabled = true;
+                btn.style.backgroundColor = '#ccc';
+                btn.style.color = '#666';
+                btn.style.cursor = 'not-allowed';
+            }
+
             btn.addEventListener('click', (e) => {
-                const btnId = e.currentTarget.getAttribute('data-id');
-                // const idAnuncio = document.getElementById(btnId).value;
-                const btnFoto = e.currentTarget.getAttribute('data-foto');
-                // const fotoAnuncio = document.getElementById(btnFoto).value;
-                const btnNombre = e.currentTarget.getAttribute('data-nombre');
-                // const nombreAnuncio = document.getElementById(btnNombre).value;
-                const btnPrecio = e.currentTarget.getAttribute('data-precio');
-                // const precioAnuncio = document.getElementById(btnPrecio).value;
-                console.log(btnId);
+                const fotoAnuncio = e.currentTarget.getAttribute('data-foto');
+                const nombreAnuncio = e.currentTarget.getAttribute('data-nombre');
+                const descripcionAnuncio = e.currentTarget.getAttribute('data-descripcion');
+                const precioAnuncio = e.currentTarget.getAttribute('data-precio');
 
-                // Paso 1: Obtener la lista de productos del carrito desde localStorage (si existe)
-                let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
-
-                // Paso 2: Agregar el nuevo producto a la lista
+                // Agregar el nuevo producto al carrito
                 const nuevoProducto = {
-                    id: btnId,
-                    foto: btnFoto,
-                    nombre: btnNombre,
-                    precio: btnPrecio
+                    id: idAnuncio,
+                    foto: fotoAnuncio,
+                    nombre: nombreAnuncio,
+                    descripcion: descripcionAnuncio,
+                    precio: precioAnuncio
                 };
 
                 carrito.push(nuevoProducto);
 
-                // Paso 3: Almacenar la lista actualizada en localStorage
+                // Almacenar la lista actualizada en localStorage
                 localStorage.setItem('carrito => ' + usuario, JSON.stringify(carrito));
+
+                // Deshabilitar el botón después de hacer clic
+                btn.disabled = true;
+                btn.style.backgroundColor = '#ccc';
+                btn.style.color = '#666';
+                btn.style.cursor = 'not-allowed';
             });
         }
     </script>
-
+    
     <?php
         include('footer.php');
     ?>

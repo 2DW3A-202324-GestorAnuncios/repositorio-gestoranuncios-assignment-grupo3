@@ -21,45 +21,67 @@
     
     <div class="carrito-container">
         <h2>Carrito de Compra</h2>
-        <table id="carrito-table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Producto</th>
-                    <th>Precio</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div id="carrito-items"></div>
     </div>
 
     <script>
         // Obtener los datos del carrito desde el Local Storage
         const usuario = "<?php echo $usuario; ?>";
-        const carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario));
+        let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
 
-        // Verificar si hay datos en el carrito
-        if (carrito && carrito.length > 0) {
-            const tableBody = document.querySelector("#carrito-table tbody");
-
-            // Iterar a través de los productos en el carrito y agregarlos a la tabla
-            carrito.forEach(producto => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td id="celdaImg"><img src="img/anuncios/${producto.foto}" alt="${producto.nombre}"></td>
-                    <td>${producto.nombre}</td>
-                    <td>${producto.precio}€</td>
-                `;
-                tableBody.appendChild(row);
-            });
-            tableBody.append(localStorage.getItem('carrito => ' + usuario));
-        } else {
-            // Si el carrito está vacío, muestra un mensaje
-            const table = document.getElementById("carrito-table");
-            table.innerHTML = `
-                <p>El carrito está vacío.</p>
-            `;
+        // Función para eliminar un producto del carrito
+        function eliminarProducto(id) {
+            carrito = carrito.filter(producto => producto.id !== id);
+            actualizarCarrito();
         }
+
+        // Función para actualizar el carrito en el Local Storage y en la interfaz de usuario
+        function actualizarCarrito() {
+            localStorage.setItem('carrito => ' + usuario, JSON.stringify(carrito));
+
+            // Limpiar la vista del carrito
+            const carritoContainer = document.getElementById("carrito-items");
+            carritoContainer.innerHTML = "";
+
+            // Recrear la vista del carrito con los productos actualizados
+            carrito.forEach(producto => {
+                const itemContainer = document.createElement("div");
+                itemContainer.classList.add("carrito-item");
+
+                const fotoCarrito = document.createElement("div");
+                fotoCarrito.classList.add("foto-carrito");
+                fotoCarrito.innerHTML = `<img src="img/anuncios/${producto.foto}" alt="${producto.nombre}">`;
+
+                const carritoContent = document.createElement("div");
+                carritoContent.classList.add("carrito-content");
+                carritoContent.innerHTML = `
+                    <p class="producto-nombre">${producto.nombre}</p>
+                    <p class="producto-descripcion">${producto.descripcion}</p>
+                    <p class="producto-precio">${producto.precio}€</p>
+                `;
+
+                const eliminarButton = document.createElement("button");
+                eliminarButton.classList.add("eliminar-button");
+                eliminarButton.setAttribute("data-id", producto.id);
+                eliminarButton.innerHTML = '<img src="img/papelera.png" alt="Eliminar">';
+                eliminarButton.addEventListener('click', () => eliminarProducto(producto.id));
+
+                itemContainer.appendChild(fotoCarrito);
+                itemContainer.appendChild(carritoContent);
+                itemContainer.appendChild(eliminarButton);
+
+                carritoContainer.appendChild(itemContainer);
+            });
+
+            if (carrito.length === 0) {
+                // Si el carrito está vacío, muestra un mensaje
+                carritoContainer.innerHTML = `<p class="carrito-vacio">El carrito está vacío.</p>`;
+                localStorage.removeItem('carrito => ' + usuario);
+            }
+        }
+
+        // Cargar el carrito inicialmente
+        actualizarCarrito();
     </script>
 
     <?php
