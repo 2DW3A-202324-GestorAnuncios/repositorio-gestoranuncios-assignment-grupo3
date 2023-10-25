@@ -566,9 +566,11 @@ header {
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;
+    border: 2px solid #0077b6;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     flex: 0 0 calc(25% - 20px);
+    margin-bottom: 20px;
 }
 
 @media only screen and (max-width: 1100px) {
