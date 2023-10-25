@@ -17,6 +17,9 @@
             <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
             <div class="centrado-header">Mi Perfil</div>
         </a>
+        <a class="header-buttons" href="carrito_compra.php">
+            <img src="img/carrito_compra.png" alt="Inicio" width="50px" height="50px" style="margin-top: 20px;">
+        </a>
     </div>
 </header>
 
@@ -31,7 +34,11 @@
             if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
                 echo '<li class="menu-item"><a href="validar.php">Validar</a></li>';
             }
+            else{
+                echo'<li class="menu-item"><a href="contacto.php">Contacto</a></li>';
+            }
         ?>
+
     </ul>
 </div>
 <nav>

@@ -16,18 +16,18 @@ $stmt->bindParam(':nombre_usuario', $usuario);
 $stmt->execute();
 $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($usuario_data) {
-    // Datos del usuario obtenidos con éxito
-    $nombre = $usuario_data['nombre'];
-    $apellido = $usuario_data['apellido'];
-    $fecha_nac = $usuario_data['fecha_nac'];
-    $sexo = $usuario_data['sexo'];
-    $correo = $usuario_data['correo'];
-    $foto = $usuario_data['foto'];
-} else {
-    // Manejar el caso en el que no se encuentren los datos del usuario
-    $mensaje_error = "No se pudieron recuperar los datos del usuario.";
-}
+    if ($usuario_data) {
+        // Datos del usuario obtenidos con éxito
+        $nombre = $usuario_data['nombre'];
+        $apellido = $usuario_data['apellido'];
+        $fecha_nac = $usuario_data['fecha_nac'];
+        $sexo = $usuario_data['sexo'];
+        $correo = $usuario_data['correo'];
+        $foto = $usuario_data['foto'];
+    } else {
+        // Manejar el caso en el que no se encuentren los datos del usuario
+        $mensaje_error = "No se pudieron recuperar los datos del usuario.";
+    }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['editar'])) {

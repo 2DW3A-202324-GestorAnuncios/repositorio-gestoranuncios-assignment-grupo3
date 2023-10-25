@@ -10,7 +10,8 @@
     <title>Crear Noticia - CIFP Txurdinaga</title>
 </head>
 <body>
-<?php
+    <?php
+        include("conexion.php");
         // Inicia la sesión en la página
         session_start();
 
@@ -52,6 +53,14 @@
             } else {
                 $inserción = "Error al subir la foto.";
             }  
+            if (!empty($mensaje_exito)) {
+                echo '<div class="mensaje-exito">';
+                    echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
+                echo '</div>';
+            } elseif (!empty($mensaje_error)) {
+                echo '<div class="mensaje-error">';
+                    echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+                echo '</div>';
         }
     ?>
     <?php 

@@ -1,7 +1,7 @@
 <?php
     include("conexion.php");
 
-    $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1'";
+    $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1' ORDER BY id_anuncio DESC LIMIT 10";
     $resultProductos = $conn->query($sqlProductos);
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' ORDER BY id_noticia DESC LIMIT 3";
@@ -49,7 +49,6 @@
                     echo '</div>';
                 }
             ?>
-            
             <?php
                 $slideNumber = 1;
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
@@ -57,7 +56,7 @@
                     echo '<div class="numbertext">' . $slideNumber . ' / ' . $resultNoticias->rowCount() . '</div>';
                     // Comprobar si la noticia tiene una imagen específica o no
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
-                    echo '<a href=""><img src="' . $imagenURL . '" style="width:100%"></a>';
+                    echo '<img src="' . $imagenURL . '" style="width:100%">';
                     echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</div>';
                     $slideNumber++;
@@ -136,8 +135,8 @@
                                     echo '<h2 name="nombre">' . $row['nombre_anuncio'] . '</h2>';
                                     echo '<p name="descripcion">' . $row['descripcion'] . '</p>';
                                     echo '<p class="precio" name="precio">' . $row['precio'] . '€</p>';
-                                    echo '<button>Comprar</button>';
-                                echo '</div>';
+                                    echo '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
+                                    echo '</div>';
                             echo '</form>';
                         echo '</div>';
                     }

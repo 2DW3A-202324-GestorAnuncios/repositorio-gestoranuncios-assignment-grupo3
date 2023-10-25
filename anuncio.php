@@ -53,7 +53,6 @@
     }
 
     $stmtProductos->execute();
-    
 ?>
 
 <!DOCTYPE html>
@@ -82,8 +81,13 @@
     ?>
 
     <div id="buscador">
-        <form method="GET" action="anuncio.php" id="search-form">
-            <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
+    <form method="GET" action="anuncio.php" id="search-form">
+            <div id="buscador-encima">
+                <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
+            </div>    
+            <div id="buscador-debajo">
+                <a href="anuncio.php"><img src="img/botonX.png" width="25px"></a>
+            </div>
         </form>
     </div>
     <?php
@@ -94,9 +98,7 @@
             }
     ?>
     <div class="productos">
-        <?php 
-             
-
+        <?php
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
                 
                 echo '<div class="producto">';
@@ -111,21 +113,37 @@
                             echo '<p name="descripcion">' . $row['descripcion'] . '</p>';
                             echo '<p class="precio" name="precio">' . $row['precio'] . '€</p>';
                         echo '</div>';
+                        echo '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
                 echo '</form>';
                 echo '</div>';
             }
-            
-            
         ?>
     </div>
 
     <div id="paginacion">
         <a href="?pagina=<?php echo $paginaActual - 1; ?>" class="botonesPagina <?php if ($paginaActual <= 1) echo 'a-disabled'; ?>">← Anterior</a>
-        
-        <?php for ($i = 1; $i <= $paginasTotales; $i++): ?>
-            <a class="botonesPagina <?php if ($i == $paginaActual) echo 'a-disabled'; ?>" href="?pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
-        <?php endfor; ?>
+            <?php
+            // Obtener la página actual
+            $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 
+            // Calcular el número total de páginas (supongamos que tienes esto en $paginasTotales)
+
+            // Mostrar la página actual más 2 y la última página
+            echo '<div id="paginacion">';
+            
+            echo '<a class="botonesPagina" href="?pagina= 1">1</a>';
+            echo '...';
+            for ($i = max(1, $paginaActual - 1); $i <= min($paginaActual + 1, $paginasTotales); $i++) {
+                if($i != 1){
+                    echo '<a class="botonesPagina ' . ($i == $paginaActual ? 'a-disabled' : '') . '" href="?pagina=' . $i . '">' . $i . '</a>';
+                }
+            }
+            if ($paginaActual < $paginasTotales - 1) {
+                echo '...';
+                echo '<a class="botonesPagina" href="?pagina=' . $paginasTotales . '">' . $paginasTotales . '</a>';
+            }
+            echo '</div>';
+            ?>
         <a href="?pagina=<?php echo $paginaActual + 1; ?>" class="botonesPagina <?php if ($paginaActual >= $paginasTotales) echo 'a-disabled'; ?>">Siguiente →</a>
     </div>
     <script>

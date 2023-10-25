@@ -10,7 +10,8 @@
     <title>Crear Anuncio - CIFP Txurdinaga</title>
 </head>
 <body>
-<?php
+    <?php
+        include("conexion.php");
         // Inicia la sesión en la página
         session_start();
 
@@ -53,13 +54,20 @@
                 $inserción = "Error al subir la foto.";
             }
             
-            
+            // Cierra conexión
+            mysqli_close($conn);    
+        
         }
-    ?>
-    <?php 
-        echo'<div>';
-            echo'<h3 class="centrado">'.$insercion.'</h3>';
-        echo'</div>';
+
+        if (!empty($mensaje_exito)) {
+            echo '<div class="mensaje-exito">';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
+            echo '</div>';
+        } elseif (!empty($mensaje_error)) {
+            echo '<div class="mensaje-error">';
+                echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+            echo '</div>';
+        }
     ?>
     <main>
         <section class="crear-anuncio">

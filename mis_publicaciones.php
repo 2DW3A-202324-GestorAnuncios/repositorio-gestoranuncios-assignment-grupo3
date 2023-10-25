@@ -45,13 +45,13 @@
 
     ?>
     <div class="productos">
-            <?php 
+            <?php
                 while ($row = $stmtAnuncios->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="producto">';
                         $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                         echo '<form method="POST" action="validar.php">';
                             echo '<div class="imagen-validar">';
-                                echo '<a href=""><img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
+                                echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                             echo '</div>';
                             echo '<div class = "contenedor-anuncio">';
                                 echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
