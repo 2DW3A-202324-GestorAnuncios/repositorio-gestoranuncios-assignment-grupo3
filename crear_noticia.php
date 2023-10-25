@@ -23,14 +23,18 @@
             include('header_no_sesion.php');
         }
         
-        $insercion = "";
+        $mensaje_exito = '';
+        $mensaje_error = '';
         $usuario = $_SESSION["usuario"];
 
         $repeticionPK = "";
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
             
-            include("conexion.php");
-
+            // Comprueba conexión
+            if($conn === false){
+                die("ERROR: No se ha podido conectar. " . mysqli_connect_error());
+            }
             
             $nomNoticia = $_POST['titulo'];
             $descNoticia = $_POST['descripcion'];
@@ -45,42 +49,36 @@
             // Mueve el archivo temporal al directorio de fotos
             if (move_uploaded_file($foto_temp, $directorio_destino)) {
                 // Inserta los datos a la tabla "noticia" con el nombre de la imagen en la base de datos
-                $sql = "INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-                $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
-                $insercion = "Se ha creado la publicación";
+                mysqli_query($conn, "INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')");
+                $mensaje_exito = "Se ha creado la publicación exitosamente.";
             } else {
-                $inserción = "Error al subir la foto.";
+                $mensaje_error = "Debes introducir una foto.";
             }  
-            if (!empty($mensaje_exito)) {
-                echo '<div class="mensaje-exito">';
-                    echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
-                echo '</div>';
-            } elseif (!empty($mensaje_error)) {
-                echo '<div class="mensaje-error">';
-                    echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
-                echo '</div>';
+        }
+
+        if (!empty($mensaje_exito)) {
+            echo '<div class="mensaje-exito">';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
+            echo '</div>';
+        } else if (!empty($mensaje_error)) {
+            echo '<div class="mensaje-error">';
+                echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+            echo '</div>';
         }
     ?>
-    <?php 
-        echo'<div>';
-            echo'<h3 class="centrado">'.$insercion.'</h3>';
-        echo'</div>';
-    ?>
+
     <main>
         <section class="crear-noticia">
             <h1>Crear Noticia</h1>
-            <div class="form-crear-noticia">
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form class="form-crear-noticia" action="#" method="post" enctype="multipart/form-data">
                 <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" required>
+                <input type="text" id="titulo" name="titulo">
 
                 <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                <textarea id="descripcion" name="descripcion" rows="4" ></textarea>
 
                 <label for="imagen">Imagen:</label>
-                <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                <input type="file" id="imagen" name="imagen" accept="image/*">
 
                 <label for="categoria">Categoría:</label>
                 <select id="categoria" name="categoria">
@@ -91,18 +89,11 @@
                 </select>
                 <button type="submit">Crear Noticia</button>
             </form>
-            </div>
         </section>
     </main>
-
+    
     <?php
         include('footer.php');
     ?>
-    <script>
-        //para prevenir el reenvio del formulario al recargar la pagina
-        if ( window.history.replaceState ) {
-            window.history.replaceState( null, null, window.location.href );
-        }  
-    </script>
 </body>
 </html>

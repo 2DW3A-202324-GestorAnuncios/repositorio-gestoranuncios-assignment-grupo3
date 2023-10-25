@@ -1,4 +1,4 @@
-var num = 1;
+var num = 0;
 
 function validarCampos() { 
   num = 0;
@@ -72,8 +72,12 @@ function validarCampos() {
     num=num+1;
   }
   if(cont==0){
-    error3.innerText = "";
-    num = 0;
+    document.getElementById("expresiones").innerHTML = "";   
+    var salto = document.createElement('br');
+    field.appendChild(document.createTextNode("Tu contraseña es adecuada"));
+    field.setAttribute('class','correcto');
+    box.appendChild(field);
+    field.appendChild(salto);
   }
 //confirmar contraseña
   var c = document.getElementById('validar-contraseña').value;
@@ -81,11 +85,11 @@ function validarCampos() {
   const error4 = document.getElementById("error4");
   if (c === c2) {
     error4.innerText = "";
-    num = 0;
 
   }else{
     error4.innerText = "Las contraseñas tienen que ser identicas";
-    num=num+6;
+    num=num+1;
+
   }
 //validar usuario
   const usuario = document.getElementById("usuario").value;
