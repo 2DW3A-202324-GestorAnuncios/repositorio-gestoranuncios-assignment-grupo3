@@ -74,7 +74,7 @@ header {
 #logo {
     margin-left: 75px;
 }
-#logo2 {
+#logo2{
     visibility: hidden;
     margin-left: -280px;
     width: 1px;
@@ -86,8 +86,7 @@ header {
     #logo {
         visibility: hidden;
     }
-    
-    #logo2 {
+    #logo2{
         visibility: visible;
         height: 90px;
         width: auto;
@@ -135,8 +134,7 @@ header {
         position: relative;
         margin-top: -20px;
     }
-    
-    .centrado-header {
+    .centrado-header{
         margin-top: -15px;
     }
 }
@@ -196,8 +194,7 @@ header {
         margin-right: 30px;
         transition: 0.3s;
     }
-    
-    .despImg:hover {
+    .despImg:hover{
         cursor: pointer;
         border: 3px solid rgba(0,0,0, 1);
     }
@@ -216,7 +213,6 @@ header {
     .navdesp > li {
         float:right;
     }
-    
     .navdesp li a {
         color: white;
         text-decoration:none;
@@ -225,7 +221,6 @@ header {
         text-align: center;
         font-size: 20px;
     }
-    
     .navdesp li ul {
         margin-top: -25px;
         display:none;
@@ -234,15 +229,12 @@ header {
         width: 150px;
         margin-left: -118px;
     }
-    
     .navdesp li:hover > ul {
         display:block;
     }
-    
     .navdesp li ul li {
         position:relative;
     }
-    
     .navdesp li ul li ul {
         top:0px;
     }
@@ -251,35 +243,30 @@ header {
     .coloresDesp li:first-child {
         background-color: #57aa26;
     }
-    
     .coloresDesp li:first-child:hover {
         background-color: #3d771b;
     }
     .coloresDesp li:nth-child(2) {
         background-color: #1aa4c1;
     }
-    
     .coloresDesp li:nth-child(2):hover {
         background-color: #106c7e;
     }
     .coloresDesp li:nth-child(3) {
         background-color: #fcc204;
     }
-    
     .coloresDesp li:nth-child(3):hover {
         background-color: #c09404;
     }
     .coloresDesp li:nth-child(4) {
         background-color: #e95f15;
     }
-    
     .coloresDesp li:nth-child(4):hover {
         background-color: #bb4d11;
     }
     .coloresDesp li:nth-child(5) {
         background-color: #229c69;
     }
-    
     .coloresDesp li:nth-child(5):hover {
         background-color: #19734e;
     }
@@ -356,6 +343,7 @@ header {
     margin: 0 auto;
     position: relative;
     overflow: hidden;
+    
 }
 
 /* Media query para ajustar el tamaño del carrusel a la pagina */
@@ -377,12 +365,12 @@ header {
     vertical-align: middle;
     max-width: 700px;
     min-width: 700px;
+
     height: 430px;
     border-radius: 15px;
     position: absolute;
     left: 0;
     right: 0;
-    border-radius: 15px 15px 0 0;
 }
 
 /* Media query para ajustar las imagenes del carrusel a la pagina */
@@ -394,8 +382,7 @@ header {
         border-radius: 15px;
         position: absolute;
         margin: auto;
-        border-radius: 15px 15px 0 0;
-    }
+    }  
 }
 
 /* Da estilo a las flechas */
@@ -417,7 +404,7 @@ header {
     right: 0;
     border-radius: 7px 0 0 7px;
 }
-.prev {
+.prev{
     left: 0;
     border-radius: 0 7px 7px 0;
 }
@@ -437,11 +424,10 @@ header {
     background-color: rgba(51, 51, 51, 0.8);
     font-style: italic;
     position: absolute;
-    bottom: 30px;
+    bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
-    border-radius: 0 0 15px 15px;
 }
 
 /* Media query para ajustar el texto del carrusel a la pagina */
@@ -460,8 +446,7 @@ header {
         right: 0;
         margin: auto;
         height: 90px;
-        border-radius: 0 0 15px 15px;
-    }
+    } 
 }
 
 /* Da forma y estilo a los puntos del carrusel */
@@ -505,7 +490,7 @@ header {
 .titulo-llamativo {
     font-size: 36px;
     color: #0077b6;
-    margin: 10px 0 30px;
+    margin: 0;
     padding-bottom: 10px;
     border-bottom: 2px solid #0077b6;
 }
@@ -541,20 +526,6 @@ header {
 
 /* Media queries para ajustar el apartado de 
 anuncios del indice a dispositivos distintos */
-@media only screen and (max-width: 1100px) {
-    .productos-anuncios-inicio {
-        display: flex;
-        justify-content: flex-start;
-        gap: 20px;
-        flex-wrap: wrap;
-        flex: 100%;
-        overflow-x: auto;
-        margin-top: 20px;
-        padding: 0 20px;
-        width: 100%;
-    }
-}
-
 @media only screen and (max-width: 1500px) and (min-width: 1101px) {
     .productos-anuncios-inicio {
         display: flex;
@@ -597,9 +568,6 @@ anuncios del indice a dispositivos distintos */
 }
 
 .productos-slide-anuncios {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;
@@ -759,18 +727,8 @@ se adapten a dispositivos distintos */
 }
 
 #input-buscador:focus {
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-#buscador-encima {
-    z-index: 1;
-}
-
-#buscador-debajo {
-    z-index: 2;
-    margin-top: -47px;
-    margin-left: 270px;
+    background-color: #fff; /* Cambia el fondo al enfocar */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega una suave sombra al enfocar */
 }
 
 #mensajeBusqueda {
@@ -787,7 +745,7 @@ se adapten a dispositivos distintos */
     flex-direction: column;
     align-items: center;
     border: 1px solid #ccc;
-    padding: 10px 20px;
+    padding: 20px;
     text-align: center;
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -799,20 +757,16 @@ se adapten a dispositivos distintos */
     font-size: 20px;
 }
 
-.imagen-producto {
+.imagen-producto,
+.imagen-validar {
     flex: 1;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
 }
 
 /* Ajusta el tamaño de las fotos en los anuncios */
 .imagen-producto input,
 .imagen-validar img {
-.imagen-producto img {
     max-width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: 300px;
     margin-bottom: 10px;
 }
 
@@ -825,40 +779,14 @@ se adapten a dispositivos distintos */
     justify-content: center;
 }
 
-.contenedor-anuncio h2::first-letter,
-.contenedor-anuncio p::first-letter {
+.producto h2::first-letter,
+.producto p::first-letter {
     text-transform: uppercase;
 }
 
 /* Da forma a los botones de validar */
 .producto button {
-.productos-slide-anuncios button[name="btn-anadir-carrito"],
-.producto button[name="btn-anadir-carrito"] {
-    border: none;
-    outline: 0;
-    padding: 12px;
-    color: white;
     background-color: #007bff;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.productos-slide-anuncios button[name="btn-anadir-carrito"]:hover,
-.producto button[name="btn-anadir-carrito"]:hover {
-    opacity: 0.7;
-}
-
-.btn-container {
-    display: inline;
-}
-
-.producto button[name="validar-anuncio"],
-.producto button[name="eliminar-anuncio"],
-.producto button[name="validar-noticia"],
-.producto button[name="eliminar-noticia"] {
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -866,30 +794,13 @@ se adapten a dispositivos distintos */
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-    margin: 0 20px 20px;
 }
 
-.producto button[name="validar-anuncio"],
-.producto button[name="validar-noticia"] {
-    background-color: #57aa26;
+.producto button:hover {
+    background-color: #0056b3;
 }
 
-.producto button[name="validar-anuncio"]:hover,
-.producto button[name="validar-noticia"]:hover {
-    background-color: #56aa26c3;
-}
-
-.producto button[name="eliminar-anuncio"],
-.producto button[name="eliminar-noticia"] {
-    background-color: red;
-}
-
-.producto button[name="eliminar-anuncio"]:hover,
-.producto button[name="eliminar-noticia"]:hover {
-    background-color: rgba(255, 0, 0, 0.673);
-}
-
-#paginacion {
+#paginacion{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -985,25 +896,20 @@ mas pequeño */
     transition: border-color 0.3s ease;
 }
 
-.filtro-label:hover {
-	transform: scale(1.2);
-}
-
 .filtro-label img:hover {
-	border-color: #000000;
+    border-color: #000000;
 }
 
 #borrarFiltros {
-    display: block;
-    color: black;
-    text-decoration: underline;
-    cursor: pointer;
-    margin-top: 10px;
+    display: block; /* Mostrar el enlace */
+    color: black; /* Color del texto */
+    text-decoration: underline; /* Subrayar el texto para que parezca un enlace */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el enlace */
+    margin-top: 10px; /* Agregar un espacio entre el título y el enlace */
 }
 
 #borrarFiltros:hover {
-    color: blue;
-    transform: scale(1.2);
+    color: blue; /* Cambiar el color del texto al pasar el cursor sobre el enlace */
 }
 
 /* Da forma al container de noticias */
@@ -1423,16 +1329,14 @@ a dispositivos distintos */
         width: auto;
         display: block;
     }
-    
-    #footer-right {
+    #footer-right{
         width: 500px;
     }
-    
-    #seccion-logos-arriba {
+    #seccion-logos-arriba{
         width: 500px;
+        
     }
 }
-
 @media only screen and (max-width: 764px) {
     #footer {
         background-color: #ffffff;
@@ -1442,16 +1346,13 @@ a dispositivos distintos */
         width: auto;
         display: block;
     }
-    
-    #footer-left {
+    #footer-left{
         min-width: 200px;
     }
-    
-    #footer-center {
+    #footer-center{
         min-width: 200px;
     }
-    
-    #footer-right {
+    #footer-right{
         width: 500px;
     }
     #seccion-logos-arriba{
@@ -1468,12 +1369,10 @@ a dispositivos distintos */
         width: auto;
         display: block;
     }
-    
-    #footer-right {
+    #footer-right{
         width: 400px;
     }
-    
-    #seccion-logos-arriba {
+    #seccion-logos-arriba{
         width: 400px;
         display: flex;
         flex-direction: column;
@@ -1481,8 +1380,7 @@ a dispositivos distintos */
         align-items: center;
         justify-content: center;        
     }
-    
-    #seccion-logos-abajo {
+    #seccion-logos-abajo{
         width: 400px;
         display: flex;
         flex-direction: column;
@@ -1938,12 +1836,6 @@ span {
     background-color: #0056b3;
 }
 
-.mensaje-success {
-    background-color: #ddffdd;
-    border-left: 6px solid #04AA6D;
-    padding: 4px 12px;
-}
-
 /* Estilos para el formulario Mi Perfil */
 .mi-perfil-container {
     max-width: 400px;
@@ -2040,11 +1932,7 @@ span {
 }
 
 /* Da forma al pop-up de cerrar sesion en "mi perfil" */
-.modal,
-.modalValidarA,
-.modalEliminarA,
-.modalValidarN,
-.modalEliminarN {
+.modal {
     display: none;
     position: fixed;
     top: 0;
@@ -2057,12 +1945,10 @@ span {
     justify-content: center;
     align-items: center;
 }
-
 /* Clase para desactivar el scroll */
 .no-scroll {
     overflow: hidden;
 }
-
 .modal-content {
     margin-top: 15%;
     width: 27%;
@@ -2071,38 +1957,26 @@ span {
     padding: 20px;
     border-radius: 5px;
     text-align: center;
+    
 }
 
-.modal button,
-.modalValidarA button,
-.modalEliminarA button,
-.modalValidarN button,
-.modalEliminarN button {
-    background-color: transparent;
+.modal button {
+    background-color: transparent; /* Establece el fondo del botón como transparente */
     border-radius: 5px;
     padding: 10px 20px;
     margin: 10px;
     cursor: pointer;
 }
 
-.modal #confirmar-si,
-.modalValidarA #confirmar-si,
-.modalEliminarA #confirmar-si,
-.modalValidarN #confirmar-si,
-.modalEliminarN #confirmar-si {
-    background-color: white;
+.modal #confirmar-si {
     color: blue;
     border-color: blue;
 }
 
-.modal #confirmar-no,
-.modalValidarA #confirmar-no-validarA,
-.modalEliminarA #confirmar-no-eliminarA,
-.modalValidarN #confirmar-no-validarN,
-.modalEliminarN #confirmar-no-eliminarN {
-    background-color: blue;
+.modal #confirmar-no {
+    background-color: blue; /* Fondo de "No" en azul */
     border-color: blue;
-    color: white;
+    color: white; /* Texto en blanco */
 }
 
 /* Da forma al apartado de foto de perfil en "mi perfil" */
@@ -2132,19 +2006,18 @@ span {
 
 /* Da forma a los mensajes de exito y error en "mi perfil" */
 .mensaje-exito, .mensaje-error {
-    font-size: 1.6em;
-    margin: 15px 30px;
-    padding: 4px 12px;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 10px;
+    margin: 10px auto;
 }
 
 .mensaje-exito {
-    background-color: #ddffdd;
-    border-left: 6px solid #04AA6D;
+    color: green;
 }
 
 .mensaje-error {
-    background-color: #ffdddd;
-    border-left: 6px solid #f44336;
+    color: red;
 }
 
 
@@ -2212,59 +2085,3 @@ span {
     
 }
 
-/* Estilos del Carrito de Compra */
-.carrito-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.carrito-container h2 {
-    text-align: center;
-    color: #333;
-}
-
-.carrito-container table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.carrito-container table th,
-.carrito-container table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-}
-
-.carrito-container thead {
-    background-color: #333;
-    color: #fff;
-}
-
-.carrito-container table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.carrito-container p {
-    text-align: right;
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.carrito-container #celdaImg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.carrito-container img {
-    max-width: 200px;
-    height: 100%;
-    object-fit: cover;
-}

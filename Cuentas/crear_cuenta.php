@@ -132,11 +132,16 @@
         </form>
     </div>
    
+   
     <script>
         //para el reenvio del formulario al recargar la pagina
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
-        }
+        }  
+       
+
+
     </script>
 </body>
 </html>
+

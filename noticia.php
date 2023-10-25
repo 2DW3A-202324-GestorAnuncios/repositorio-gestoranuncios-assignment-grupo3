@@ -6,6 +6,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="es-Es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,9 +14,9 @@
     <link rel="stylesheet" href="hojaEstilos/fuentes.css">
     <link rel="stylesheet" href="hojaEstilos/estilos.css">
     <link rel="shortcut icon" href="img/favicon.png">
-    <script src="script.js"></script>
     <title>Noticias - CIFP Txurdinaga</title>
 </head>
+
 <body>
     <?php
         // Inicia la sesión en la página
@@ -60,7 +61,6 @@
                 </form>
             </div>
         </div>
-
         <div class="noticias3">
             <h2>Noticias</h2>
             <div id="noticiasContainer" class="noticias-container">
@@ -85,56 +85,56 @@
             </div>
         </div>
     </div>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Obtén una referencia al formulario de filtro
-            const filtroForm = document.getElementById("filtroForm");
-
-            // Obtén una referencia al enlace "Borrar filtros"
-            const borrarFiltrosLink = document.getElementById("borrarFiltros");
-
-            // Agrega un evento de cambio al formulario
-            filtroForm.addEventListener("change", function() {
-                // Obtén el valor de la categoría seleccionada
-                const selectedCategoria = document.querySelector('input[name="categoria"]:checked').value;
-
-                // Obtén todas las noticias
-                const noticias = document.querySelectorAll('.noticia3');
-
-                // Recorre todas las noticias y ocúltalas si no coinciden con la categoría seleccionada
-                noticias.forEach(function(noticia) {
-                    const categoriaNoticia = noticia.className.match(/categoria-(\w+)/)[1];
-
-                    if (selectedCategoria === "todas" || selectedCategoria === categoriaNoticia) {
-                        noticia.style.display = "block";
-                    } else {
-                        noticia.style.display = "none";
-                    }
-                });
-
-                // Muestra el enlace "Borrar filtros" cuando se aplique algún filtro
-                borrarFiltrosLink.style.display = "block";
-            });
-
-            // Agrega un evento de clic al enlace "Borrar filtros"
-            borrarFiltrosLink.addEventListener("click", function() {
-                // Restablece el formulario de filtro (quita todas las selecciones)
-                filtroForm.reset();
-
-                // Muestra todas las noticias nuevamente
-                noticias.forEach(function(noticia) {
-                    noticia.style.display = "block";
-                });
-
-                // Oculta el enlace "Borrar filtros" nuevamente
-                borrarFiltrosLink.style.display = "none";
-            });
-        });
-    </script>
 
     <?php
         include('footer.php');
     ?>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtén una referencia al formulario de filtro
+        const filtroForm = document.getElementById("filtroForm");
+
+        // Obtén una referencia al enlace "Borrar filtros"
+        const borrarFiltrosLink = document.getElementById("borrarFiltros");
+
+        // Agrega un evento de cambio al formulario
+        filtroForm.addEventListener("change", function() {
+            // Obtén el valor de la categoría seleccionada
+            const selectedCategoria = document.querySelector('input[name="categoria"]:checked').value;
+
+            // Obtén todas las noticias
+            const noticias = document.querySelectorAll('.noticia3');
+
+            // Recorre todas las noticias y ocúltalas si no coinciden con la categoría seleccionada
+            noticias.forEach(function(noticia) {
+                const categoriaNoticia = noticia.className.match(/categoria-(\w+)/)[1];
+
+                if (selectedCategoria === "todas" || selectedCategoria === categoriaNoticia) {
+                    noticia.style.display = "block";
+                } else {
+                    noticia.style.display = "none";
+                }
+            });
+
+            // Muestra el enlace "Borrar filtros" cuando se aplique algún filtro
+            borrarFiltrosLink.style.display = "block";
+        });
+
+        // Agrega un evento de clic al enlace "Borrar filtros"
+        borrarFiltrosLink.addEventListener("click", function() {
+            // Restablece el formulario de filtro (quita todas las selecciones)
+            filtroForm.reset();
+
+            // Muestra todas las noticias nuevamente
+            noticias.forEach(function(noticia) {
+                noticia.style.display = "block";
+            });
+
+            // Oculta el enlace "Borrar filtros" nuevamente
+            borrarFiltrosLink.style.display = "none";
+        });
+    });
+    </script>
 </body>
+
 </html>
