@@ -8,6 +8,13 @@
         }
     }
 
+    function eliminarFotoNoticias($nombreArchivo) {
+        $directorio_destino = 'img/noticias/' . $nombreArchivo;
+        if (file_exists($directorio_destino)) {
+            unlink($directorio_destino); // Borra el archivo
+        }
+    }
+
     $sqlAnuncios = "SELECT * FROM anuncio WHERE validado = '0'";
     $resultAnuncios = $conn->query($sqlAnuncios);
 
@@ -25,24 +32,23 @@
             $resultAnuncios = $conn->query($sqlAnuncios);
         } else if (isset($_POST["eliminar_anuncio"])) {
             $id_anuncio = $_POST["eliminar_anuncio"];
-            $sqlFoto = "SELECT foto FROM anuncio WHERE id_anuncio = :id_anuncio";
-            $stmtFoto = $conn->prepare($sqlFoto);
-            $stmtFoto->bindValue(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
-            $stmtFoto->execute();
-            $sacarFoto = $stmtFoto->fetch();
+            $sqlFotoAnuncio = "SELECT foto FROM anuncio WHERE id_anuncio = :id_anuncio";
+            $stmtFotoAnuncio = $conn->prepare($sqlFotoAnuncio);
+            $stmtFotoAnuncio->bindValue(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
+            $stmtFotoAnuncio->execute();
+            $sacarFotoAnuncio = $stmtFotoAnuncio->fetch();
+            $fotoAnuncio = $sacarFotoAnuncio['foto'];
     
             $sqlEliminarAnuncio = "DELETE FROM anuncio WHERE id_anuncio = :id_anuncio";
             $stmt = $conn->prepare($sqlEliminarAnuncio);
             $stmt->bindParam(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
             $stmt->execute();
+
+            if (!empty($fotoAnuncio)) {
+                eliminarFotoAnuncios($fotoAnuncio);
+            }
     
             $resultAnuncios = $conn->query($sqlAnuncios);
-    
-            // Obtener el nombre del archivo de la base de datos
-            // Verificar si la consulta fue exitosa
-            if ($sacarFoto && isset($sacarFoto['foto'])) {
-                eliminarFotoAnuncios($sacarFoto['foto']); // Llama a la función eliminarFotoAnuncios
-            }
         }
     }
     
@@ -63,10 +69,21 @@
             $resultNoticias = $conn->query($sqlNoticias);
         } else if (isset($_POST["eliminar_noticia"])) {
             $id_noticia = $_POST["eliminar_noticia"];
+            $sqlFotoNoticia = "SELECT foto FROM noticia WHERE id_noticia = :id_noticia";
+            $stmtFotoNoticia = $conn->prepare($sqlFotoNoticia);
+            $stmtFotoNoticia->bindValue(':id_noticia', $id_noticia, PDO::PARAM_INT);
+            $stmtFotoNoticia->execute();
+            $sacarFotoNoticia = $stmtFotoNoticia->fetch();
+            $fotoNoticia = $sacarFotoNoticia['foto'];
+
             $sqlEliminarNoticia = "DELETE FROM noticia WHERE id_noticia = :id_noticia";
             $stmt = $conn->prepare($sqlEliminarNoticia);
             $stmt->bindParam(':id_noticia', $id_noticia, PDO::PARAM_INT);
             $stmt->execute();
+
+            if (!empty($fotoNoticia)) {
+                eliminarFotoNoticias($fotoNoticia);
+            }
 
             $resultNoticias = $conn->query($sqlNoticias);
         }
@@ -100,16 +117,22 @@
 
     <section class="seccion-destacada">
         <div class="seccion-titulo">
-            <h1 class="titulo-llamativo">Validación de anuncios</h1>
+            <h1 class="titulo-llamativo">Validación de Anuncios</h1>
         </div>
         <div class="productos">
             <?php
                 while ($row = $resultAnuncios->fetch(PDO::FETCH_ASSOC)) {
                     $nombre_anuncio = $row['nombre_anuncio'];
-                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                    if (empty($row['foto'])) {
+                        $imagenURL = 'img/sin-foto.jpg';
+                        $imagenAlt = 'Sin Foto';
+                    } else {
+                        $imagenURL = 'img/anuncios/' . $row['foto'];
+                        $imagenAlt = ucfirst($row['nombre_anuncio']);
+                    }
                     echo '<form class="producto" method="POST" action="validar.php">';
                         echo '<div class="imagen-producto">';
-                            echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                            echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                         echo '</div>';
                         echo '<div class="contenedor-anuncio">';
                             echo '<h2>' . $row['nombre_anuncio'] . '</h2>';

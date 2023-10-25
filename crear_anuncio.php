@@ -39,16 +39,23 @@
 
             $directorio_destino = 'img/anuncios/' . $fotoAnuncio;
 
-            if (move_uploaded_file($foto_temp, $directorio_destino)) {
-                // Inserta los datos a la tabla "Anuncio" con el nombre de la imagen en la base de datos
-                $sql = "INSERT INTO anuncio (nombre_anuncio, precio, descripcion, foto,nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$fotoAnuncio','$usuAnuncio')";
+            if (!empty($fotoAnuncio)) {
+                if (move_uploaded_file($foto_temp, $directorio_destino)) {
+                    // Inserta los datos a la tabla "Anuncio" con el nombre de la imagen en la base de datos
+                    $sql = "INSERT INTO anuncio (nombre_anuncio, precio, descripcion, foto, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$fotoAnuncio','$usuAnuncio')";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute();
+                    $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+                    $mensaje_exito = "Se ha creado la publicación";
+                }
+            } else {
+                $sql = "INSERT INTO anuncio (nombre_anuncio, precio, descripcion, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$usuAnuncio')";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
                 $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 $mensaje_exito = "Se ha creado la publicación";
-            } else {
-                $mensaje_error = "Error al subir la foto.";
             }
             
         }
@@ -57,9 +64,9 @@
             echo '<div class="mensaje-exito">';
                 echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
             echo '</div>';
-        } elseif (!empty($mensaje_error)) {
+        } else if (!empty($mensaje_error)) {
             echo '<div class="mensaje-error">';
-                echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+                echo '<p><strong>Error!</strong> ' . $mensaje_error .'</p>';
             echo '</div>';
         }
     ?>
@@ -76,22 +83,15 @@
                     <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
                     
                     <label for="imagen">Imagen:</label>
-                    <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                    <input type="file" id="imagen" name="imagen" accept="image/*">
                     
-                    <label for="precio">Precio:</label>
-                    <input type="number" id="precio" name="precio" required placeholder="0">
+                    <label for="precio">Precio (€):</label>
+                    <input type="number" id="precio" name="precio" required placeholder="0" min="0">
                     <button type="submit">Crear Anuncio</button>
                 </form>
             </div>
         </section>
     </main>
-    
-    <script>
-        //para prevenir el reenvio del formulario al recargar la pagina
-        if ( window.history.replaceState ) {
-            window.history.replaceState( null, null, window.location.href );
-        }  
-    </script>
 
     <?php
         include('footer.php');

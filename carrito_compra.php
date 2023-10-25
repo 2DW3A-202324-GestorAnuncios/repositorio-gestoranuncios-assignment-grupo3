@@ -52,6 +52,7 @@
                 `;
                 tableBody.appendChild(row);
             });
+            tableBody.append(localStorage.getItem('carrito => ' + usuario));
         } else {
             // Si el carrito está vacío, muestra un mensaje
             const table = document.getElementById("carrito-table");

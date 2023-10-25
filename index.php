@@ -3,15 +3,13 @@
     
     // Inicia la sesión en la página
     session_start();
-
-    $usuario = "";
     
     // Inicializa un array para almacenar los productos seleccionados
     if (!isset($_SESSION['carrito'])) {
         $_SESSION['carrito'] = array();
     }
 
-    $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1'";
+    $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1' ORDER BY id_anuncio DESC LIMIT 10";
     $resultProductos = $conn->query($sqlProductos);
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' ORDER BY id_noticia DESC LIMIT 3";
@@ -37,7 +35,7 @@
             $usuario = $_SESSION['usuario'];
         } else {
             include('header_no_sesion.php');
-            $usuario = "";
+            $usuario = null;
         }
     ?>
 
@@ -125,16 +123,10 @@
                         if ($admin == 1) {
                             $btnAnadirCarrito = '';
                         } else if ($admin == 0) {
-                            $btnAnadirCarrito = '
-                            <form method="post" action="carrito_compra.php">
-                                <input id="foto_producto" type="hidden" name="foto_producto" value="' . $row['foto'] . '">
-                                <input id="nombre_producto" type="hidden" name="nombre_producto" value="' . $row['nombre_anuncio'] . '">
-                                <input id="precio_producto" type="hidden" name="precio_producto" value="' . $row['precio'] . '">
-                                <button id="btn-anadir-carrito" type="submit" name="btn-anadir-carrito">Añadir al Carrito</button>
-                            </form>';
+                            $btnAnadirCarrito = '<button class="btn-anadir-carrito" name="btn-anadir-carrito" data-id="' . $row['id_anuncio'] . '" data-foto="' . $row['foto'] . '" data-nombre="' . $row['nombre_anuncio'] . '" data-precio="' . $row['precio'] . '">Añadir al Carrito</button>';
                         }
                     } else {
-                        $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
+                        $btnAnadirCarrito = '<button class="btn-anadir-carrito" type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
                     }
 
                     echo '<div class="productos-slide-anuncios">';
@@ -155,28 +147,38 @@
     </section>
 
     <script>
-        const btnAnadirCarrito = document.getElementById('btn-anadir-carrito');
+        const btnAnadirCarrito = document.getElementsByClassName('btn-anadir-carrito');
         const usuario = "<?php echo $usuario; ?>";
 
-        btnAnadirCarrito.addEventListener('click', () => {
-            const fotoProducto = document.getElementById('foto_producto').value;
-            const nombreProducto = document.getElementById('nombre_producto').value;
-            const precioProducto = document.getElementById('precio_producto').value;
+        for (const btn of btnAnadirCarrito) {
+            btn.addEventListener('click', (e) => {
+                const btnId = e.currentTarget.getAttribute('data-id');
+                // const idAnuncio = document.getElementById(btnId).value;
+                const btnFoto = e.currentTarget.getAttribute('data-foto');
+                // const fotoAnuncio = document.getElementById(btnFoto).value;
+                const btnNombre = e.currentTarget.getAttribute('data-nombre');
+                // const nombreAnuncio = document.getElementById(btnNombre).value;
+                const btnPrecio = e.currentTarget.getAttribute('data-precio');
+                // const precioAnuncio = document.getElementById(btnPrecio).value;
+                console.log(btnId);
 
-            // Paso 1: Obtener la lista de productos del carrito desde localStorage (si existe)
-            let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
+                // Paso 1: Obtener la lista de productos del carrito desde localStorage (si existe)
+                let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
 
-            // Paso 2: Agregar el nuevo producto a la lista
-            const nuevoProducto = {
-                foto: fotoProducto,
-                nombre: nombreProducto,
-                precio: precioProducto
-            };
-            carrito.push(nuevoProducto);
+                // Paso 2: Agregar el nuevo producto a la lista
+                const nuevoProducto = {
+                    id: btnId,
+                    foto: btnFoto,
+                    nombre: btnNombre,
+                    precio: btnPrecio
+                };
 
-            // Paso 3: Almacenar la lista actualizada en localStorage
-            localStorage.setItem('carrito => ' + usuario, JSON.stringify(carrito));
-        });
+                carrito.push(nuevoProducto);
+
+                // Paso 3: Almacenar la lista actualizada en localStorage
+                localStorage.setItem('carrito => ' + usuario, JSON.stringify(carrito));
+            });
+        }
     </script>
 
     <?php
