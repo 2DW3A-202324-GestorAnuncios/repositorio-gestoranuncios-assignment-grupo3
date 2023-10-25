@@ -10,7 +10,9 @@
     <title>Crear Anuncio - CIFP Txurdinaga</title>
 </head>
 <body>
-<?php
+    <?php
+        include("conexion.php");
+        
         // Inicia la sesión en la página
         session_start();
 
@@ -22,15 +24,11 @@
             include('header_no_sesion.php');
         }
 
-
-        $insercion = "";
+        $mensaje_exito = '';
+        $mensaje_error = '';
         $usuario = $_SESSION["usuario"];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
-            include("conexion.php");
-
-
             //coje los elementos del formulario
             $nomAnuncio = $_POST['titulo'];
             $descAnuncio = $_POST['descripcion'];
@@ -48,19 +46,24 @@
                 $stmt->execute();
                 $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                $insercion = "Se ha creado la publicación";
+                $mensaje_exito = "Se ha creado la publicación";
             } else {
-                $inserción = "Error al subir la foto.";
+                $mensaje_error = "Error al subir la foto.";
             }
             
-            
+        }
+
+        if (!empty($mensaje_exito)) {
+            echo '<div class="mensaje-exito">';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
+            echo '</div>';
+        } elseif (!empty($mensaje_error)) {
+            echo '<div class="mensaje-error">';
+                echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+            echo '</div>';
         }
     ?>
-    <?php 
-        echo'<div>';
-            echo'<h3 class="centrado">'.$insercion.'</h3>';
-        echo'</div>';
-    ?>
+
     <main>
         <section class="crear-anuncio">
             <h1>Crear un Anuncio</h1>
@@ -76,22 +79,22 @@
                     <input type="file" id="imagen" name="imagen" accept="image/*" required>
                     
                     <label for="precio">Precio:</label>
-                    <input type="number" id="precio" name="precio" required placeholder="0"><br>
-                    <span id="publicacion-creada"><?php echo $insercion ?></span>
+                    <input type="number" id="precio" name="precio" required placeholder="0">
                     <button type="submit">Crear Anuncio</button>
                 </form>
             </div>
         </section>
     </main>
-
-    <?php
-        include('footer.php');
-    ?>
+    
     <script>
         //para prevenir el reenvio del formulario al recargar la pagina
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
         }  
     </script>
+
+    <?php
+        include('footer.php');
+    ?>
 </body>
 </html>

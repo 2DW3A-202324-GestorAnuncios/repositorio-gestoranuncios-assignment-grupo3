@@ -10,7 +10,9 @@
     <title>Crear Noticia - CIFP Txurdinaga</title>
 </head>
 <body>
-<?php
+    <?php
+        include("conexion.php");
+        
         // Inicia la sesión en la página
         session_start();
 
@@ -22,16 +24,14 @@
             include('header_no_sesion.php');
         }
         
-        $insercion = "";
+        $mensaje_exito = '';
+        $mensaje_error = '';
         $usuario = $_SESSION["usuario"];
 
         $repeticionPK = "";
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
-            include("conexion.php");
 
-            
-            $nomNoticia = $_POST['titulo'];
+			$nomNoticia = $_POST['titulo'];
             $descNoticia = $_POST['descripcion'];
             $catNoticia = $_POST['categoria'];
             $usuNoticia = $_SESSION["usuario"];
@@ -48,30 +48,25 @@
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
                 $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
-                $insercion = "Se ha creado la publicación";
+                $mensaje_exito = "Se ha creado la publicación";
             } else {
-                $inserción = "Error al subir la foto.";
+                $mensaje_error = "Error al subir la foto.";
             }  
         }
     ?>
-    <?php 
-        echo'<div>';
-            echo'<h3 class="centrado">'.$insercion.'</h3>';
-        echo'</div>';
-    ?>
+
     <main>
         <section class="crear-noticia">
             <h1>Crear Noticia</h1>
-            <div class="form-crear-noticia">
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form class="form-crear-noticia" action="#" method="post" enctype="multipart/form-data">
                 <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" required>
+                <input type="text" id="titulo" name="titulo">
 
                 <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                <textarea id="descripcion" name="descripcion" rows="4" ></textarea>
 
                 <label for="imagen">Imagen:</label>
-                <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                <input type="file" id="imagen" name="imagen" accept="image/*">
 
                 <label for="categoria">Categoría:</label>
                 <select id="categoria" name="categoria">
@@ -82,18 +77,18 @@
                 </select>
                 <button type="submit">Crear Noticia</button>
             </form>
-            </div>
         </section>
     </main>
-
-    <?php
-        include('footer.php');
-    ?>
+    
     <script>
         //para prevenir el reenvio del formulario al recargar la pagina
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
         }  
     </script>
+
+    <?php
+        include('footer.php');
+    ?>
 </body>
 </html>
