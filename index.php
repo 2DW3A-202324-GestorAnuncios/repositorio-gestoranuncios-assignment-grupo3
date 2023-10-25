@@ -1,7 +1,7 @@
 <?php
     include("conexion.php");
 
-    $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1'";
+    $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1' ORDER BY id_anuncio DESC LIMIT 10";
     $resultProductos = $conn->query($sqlProductos);
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' ORDER BY id_noticia DESC LIMIT 3";
