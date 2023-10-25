@@ -1,17 +1,7 @@
 <?php
     include("conexion.php");
-    
-    // Inicia la sesión en la página
-    session_start();
 
-    $usuario = "";
-    
-    // Inicializa un array para almacenar los productos seleccionados
-    if (!isset($_SESSION['carrito'])) {
-        $_SESSION['carrito'] = array();
-    }
-
-    $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1'";
+    $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1' ORDER BY id_anuncio DESC LIMIT 10";
     $resultProductos = $conn->query($sqlProductos);
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' ORDER BY id_noticia DESC LIMIT 3";
@@ -19,7 +9,6 @@
 ?>
 <!DOCTYPE html>
 <html lang="es-Es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +18,6 @@
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Inicio - CIFP Txurdinaga</title>
 </head>
-
 <body>
     <?php
         // Inicia la sesión en la página
@@ -158,33 +146,32 @@
     </section>
 
     <script>
-    const btnAnadirCarrito = document.getElementById('btn-anadir-carrito');
-    const usuario = "<?php echo $usuario; ?>";
+        const btnAnadirCarrito = document.getElementById('btn-anadir-carrito');
+        const usuario = "<?php echo $usuario; ?>";
 
-    btnAnadirCarrito.addEventListener('click', () => {
-        const fotoProducto = document.getElementById('foto_producto').value;
-        const nombreProducto = document.getElementById('nombre_producto').value;
-        const precioProducto = document.getElementById('precio_producto').value;
+        btnAnadirCarrito.addEventListener('click', () => {
+            const fotoProducto = document.getElementById('foto_producto').value;
+            const nombreProducto = document.getElementById('nombre_producto').value;
+            const precioProducto = document.getElementById('precio_producto').value;
 
-        // Paso 1: Obtener la lista de productos del carrito desde localStorage (si existe)
-        let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
+            // Paso 1: Obtener la lista de productos del carrito desde localStorage (si existe)
+            let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
 
-        // Paso 2: Agregar el nuevo producto a la lista
-        const nuevoProducto = {
-            foto: fotoProducto,
-            nombre: nombreProducto,
-            precio: precioProducto
-        };
-        carrito.push(nuevoProducto);
+            // Paso 2: Agregar el nuevo producto a la lista
+            const nuevoProducto = {
+                foto: fotoProducto,
+                nombre: nombreProducto,
+                precio: precioProducto
+            };
+            carrito.push(nuevoProducto);
 
-        // Paso 3: Almacenar la lista actualizada en localStorage
-        localStorage.setItem('carrito => ' + usuario, JSON.stringify(carrito));
-    });
+            // Paso 3: Almacenar la lista actualizada en localStorage
+            localStorage.setItem('carrito => ' + usuario, JSON.stringify(carrito));
+        });
     </script>
 
     <?php
         include('footer.php');
     ?>
 </body>
-
 </html>

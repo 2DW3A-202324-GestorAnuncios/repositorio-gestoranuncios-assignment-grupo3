@@ -81,8 +81,13 @@
     ?>
 
     <div id="buscador">
-        <form method="GET" action="anuncio.php" id="search-form">
-            <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
+    <form method="GET" action="anuncio.php" id="search-form">
+            <div id="buscador-encima">
+                <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
+            </div>    
+            <div id="buscador-debajo">
+                <a href="anuncio.php"><img src="img/botonX.png" width="25px"></a>
+            </div>
         </form>
     </div>
     <?php
@@ -121,8 +126,13 @@
 
             // Mostrar la página actual más 2 y la última página
             echo '<div id="paginacion">';
+            
+            echo '<a class="botonesPagina" href="?pagina= 1">1</a>';
+            echo '...';
             for ($i = max(1, $paginaActual - 1); $i <= min($paginaActual + 1, $paginasTotales); $i++) {
-                echo '<a class="botonesPagina ' . ($i == $paginaActual ? 'a-disabled' : '') . '" href="?pagina=' . $i . '">' . $i . '</a>';
+                if($i != 1){
+                    echo '<a class="botonesPagina ' . ($i == $paginaActual ? 'a-disabled' : '') . '" href="?pagina=' . $i . '">' . $i . '</a>';
+                }
             }
             if ($paginaActual < $paginasTotales - 1) {
                 echo '...';
