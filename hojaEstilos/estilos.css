@@ -1340,7 +1340,7 @@ p {
     background-color: #0056b3;
 }
 
-#mensaje-error {
+#mensaje-error-login {
     color: red;
     font-weight: bold;
 }
@@ -1592,12 +1592,6 @@ p {
 
 .form-crear-anuncio button:hover {
     background-color: #0056b3;
-}
-
-.mensaje-success {
-    background-color: #ddffdd;
-    border-left: 6px solid #04AA6D;
-    padding: 4px 12px;
 }
 
 /* Estilos para el formulario Mi Perfil */

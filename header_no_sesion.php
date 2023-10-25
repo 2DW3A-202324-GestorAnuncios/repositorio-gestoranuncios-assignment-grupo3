@@ -94,7 +94,7 @@
                         <div id="textRegistrarse">¿No tienes cuenta? </div>
                         <a href="Cuentas/crear_cuenta.php" id="btnRegistrarse"><span>Registrarse</span></a>
                     </div>
-                    <div id="mensaje-error" style="display: none;"></div>
+                    <div id="mensaje-error-login" style="display: none;"></div>
                 </form>
             </div>
         </div>

@@ -52,18 +52,15 @@
                 mysqli_query($conn, "INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')");
                 $mensaje_exito = "Se ha creado la publicación exitosamente.";
             } else {
-                $mensaje_error = "Error al subir la foto.";
-            }
-            
-            // Cierra conexión
-            mysqli_close($conn);  
+                $mensaje_error = "Debes introducir una foto.";
+            }  
         }
 
         if (!empty($mensaje_exito)) {
             echo '<div class="mensaje-exito">';
                 echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
             echo '</div>';
-        } elseif (!empty($mensaje_error)) {
+        } else if (!empty($mensaje_error)) {
             echo '<div class="mensaje-error">';
                 echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
             echo '</div>';
@@ -94,15 +91,9 @@
             </form>
         </section>
     </main>
-
+    
     <?php
         include('footer.php');
     ?>
-    <script>
-        //para prevenir el reenvio del formulario al recargar la pagina
-        if ( window.history.replaceState ) {
-            window.history.replaceState( null, null, window.location.href );
-        }  
-    </script>
 </body>
 </html>

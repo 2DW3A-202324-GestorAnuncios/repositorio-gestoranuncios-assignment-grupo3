@@ -86,6 +86,17 @@
             // Crear un elemento HTML para mostrar los datos
             const divDatos = document.getElementById('datos');
             divDatos.textContent = datosLocalStorage;
+            // Iterar a través de los productos en el carrito y agregarlos a la tabla
+            carrito.forEach(producto => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td id="celdaImg"><img src="img/anuncios/${producto.foto}" alt="${producto.nombre}"></td>
+                    <td>${producto.nombre}</td>
+                    <td>${producto.precio}€</td>
+                `;
+                tableBody.appendChild(row);
+            });
+            tableBody.append(localStorage.getItem('carrito => ' + usuario));
         } else {
             // Si el carrito está vacío, muestra un mensaje
             const table = document.getElementById("carrito-table");
