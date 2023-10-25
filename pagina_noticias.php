@@ -17,11 +17,10 @@
     $categoria=$_GET['categoria'];
     $titulo=$_GET['titulo'];
     $foto=$_GET['foto'];
+    $descripcion=$_GET['descripcion'];
 
-    $sql = "SELECT descripcion FROM noticia where titulo = '".$titulo."'";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    
 
     
     
@@ -52,7 +51,8 @@
             <div class="ver-noticia-contenido">
                 <?php
                     echo '<h1>' . $titulo . '</h1>';
-                    echo '<h3>' . $row . '</h3>';
+                    echo '<h3>' . $descripcion . '</h3>';
+                   
                 ?>
             </div>
         </section>

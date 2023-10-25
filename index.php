@@ -40,10 +40,12 @@
             <?php
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="mySlides fade">';
+                    echo '<form action="pagina_noticias.php?titulo='.urlencode($row['titulo']).'&foto='.urlencode($row['foto']).'&categoria='.urlencode($row['categoria']).'&descripcion='.urlencode($row['descripcion']).'" method="POST">';
                     // Comprobar si la noticia tiene una imagen específica o no
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
-                    echo '<a href=""><img src="' . $imagenURL . '" style="width:100%"></a>';
+                    echo '<input type="image" src="' . $imagenURL . '" style="width:100%">';
                     echo '<div class="text">' . $row['descripcion'] . '</div>';
+                    echo '</form>';
                     echo '</div>';
                 }
             ?>
@@ -125,20 +127,23 @@
                 <?php
                     while ($row = $resultProductos->fetch(PDO::FETCH_ASSOC)) {
                         echo '<div class="productos-slide-anuncios">';
-                        
-                        // Verifica si la URL de la imagen es nula o vacía
-                        $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                        $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
-                        
-                        echo '<a href="pagina_anuncio.php"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
-                        echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                        echo '<p>' . $row['descripcion'] . '</p>';
-                        echo '<p class="precio">' . $row['precio'] . '€</p>';
-                        echo '<button>Comprar</button>';
+                            echo '<form action="pagina_anuncio.php?nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'" method="POST">';
+                                $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                                echo '<div class = "imagen-producto">';
+                                    echo '<input type="image" src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '" value="" name="foto" />';
+                                echo '</div>';
+                                echo '<div class = "contenedor-anuncio">';
+                                    echo '<h2 name="nombre">' . $row['nombre_anuncio'] . '</h2>';
+                                    echo '<p name="descripcion">' . $row['descripcion'] . '</p>';
+                                    echo '<p class="precio" name="precio">' . $row['precio'] . '€</p>';
+                                    echo '<button>Comprar</button>';
+                                echo '</div>';
+                            echo '</form>';
                         echo '</div>';
                     }
                 ?>
             </div>
+
         </div>
         <a href="anuncio.php"><button id="ver-mas-anuncios" class="ver-mas-button">Ver Más Anuncios</button></a>
     </section>
