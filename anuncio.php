@@ -1,6 +1,9 @@
 <?php
     include("conexion.php");
 
+    // Inicia la sesión en la página
+    session_start();
+
     $elementosPorPagina = 9;
     $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 
@@ -64,18 +67,14 @@
     <link rel="stylesheet" href="hojaEstilos/fuentes.css">
     <link rel="stylesheet" href="hojaEstilos/estilos.css">
     <link rel="shortcut icon" href="img/favicon.png">
+    <script src="script.js"></script>
     <title>Anuncios - CIFP Txurdinaga</title>
 </head>
 <body>
     <?php
-        // Inicia la sesión en la página
-        session_start();
-
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
             $usuario = $_SESSION['usuario'];
-            // Comprobar si el usuario es administrador
-            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
         } else {
             include('header_no_sesion.php');
             $usuario = null;
@@ -83,7 +82,7 @@
     ?>
 
     <div id="buscador">
-    <form method="GET" action="anuncio.php" id="search-form">
+        <form method="GET" action="anuncio.php" id="search-form">
             <div id="buscador-encima">
                 <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
             </div>    
@@ -92,18 +91,33 @@
             </div>
         </form>
     </div>
+
     <?php
-            if($totalProductos === 0){
-                echo '<div>';
-                echo'<p  id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
-                echo '</div>';
-            }
+        if($totalProductos === 0){
+            echo '<div>';
+            echo'<p  id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
+            echo '</div>';
+        }
     ?>
+
     <div class="productos">
         <?php
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
                 $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                echo '<form class="producto" method="POST" action="anuncio.php">';
+                $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
+
+                $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+                if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
+                    if ($admin == 1) {
+                        $btnAnadirCarrito = '';
+                    } else if ($admin == 0) {
+                        $btnAnadirCarrito = '<button class="btn-anadir-carrito" name="btn-anadir-carrito" data-id="' . $row['id_anuncio'] . '" data-foto="' . $row['foto'] . '" data-nombre="' . $row['nombre_anuncio'] . '" data-descripcion="' . $row['descripcion'] . '" data-precio="' . $row['precio'] . '">Añadir al Carrito</button>';
+                    }
+                } else {
+                    $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
+                }
+
+                echo '<div class="producto">';
                     echo '<div class="imagen-producto">';
                         echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                     echo '</div>';
@@ -112,38 +126,22 @@
                         echo '<p>' . $row['descripcion'] . '</p>';
                         echo '<p class="precio">' . $row['precio'] . '€</p>';
                     echo '</div>';
-                    echo '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
-                echo '</form>';
+                    echo $btnAnadirCarrito;
+                echo '</div>';
             }
         ?>
     </div>
 
     <div id="paginacion">
         <a href="?pagina=<?php echo $paginaActual - 1; ?>" class="botonesPagina <?php if ($paginaActual <= 1) echo 'a-disabled'; ?>">← Anterior</a>
-            <?php
-            // Obtener la página actual
-            $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+        
+        <?php for ($i = 1; $i <= $paginasTotales; $i++): ?>
+            <a class="botonesPagina <?php if ($i == $paginaActual) echo 'a-disabled'; ?>" href="?pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
+        <?php endfor; ?>
 
-            // Calcular el número total de páginas (supongamos que tienes esto en $paginasTotales)
-
-            // Mostrar la página actual más 2 y la última página
-            echo '<div id="paginacion">';
-            
-            echo '<a class="botonesPagina" href="?pagina= 1">1</a>';
-            echo '...';
-            for ($i = max(1, $paginaActual - 1); $i <= min($paginaActual + 1, $paginasTotales); $i++) {
-                if($i != 1){
-                    echo '<a class="botonesPagina ' . ($i == $paginaActual ? 'a-disabled' : '') . '" href="?pagina=' . $i . '">' . $i . '</a>';
-                }
-            }
-            if ($paginaActual < $paginasTotales - 1) {
-                echo '...';
-                echo '<a class="botonesPagina" href="?pagina=' . $paginasTotales . '">' . $paginasTotales . '</a>';
-            }
-            echo '</div>';
-            ?>
         <a href="?pagina=<?php echo $paginaActual + 1; ?>" class="botonesPagina <?php if ($paginaActual >= $paginasTotales) echo 'a-disabled'; ?>">Siguiente →</a>
     </div>
+
     <script>
         var inputBuscador = document.getElementById("input-buscador");
 
@@ -160,7 +158,6 @@
                 // Enviar el formulario
                 form.submit();
             }
-
         });
         
         const btnAnadirCarrito = document.getElementsByClassName('btn-anadir-carrito');
@@ -209,6 +206,9 @@
             });
         }
     </script>
-    <?php include('footer.php'); ?>
+
+    <?php
+        include('footer.php');
+    ?>
 </body>
 </html>

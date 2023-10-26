@@ -12,6 +12,7 @@
 <body>
     <?php
         include("conexion.php");
+        
         // Inicia la sesión en la página
         session_start();
 
@@ -28,14 +29,6 @@
         $usuario = $_SESSION["usuario"];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            //se conecta a la base de datos
-            $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
-        
-            // Comprueba conexion
-            if($conn === false){
-                die("ERROR: No se ha podido conectar. "
-                    . mysqli_connect_error());
-            }
             //coje los elementos del formulario
             $nomAnuncio = $_POST['titulo'];
             $descAnuncio = $_POST['descripcion'];
@@ -65,9 +58,6 @@
                 $mensaje_exito = "Se ha creado la publicación";
             }
             
-            // Cierra conexión
-            mysqli_close($conn);    
-        
         }
 
         if (!empty($mensaje_exito)) {
@@ -80,6 +70,7 @@
             echo '</div>';
         }
     ?>
+
     <main>
         <section class="crear-anuncio">
             <h1>Crear un Anuncio</h1>
