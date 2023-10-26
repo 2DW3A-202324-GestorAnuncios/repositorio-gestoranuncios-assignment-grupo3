@@ -38,6 +38,7 @@
         </div>
         <div class="slideshow-container">
             <?php
+                $slideNumber = 1;
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="mySlides fade">';
                     echo '<form action="pagina_noticias.php?titulo='.urlencode($row['titulo']).'&foto='.urlencode($row['foto']).'&categoria='.urlencode($row['categoria']).'&descripcion='.urlencode($row['descripcion']).'" method="POST">';
@@ -47,19 +48,8 @@
                     echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</form>';
                     echo '</div>';
-                }
-            ?>
-            <?php
-                $slideNumber = 1;
-                while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<div class="mySlides fade">';
-                    echo '<div class="numbertext">' . $slideNumber . ' / ' . $resultNoticias->rowCount() . '</div>';
-                    // Comprobar si la noticia tiene una imagen específica o no
-                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
-                    echo '<img src="' . $imagenURL . '" style="width:100%">';
-                    echo '<div class="text">' . $row['descripcion'] . '</div>';
-                    echo '</div>';
                     $slideNumber++;
+
                 }
             ?>
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>

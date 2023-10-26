@@ -102,8 +102,7 @@
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
                 
                 echo '<div class="producto">';
-
-                echo '<form action="pagina_anuncio.php?nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'" method="POST">';
+                    echo '<form action="pagina_anuncio.php?nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'" method="POST">';
                         $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                         echo '<div class = "imagen-producto">';
                             echo '<input type="image" src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '" value="" name="foto" />';
@@ -112,12 +111,15 @@
                             echo '<h2 name="nombre">' . $row['nombre_anuncio'] . '</h2>';
                             echo '<p name="descripcion">' . $row['descripcion'] . '</p>';
                             echo '<p class="precio" name="precio">' . $row['precio'] . '€</p>';
+                            echo '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
                         echo '</div>';
-                        echo '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
-                echo '</form>';
+                    echo '</form>';
                 echo '</div>';
             }
+
         ?>
+
+        
     </div>
 
     <div id="paginacion">

@@ -79,7 +79,7 @@ header {
     height: 1px;
 }
 
-@media only screen and (max-width: 670px) {
+@media only screen and (max-width: 750px) {
     #logo {
         visibility: hidden;
     }
@@ -117,17 +117,26 @@ header {
     text-align: center;  
     position: relative;
 }
+.imagen-carrito img{
+    margin-right: 10px;
+}
+
 
 /* Media query para hacer los botones del header mas pequeños */
 @media only screen and (max-width: 670px) {
     .header-buttons img {
-        height: 60px;
+        height: 85px;
         width: 80px;
-        display: inline-block;
-        text-align: center;  
-        position: relative;
-        margin-top: -20px;
+        margin-top: -10px;
+        
     }
+    .imagen-carrito img{
+        height: 50px;
+        width: 55px;
+        margin-bottom: 35px;
+        margin-right: 5px;
+    }
+    
     .centrado-header{
         margin-top: -15px;
     }
@@ -331,19 +340,31 @@ header {
 .mySlides {display: none}
 
 .slideshow-container {
-    max-width: 700px;
-    min-width: 700px;
-    height: 500px;
+    
+    max-width: 1200px;
+    min-width: 750px;
+    height: 750px;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
     
 }
+.slideshow-container input{
+    max-width: 1200px;
+    min-width: 750px;
+    height: 660px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
 
-/* Media query para ajustar el tamaño del carrusel a la pagina */
-@media screen and (max-width:1000px) {
+    
+}
+
+/* Media query para ajustar las imagenes del carrusel a la pagina */
+@media screen and (max-width:800px) {
     .slideshow-container {
-        min-width: 300px;
+        min-width: 350px;
         height: 380px;
         margin: 0 auto;
         overflow: hidden;
@@ -351,30 +372,15 @@ header {
         margin-top: auto;
         margin-bottom: auto;
         position: relative;
-    }   
-}
-
-.slideshow-container img {
-    vertical-align: middle;
-    max-width: 700px;
-    min-width: 700px;
-
-    height: 430px;
-    border-radius: 15px;
-    position: absolute;
-    left: 0;
-    right: 0;
-}
-
-/* Media query para ajustar las imagenes del carrusel a la pagina */
-@media screen and (max-width:1000px) {
-    .slideshow-container img {
-        vertical-align: middle;
-        min-width: 300px;
-        height: 85%;
+    }
+    .slideshow-container input {
+        min-width: 350px;
+        height: 290px;
         border-radius: 15px;
         position: absolute;
-        margin: auto;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
         border-radius: 15px 15px 0 0;
     }
 }
@@ -412,6 +418,11 @@ header {
     padding: 8px 12px;
     position: absolute;
     max-width: 100%;
+    height: 90px;
+    max-height: 90px;
+    min-height: 90px;
+
+
     text-align: center;
     background-color: rgba(51, 51, 51, 0.8);
     font-style: italic;
@@ -420,6 +431,8 @@ header {
     left: 0;
     right: 0;
     margin: auto;
+    border-radius: 0 0 15px 15px;
+
 }
 
 /* Media query para ajustar el texto del carrusel a la pagina */
@@ -438,6 +451,9 @@ header {
         right: 0;
         margin: auto;
         height: 90px;
+        max-height: 90px;
+        min-height: 90px;
+
         border-radius: 0 0 15px 15px;
     }
 }
@@ -602,16 +618,7 @@ anuncios del indice a dispositivos distintos */
 }
 
 /* Da forma a los botones del deslizable en el indice */
-.productos-slide-anuncios button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
+
 
 .productos-slide-anuncios button:hover {
     background-color: #005b91;
@@ -623,28 +630,28 @@ anuncios del indice a dispositivos distintos */
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
     padding: 20px;
-    width: 75%;
+    width: 90%;
     margin: 0 auto;
 }
 @media only screen and (max-width: 1000px) and (min-width: 651px) {
-.productos {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 40px;
-padding: 20px;
-width: auto;
-margin: 0 auto;
-}
+    .productos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        padding: 20px;
+        width: auto;
+        margin: 0 auto;
+    }
 }
 @media only screen and (max-width: 650px) {
-.productos {
-display: grid;
-grid-template-columns: repeat(1, 1fr);
-gap: 20px;
-padding: 20px;
-width: auto;
-margin: 0 auto;
-}
+    .productos {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+        padding: 20px;
+        width: auto;
+        margin: 0 auto;
+    }
 }
 
 #buscador {
@@ -677,6 +684,16 @@ margin: 0 auto;
 #input-buscador:focus {
     background-color: #fff; /* Cambia el fondo al enfocar */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega una suave sombra al enfocar */
+}
+
+#buscador-encima {
+    z-index: 1;
+}
+
+#buscador-debajo {
+    z-index: 2;
+    margin-top: -47px;
+    margin-left: 270px;
 }
 
 #mensajeBusqueda {
@@ -738,6 +755,27 @@ margin: 0 auto;
     padding: 12px;
     color: white;
     background-color: #007bff;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    transition: opacity 0.3s ease-in-out;
+    
+}
+
+.productos-slide-anuncios button[name="btn-anadir-carrito"]:hover,
+.producto button[name="btn-anadir-carrito"]:hover {
+    opacity: 0.7;
+}
+
+.btn-container {
+    display: inline;
+}
+
+.producto button[name="validar-anuncio"],
+.producto button[name="eliminar-anuncio"],
+.producto button[name="validar-noticia"],
+.producto button[name="eliminar-noticia"] {
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -745,11 +783,30 @@ margin: 0 auto;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    margin: 0 20px 20px;
 }
 
-.producto button:hover {
-    background-color: #0056b3;
+.producto button[name="validar-anuncio"],
+.producto button[name="validar-noticia"] {
+    background-color: #57aa26;
 }
+
+.producto button[name="validar-anuncio"]:hover,
+.producto button[name="validar-noticia"]:hover {
+    background-color: #56aa26c3;
+}
+
+.producto button[name="eliminar-anuncio"],
+.producto button[name="eliminar-noticia"] {
+    background-color: red;
+}
+
+.producto button[name="eliminar-anuncio"]:hover,
+.producto button[name="eliminar-noticia"]:hover {
+    background-color: rgba(255, 0, 0, 0.673);
+}
+
+
 
 #paginacion{
     display: flex;

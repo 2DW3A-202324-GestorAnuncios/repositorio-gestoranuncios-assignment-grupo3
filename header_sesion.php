@@ -17,8 +17,8 @@
             <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
             <div class="centrado-header">Mi Perfil</div>
         </a>
-        <a class="header-buttons" href="carrito_compra.php">
-            <img src="img/carrito_compra.png" alt="Inicio" width="50px" height="50px" style="margin-top: 20px;">
+        <a class="header-buttons imagen-carrito" href="carrito_compra.php">
+            <img src="img/carrito_compra.png" name="imagen-carrito" alt="Inicio" width="50px" height="50px" style="margin-top: 20px;">
         </a>
     </div>
 </header>
