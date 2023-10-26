@@ -9,7 +9,7 @@
         $_SESSION['carrito'] = array();
     }
 
-    $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1'";
+    $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1' ORDER BY id_anuncio DESC LIMIT 10";
     $resultProductos = $conn->query($sqlProductos);
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' ORDER BY id_noticia DESC LIMIT 3";
@@ -32,8 +32,10 @@
     <?php
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
+            $usuario = $_SESSION['usuario'];
         } else {
             include('header_no_sesion.php');
+            $usuario = null;
         }
     ?>
 
@@ -121,13 +123,7 @@
                         if ($admin == 1) {
                             $btnAnadirCarrito = '';
                         } else if ($admin == 0) {
-                            $btnAnadirCarrito = '
-                            <form method="post" action="carrito_compra.php">
-                                <input id="foto_producto" type="hidden" name="foto_producto" value="' . $row['foto'] . '">
-                                <input id="nombre_producto" type="hidden" name="nombre_producto" value="' . $row['nombre_anuncio'] . '">
-                                <input id="precio_producto" type="hidden" name="precio_producto" value="' . $row['precio'] . '">
-                                <button id="btn-anadir-carrito" type="submit" name="btn-anadir-carrito">Añadir al Carrito</button>
-                            </form>';
+                            $btnAnadirCarrito = '<button class="btn-anadir-carrito" name="btn-anadir-carrito" data-id="' . $row['id_anuncio'] . '" data-foto="' . $row['foto'] . '" data-nombre="' . $row['nombre_anuncio'] . '" data-descripcion="' . $row['descripcion'] . '" data-precio="' . $row['precio'] . '">Añadir al Carrito</button>';
                         }
                     } else {
                         $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
@@ -151,29 +147,53 @@
     </section>
 
     <script>
-        const btnAnadirCarrito = document.getElementById('btn-anadir-carrito');
+        const btnAnadirCarrito = document.getElementsByClassName('btn-anadir-carrito');
+        const usuario = "<?php echo $usuario; ?>";
 
-        btnAnadirCarrito.addEventListener('click', () => {
-            const fotoProducto = document.getElementById('foto_producto').value;
-            const nombreProducto = document.getElementById('nombre_producto').value;
-            const precioProducto = document.getElementById('precio_producto').value;
+        // Obtener la lista de productos del carrito desde localStorage (si existe)
+        const carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
 
-            // Paso 1: Obtener la lista de productos del carrito desde localStorage (si existe)
-            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        // Recorre los botones y deshabilita los que estén en el carrito
+        for (const btn of btnAnadirCarrito) {
+            const idAnuncio = btn.getAttribute('data-id');
+            const estaEnCarrito = carrito.some(item => item.id === idAnuncio);
 
-            // Paso 2: Agregar el nuevo producto a la lista
-            const nuevoProducto = {
-                foto: fotoProducto,
-                nombre: nombreProducto,
-                precio: precioProducto
-            };
-            carrito.push(nuevoProducto);
+            if (estaEnCarrito) {
+                btn.disabled = true;
+                btn.style.backgroundColor = '#ccc';
+                btn.style.color = '#666';
+                btn.style.cursor = 'not-allowed';
+            }
 
-            // Paso 3: Almacenar la lista actualizada en localStorage
-            localStorage.setItem('carrito', JSON.stringify(carrito));
-        });
+            btn.addEventListener('click', (e) => {
+                const fotoAnuncio = e.currentTarget.getAttribute('data-foto');
+                const nombreAnuncio = e.currentTarget.getAttribute('data-nombre');
+                const descripcionAnuncio = e.currentTarget.getAttribute('data-descripcion');
+                const precioAnuncio = e.currentTarget.getAttribute('data-precio');
+
+                // Agregar el nuevo producto al carrito
+                const nuevoProducto = {
+                    id: idAnuncio,
+                    foto: fotoAnuncio,
+                    nombre: nombreAnuncio,
+                    descripcion: descripcionAnuncio,
+                    precio: precioAnuncio
+                };
+
+                carrito.push(nuevoProducto);
+
+                // Almacenar la lista actualizada en localStorage
+                localStorage.setItem('carrito => ' + usuario, JSON.stringify(carrito));
+
+                // Deshabilitar el botón después de hacer clic
+                btn.disabled = true;
+                btn.style.backgroundColor = '#ccc';
+                btn.style.color = '#666';
+                btn.style.cursor = 'not-allowed';
+            });
+        }
     </script>
-
+    
     <?php
         include('footer.php');
     ?>

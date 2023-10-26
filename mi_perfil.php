@@ -4,6 +4,7 @@
     session_start();
 
     $usuario = $_SESSION['usuario'];
+    // echo '<input id="usuario" type="hidden" name="usuario" value="' . $usuario . '">';
     $tipo_usuario = $_SESSION['admin'];
 
     $mensaje_exito = '';
@@ -181,6 +182,7 @@
         const modal = document.querySelector('.modal');
         const confirmarSiBtn = document.getElementById('confirmar-si');
         const confirmarNoBtn = document.getElementById('confirmar-no');
+        // const usuario = document.getElementById('usuario').value;
 
         editarDatosBtn.addEventListener('click', () => {
             datosModoVisualizacion.style.display = 'none';
@@ -197,10 +199,10 @@
         });
 
         confirmarSiBtn.addEventListener('click', () => {
-            // Aquí debes agregar la lógica para cerrar la sesión
+            // Borrar el carrito del Local Storage del usuario
+            // localStorage.removeItem('carrito => ' + usuario);
             // Puedes usar una redirección a la página de cierre de sesión
-            window.location.href =
-            'Cuentas/cerrar_sesion.php'; // Esto es un ejemplo, asegúrate de ajustar la URL a tu configuración
+            window.location.href = 'Cuentas/cerrar_sesion.php';
         });
 
         confirmarNoBtn.addEventListener('click', () => {

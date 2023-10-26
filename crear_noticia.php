@@ -50,8 +50,18 @@
                 $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
                 $mensaje_exito = "Se ha creado la publicación";
             } else {
-                $mensaje_error = "Error al subir la foto.";
+                $mensaje_error = "Debes introducir una foto.";
             }  
+        }
+
+        if (!empty($mensaje_exito)) {
+            echo '<div class="mensaje-exito">';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
+            echo '</div>';
+        } else if (!empty($mensaje_error)) {
+            echo '<div class="mensaje-error">';
+                echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+            echo '</div>';
         }
     ?>
 
@@ -80,13 +90,6 @@
         </section>
     </main>
     
-    <script>
-        //para prevenir el reenvio del formulario al recargar la pagina
-        if ( window.history.replaceState ) {
-            window.history.replaceState( null, null, window.location.href );
-        }  
-    </script>
-
     <?php
         include('footer.php');
     ?>
