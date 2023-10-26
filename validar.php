@@ -6,6 +6,23 @@
         if (file_exists($directorio_destino)) {
             unlink($directorio_destino); // Borra el archivo
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     function eliminarFotoNoticias($nombreArchivo) {
@@ -24,6 +41,10 @@
 
             // Realiza una consulta SQL para actualizar el campo validado a 1
             $sqlValidarAnuncio = "UPDATE anuncio SET validado = '1' WHERE id_anuncio = :id_anuncio";
+
+
+
+
 
             $stmt = $conn->prepare($sqlValidarAnuncio);
             $stmt->bindValue(':id_anuncio', $id_anuncio, PDO::PARAM_INT);
@@ -92,6 +113,7 @@
 
 <!DOCTYPE html>
 <html lang="es-Es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,6 +123,7 @@
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Validación - CIFP Txurdinaga</title>
 </head>
+
 <body>
     <?php
         // Inicia la sesión en la página
@@ -163,6 +186,7 @@
         </div>
     </section>
     
+
     <section class="seccion-destacada">
         <div class="seccion-titulo">
             <h1 class="titulo-llamativo">Validación de Noticias</h1>
@@ -200,7 +224,8 @@
                 }
             ?>
         </div>
-    </section>         
+    </section>
+
     <script>
         const btnValidar = document.getElementsByClassName('btn-validar');
         const btnEliminar = document.getElementsByClassName('btn-eliminar');

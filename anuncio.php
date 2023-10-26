@@ -1,15 +1,7 @@
 <?php
     include("conexion.php");
 
-    // Inicia la sesión en la página
-    session_start();
-
-    if (isset($_GET['elementosPorPagina'])) {
-        $elementosPorPagina = $_GET['elementosPorPagina'];
-        // Ahora puedes usar $elementosPorPagina en tu script PHP
-    } else {
-        $elementosPorPagina = 9;    
-    }
+    $elementosPorPagina = 9;
     $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 
     // Inicializa la variable de búsqueda
@@ -72,32 +64,26 @@
     <link rel="stylesheet" href="hojaEstilos/fuentes.css">
     <link rel="stylesheet" href="hojaEstilos/estilos.css">
     <link rel="shortcut icon" href="img/favicon.png">
-    <script src="script.js"></script>
     <title>Anuncios - CIFP Txurdinaga</title>
 </head>
 <body>
     <?php
+        // Inicia la sesión en la página
+        session_start();
+
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
             $usuario = $_SESSION['usuario'];
+            // Comprobar si el usuario es administrador
+            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
         } else {
             include('header_no_sesion.php');
             $usuario = null;
         }
     ?>
 
-    <form id="miFormulario" method="GET" action="anuncio.php">
-        <label for="elementosPorPagina">Elementos por página:</label>
-        <select id="elementosPorPagina" name="elementosPorPagina">
-            <option value="3" <?php if ($elementosPorPagina == 3) echo 'selected'; ?>>3</option>
-            <option value="6" <?php if ($elementosPorPagina == 6) echo 'selected'; ?>>6</option>
-            <option value="9" <?php if ($elementosPorPagina == 9) echo 'selected'; ?>>9</option>
-        </select>
-        <input type="submit" value="Enviar"> <!-- Agrega un botón para enviar el formulario -->
-    </form>
-    
     <div id="buscador">
-        <form method="GET" action="anuncio.php" id="search-form">
+    <form method="GET" action="anuncio.php" id="search-form">
             <div id="buscador-encima">
                 <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
             </div>    
@@ -106,34 +92,18 @@
             </div>
         </form>
     </div>
-    
-
     <?php
-        if($totalProductos === 0){
-            echo '<div>';
-            echo'<p  id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
-            echo '</div>';
-        }
+            if($totalProductos === 0){
+                echo '<div>';
+                echo'<p  id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
+                echo '</div>';
+            }
     ?>
-
     <div class="productos">
         <?php
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
                 $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
-
-                $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
-                if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
-                    if ($admin == 1) {
-                        $btnAnadirCarrito = '';
-                    } else if ($admin == 0) {
-                        $btnAnadirCarrito = '<button class="btn-anadir-carrito" name="btn-anadir-carrito" data-id="' . $row['id_anuncio'] . '" data-foto="' . $row['foto'] . '" data-nombre="' . $row['nombre_anuncio'] . '" data-descripcion="' . $row['descripcion'] . '" data-precio="' . $row['precio'] . '">Añadir al Carrito</button>';
-                    }
-                } else {
-                    $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
-                }
-
-                echo '<div class="producto">';
+                echo '<form class="producto" method="POST" action="anuncio.php">';
                     echo '<div class="imagen-producto">';
                         echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                     echo '</div>';
@@ -142,57 +112,39 @@
                         echo '<p>' . $row['descripcion'] . '</p>';
                         echo '<p class="precio">' . $row['precio'] . '€</p>';
                     echo '</div>';
-                    echo $btnAnadirCarrito;
-                echo '</div>';
+                    echo '<button name="btn-anadir-carrito">Añadir al Carrito</button>';
+                echo '</form>';
             }
         ?>
     </div>
 
     <div id="paginacion">
         <a href="?pagina=<?php echo $paginaActual - 1; ?>" class="botonesPagina <?php if ($paginaActual <= 1) echo 'a-disabled'; ?>">← Anterior</a>
-        
-        <?php for ($i = 1; $i <= $paginasTotales; $i++): ?>
-            <a class="botonesPagina <?php if ($i == $paginaActual) echo 'a-disabled'; ?>" href="?pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
-        <?php endfor; ?>
+            <?php
+            // Obtener la página actual
+            $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 
+            // Calcular el número total de páginas (supongamos que tienes esto en $paginasTotales)
+
+            // Mostrar la página actual más 2 y la última página
+            echo '<div id="paginacion">';
+            
+            echo '<a class="botonesPagina" href="?pagina= 1">1</a>';
+            echo '...';
+            for ($i = max(1, $paginaActual - 1); $i <= min($paginaActual + 1, $paginasTotales); $i++) {
+                if($i != 1){
+                    echo '<a class="botonesPagina ' . ($i == $paginaActual ? 'a-disabled' : '') . '" href="?pagina=' . $i . '">' . $i . '</a>';
+                }
+            }
+            if ($paginaActual < $paginasTotales - 1) {
+                echo '...';
+                echo '<a class="botonesPagina" href="?pagina=' . $paginasTotales . '">' . $paginasTotales . '</a>';
+            }
+            echo '</div>';
+            ?>
         <a href="?pagina=<?php echo $paginaActual + 1; ?>" class="botonesPagina <?php if ($paginaActual >= $paginasTotales) echo 'a-disabled'; ?>">Siguiente →</a>
     </div>
-
     <script>
-
-        const elementosPorPaginaSelector = document.getElementById("elementosPorPagina");
-
-        elementosPorPaginaSelector.addEventListener("change", function () {
-            const nuevosElementosPorPagina = elementosPorPaginaSelector.value;
-
-            // Guardar el nuevo valor en localStorage
-            localStorage.setItem("elementosPorPagina", nuevosElementosPorPagina);
-
-            // Actualizar la URL con el nuevo valor
-            const url = new URL(window.location.href);
-            url.searchParams.set("elementos", nuevosElementosPorPagina);
-            window.location.href = url.toString();
-        });
-
-        // Recuperar el valor de elementos por página desde localStorage
-        const elementosGuardados = localStorage.getItem("elementosPorPagina");
-
-        if (elementosGuardados) {
-            elementosPorPaginaSelector.value = elementosGuardados;
-        }
-
-        const elementosPorPagina = localStorage.getItem("elementosPorPagina");
-
-        // Establecer el valor en un campo de formulario oculto
-        const hiddenInput = document.createElement("input");
-        hiddenInput.type = "hidden";
-        hiddenInput.name = "elementosPorPagina";
-        hiddenInput.value = elementosPorPagina;
-
-        // Agregar el campo de formulario oculto al formulario existente
-        const form = document.getElementById("miFormulario"); // Reemplaza con el ID de tu formulario
-        form.appendChild(hiddenInput);
-
         var inputBuscador = document.getElementById("input-buscador");
 
         window.addEventListener('load', function() {
@@ -208,6 +160,7 @@
                 // Enviar el formulario
                 form.submit();
             }
+
         });
         
         const btnAnadirCarrito = document.getElementsByClassName('btn-anadir-carrito');
@@ -256,9 +209,6 @@
             });
         }
     </script>
-
-    <?php
-        include('footer.php');
-    ?>
+    <?php include('footer.php'); ?>
 </body>
 </html>

@@ -37,8 +37,7 @@
                 if (password_verify($contrasena, $row['password'])) {
                     // Las credenciales son válidas
                     $_SESSION['sesion_iniciada'] = true;
-                    $_SESSION['usuario'] = $usuario;
-                    $_SESSION['admin'] = $tipo_usuario;
+                    $_SESSION["usuario"] = $usuario;
 
                     // Verificar si el usuario es administrador
                     if ($row['tipo_usuario'] == 'admin') {
@@ -110,20 +109,24 @@
         <li class="menu-item"><a href="contacto.php">Contacto</a></li>
     </ul>
 </div>
-<nav>
-    <ul class="navdesp">
-        <li><img class="despImg" src="img/desplegable.png" alt="">
-            <ul class="coloresDesp">
-                <li class="menu-item"><a href="index.php">Inicio</a></li>
-                <li class="menu-item"><a href="noticia.php">Noticias</a></li>
-                <li class="menu-item"><a href="anuncio.php">Anuncios</a></li>
-                <li class="menu-item"><a href="contacto.php">Contacto</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
 
 <script>
+    function toggleDropdown() {
+        var formSesion = document.getElementById("form-inicio-sesion");
+        if (formSesion.style.display === "none" || formSesion.style.display === "") {
+            formSesion.style.display = "block";
+        } else {
+            formSesion.style.display = "none";
+        }
+    }
+
+    // Función para mostrar el mensaje de error
+    function mostrarError(mensaje) {
+        var mensajeError = document.getElementById("mensaje-error");
+        mensajeError.textContent = mensaje;
+        mensajeError.style.display = "block";  // Muestra el mensaje de error
+    }
+
     // Verifica si hay un mensaje de error y lo muestra si es necesario
     <?php
         if (!empty($mensaje_error)) {
