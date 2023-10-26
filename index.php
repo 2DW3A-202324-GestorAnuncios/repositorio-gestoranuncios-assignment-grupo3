@@ -152,6 +152,7 @@
 
         // Obtener la lista de productos del carrito desde localStorage (si existe)
         const carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
+        console.log(carrito);
 
         // Recorre los botones y deshabilita los que estén en el carrito
         for (const btn of btnAnadirCarrito) {

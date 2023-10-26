@@ -25,10 +25,6 @@
     </div>
 
     <script>
-        // Obtener los datos del carrito desde el Local Storage
-        const usuario = "<?php echo $usuario; ?>";
-        let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
-
         // Función para eliminar un producto del carrito
         function eliminarProducto(id) {
             carrito = carrito.filter(producto => producto.id !== id);

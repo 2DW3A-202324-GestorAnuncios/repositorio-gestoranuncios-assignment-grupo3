@@ -17,32 +17,17 @@
             <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
             <div class="centrado-header">Mi Perfil</div>
         </a>
-        <script>
-            if (window.localStorage) {
-                window.addEventListener('storage', event => {
-                    if (event.storageArea === localStorage) {
-                    if (window.localStorage.getItem('carrito') !== undefined
-                        && window.localStorage.getItem('carrito')
-                    ) {
-                        let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
-                        let carritoLenght = carrito.lenght;                     
-                    }
-                    }
-                }, false);
-                }
-            
-        </script>
         <?php
             // Comprobar si el usuario es administrador y agregar la opción "Validar"
             if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-                
+                // Código para administradores
             } else {
                 echo '<a class="header-buttons" href="carrito_compra.php">';
                     echo '<img src="img/carrito_compra.png" alt="Inicio" width="50px" height="50px" style="margin-top: 20px;">';
                 echo '</a>';
-
-                $elementosCarrito = "<script> document.writeln(carritoLenght); </script>"; 
-                echo '<h2 id="numero-carrito">' . $elementosCarrito . '</h2>';
+                
+                // Agrega un elemento div con el ID 'numero-carrito' para mostrar la longitud del carrito
+                echo '<h1 id="numero-carrito"></h1>';
             }
         ?>
     </div>
@@ -78,4 +63,11 @@
     </ul>
 </nav>
 
+<script>
+    const usuario = "<?php echo $_SESSION['usuario'] ?>";
 
+    let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario ))|| [];
+        let carritoLength = carrito.length; 
+        console.log(carritoLength);
+        document.getElementById('numero-carrito').innerText = carritoLength;
+</script>
