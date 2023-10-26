@@ -161,11 +161,6 @@
         });
         
         const btnAnadirCarrito = document.getElementsByClassName('btn-anadir-carrito');
-        const usuario = "<?php echo $usuario; ?>";
-
-        // Obtener la lista de productos del carrito desde localStorage (si existe)
-        const carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario)) || [];
-
         // Recorre los botones y deshabilita los que estén en el carrito
         for (const btn of btnAnadirCarrito) {
             const idAnuncio = btn.getAttribute('data-id');
@@ -203,6 +198,9 @@
                 btn.style.backgroundColor = '#ccc';
                 btn.style.color = '#666';
                 btn.style.cursor = 'not-allowed';
+                
+                let numeroCarrito = document.getElementById('numero-carrito');
+                numeroCarrito.innerText = parseInt(numeroCarrito.innerText)+1;
             });
         }
     </script>

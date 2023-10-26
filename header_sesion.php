@@ -30,6 +30,15 @@
                 echo '<h1 id="numero-carrito"></h1>';
             }
         ?>
+        <script>
+            const usuario = "<?php echo $_SESSION['usuario'];; ?>";
+            const usuarioCarrito = "<?php echo $_SESSION['usuario']; ?>";
+
+            let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuarioCarrito ))|| [];
+                let carritoLength = carrito.length; 
+                console.log(carritoLength);
+                document.getElementById('numero-carrito').innerText = carritoLength;
+        </script>
     </div>
 </header>
 
@@ -63,11 +72,4 @@
     </ul>
 </nav>
 
-<script>
-    const usuario = "<?php echo $_SESSION['usuario'] ?>";
 
-    let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario ))|| [];
-        let carritoLength = carrito.length; 
-        console.log(carritoLength);
-        document.getElementById('numero-carrito').innerText = carritoLength;
-</script>

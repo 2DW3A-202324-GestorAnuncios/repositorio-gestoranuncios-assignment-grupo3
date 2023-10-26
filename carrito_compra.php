@@ -29,6 +29,9 @@
         function eliminarProducto(id) {
             carrito = carrito.filter(producto => producto.id !== id);
             actualizarCarrito();
+
+            let numeroCarrito = document.getElementById('numero-carrito');
+            numeroCarrito.innerText = parseInt(numeroCarrito.innerText)-1;
         }
 
         // Función para actualizar el carrito en el Local Storage y en la interfaz de usuario
@@ -67,6 +70,7 @@
                 itemContainer.appendChild(eliminarButton);
 
                 carritoContainer.appendChild(itemContainer);
+
             });
 
             if (carrito.length === 0) {
