@@ -95,7 +95,7 @@
                         <div id="textRegistrarse">¿No tienes cuenta? </div>
                         <a href="Cuentas/crear_cuenta.php" id="btnRegistrarse"><span>Registrarse</span></a>
                     </div>
-                    <div id="mensaje-error" style="display: none;"></div>
+                    <div id="mensaje-error-login" style="display: none;"></div>
                 </form>
             </div>
         </div>
@@ -110,6 +110,7 @@
         <li class="menu-item"><a href="contacto.php">Contacto</a></li>
     </ul>
 </div>
+
 <nav>
     <ul class="navdesp">
         <li><img class="despImg" src="img/desplegable.png" alt="">

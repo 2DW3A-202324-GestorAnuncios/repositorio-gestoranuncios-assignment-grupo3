@@ -1,6 +1,22 @@
 <?php     
     include("conexion.php");
+    
+    // Inicia la sesión en la página
+    session_start();
+
+    $nombre_usuario = $_SESSION['usuario'];
+
+    $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' AND nombre_usuario = :nombre_usuario";
+    $stmtNoticias = $conn->prepare($sqlNoticias);
+    $stmtNoticias->bindValue(':nombre_usuario', $nombre_usuario, PDO::PARAM_STR);
+    $stmtNoticias->execute();
+
+    $sqlAnuncios = "SELECT * FROM anuncio WHERE validado = '1' AND nombre_usuario = :nombre_usuario";
+    $stmtAnuncios = $conn->prepare($sqlAnuncios);
+    $stmtAnuncios->bindValue(':nombre_usuario', $nombre_usuario, PDO::PARAM_STR);
+    $stmtAnuncios->execute();
 ?>
+
 <!DOCTYPE html>
 <html lang="es-Es">
 <head>
@@ -14,28 +30,11 @@
 </head>
 <body>
     <?php
-        // Inicia la sesión en la página
-        session_start();
-
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
-            // Comprobar si el usuario es administrador
-            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
         } else {
             include('header_no_sesion.php');
         }
-
-        $nombre_usuario = $_SESSION['usuario'];
-
-        $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' AND nombre_usuario = :nombre_usuario";
-        $stmtNoticias = $conn->prepare($sqlNoticias);
-        $stmtNoticias->bindValue(':nombre_usuario', $nombre_usuario, PDO::PARAM_STR);
-        $stmtNoticias->execute();
-
-        $sqlAnuncios = "SELECT * FROM anuncio WHERE validado = '1' AND nombre_usuario = :nombre_usuario";
-        $stmtAnuncios = $conn->prepare($sqlAnuncios);
-        $stmtAnuncios->bindValue(':nombre_usuario', $nombre_usuario, PDO::PARAM_STR);
-        $stmtAnuncios->execute();
     ?>
 
     <section class="seccion-destacada">

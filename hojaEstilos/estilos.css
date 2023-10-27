@@ -1,6 +1,8 @@
 @import url(fuentes.css);
 
-*, ::after, ::before {
+*,
+::after,
+::before {
     box-sizing: inherit;
 }
 
@@ -13,7 +15,12 @@ body {
     font-family: 'PT Sans Narrow';
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'PT Sans Narrow';
     font-weight: 700;
 }
@@ -27,19 +34,19 @@ div {
 }
 
 .ct-div-block {
-    display:flex;
-    flex-wrap:nowrap;
-    flex-direction:column;
-    align-items:flex-start;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .ct-new-columns {
-    display:flex;
-    width:100%;
-    flex-direction:row;
-    align-items:stretch;
-    justify-content:center;
-    flex-wrap:wrap;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .ct-new-columns > .ct-div-block {
@@ -50,13 +57,13 @@ div {
 }
 
 .ct-link {
-    display:flex;
-    flex-wrap:wrap;
-    text-align:center;
-    text-decoration:none;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    text-decoration: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Estilos para el encabezado */
@@ -83,7 +90,7 @@ header {
     #logo {
         visibility: hidden;
     }
-    
+
     #logo2 {
         visibility: visible;
         height: 90px;
@@ -115,7 +122,7 @@ header {
 
 .header-buttons {
     display: inline-block;
-    text-align: center;  
+    text-align: center;
     position: relative;
 }
 
@@ -124,11 +131,11 @@ header {
         height: 60px;
         width: 80px;
         display: inline-block;
-        text-align: center;  
+        text-align: center;
         position: relative;
         margin-top: -20px;
     }
-    
+
     .centrado-header {
         margin-top: -15px;
     }
@@ -169,13 +176,13 @@ header {
         height: 1px;
         width: 1px;
         grid-template-columns: 40% 1% 1% 1% 1% 1% 1% 1% 30%;
-        grid-template-rows: auto ;
+        grid-template-rows: auto;
         margin-top: -8px;
         margin-left: -8px;
-        margin-right: -8px; 
+        margin-right: -8px;
         visibility: hidden;
     }
-    
+
     .despImg {
         height: 60px;
         border: 2px solid black;
@@ -183,92 +190,93 @@ header {
         margin-top: -50px;
         margin-right: 30px;
     }
-    
+
     .despImg:hover {
         cursor: pointer;
     }
 
-    ul, ol {
-        list-style:none;
-    }  
-    
+    ul,
+    ol {
+        list-style: none;
+    }
+
     .navdesp {
         height: auto;
         visibility: visible;
         padding-top: 30px;
-        width:auto; /*Le establecemos un ancho*/
+        width: auto; /*Le establecemos un ancho*/
     }
-    
+
     .navdesp > li {
-        float:right;
+        float: right;
     }
-    
+
     .navdesp li a {
         color: white;
-        text-decoration:none;
-        display:block;
+        text-decoration: none;
+        display: block;
         width: 150px;
         text-align: center;
         font-size: 20px;
     }
-    
+
     .navdesp li ul {
         margin-top: -5px;
-        display:none;
-        position:absolute;
+        display: none;
+        position: absolute;
         z-index: 12121212;
         width: 150px;
         margin-left: -118px;
     }
-    
+
     .navdesp li:hover > ul {
-        display:block;
+        display: block;
     }
-    
+
     .navdesp li ul li {
-        position:relative;
+        position: relative;
     }
-    
+
     .navdesp li ul li ul {
-        top:0px;
+        top: 0px;
     }
-    
+
     .coloresDesp li:first-child {
         background-color: #57aa26;
     }
-    
+
     .coloresDesp li:first-child:hover {
         background-color: #3d771b;
     }
-    
+
     .coloresDesp li:nth-child(2) {
         background-color: #1aa4c1;
     }
-    
+
     .coloresDesp li:nth-child(2):hover {
         background-color: #106c7e;
     }
-    
+
     .coloresDesp li:nth-child(3) {
         background-color: #fcc204;
     }
-    
+
     .coloresDesp li:nth-child(3):hover {
         background-color: #c09404;
     }
-    
+
     .coloresDesp li:nth-child(4) {
         background-color: #e95f15;
     }
-    
+
     .coloresDesp li:nth-child(4):hover {
         background-color: #bb4d11;
     }
-    
+
     .coloresDesp li:nth-child(5) {
         background-color: #229c69;
     }
-    
+
     .coloresDesp li:nth-child(5):hover {
         background-color: #19734e;
     }
@@ -321,7 +329,6 @@ header {
 
 .menu-item a {
     padding: 12px 0;
-
 }
 
 #menu-principal li:hover {
@@ -344,7 +351,7 @@ header {
     overflow: hidden;
 }
 
-@media screen and (max-width:1000px) {
+@media screen and (max-width: 1000px) {
     .slideshow-container {
         min-width: 300px;
         height: 380px;
@@ -369,7 +376,7 @@ header {
     border-radius: 15px 15px 0 0;
 }
 
-@media screen and (max-width:1000px) {
+@media screen and (max-width: 1000px) {
     .slideshow-container img {
         vertical-align: middle;
         min-width: 300px;
@@ -381,7 +388,8 @@ header {
     }
 }
 
-.prev, .next {
+.prev,
+.next {
     cursor: pointer;
     position: absolute;
     top: 40%;
@@ -404,8 +412,9 @@ header {
     border-radius: 0 7px 7px 0;
 }
 
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .text {
@@ -425,7 +434,7 @@ header {
     border-radius: 0 0 15px 15px;
 }
 
-@media screen and (max-width:1000px) {
+@media screen and (max-width: 1000px) {
     .text {
         color: white;
         font-size: 20px;
@@ -455,7 +464,8 @@ header {
     transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
+.active,
+.dot:hover {
     background-color: #717171;
 }
 
@@ -490,7 +500,8 @@ header {
 }
 
 /* Estilos para el botón "Explorar Más" */
-#ver-mas-noticias, #ver-mas-anuncios {
+#ver-mas-noticias,
+#ver-mas-anuncios {
     background-color: #0077b6;
     color: #fff;
     border: none;
@@ -502,7 +513,8 @@ header {
     transition: background-color 0.3s ease-in-out;
 }
 
-#ver-mas-noticias:hover, #ver-mas-anuncios:hover {
+#ver-mas-noticias:hover,
+#ver-mas-anuncios:hover {
     background-color: #005b91;
 }
 
@@ -625,7 +637,7 @@ header {
     margin-bottom: 12px;
     transition: background-color 0.3s, box-shadow 0.3s;
     margin-left: -28px;
-    text-decoration: none;   
+    text-decoration: none;
 }
 
 #input-buscador::placeholder {
@@ -667,7 +679,8 @@ header {
     border-radius: 5px;
 }
 
-.producto .precio, .productos-slide-anuncios .precio {
+.producto .precio,
+.productos-slide-anuncios .precio {
     font-weight: bold;
     font-size: 20px;
 }
@@ -699,8 +712,8 @@ header {
     text-transform: uppercase;
 }
 
-.productos-slide-anuncios button[name="btn-anadir-carrito"],
-.producto button[name="btn-anadir-carrito"] {
+.productos-slide-anuncios button[name='btn-anadir-carrito'],
+.producto button[name='btn-anadir-carrito'] {
     border: none;
     outline: 0;
     padding: 12px;
@@ -713,8 +726,8 @@ header {
     transition: opacity 0.3s ease-in-out;
 }
 
-.productos-slide-anuncios button[name="btn-anadir-carrito"]:hover,
-.producto button[name="btn-anadir-carrito"]:hover {
+.productos-slide-anuncios button[name='btn-anadir-carrito']:hover,
+.producto button[name='btn-anadir-carrito']:hover {
     opacity: 0.7;
 }
 
@@ -722,10 +735,10 @@ header {
     display: inline;
 }
 
-.producto button[name="validar-anuncio"],
-.producto button[name="eliminar-anuncio"],
-.producto button[name="validar-noticia"],
-.producto button[name="eliminar-noticia"] {
+.producto button[name='validar-anuncio'],
+.producto button[name='eliminar-anuncio'],
+.producto button[name='validar-noticia'],
+.producto button[name='eliminar-noticia'] {
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -736,23 +749,23 @@ header {
     margin: 0 20px 20px;
 }
 
-.producto button[name="validar-anuncio"],
-.producto button[name="validar-noticia"] {
+.producto button[name='validar-anuncio'],
+.producto button[name='validar-noticia'] {
     background-color: #57aa26;
 }
 
-.producto button[name="validar-anuncio"]:hover,
-.producto button[name="validar-noticia"]:hover {
+.producto button[name='validar-anuncio']:hover,
+.producto button[name='validar-noticia']:hover {
     background-color: #56aa26c3;
 }
 
-.producto button[name="eliminar-anuncio"],
-.producto button[name="eliminar-noticia"] {
+.producto button[name='eliminar-anuncio'],
+.producto button[name='eliminar-noticia'] {
     background-color: red;
 }
 
-.producto button[name="eliminar-anuncio"]:hover,
-.producto button[name="eliminar-noticia"]:hover {
+.producto button[name='eliminar-anuncio']:hover,
+.producto button[name='eliminar-noticia']:hover {
     background-color: rgba(255, 0, 0, 0.673);
 }
 
@@ -764,9 +777,9 @@ header {
 }
 
 #paginacion a {
-    border-color: #888C8C;
+    border-color: #888c8c;
     border-radius: 8px;
-    color: #0F1111;
+    color: #0f1111;
     display: block;
     border: 1px solid #6c6e73;
     text-decoration: none;
@@ -774,10 +787,10 @@ header {
 }
 
 #paginacion .a-disabled {
-    background: #FFF;
-    border: 1px solid #D5D9D9;
+    background: #fff;
+    border: 1px solid #d5d9d9;
     border-radius: 8px;
-    color: #6F7373;
+    color: #6f7373;
     display: block;
     pointer-events: none;
 }
@@ -819,7 +832,7 @@ header {
     margin-bottom: 10px;
 }
 
-.filtro-label input[type="radio"] {
+.filtro-label input[type='radio'] {
     display: none;
 }
 
@@ -830,16 +843,16 @@ header {
     border-radius: 5px;
     cursor: pointer;
     padding: 10px;
-    margin-top: 10PX;
+    margin-top: 10px;
     transition: border-color 0.3s ease;
 }
 
 .filtro-label:hover {
-	transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 .filtro-label img:hover {
-	border-color: #000000;
+    border-color: #000000;
 }
 
 #borrarFiltros {
@@ -909,7 +922,7 @@ header {
 }
 
 .categoria-arte {
-    background-color:  #ffe799;
+    background-color: #ffe799;
 }
 
 .categoria-tiempo {
@@ -917,7 +930,7 @@ header {
 }
 
 /*CONTACTO*/
-main {
+.nuestroContacto {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
@@ -925,52 +938,52 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+.nuestroContacto h1 {
     font-size: 24px;
     margin-bottom: 20px;
 }
 
-p {
+.nuestroContacto p {
     line-height: 1.5;
 }
 
 /* Estilos para la sección de contacto */
-.informacion-contacto {
+.nuestroContacto .informacion-contacto {
     margin-bottom: 20px;
 }
 
-.informacion-contacto h2 {
+.nuestroContacto .informacion-contacto h2 {
     font-size: 18px;
     margin-bottom: 10px;
     color: #333;
 }
 
-.informacion-contacto p {
+.nuestroContacto .informacion-contacto p {
     font-size: 16px;
     color: #666;
 }
 
-.formulario-contacto {
+.nuestroContacto .formulario-contacto {
     background-color: #f9f9f9;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
-.formulario-contacto h2 {
+.nuestroContacto .formulario-contacto h2 {
     font-size: 18px;
     margin-bottom: 10px;
     color: #333;
 }
 
-.formulario-contacto label {
+.nuestroContacto .formulario-contacto label {
     font-weight: bold;
     font-size: 16px;
 }
 
-.formulario-contacto input[type="text"],
-.formulario-contacto input[type="email"],
-.formulario-contacto textarea {
+.nuestroContacto .formulario-contacto input[type='text'],
+.nuestroContacto .formulario-contacto input[type='email'],
+.nuestroContacto .formulario-contacto textarea {
     width: 95%;
     padding: 10px;
     margin-bottom: 10px;
@@ -978,7 +991,7 @@ p {
     border-radius: 3px;
 }
 
-.formulario-contacto button {
+.nuestroContacto .formulario-contacto button {
     background-color: #333;
     color: white;
     padding: 10px 20px;
@@ -1064,7 +1077,7 @@ p {
 
 /* Estilo para el texto de teléfono (azul clarito) */
 #contacto-blue-text {
-    color: rgba(26,164,193,0.7);
+    color: rgba(26, 164, 193, 0.7);
     font-weight: 800;
     font-size: 1em;
 }
@@ -1141,7 +1154,7 @@ p {
 /* Estilo para el tercer texto en el centro (azul) */
 #text-blue {
     margin-top: 0px;
-    color: rgba(26,164,193,0.7);
+    color: rgba(26, 164, 193, 0.7);
 }
 
 /* Estilo para el cuarto texto en el centro (verde) */
@@ -1186,11 +1199,13 @@ p {
     text-align: justify;
 }
 
-#fpeuskadi-img, #lanbide-img, #ivafeiei-img {
+#fpeuskadi-img,
+#lanbide-img,
+#ivafeiei-img {
     height: 70px;
 }
 
-#gobiernovasco-img  {
+#gobiernovasco-img {
     height: 60px;
 }
 
@@ -1215,11 +1230,11 @@ p {
         width: auto;
         display: block;
     }
-    
+
     #footer-right {
         width: 500px;
     }
-    
+
     #seccion-logos-arriba {
         width: 500px;
     }
@@ -1234,19 +1249,19 @@ p {
         width: auto;
         display: block;
     }
-    
+
     #footer-left {
         min-width: 200px;
     }
-    
+
     #footer-center {
         min-width: 200px;
     }
-    
+
     #footer-right {
         width: 500px;
     }
-    
+
     #seccion-logos-arriba {
         width: 500px;
     }
@@ -1261,32 +1276,32 @@ p {
         width: auto;
         display: block;
     }
-    
+
     #footer-right {
         width: 400px;
     }
-    
+
     #seccion-logos-arriba {
         width: 400px;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: center;        
+        justify-content: center;
     }
-    
+
     #seccion-logos-abajo {
         width: 400px;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: center;        
+        justify-content: center;
     }
 }
 
 #iniciar-sesion-dropdown {
-    position: relative;
+  position: relative;
 }
 
 .form-sesion {
@@ -1313,8 +1328,8 @@ p {
     margin-top: 10px;
 }
 
-.form-sesion input[type="text"],
-.form-sesion input[type="password"] {
+.form-sesion input[type='text'],
+.form-sesion input[type='password'] {
     width: 90%;
     padding: 10px;
     margin: 5px 0;
@@ -1323,7 +1338,7 @@ p {
 }
 
 .form-sesion button {
-    background-color: #007BFF;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -1338,7 +1353,7 @@ p {
     background-color: #0056b3;
 }
 
-#mensaje-error {
+#mensaje-error-login {
     color: red;
     font-weight: bold;
 }
@@ -1360,7 +1375,7 @@ p {
 }
 
 #btnRegistrarse {
-    color: #007BFF;
+    color: #007bff;
     font-weight: 600;
     font-size: 12px;
 }
@@ -1378,7 +1393,7 @@ p {
     font-weight: 600;
     font-size: 15px;
     line-height: 18px;
-    color: #007BFF;
+    color: #007bff;
 }
 
 /* Estilos para el formulario de creación de anuncios */
@@ -1406,7 +1421,7 @@ p {
     font-size: 18px;
 }
 
-.form-crear-anuncio input[type="text"],
+.form-crear-anuncio input[type='text'],
 .form-crear-anuncio textarea {
     width: 95%;
     padding: 10px;
@@ -1421,7 +1436,7 @@ p {
     resize: none;
 }
 
-.form-crear-anuncio input[type="file"] {
+.form-crear-anuncio input[type='file'] {
     width: 95%;
     padding: 10px;
     margin: 5px 0;
@@ -1433,7 +1448,7 @@ p {
 
 .form-crear-anuncio button {
     display: block;
-    background-color: #007BFF;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -1448,7 +1463,7 @@ p {
     background-color: #0056b3;
 }
 
-.form-crear-anuncio input[type="number"]{
+.form-crear-anuncio input[type='number'] {
     width: 16%;
     padding: 10px;
     margin: 5px 0;
@@ -1483,7 +1498,7 @@ p {
     font-size: 18px;
 }
 
-.form-crear-noticia input[type="text"],
+.form-crear-noticia input[type='text'],
 .form-crear-noticia textarea {
     width: 95%;
     padding: 10px;
@@ -1503,7 +1518,7 @@ p {
     background-color: #fff;
 }
 
-.form-crear-noticia input[type="file"] {
+.form-crear-noticia input[type='file'] {
     width: 95%;
     padding: 10px;
     margin: 5px 0;
@@ -1515,7 +1530,7 @@ p {
 
 .form-crear-noticia button {
     display: block;
-    background-color: #007BFF;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -1555,7 +1570,7 @@ p {
     font-size: 18px;
 }
 
-.form-crear-anuncio input[type="text"],
+.form-crear-anuncio input[type='text'],
 .form-crear-anuncio textarea {
     width: 95%;
     padding: 10px;
@@ -1565,7 +1580,7 @@ p {
     font-size: 16px;
 }
 
-.form-crear-anuncio input[type="file"] {
+.form-crear-anuncio input[type='file'] {
     width: 95%;
     padding: 10px;
     margin: 5px 0;
@@ -1577,7 +1592,7 @@ p {
 
 .form-crear-anuncio button {
     display: block;
-    background-color: #007BFF;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -1590,12 +1605,6 @@ p {
 
 .form-crear-anuncio button:hover {
     background-color: #0056b3;
-}
-
-.mensaje-success {
-    background-color: #ddffdd;
-    border-left: 6px solid #04AA6D;
-    padding: 4px 12px;
 }
 
 /* Estilos para el formulario Mi Perfil */
@@ -1617,8 +1626,8 @@ p {
     font-size: 1.2em;
 }
 
-.mi-perfil-container button[name="editar"],
-.mi-perfil-container button[name="guardar"] {
+.mi-perfil-container button[name='editar'],
+.mi-perfil-container button[name='guardar'] {
     background-color: #0077b6;
     color: #fff;
     border: none;
@@ -1630,18 +1639,18 @@ p {
     transition: background-color 0.3s ease-in-out;
 }
 
-.mi-perfil-container button[name="editar"]:hover,
-.mi-perfil-container button[name="guardar"]:hover {
+.mi-perfil-container button[name='editar']:hover,
+.mi-perfil-container button[name='guardar']:hover {
     background-color: #005b91;
 }
 
-.mi-perfil-container button[name="guardar"],
-.mi-perfil-container button[name="cancelar"] {
+.mi-perfil-container button[name='guardar'],
+.mi-perfil-container button[name='cancelar'] {
     display: inline-block;
 }
 
-.mi-perfil-container button[name="cancelar"],
-.mi-perfil-container button[name="cerrar-sesion"] {
+.mi-perfil-container button[name='cancelar'],
+.mi-perfil-container button[name='cerrar-sesion'] {
     background-color: #b60000;
     color: #fff;
     border: none;
@@ -1653,16 +1662,16 @@ p {
     transition: background-color 0.3s ease-in-out;
 }
 
-.mi-perfil-container button[name="cancelar"] {
+.mi-perfil-container button[name='cancelar'] {
     float: right;
 }
 
-.mi-perfil-container button[name="cerrar-sesion"] {
+.mi-perfil-container button[name='cerrar-sesion'] {
     margin-left: 30px;
 }
 
-.mi-perfil-container button[name="cancelar"]:hover,
-.mi-perfil-container button[name="cerrar-sesion"]:hover {
+.mi-perfil-container button[name='cancelar']:hover,
+.mi-perfil-container button[name='cerrar-sesion']:hover {
     background-color: #910000;
 }
 
@@ -1677,10 +1686,10 @@ p {
     font-size: 1.2em;
 }
 
-.mi-perfil-container input[type="text"],
-.mi-perfil-container input[type="date"],
-.mi-perfil-container input[type="email"],
-.mi-perfil-container input[type="file"] {
+.mi-perfil-container input[type='text'],
+.mi-perfil-container input[type='date'],
+.mi-perfil-container input[type='email'],
+.mi-perfil-container input[type='file'] {
     width: 95%;
     padding: 10px;
     margin: 5px 0;
@@ -1745,10 +1754,10 @@ p {
 }
 
 .modal #confirmar-no,
-.modalValidarA #confirmar-no-validarA,
-.modalEliminarA #confirmar-no-eliminarA,
-.modalValidarN #confirmar-no-validarN,
-.modalEliminarN #confirmar-no-eliminarN {
+.modalValidarA .confirmar-no,
+.modalEliminarA .confirmar-no,
+.modalValidarN .confirmar-no,
+.modalEliminarN .confirmar-no {
     background-color: blue;
     border-color: blue;
     color: white;
@@ -1778,7 +1787,8 @@ p {
     font-weight: 100;
 }
 
-.mensaje-exito, .mensaje-error {
+.mensaje-exito,
+.mensaje-error {
     font-size: 1.6em;
     margin: 15px 30px;
     padding: 4px 12px;
@@ -1786,7 +1796,7 @@ p {
 
 .mensaje-exito {
     background-color: #ddffdd;
-    border-left: 6px solid #04AA6D;
+    border-left: 6px solid #04aa6d;
 }
 
 .mensaje-error {
@@ -1797,44 +1807,91 @@ p {
 /* Estilos del Carrito de Compra */
 .carrito-container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 30px;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 .carrito-container h2 {
-    text-align: center;
-    color: #333;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
 }
 
-.carrito-container table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+.carrito-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
 }
 
-.carrito-container table th,
-.carrito-container table td {
-    border: 1px solid #ddd;
-    padding: 10px;
+.foto-carrito {
+    flex: 0 0 150px;
+}
+
+.foto-carrito img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.carrito-content {
+    flex: 1;
+    margin-left: 20px;
     text-align: left;
 }
 
-.carrito-container thead {
-    background-color: #333;
+.producto-nombre,
+.producto-descripcion,
+.producto-precio {
+    text-align: left;
+    font-size: 1.3em;
+}
+
+.producto-nombre::first-letter,
+.producto-descripcion::first-letter {
+    text-transform: uppercase;
+}
+
+.producto-descripcion {
+    font-size: 1.1em;
+}
+
+.producto-precio {
+    font-weight: bold;
+}
+
+.eliminar-button {
+    background: #e74c3c;
     color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    transition: background 0.3s;
+    margin-left: 30px;
 }
 
-.carrito-container table tr:nth-child(even) {
-    background-color: #f2f2f2;
+.eliminar-button:hover {
+    background: #c0392b;
 }
 
-.carrito-container p {
+.carrito-container .carrito-vacio {
     text-align: right;
     margin-top: 10px;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 1.6em;
+    color: #777;
+}
+
+#numero-carrito {
+    margin-top: 10px;
+    height: 30px;
+    width: 20px;
+    text-align: center;
 }

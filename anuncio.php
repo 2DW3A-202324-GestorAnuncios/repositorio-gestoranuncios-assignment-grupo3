@@ -93,7 +93,7 @@
     <?php
         if($totalProductos === 0){
             echo '<div>';
-            echo'<p  id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
+                echo'<p id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
             echo '</div>';
         }
     ?>
@@ -102,13 +102,14 @@
         <?php
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
                 $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
+                $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
 
                 $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
                 if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
                     if ($admin == 1) {
                         $btnAnadirCarrito = '';
                     } else if ($admin == 0) {
-                        $btnAnadirCarrito = '<button name="btn-anadir-carrito" onclick="agregarAlCarrito(' . $row['nombre_anuncio'] . ', ' . $row['precio'] . ')">Añadir al Carrito</button>';
+                        $btnAnadirCarrito = '<button class="btn-anadir-carrito" name="btn-anadir-carrito" data-id="' . $row['id_anuncio'] . '" data-foto="' . $row['foto'] . '" data-nombre="' . $row['nombre_anuncio'] . '" data-descripcion="' . $row['descripcion'] . '" data-precio="' . $row['precio'] . '">Añadir al Carrito</button>';
                     }
                 } else {
                     $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
@@ -116,7 +117,7 @@
 
                 echo '<div class="producto">';
                     echo '<div class="imagen-producto">';
-                        echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                        echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
                     echo '</div>';
                     echo '<div class="contenedor-anuncio">';
                         echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
@@ -157,22 +158,48 @@
             }
         });
         
-        function agregarAlCarrito(nombreProducto, precio) {
-            // Obtener carrito actual o crear uno si no existe
-            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        const btnAnadirCarrito = document.getElementsByClassName('btn-anadir-carrito');
+        // Recorre los botones y deshabilita los que estén en el carrito
+        for (const btn of btnAnadirCarrito) {
+            const idAnuncio = btn.getAttribute('data-id');
+            const estaEnCarrito = carrito.some(item => item.id === idAnuncio);
 
-            // Verificar si el producto ya está en el carrito
-            const productoExistente = carrito.find(item => item.nombre === nombreProducto);
-
-            if (productoExistente) {
-                productoExistente.cantidad += 1;
-            } else {
-                // Agregar el producto al carrito con cantidad 1
-                carrito.push({ nombre: nombreProducto, precio, cantidad: 1 });
+            if (estaEnCarrito) {
+                btn.disabled = true;
+                btn.style.backgroundColor = '#ccc';
+                btn.style.color = '#666';
+                btn.style.cursor = 'not-allowed';
             }
 
-            // Guardar el carrito actualizado en localStorage
-            localStorage.setItem('carrito', JSON.stringify(carrito));
+            btn.addEventListener('click', (e) => {
+                const fotoAnuncio = e.currentTarget.getAttribute('data-foto');
+                const nombreAnuncio = e.currentTarget.getAttribute('data-nombre');
+                const descripcionAnuncio = e.currentTarget.getAttribute('data-descripcion');
+                const precioAnuncio = e.currentTarget.getAttribute('data-precio');
+
+                // Agregar el nuevo producto al carrito
+                const nuevoProducto = {
+                    id: idAnuncio,
+                    foto: fotoAnuncio,
+                    nombre: nombreAnuncio,
+                    descripcion: descripcionAnuncio,
+                    precio: precioAnuncio
+                };
+
+                carrito.push(nuevoProducto);
+
+                // Almacenar la lista actualizada en localStorage
+                localStorage.setItem('carrito => ' + usuario, JSON.stringify(carrito));
+
+                // Deshabilitar el botón después de hacer clic
+                btn.disabled = true;
+                btn.style.backgroundColor = '#ccc';
+                btn.style.color = '#666';
+                btn.style.cursor = 'not-allowed';
+                
+                let numeroCarrito = document.getElementById('numero-carrito');
+                numeroCarrito.innerText = parseInt(numeroCarrito.innerText) + 1;
+            });
         }
     </script>
 
