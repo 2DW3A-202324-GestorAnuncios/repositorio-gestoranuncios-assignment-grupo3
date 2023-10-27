@@ -70,13 +70,3 @@
         </li>
     </ul>
 </nav>
-
-<script>
-    const usuario = "<?php echo $_SESSION['usuario'] ?>";
-
-    let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario ))|| [];
-        let carritoLength = carrito.length; 
-        console.log(carritoLength);
-        document.getElementById('numero-carrito').innerText = carritoLength;
-</script>
-
