@@ -74,10 +74,8 @@
     <?php
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
-            $usuario = $_SESSION['usuario'];
         } else {
             include('header_no_sesion.php');
-            $usuario = null;
         }
     ?>
 
@@ -95,7 +93,7 @@
     <?php
         if($totalProductos === 0){
             echo '<div>';
-            echo'<p  id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
+                echo'<p id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
             echo '</div>';
         }
     ?>
@@ -200,7 +198,7 @@
                 btn.style.cursor = 'not-allowed';
                 
                 let numeroCarrito = document.getElementById('numero-carrito');
-                numeroCarrito.innerText = parseInt(numeroCarrito.innerText)+1;
+                numeroCarrito.innerText = parseInt(numeroCarrito.innerText) + 1;
             });
         }
     </script>

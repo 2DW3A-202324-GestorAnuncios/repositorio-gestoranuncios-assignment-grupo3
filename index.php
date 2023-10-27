@@ -32,10 +32,8 @@
     <?php
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
-            $usuario = $_SESSION['usuario'];
         } else {
             include('header_no_sesion.php');
-            $usuario = null;
         }
     ?>
 
@@ -148,7 +146,6 @@
 
     <script>
         const btnAnadirCarrito = document.getElementsByClassName('btn-anadir-carrito');
-        
 
         // Recorre los botones y deshabilita los que estén en el carrito
         for (const btn of btnAnadirCarrito) {
@@ -189,7 +186,7 @@
                 btn.style.cursor = 'not-allowed';
                 
                 let numeroCarrito = document.getElementById('numero-carrito');
-                numeroCarrito.innerText = parseInt(numeroCarrito.innerText)+1;
+                numeroCarrito.innerText = parseInt(numeroCarrito.innerText) + 1;
             });
         }
     </script>

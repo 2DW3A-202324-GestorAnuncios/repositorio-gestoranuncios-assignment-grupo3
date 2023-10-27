@@ -1,9 +1,13 @@
 <?php
     include("conexion.php");
+    
+    // Inicia la sesión en la página
+    session_start();
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1'";
     $resultNoticias = $conn->query($sqlNoticias);
 ?>
+
 <!DOCTYPE html>
 <html lang="es-Es">
 <head>
@@ -18,13 +22,8 @@
 </head>
 <body>
     <?php
-        // Inicia la sesión en la página
-        session_start();
-
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
-            // Comprobar si el usuario es administrador
-            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
         } else {
             include('header_no_sesion.php');
         }

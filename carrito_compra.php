@@ -1,3 +1,8 @@
+<?php
+    // Inicia la sesión en la página
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es-Es">
 <head>
@@ -7,15 +12,11 @@
     <link rel="stylesheet" href="hojaEstilos/fuentes.css">
     <link rel="stylesheet" href="hojaEstilos/estilos.css">
     <link rel="shortcut icon" href="img/favicon.png">
+    <script src="script.js"></script>
     <title>Carrito de Compra - CIFP Txurdinaga</title>
 </head>
 <body>
     <?php
-        // Inicia la sesión en la página
-        session_start();
-
-        $usuario = $_SESSION['usuario'];
-
         include('header_sesion.php');
     ?>
     
@@ -31,7 +32,7 @@
             actualizarCarrito();
 
             let numeroCarrito = document.getElementById('numero-carrito');
-            numeroCarrito.innerText = parseInt(numeroCarrito.innerText)-1;
+            numeroCarrito.innerText = parseInt(numeroCarrito.innerText) - 1;
         }
 
         // Función para actualizar el carrito en el Local Storage y en la interfaz de usuario
@@ -70,7 +71,6 @@
                 itemContainer.appendChild(eliminarButton);
 
                 carritoContainer.appendChild(itemContainer);
-
             });
 
             if (carrito.length === 0) {

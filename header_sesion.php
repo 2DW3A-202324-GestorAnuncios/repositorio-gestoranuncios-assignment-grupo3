@@ -31,13 +31,12 @@
             }
         ?>
         <script>
-            const usuario = "<?php echo $_SESSION['usuario'];; ?>";
-            const usuarioCarrito = "<?php echo $_SESSION['usuario']; ?>";
+            const usuario = "<?php echo $_SESSION['usuario']; ?>";
 
-            let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuarioCarrito ))|| [];
-                let carritoLength = carrito.length; 
-                console.log(carritoLength);
-                document.getElementById('numero-carrito').innerText = carritoLength;
+            let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario ))|| [];
+            let carritoLength = carrito.length;
+            
+            document.getElementById('numero-carrito').innerText = carritoLength;
         </script>
     </div>
 </header>
@@ -71,5 +70,3 @@
         </li>
     </ul>
 </nav>
-
-
