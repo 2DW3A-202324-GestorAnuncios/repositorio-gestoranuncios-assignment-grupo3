@@ -30,6 +30,14 @@
                 echo '<h1 id="numero-carrito"></h1>';
             }
         ?>
+        <script>
+            const usuario = "<?php echo $_SESSION['usuario']; ?>";
+
+            let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario ))|| [];
+            let carritoLength = carrito.length;
+            
+            document.getElementById('numero-carrito').innerText = carritoLength;
+        </script>
     </div>
 </header>
 

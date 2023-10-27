@@ -90,7 +90,8 @@ header {
     #logo {
         visibility: hidden;
     }
-    #logo2{
+
+    #logo2 {
         visibility: visible;
         height: 90px;
         width: auto;
@@ -200,8 +201,8 @@ header {
         margin-right: -8px;
         visibility: hidden;
     }
-    /* Ajusta la imagen del desplegable */
-    .despImg{
+
+    .despImg {
         height: 60px;
         border: 3px solid rgba(0,0,0, 0.3);        border-radius: 15px;
         margin-top: -50px;
@@ -210,15 +211,17 @@ header {
         transition: 0.3s;
 
     }
-    .despImg:hover{
+
+    .despImg:hover {
         cursor: pointer;
         border: 3px solid rgba(0,0,0, 1);
     }
 
-    ul, ol {
-        list-style:none;
-    }  
-    /* Hace visible la imagen del desplegable */
+    ul,
+    ol {
+        list-style: none;
+    }
+
     .navdesp {
         height: auto;
         visibility: visible;
@@ -237,28 +240,32 @@ header {
         text-align: center;
         font-size: 20px;
     }
+
     .navdesp li ul {
-        margin-top: -25px;
-        display:none;
-        position:absolute;
+        margin-top: -5px;
+        display: none;
+        position: absolute;
         z-index: 12121212;
         width: 150px;
         margin-left: -118px;
     }
+
     .navdesp li:hover > ul {
         display: block;
     }
+
     .navdesp li ul li {
         position: relative;
     }
+
     .navdesp li ul li ul {
         top: 0px;
     }
 
-    /* Asigna un color de fondo a cada apartado del desplegable */
     .coloresDesp li:first-child {
         background-color: #57aa26;
     }
+
     .coloresDesp li:first-child:hover {
         background-color: #3d771b;
     }
@@ -374,8 +381,7 @@ header {
     
 }
 
-/* Media query para ajustar las imagenes del carrusel a la pagina */
-@media screen and (max-width:800px) {
+@media screen and (max-width: 1000px) {
     .slideshow-container {
         min-width: 350px;
         height: 380px;
@@ -470,8 +476,7 @@ header {
 
 }
 
-/* Media query para ajustar el texto del carrusel a la pagina */
-@media screen and (max-width:1000px) {
+@media screen and (max-width: 1000px) {
     .text {
         color: white;
         font-size: 20px;
@@ -788,9 +793,8 @@ anuncios del indice a dispositivos distintos */
     text-transform: uppercase;
 }
 
-/* Da forma a los botones de validar */
-.productos-slide-anuncios button[name="btn-anadir-carrito"],
-.producto button[name="btn-anadir-carrito"] {
+.productos-slide-anuncios button[name='btn-anadir-carrito'],
+.producto button[name='btn-anadir-carrito'] {
     border: none;
     outline: 0;
     padding: 12px;
@@ -945,6 +949,23 @@ anuncios del indice a dispositivos distintos */
 }
 
 .filtro-label:hover {
+    transform: scale(1.2);
+}
+
+.filtro-label img:hover {
+    border-color: #000000;
+}
+
+#borrarFiltros {
+    display: block;
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#borrarFiltros:hover {
+    color: blue;
     transform: scale(1.2);
 }
 
@@ -1368,10 +1389,12 @@ anuncios del indice a dispositivos distintos */
         width: auto;
         display: block;
     }
-    #footer-right{
+
+    #footer-right {
         width: 500px;
     }
-    #seccion-logos-arriba{
+
+    #seccion-logos-arriba {
         width: 500px;
         
     }
@@ -1385,17 +1408,21 @@ anuncios del indice a dispositivos distintos */
         width: auto;
         display: block;
     }
-    #footer-left{
+
+    #footer-left {
         min-width: 200px;
     }
-    #footer-center{
+
+    #footer-center {
         min-width: 200px;
     }
-    #footer-right{
+
+    #footer-right {
         width: 500px;
     }
-    #seccion-logos-arriba{
-        width: 500px;  
+
+    #seccion-logos-arriba {
+        width: 500px;
     }
 }
 
@@ -1408,10 +1435,12 @@ anuncios del indice a dispositivos distintos */
         width: auto;
         display: block;
     }
-    #footer-right{
+
+    #footer-right {
         width: 400px;
     }
-    #seccion-logos-arriba{
+
+    #seccion-logos-arriba {
         width: 400px;
         display: flex;
         flex-direction: column;
@@ -1419,7 +1448,8 @@ anuncios del indice a dispositivos distintos */
         align-items: center;
         justify-content: center;
     }
-    #seccion-logos-abajo{
+
+    #seccion-logos-abajo {
         width: 400px;
         display: flex;
         flex-direction: column;
@@ -1432,7 +1462,7 @@ anuncios del indice a dispositivos distintos */
 /* Hace visible el pop-up de "inciar sesion" */
 
 #iniciar-sesion-dropdown {
-    position: relative;
+  position: relative;
 }
 
 .form-sesion {
@@ -1525,130 +1555,6 @@ anuncios del indice a dispositivos distintos */
     font-size: 15px;
     line-height: 18px;
     color: #007bff;
-}
-
-/* Estilos para la creacion de cuenta */
-/* Da forma al formulario en "crear cuenta" */
-.form-crear-cuenta {
-    width: 70%;
-    max-width: 600px;
-    min-width: 400px;
-    background-color: white;
-    display: grid;
-    border-radius: 40px;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    height: auto;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-/* Da forma al logo en "crear cuenta" */
-.logo-inicio-sesion {
-    height: 190px;
-    width: 160px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Da forma a la estructura de "crear cuenta" */
-.crear-cuenta {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 20px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Da forma a los inputs en "crear cuenta" */
-.input-text {
-    width: 100%;
-    border: 2px solid rgba( 0, 0, 0, 0.5);
-    border-radius: 10px;
-    height: 30px;
-    font-size: 15px;
-    transition: 0.4s;
-}
-
-.input-text:hover {
-    border: 2px solid rgba( 0, 0, 0, 1);
-
-}
-
-/* Da forma a los botones en "crear cuenta" */
-.boton {
-    width: 125px;
-    height: 40px;
-    background-color: #007bff;
-    border-radius: 12px;
-    font-size: 17px;
-    border: 0px solid black;
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    transition: 0.4s;
-    color: white;
-}
-
-.boton:hover {
-    cursor: pointer;
-    background-color: #005b91;
-}
-
-.botones-crear-cuenta{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    margin-bottom: -20px;
-}
-
-/* Da forma al checkbox en "crear cuenta" */
-.terminos-crear-cuenta {
-    font-size: 17px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-}
-
-.terminos-checkbox:hover {
-    cursor: pointer;
-}
-
-/* Da color a los spans de error y correcto en "crear cuenta" */
-.error {
-    color: #FF0000;
-    font-size: 18px;
-}
-.correcto{
-    color: #00cd0a;
-    font-size: 18px;
-}
-
-span {
-    font-size: 15px;
-}
-
-/* Da color al mensaje de repeticion en "crear cuenta" */
-#repPK{
-    color: red;
-    display: block;
-    margin-left: 25px;
-    font-size: 15px;
-}
-
-.input-genero{
-    font-size: 18px;
-    margin-top: -8px;
-    margin-left: 10px;
 }
 
 /* Estilos para el formulario de creación de anuncios */
@@ -1999,8 +1905,12 @@ span {
     border-color: blue;
 }
 
-.modal #confirmar-no {
-    background-color: blue; /* Fondo de "No" en azul */
+.modal #confirmar-no,
+.modalValidarA .confirmar-no,
+.modalEliminarA .confirmar-no,
+.modalValidarN .confirmar-no,
+.modalEliminarN .confirmar-no {
+    background-color: blue;
     border-color: blue;
     color: white; /* Texto en blanco */
 }
@@ -2029,15 +1939,16 @@ span {
     font-weight: 100;
 }
 
-.mensaje-exito, .mensaje-error {
-    font-weight: bold;
-    font-size: 1.2em;
-    padding: 10px;
-    margin: 10px auto;
+.mensaje-exito,
+.mensaje-error {
+    font-size: 1.6em;
+    margin: 15px 30px;
+    padding: 4px 12px;
 }
 
 .mensaje-exito {
-    color: green;
+    background-color: #ddffdd;
+    border-left: 6px solid #04aa6d;
 }
 
 .mensaje-error {
@@ -2222,10 +2133,6 @@ span {
     background: #c0392b;
 }
 
-.carrito-container table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
 .carrito-container .carrito-vacio {
     text-align: right;
     margin-top: 10px;
@@ -2239,15 +2146,4 @@ span {
     height: 30px;
     width: 20px;
     text-align: center;
-}
-.carrito-container #celdaImg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.carrito-container img {
-    max-width: 200px;
-    height: 100%;
-    object-fit: cover;
 }
