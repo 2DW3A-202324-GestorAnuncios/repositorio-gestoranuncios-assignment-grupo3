@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="../script.js"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>">
     <link rel="shortcut icon" href="../img/favicon.png">
     <title>Crear Cuenta - CIFP Txurdinaga</title>
@@ -12,26 +13,23 @@
         $repeticionPK = "";
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
-            include("../conexion.php");
+            $conn = mysqli_connect("localhost", "root", "", "gestor_anuncios");
+
+            // Comprueba conexión
+            if ($conn === false) {
+                die("ERROR: No se ha podido conectar. " . mysqli_connect_error());
+            }
 
             $usu = $_POST['usuario'];
             $corr = $_POST['email'];
             $c1 = $_POST['contraseña'];
             $c2 = $_POST['contraseña2'];
+            $claveUsu = "SELECT nombre_usuario FROM usuario where nombre_usuario = '" . $usu . "' ";
+            $resultUsu = mysqli_query($conn, $claveUsu);
+            $claveCorr = "SELECT correo FROM usuario where correo = '" . $corr . "' ";
+            $resultCorr = mysqli_query($conn, $claveCorr);
 
-            $sql = "SELECT nombre_usuario FROM usuario where nombre_usuario = '".$usu."'";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            $sql2 = "SELECT correo FROM usuario where correo = '".$corr."'";
-            $stmt2 = $conn->prepare($sql2);
-            $stmt2->execute();
-            $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-
-            
-            if (($row) == 0 && ($row2) == 0){
+            if (mysqli_num_rows($resultUsu) == 0 && mysqli_num_rows($resultCorr) == 0) {
 
                 if ($c1 === $c2 && !empty($c1) && !empty($c2)) {
                     // Coje los datos del formulario
@@ -45,12 +43,10 @@
                     $imagen = $_POST['imagen'];
 
                     // Inserta los datos en la tabla "usuario"
-                    $sql = "INSERT INTO usuario (nombre_usuario, nombre, apellido,fecha_nac,sexo, correo, password, foto) VALUES ('$usuario','$nombre','$apellido','$fecha','$genero','$email','$contraseña','$imagen')";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->execute();
-                    $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
-                    //Te redirije a la pagina principal al insertar los datos
+                    mysqli_query($conn, "INSERT INTO usuario (nombre_usuario, nombre, apellido, fecha_nac, sexo, correo, password, foto) VALUES ('$usuario', '$nombre', '$apellido', '$fecha', '$genero', '$email', '$contraseña', '$imagen')");
 
+                    // Cierra conexión
+                    mysqli_close($conn);
                     header("Location: ../index.php");
                 } else {
                     // Las contraseñas no coinciden o están en blanco
@@ -128,7 +124,7 @@
             </div>
             <br>
             <div id="imagen">
-                <p>Foto de perfil(opcional):</p>
+                <p>Foto de perfil(no obligatorio):</p>
                 <input type="file" accept="image/*" name="imagen">
             </div><br><br>
             <div class="terminos-crear-cuenta" >
@@ -138,17 +134,22 @@
             </div>
             <span id="repPK"><?php echo $repeticionPK ?></span>
             <div class="botones-crear-cuenta">
-                <input type="submit" value="Crear Cuenta" name="submit" class="boton" id="botonSubmit" onclick="validarCampos()">
+                <input type="submit" value="Crear Cuenta" name="submit" class="boton" onclick="validarCampos()">
                 <input type="button" style = "background-color:red" value="Cancelar" class="boton" onclick="location.href='../index.php';">
             </div>
         </form>
     </div>
    
+   
     <script>
         //para el reenvio del formulario al recargar la pagina
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
-        }
+        }  
+       
+
+
     </script>
 </body>
 </html>
+
