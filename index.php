@@ -43,18 +43,15 @@
         <h2 class="titulo-llamativo">¡Mantente al Día!</h2>
         <div class="slideshow-container">
             <?php
-                $slideNumber = 1;
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="mySlides fade">';
-                    echo '<form action="pagina_noticias.php?titulo='.urlencode($row['titulo']).'&foto='.urlencode($row['foto']).'&categoria='.urlencode($row['categoria']).'&descripcion='.urlencode($row['descripcion']).'" method="POST">';
-                    // Comprobar si la noticia tiene una imagen específica o no
-                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
-                    echo '<input type="image" src="' . $imagenURL . '" style="width:100%">';
-                    echo '<div class="text">' . $row['descripcion'] . '</div>';
-                    echo '</form>';
+	                    echo '<form action="pagina_noticias.php?titulo='.urlencode($row['titulo']).'&foto='.urlencode($row['foto']).'&categoria='.urlencode($row['categoria']).'&descripcion='.urlencode($row['descripcion']).'" method="POST">';
+		                    // Comprobar si la noticia tiene una imagen específica o no
+		                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
+		                    echo '<input type="image" src="' . $imagenURL . '" style="width:100%">';
+		                    echo '<div class="text">' . $row['descripcion'] . '</div>';
+	                    echo '</form>';
                     echo '</div>';
-                    $slideNumber++;
-
                 }
             ?>
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>

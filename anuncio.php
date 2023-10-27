@@ -162,6 +162,7 @@
         });
         
         const btnAnadirCarrito = document.getElementsByClassName('btn-anadir-carrito');
+
         // Recorre los botones y deshabilita los que estén en el carrito
         for (const btn of btnAnadirCarrito) {
             const idAnuncio = btn.getAttribute('data-id');
