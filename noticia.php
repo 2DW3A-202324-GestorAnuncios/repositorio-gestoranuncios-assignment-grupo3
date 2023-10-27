@@ -63,14 +63,24 @@
         <div class="noticias3">
             <h2>Noticias</h2>
             <div id="noticiasContainer" class="noticias-container">
-                <?php
+                <?php 
+                    
                     while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
+                        
                         echo '<div class="noticia3 categoria-' . $row['categoria'] . '">';
-                            echo '<img src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
+                        echo '<form action="pagina_noticias.php?titulo='.urlencode($row['titulo']).'&foto='.urlencode($row['foto']).'&categoria='.urlencode($row['categoria']).'&descripcion='.urlencode($row['descripcion']).'" method="POST">';
+
+                            echo '<input type="image" src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3"/>';
+
                             echo '<h1 class="titulo-noticia3-h1">' . $row['categoria'] . '</h1>';
                             echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
+                            echo '<input type="hidden" value="'.$row['descripcion'].'">';
+                        echo '</form>';
+
                         echo '</div>';
                     }
+                    
+                    
                 ?>
             </div>
         </div>
