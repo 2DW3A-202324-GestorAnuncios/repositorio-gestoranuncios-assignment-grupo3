@@ -1,3 +1,10 @@
+<?php
+    include("conexion.php");
+        
+    // Inicia la sesión en la página
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es-Es">
 <head>
@@ -11,15 +18,8 @@
 </head>
 <body>
     <?php
-        include("conexion.php");
-        
-        // Inicia la sesión en la página
-        session_start();
-
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
-            // Comprobar si el usuario es administrador
-            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
         } else {
             include('header_no_sesion.php');
         }
@@ -70,28 +70,26 @@
             echo '</div>';
         }
     ?>
-
-    <main>
-        <section class="crear-anuncio">
-            <h1>Crear un Anuncio</h1>
-            <div class="form-crear-anuncio">
-                <form action="#" method="post" enctype="multipart/form-data">
-                    <label for="titulo">Título:</label>
-                    <input type="text" id="titulo" name="titulo" required>
-                    
-                    <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
-                    
-                    <label for="imagen">Imagen:</label>
-                    <input type="file" id="imagen" name="imagen" accept="image/*">
-                    
-                    <label for="precio">Precio (€):</label>
-                    <input type="number" id="precio" name="precio" required placeholder="0" min="0">
-                    <button type="submit">Crear Anuncio</button>
-                </form>
-            </div>
-        </section>
-    </main>
+    
+    <section class="crear-anuncio">
+        <h1>Crear un Anuncio</h1>
+        <div class="form-crear-anuncio">
+            <form action="#" method="post" enctype="multipart/form-data">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" required>
+                
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                
+                <label for="imagen">Imagen:</label>
+                <input type="file" id="imagen" name="imagen" accept="image/*">
+                
+                <label for="precio">Precio (€):</label>
+                <input type="number" id="precio" name="precio" required placeholder="0" min="0">
+                <button type="submit">Crear Anuncio</button>
+            </form>
+        </div>
+    </section>
 
     <?php
         include('footer.php');
