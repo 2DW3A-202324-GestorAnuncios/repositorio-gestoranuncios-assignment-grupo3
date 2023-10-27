@@ -42,10 +42,10 @@
         <div class="slideshow-container">
             <?php
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
-                    // Comprobar si la noticia tiene una imagen específica o no
+                    // Verifica si la URL de la imagen es nula o vacía
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
                     echo '<div class="mySlides fade">';
-                        echo '<img src="' . $imagenURL . '" style="width:100%">';
+                        echo '<a href="pagina_noticias.php?titulo='.urlencode($row['titulo']).'&foto='.urlencode($row['foto']).'&categoria='.urlencode($row['categoria']).'&descripcion='.urlencode($row['descripcion']).'"><img src="' . $imagenURL . '" style="width:100%"></a>';
                         echo '<div class="text">' . $row['descripcion'] . '</div>';
                     echo '</div>';
                 }
@@ -129,12 +129,12 @@
 
                     echo '<div class="productos-slide-anuncios">';
                         echo '<div class="imagen-producto">';
-                            echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                            echo '<a href="pagina_anuncio.php?nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
                         echo '</div>';
                         echo '<div class = "contenedor-anuncio">';
                             echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
                             echo '<p>' . $row['descripcion'] . '</p>';
-                            echo '<p class="precio">' . $row['precio'] . '€</p>';
+                            echo '<p class="precio">' . $row['precio'] . ' €</p>';
                         echo '</div>';
                         echo $btnAnadirCarrito;
                     echo '</div>';

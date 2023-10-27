@@ -2,18 +2,21 @@
 <html lang="es-Es">
 <head>
     <meta charset="UTF-8">
-    <script src="../script.js"></script>
-    <link rel="stylesheet" href="../style.css?v=<?php echo time(); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" as="style" href="../hojaEstilos/fuentes.css">
+    <link rel="stylesheet" href="../hojaEstilos/fuentes.css">
+    <link rel="stylesheet" href="../hojaEstilos/estilos.css?v=<?php echo time(); ?>">
     <link rel="shortcut icon" href="../img/favicon.png">
+    <script src="../script.js"></script>
     <title>Crear Cuenta - CIFP Txurdinaga</title>
 </head>
 <body>
     <?php
+        include("../conexion.php");
+
         $repeticionPK = "";
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
-            include("../conexion.php");
 
             $usu = $_POST['usuario'];
             $corr = $_POST['email'];
@@ -60,6 +63,7 @@
             }
         }
     ?>
+
     <div class="form-crear-cuenta">
         <img src="../img/Logo_Inicio_Sesion.png" alt="logo" class="logo-inicio-sesion">
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" id="id-form">
@@ -68,15 +72,11 @@
                     <p>Nombre:</p>
                     <input type="text" class="input-text" autofocus maxlength="15" name="nombre" id="nombre">
                     <span class="error" id="error6" name="error6"></span>
-
-
                 </div>
                 <div>
                     <p>Apellido:</p>
                     <input type="text" class="input-text" maxlength="15" name="apellido" id="apellido">
                     <span class="error" id="error7" name="error7"></span>
-
-
                 </div>
                 <div>
                     <p>Usuario:</p>
@@ -93,23 +93,17 @@
                     <input type="password"  class="input-text" name="contraseña" aria-laballedby="password" id="validar-contraseña">
                     <span class="error" id="error3" name="error3"></span>
                     <div id="expresiones">
-
-
                     </div>
                 </div>
                 <div>
                     <p>Confirmar contraseña:</p>
                     <input type="password" class="input-text" name="contraseña2" id="validar-contraseña2">
                     <span class="error" id="error4" name="error4"></span>
-
-
                 </div>
                 <div>
                     <p>Fecha de nacimiento:</p>
                     <input type="date" class="input-text" name="fecha" id="fecha">
                     <span class="error" id="error8" name="error8"></span>
-
-
                 </div>
                 <div>
                     <p>Genero:</p>
@@ -122,8 +116,6 @@
                         <label for="css">Otros</label><br>
                     </div>
                     <span class="error" id="error9" name="error9"></span>
-
-
                 </div>
             </div>
             <br>
@@ -143,7 +135,7 @@
             </div>
         </form>
     </div>
-   
+    
     <script>
         //para el reenvio del formulario al recargar la pagina
         if ( window.history.replaceState ) {

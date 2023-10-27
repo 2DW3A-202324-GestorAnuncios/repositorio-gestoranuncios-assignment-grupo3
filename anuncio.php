@@ -117,12 +117,12 @@
 
                 echo '<div class="producto">';
                     echo '<div class="imagen-producto">';
-                        echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                        echo '<a href="pagina_anuncio.php?nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
                     echo '</div>';
                     echo '<div class="contenedor-anuncio">';
                         echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
                         echo '<p>' . $row['descripcion'] . '</p>';
-                        echo '<p class="precio">' . $row['precio'] . '€</p>';
+                        echo '<p class="precio">' . $row['precio'] . ' €</p>';
                     echo '</div>';
                     echo $btnAnadirCarrito;
                 echo '</div>';
