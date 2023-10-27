@@ -32,36 +32,36 @@
     <div class="container">
         <div class="filtro-container">
             <div class="filtro">
-                <h3>Filtrar por Categoría</h3>
+                <h2>Filtrar por Categoría</h2>
                 <!-- Agrega el enlace "Borrar filtros" debajo del título -->
                 <a href="noticia.php" id="borrarFiltros" style="display: none;">Borrar filtros</a><br>
                 <form id="filtroForm">
                     <label class="filtro-label">
                         <input type="radio" name="categoria" id="categoria-deportes" value="deportes">
-                        <img src="img/categorias_noticias/deporte.png" alt="Deportes">
-                        <h5 style="margin-top: 5px;">Deportes</h5>
+                        <img id="deportes" src="img/categorias_noticias/deporte.png" alt="Deportes">
+                        <h3 style="margin-top: 5px;">Deportes</h3>
                     </label><br>
                     <label class="filtro-label">
                         <input type="radio" name="categoria" id="categoria-economia" value="economia">
-                        <img src="img/categorias_noticias/economia.png" alt="Economía">
-                        <h5 style="margin-top: 5px;">Economía</h5>
+                        <img id="economia" src="img/categorias_noticias/economia.png" alt="Economía">
+                        <h3 style="margin-top: 5px;">Economía</h3>
                     </label><br>
                     <label class="filtro-label">
                         <input type="radio" name="categoria" id="categoria-arte" value="arte">
-                        <img src="img/categorias_noticias/arte.png" alt="Arte">
-                        <h5 style="margin-top: 5px;">Arte</h5>
+                        <img id="arte" src="img/categorias_noticias/arte.png" alt="Arte">
+                        <h3 style="margin-top: 5px;">Arte</h3>
                     </label><br>
                     <label class="filtro-label">
                         <input type="radio" name="categoria" id="categoria-tiempo" value="tiempo">
-                        <img src="img/categorias_noticias/tiempo.png" alt="Tiempo">
-                        <h5 style="margin-top: 5px;">Tiempo</h5>
+                        <img id="tiempo" src="img/categorias_noticias/tiempo.png" alt="Tiempo">
+                        <h3 style="margin-top: 5px;">Tiempo</h3>
                     </label><br>
                 </form>
             </div>
         </div>
 
         <div class="noticias3">
-            <h2>Noticias</h2>
+            <h1 id="noticia-tipo">Noticias </h1>
             <div id="noticiasContainer" class="noticias-container">
                 <?php 
                     
@@ -98,7 +98,9 @@
             filtroForm.addEventListener("change", function() {
                 // Obtén el valor de la categoría seleccionada
                 const selectedCategoria = document.querySelector('input[name="categoria"]:checked').value;
+                const noticiaTipo = document.getElementById("noticia-tipo");
 
+                noticiaTipo.innerText = selectedCategoria.toUpperCase();
                 // Obtén todas las noticias
                 const noticias = document.querySelectorAll('.noticia3');
 

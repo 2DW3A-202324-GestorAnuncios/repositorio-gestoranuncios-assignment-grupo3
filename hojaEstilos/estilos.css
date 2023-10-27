@@ -864,28 +864,23 @@ anuncios del indice a dispositivos distintos */
     text-decoration: underline;
     cursor: pointer;
     margin-top: 10px;
+    font-size: x-large;
+    text-decoration:none;
+    width: 100%;
 }
 
 #borrarFiltros:hover {
     color: blue;
-    transform: scale(1.2);
+
+    border-radius: 5px;
+    border: 2px solid blue;
+    transform: scale(1.02);
 }
 
 .filtro-label img:hover {
     border-color: #000000;
 }
 
-#borrarFiltros {
-    display: block; /* Mostrar el enlace */
-    color: black; /* Color del texto */
-    text-decoration: underline; /* Subrayar el texto para que parezca un enlace */
-    cursor: pointer; /* Cambiar el cursor al pasar sobre el enlace */
-    margin-top: 10px; /* Agregar un espacio entre el título y el enlace */
-}
-
-#borrarFiltros:hover {
-    color: blue; /* Cambiar el color del texto al pasar el cursor sobre el enlace */
-}
 
 /* Da forma al container de noticias */
 .noticias3 {
@@ -965,15 +960,31 @@ anuncios del indice a dispositivos distintos */
     background-color: #a6d789;
 }
 
+#deportes {
+    background-color: #a6d789;
+}
+
 .categoria-economia {
     background-color: #ffd8c3; /*#e95f15;*/
+}
+
+#economia {
+    background-color: #ffd8c3;
 }
 
 .categoria-arte {
     background-color: #ffe799;
 }
 
+#arte {
+    background-color: #ffe799;
+}
+
 .categoria-tiempo {
+    background-color: #9dd8e3;
+}
+
+#tiempo {
     background-color: #9dd8e3;
 }
 
@@ -1943,3 +1954,274 @@ anuncios del indice a dispositivos distintos */
     width: 20px;
     text-align: center;
 }
+
+@import url(hojaEstilos/fuentes.css);
+
+html {
+    background-color: rgb(240, 240, 240);
+    font-family: 'PT Sans Narrow';
+}
+
+/***** Comienzo Cuentas *****/
+.form-inicio-sesion {
+    width: 70%;
+    max-width: 600px;
+    min-width: 400px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 40px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    height: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 40px;
+}
+
+.form-crear-cuenta {
+    width: 70%;
+    max-width: 600px;
+    min-width: 400px;
+    background-color: white;
+    display: grid;
+    border-radius: 40px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    height: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 40px;
+}
+
+.logo-inicio-sesion {
+    height: 190px;
+    width: 160px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inicio-sesion {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.crear-cuenta {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-text {
+    width: 100%;
+    border: 2px solid rgba( 0, 0, 0, 0.5);
+    border-radius: 10px;
+    height: 30px;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.input-text:hover {
+    border: 2px solid rgba( 0, 0, 0, 1);
+
+}
+
+.boton {
+    width: 125px;
+    height: 40px;
+    background-color: #007bff;
+    border-radius: 12px;
+    font-size: 17px;
+    border: 0px solid black;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: 0.4s;
+    color: white;
+}
+
+.boton:hover {
+    cursor: pointer;
+    background-color: #005b91;
+}
+
+.terminos-crear-cuenta {
+    font-size: 17px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+.terminos-checkbox:hover {
+    cursor: pointer;
+}
+
+.link-crear-cuenta {
+    color: black;
+    font-size: 20px;
+    text-align: center;
+}
+
+.link-crear-cuenta:visited:link {
+    color: black;
+}
+
+.error {
+    color: #FF0000;
+    font-size: 18px;
+}
+.correcto{
+    color: #00cd0a;
+    font-size: 18px;
+}
+
+span {
+    font-size: 15px;
+}
+
+#imagen{
+    margin-left: 25px;
+}
+#repPK{
+    color: red;
+    display: block;
+    margin-left: 25px;
+    font-size: 15px;
+}
+
+.botones-crear-cuenta{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: -20px;
+}
+
+.input-genero{
+    font-size: 18px;
+    display: flex;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -8px;
+}
+
+/*-------------------------------------------------------*/
+
+/***** Comienzo Indice *****/
+
+
+
+/*-------------------------------------------------------*/
+
+/***** Comienzo Creacion de Publicacion *****/
+.grid_crear {
+    display: grid;
+    grid-template-columns: 19% 80%;
+}
+
+.crear_publicacion {
+    background-color: white;
+    border-radius: 40px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    height: 350px;
+}
+
+.creacion_p1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.input_titulo {
+    width: 250px;
+    border: 2px solid rgba( 0, 0, 0, 0.5);
+    border-radius: 10px;
+    height: 15px;
+    padding: 10px;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.input_titulo:hover {
+    border: 2px solid rgba( 0, 0, 0, 1);
+}
+
+.descripcion {
+    float: left;
+    width: 100%;
+    min-height: 75px;
+    font-size: 16px;
+    outline: none;
+    resize: none;
+    border: 2px solid rgba( 0, 0, 0, 0.5);
+    border-radius: 5px;
+    transition: 0.4s;
+}
+
+.descripcion:hover {
+    border: 2px solid rgba( 0, 0, 0, 1);
+}
+
+.seleccionar_imagen {
+    position: relative;
+    display: inline-block;
+}
+
+.seleccionar_imagen::before {
+    background-color: rgba(127, 182, 255, 0.6);
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    content: 'Insertar Imagen'; /* testo por defecto */
+    position: absolute;
+    padding: 10px;
+    margin-left: 50px;
+}
+
+.seleccionar_imagen input[type="file"] {
+    opacity: 0;
+    width: 10px;
+    height: auto;
+    display: inline-block;
+    margin-left: 50px;
+}
+#imagen {
+    height: 40px;
+    width: auto;
+}
+
+.texto_insertar_imagen {
+    margin-left: 50px;
+}
+
+.texto_anuncio {
+    margin-top: 110px;
+}
+
+.creacion_p3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    margin-top: -10px;
+}
+/*-------------------------------------------------------*/

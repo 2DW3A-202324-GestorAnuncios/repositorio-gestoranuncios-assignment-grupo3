@@ -8,56 +8,59 @@
     $mostrar_formulario = false;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Validación de campos
-        $usuario = $_POST['usuario'];
-        $contrasena = $_POST['contrasena'];
+        if (isset($_POST["iniciar-sesion"])) {
+        
+            // Validación de campos
+            $usuario = $_POST['usuario'];
+            $contrasena = $_POST['contrasena'];
 
-        if (empty($usuario) && empty($contrasena)) {
-            $mensaje_error = "Por favor, completa ambos campos.";
-            // Establece la variable para mostrar el formulario como verdadera
-            $mostrar_formulario = true;
-        } elseif (empty($usuario)) {
-            $mensaje_error = "El campo de usuario es obligatorio.";
-            // Establece la variable para mostrar el formulario como verdadera
-            $mostrar_formulario = true;
-        } elseif (empty($contrasena)) {
-            $mensaje_error = "El campo de contraseña es obligatorio.";
-            // Establece la variable para mostrar el formulario como verdadera
-            $mostrar_formulario = true;
-        } else {
-            // Realiza una consulta SQL para verificar las credenciales en la base de datos
-            $sql = "SELECT * FROM usuario WHERE nombre_usuario = :usuario";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':usuario', $usuario);
-            $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (empty($usuario) && empty($contrasena)) {
+                $mensaje_error = "Por favor, completa ambos campos.";
+                // Establece la variable para mostrar el formulario como verdadera
+                $mostrar_formulario = true;
+            } elseif (empty($usuario)) {
+                $mensaje_error = "El campo de usuario es obligatorio.";
+                // Establece la variable para mostrar el formulario como verdadera
+                $mostrar_formulario = true;
+            } elseif (empty($contrasena)) {
+                $mensaje_error = "El campo de contraseña es obligatorio.";
+                // Establece la variable para mostrar el formulario como verdadera
+                $mostrar_formulario = true;
+            } else {
+                // Realiza una consulta SQL para verificar las credenciales en la base de datos
+                $sql = "SELECT * FROM usuario WHERE nombre_usuario = :usuario";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':usuario', $usuario);
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($row) {
-                // Verifica si la contraseña proporcionada coincide con la contraseña almacenada en la base de datos (hasheada)
-                if (password_verify($contrasena, $row['password'])) {
-                    // Las credenciales son válidas
-                    $_SESSION['sesion_iniciada'] = true;
-                    $_SESSION['usuario'] = $usuario;
-                    $_SESSION['admin'] = $tipo_usuario;
+                if ($row) {
+                    // Verifica si la contraseña proporcionada coincide con la contraseña almacenada en la base de datos (hasheada)
+                    if (password_verify($contrasena, $row['password'])) {
+                        // Las credenciales son válidas
+                        $_SESSION['sesion_iniciada'] = true;
+                        $_SESSION['usuario'] = $usuario;
+                        $_SESSION['admin'] = $tipo_usuario;
 
-                    // Verificar si el usuario es administrador
-                    if ($row['tipo_usuario'] == 'admin') {
-                        $_SESSION['admin'] = true;
+                        // Verificar si el usuario es administrador
+                        if ($row['tipo_usuario'] == 'admin') {
+                            $_SESSION['admin'] = true;
+                        }
+
+                        header("Location: index.php");
+                        exit();
+                    } else {
+                        // La contraseña es incorrecta
+                        $mensaje_error = "La contraseña es incorrecta. Inténtalo de nuevo.";
+                        // Establece la variable para mostrar el formulario como verdadera
+                        $mostrar_formulario = true;
                     }
-
-                    header("Location: index.php");
-                    exit();
                 } else {
-                    // La contraseña es incorrecta
-                    $mensaje_error = "La contraseña es incorrecta. Inténtalo de nuevo.";
+                    // El nombre de usuario no se encontró en la base de datos
+                    $mensaje_error = "El nombre de usuario no existe. Inténtalo de nuevo.";
                     // Establece la variable para mostrar el formulario como verdadera
                     $mostrar_formulario = true;
                 }
-            } else {
-                // El nombre de usuario no se encontró en la base de datos
-                $mensaje_error = "El nombre de usuario no existe. Inténtalo de nuevo.";
-                // Establece la variable para mostrar el formulario como verdadera
-                $mostrar_formulario = true;
             }
         }
     }
@@ -85,15 +88,15 @@
             </a>
             <div id="form-inicio-sesion" class="form-sesion">
                 <h2>Iniciar Sesión</h2>
-                <form action="index.php" method="POST">
+                <form action="index.php" method="POST" >
                     <label for="usuario">Usuario:</label>
                     <input type="text" id="usuario" name="usuario">
                     <label for="contrasena">Contraseña:</label>
                     <input type="password" id="contrasena" name="contrasena">
-                    <button id="btnIniciarSesion" type="submit">Iniciar Sesión</button>
+                    <button id="btnIniciarSesion" type="submit" name="iniciar-sesion" >Iniciar Sesión</button>
                     <div class="registrarseContainer">
                         <div id="textRegistrarse">¿No tienes cuenta? </div>
-                        <a href="Cuentas/crear_cuenta.php" id="btnRegistrarse"><span>Registrarse</span></a>
+                        <a href="crear_cuenta.php" id="btnRegistrarse"><span>Registrarse</span></a>
                     </div>
                     <div id="mensaje-error-login" style="display: none;"></div>
                 </form>
