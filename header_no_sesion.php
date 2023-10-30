@@ -11,7 +11,7 @@
         if (isset($_POST["iniciar-sesion"])) {
         
             // Validación de campos
-            $usuario = $_POST['usuario'];
+            $usuario = $_POST['usuarioLogin'];
             $contrasena = $_POST['contrasena'];
 
             if (empty($usuario) && empty($contrasena)) {
@@ -28,9 +28,9 @@
                 $mostrar_formulario = true;
             } else {
                 // Realiza una consulta SQL para verificar las credenciales en la base de datos
-                $sql = "SELECT * FROM usuario WHERE nombre_usuario = :usuario";
+                $sql = "SELECT * FROM usuario WHERE nombre_usuario = :usuarioLogin";
                 $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':usuario', $usuario);
+                $stmt->bindParam(':usuarioLogin', $usuario);
                 $stmt->execute();
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -39,7 +39,7 @@
                     if (password_verify($contrasena, $row['password'])) {
                         // Las credenciales son válidas
                         $_SESSION['sesion_iniciada'] = true;
-                        $_SESSION['usuario'] = $usuario;
+                        $_SESSION['usuarioLogin'] = $usuario;
                         $_SESSION['admin'] = $tipo_usuario;
 
                         // Verificar si el usuario es administrador
@@ -89,8 +89,8 @@
             <div id="form-inicio-sesion" class="form-sesion">
                 <h2>Iniciar Sesión</h2>
                 <form action="index.php" method="POST" >
-                    <label for="usuario">Usuario:</label>
-                    <input type="text" id="usuario" name="usuario">
+                    <label for="usuarioLogin">Usuario:</label>
+                    <input type="text" id="usuarioLogin" name="usuarioLogin">
                     <label for="contrasena">Contraseña:</label>
                     <input type="password" id="contrasena" name="contrasena">
                     <button id="btnIniciarSesion" type="submit" name="iniciar-sesion" >Iniciar Sesión</button>

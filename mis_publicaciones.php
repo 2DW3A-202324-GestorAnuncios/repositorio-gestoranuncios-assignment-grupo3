@@ -4,7 +4,7 @@
     // Inicia la sesión en la página
     session_start();
 
-    $nombre_usuario = $_SESSION['usuario'];
+    $nombre_usuario = $_SESSION['usuarioLogin'];
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' AND nombre_usuario = :nombre_usuario";
     $stmtNoticias = $conn->prepare($sqlNoticias);

@@ -4,7 +4,7 @@ include("conexion.php");
     // Inicia la sesión en la página
     session_start();
 
-    $usuario = $_SESSION['usuario'];
+    $usuario = $_SESSION['usuarioLogin'];
     $tipo_usuario = $_SESSION['admin'];
 
 $mensaje_exito = '';

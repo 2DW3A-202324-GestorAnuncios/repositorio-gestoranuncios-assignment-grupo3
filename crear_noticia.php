@@ -26,7 +26,7 @@
         
         $mensaje_exito = '';
         $mensaje_error = '';
-        $usuario = $_SESSION["usuario"];
+        $usuario = $_SESSION["usuarioLogin"];
 
         $repeticionPK = "";
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
