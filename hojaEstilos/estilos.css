@@ -554,11 +554,7 @@ header {
 anuncios del indice a dispositivos distintos */
 @media only screen and (max-width: 1500px) and (min-width: 1101px) {
     .productos-anuncios-inicio {
-        display: flex;
-        justify-content: flex-start;
         gap: 20px;
-        flex-wrap: wrap;
-        flex: 80%;
         overflow-x: auto;
         margin-top: 20px;
         padding: 0 20px;
@@ -568,10 +564,7 @@ anuncios del indice a dispositivos distintos */
 
 @media only screen and (max-width: 650px) {
     .productos-anuncios-inicio {
-        display: flex;
         gap: 20px;
-        flex-direction: column;
-        flex-wrap: wrap;
         overflow-x: auto;
         margin-top: 20px;
         padding: 0 20px;
@@ -942,7 +935,6 @@ anuncios del indice a dispositivos distintos */
     background-color: #fff;
     margin-left: 200px;
     margin-right: -200px;
-    text-align: center;
     display: block;
     margin-left: 85px;
     margin-right: auto;
@@ -991,7 +983,6 @@ anuncios del indice a dispositivos distintos */
         background-color: #fff;
         margin-left: 200px;
         margin-right: -200px;
-        text-align: center;
         display: block;
         margin-left: 20px;
         margin-right: auto;
@@ -1931,7 +1922,6 @@ span {
     font-size: 16px;
 }
 
-/* Da forma al pop-up de cerrar sesion en "mi perfil" */
 .modal,
 .modalValidarA,
 .modalEliminarA,
@@ -1950,7 +1940,6 @@ span {
     align-items: center;
 }
 
-/* Clase para desactivar el scroll */
 .no-scroll {
     overflow: hidden;
 }
@@ -1965,23 +1954,36 @@ span {
     text-align: center;
 }
 
-.modal button {
-    background-color: transparent; /* Establece el fondo del botón como transparente */
+.modal button,
+.modalValidarA button,
+.modalEliminarA button,
+.modalValidarN button,
+.modalEliminarN button {
+    background-color: transparent;
     border-radius: 5px;
     padding: 10px 20px;
     margin: 10px;
     cursor: pointer;
 }
 
-.modal #confirmar-si {
+.modal #confirmar-si,
+.modalValidarA #confirmar-si,
+.modalEliminarA #confirmar-si,
+.modalValidarN #confirmar-si,
+.modalEliminarN #confirmar-si {
+    background-color: white;
     color: blue;
     border-color: blue;
 }
 
-.modal #confirmar-no {
-    background-color: blue; /* Fondo de "No" en azul */
+.modal #confirmar-no,
+.modalValidarA .confirmar-no,
+.modalEliminarA .confirmar-no,
+.modalValidarN .confirmar-no,
+.modalEliminarN .confirmar-no {
+    background-color: blue;
     border-color: blue;
-    color: white; /* Texto en blanco */
+    color: white;
 }
 
 .foto-container {

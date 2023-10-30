@@ -4,9 +4,9 @@
     // Inicia la sesión en la página
     session_start();
 
-    $nombre = $_GET['nombre'];
+    $nombre = ucfirst($_GET['nombre']);
     $foto = $_GET['foto'];
-    $descripcion = $_GET['descripcion'];
+    $descripcion = ucfirst($_GET['descripcion']);
     $precio = $_GET['precio'];
 ?>
 

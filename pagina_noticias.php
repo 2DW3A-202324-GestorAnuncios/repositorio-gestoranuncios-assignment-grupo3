@@ -4,10 +4,10 @@
 
     session_start();
 
-    $categoria = $_GET['categoria'];
-    $titulo = $_GET['titulo'];
+    $categoria = ucfirst($_GET['categoria']);
+    $titulo = ucfirst($_GET['titulo']);
     $foto = $_GET['foto'];
-    $descripcion = $_GET['descripcion'];
+    $descripcion = ucfirst($_GET['descripcion']);
 ?>
 
 <!DOCTYPE html>
