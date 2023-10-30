@@ -83,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mensaje_error = "Hubo un error al actualizar tus datos. Inténtalo de nuevo.";
         }
     }
+}
 
 ?>
 
