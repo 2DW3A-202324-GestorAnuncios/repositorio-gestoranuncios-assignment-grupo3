@@ -901,6 +901,7 @@ anuncios del indice a dispositivos distintos */
 }
 
 .filtro-label h3 {
+    font-size: 25px;
     margin-top: 5px;
 }
 
@@ -909,8 +910,8 @@ anuncios del indice a dispositivos distintos */
 }
 
 .filtro-label img {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     border: 3px solid #b6b6b6;
     border-radius: 5px;
     cursor: pointer;
@@ -1018,13 +1019,14 @@ anuncios del indice a dispositivos distintos */
 }
 
 .titulo-noticia3-h1 {
-    font-size: 15px;
+    font-size: 22.5px;
     margin-top: 5px;
     font-weight: bold;
     color: rgb(239, 239, 239);
 }
 
 .titulo-noticia3 {
+    font-size: 33px;
     margin-top: 10px;
 }
 
