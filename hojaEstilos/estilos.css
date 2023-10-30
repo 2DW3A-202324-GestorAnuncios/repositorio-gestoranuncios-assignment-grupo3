@@ -1940,19 +1940,40 @@ span {
 .modalEliminarA #confirmar-si,
 .modalValidarN #confirmar-si,
 .modalEliminarN #confirmar-si {
-    background-color: white;
-    color: blue;
-    border-color: blue;
+    background-color: red;
+    color: white;
+    border: 1px solid gray;
 }
+.modal #confirmar-si,
+.modalValidarA #confirmar-si,
+.modalEliminarA #confirmar-si,
+.modalValidarN #confirmar-si,
+.modalEliminarN #confirmar-si:hover {
+    background-color: rgba(255, 0, 0, 0.673);
+    color: white;
+    border: 1px solid gray;
+}
+
+#confirmar-si-validar{
+    background-color: #57aa26;
+    color: white;
+    border: 1px solid gray;
+}
+#confirmar-si-validar:hover{
+    background-color: #56aa26c3;
+    color: white;
+    border: 1px solid gray;
+}
+
 
 .modal #confirmar-no,
 .modalValidarA .confirmar-no,
 .modalEliminarA .confirmar-no,
 .modalValidarN .confirmar-no,
 .modalEliminarN .confirmar-no {
-    background-color: blue;
-    border-color: blue;
-    color: white;
+    background-color: white;
+    color: grey;
+    border: 1px solid gray;
 }
 
 .foto-container {
