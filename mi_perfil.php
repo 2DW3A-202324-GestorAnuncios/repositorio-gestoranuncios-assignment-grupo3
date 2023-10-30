@@ -4,7 +4,7 @@ include("conexion.php");
     // Inicia la sesión en la página
     session_start();
 
-    $usuario = $_SESSION['usuario'];
+    $usuario = $_SESSION['usuarioLogin'];
     $tipo_usuario = $_SESSION['admin'];
 
 $mensaje_exito = '';
@@ -75,13 +75,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':foto', $foto);
         $stmt->bindParam(':nombre_usuario', $usuario);
 
-            if ($stmt->execute()) {
-                $mensaje_exito = "Tus datos se han actualizado exitosamente.";
-                // Cambia de nuevo al modo de visualización después de guardar
-                $modo_edicion = false;
-            } else {
-                $mensaje_error = "Hubo un error al actualizar tus datos. Inténtalo de nuevo.";
-            }
+        if ($stmt->execute()) {
+            $mensaje_exito = "Tus datos se han actualizado exitosamente.";
+            // Cambia de nuevo al modo de visualización después de guardar
+            $modo_edicion = false;
+        } else {
+            $mensaje_error = "Hubo un error al actualizar tus datos. Inténtalo de nuevo.";
         }
     }
 

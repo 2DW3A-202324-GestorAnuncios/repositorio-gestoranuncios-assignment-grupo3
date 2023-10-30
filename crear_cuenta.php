@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" as="style" href="../hojaEstilos/fuentes.css">
-    <link rel="stylesheet" href="../hojaEstilos/fuentes.css">
-    <link rel="stylesheet" href="../hojaEstilos/estilos.css?v=<?php echo time(); ?>">
-    <link rel="shortcut icon" href="../img/favicon.png">
-    <script src="../script.js"></script>
+    <link rel="preload" as="style" href="hojaEstilos/fuentes.css">
+    <link rel="stylesheet" href="hojaEstilos/fuentes.css">
+    <link rel="stylesheet" href="hojaEstilos/estilos.css?v=<?php echo time(); ?>">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <script src="script.js"></script>
     <title>Crear Cuenta - CIFP Txurdinaga</title>
 </head>
 <body>
     <?php
-        include("../conexion.php");
+        include('header_no_sesion.php');
 
-        $repeticionPK = "";
+        include("conexion.php");
+
+        $repeticionPK = ""; // Inicializa la variable de mensaje de error
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $usu = $_POST['usuario'];
             $corr = $_POST['email'];
             $c1 = $_POST['contraseña'];
@@ -33,9 +34,7 @@
             $stmt2->execute();
             $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
 
-            
-            if (($row) == 0 && ($row2) == 0){
-
+            if (($row) == 0 && ($row2) == 0) {
                 if ($c1 === $c2 && !empty($c1) && !empty($c2)) {
                     // Coje los datos del formulario
                     $usuario = $_POST['usuario'];
@@ -48,24 +47,24 @@
                     $imagen = $_POST['imagen'];
 
                     // Inserta los datos en la tabla "usuario"
-                    $sql = "INSERT INTO usuario (nombre_usuario, nombre, apellido,fecha_nac,sexo, correo, password, foto) VALUES ('$usuario','$nombre','$apellido','$fecha','$genero','$email','$contraseña','$imagen')";
+                    $sql = "INSERT INTO usuario (nombre_usuario, nombre, apellido, fecha_nac, sexo, correo, password, foto) VALUES ('$usuario','$nombre','$apellido','$fecha','$genero','$email','$contraseña','$imagen')";
                     $stmt = $conn->prepare($sql);
                     $stmt->execute();
                     $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
-                    //Te redirije a la pagina principal al insertar los datos
 
-                    header("Location: ../index.php");
+                    // Redirige a la página principal al insertar los datos
+                    header("Location: index.php");
                 } else {
                     // Las contraseñas no coinciden o están en blanco
+                    $repeticionPK = "Las contraseñas no coinciden o están en blanco";
                 }
             } else {
                 $repeticionPK = "El usuario o correo ya existen";
             }
         }
     ?>
-
     <div class="form-crear-cuenta">
-        <img src="../img/Logo_Inicio_Sesion.png" alt="logo" class="logo-inicio-sesion">
+        <img src="img/Logo_Inicio_Sesion.png" alt="logo" class="logo-inicio-sesion">
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" id="id-form">
             <div class="crear-cuenta">
                 <div>
@@ -80,7 +79,7 @@
                 </div>
                 <div>
                     <p>Usuario:</p>
-                    <input type="text" class="input-text" maxlength="15" name="usuario" id='usuario'>
+                    <input type="text" class="input-text" maxlength="15" name="usuario" id="usuario">
                     <span class="error" id="error1" name="error1"></span>
                 </div>
                 <div>
@@ -128,10 +127,9 @@
                 <label class="terminos-checkbox" for="terminos-crear-cuenta">Acepto los terminos y condiciones</label><br>
                 <span class="error" id="error5" name="error5"></span>
             </div>
-            <span id="repPK"><?php echo $repeticionPK ?></span>
+            <span id="repPK"><?php echo $repeticionPK ?></span>            
             <div class="botones-crear-cuenta">
                 <input type="submit" value="Crear Cuenta" name="submit" class="boton" id="botonSubmit" onclick="validarCampos()">
-                <input type="button" style = "background-color:red" value="Cancelar" class="boton" onclick="location.href='../index.php';">
             </div>
         </form>
     </div>
@@ -142,5 +140,10 @@
             window.history.replaceState( null, null, window.location.href );
         }
     </script>
+    <br>
+    <br>
+    <?php             
+        include('footer.php');
+    ?>
 </body>
 </html>

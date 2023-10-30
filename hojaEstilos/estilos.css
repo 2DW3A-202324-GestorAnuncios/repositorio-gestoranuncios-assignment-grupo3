@@ -188,6 +188,7 @@ header {
         
         visibility: hidden;
     }
+
     /* Ajusta la imagen del desplegable */
     .despImg {
         height: 60px;
@@ -841,11 +842,12 @@ anuncios del indice a dispositivos distintos */
 }
 
 /* Da forma a los botones de validar */
-.productos-slide-anuncios button[name="btn-anadir-carrito"],
-.producto button[name="btn-anadir-carrito"] {
+.productos-slide-anuncios button[name='btn-anadir-carrito'],
+.producto button[name='btn-anadir-carrito'],
+.ver-anuncio button[name='btn-anadir-carrito'] {
     border: none;
-    outline: 0;
     padding: 12px;
+    outline: 0;
     color: white;
     background-color: #007bff;
     text-align: center;
@@ -856,7 +858,8 @@ anuncios del indice a dispositivos distintos */
 }
 
 .productos-slide-anuncios button[name='btn-anadir-carrito']:hover,
-.producto button[name='btn-anadir-carrito']:hover {
+.producto button[name='btn-anadir-carrito']:hover,
+.ver-anuncio button[name='btn-anadir-carrito']:hover {
     opacity: 0.7;
 }
 
@@ -977,6 +980,10 @@ anuncios del indice a dispositivos distintos */
     margin-bottom: 10px;
 }
 
+.filtro-label h3 {
+    margin-top: 5px;
+}
+
 .filtro-label input[type='radio'] {
     display: none;
 }
@@ -997,16 +1004,31 @@ anuncios del indice a dispositivos distintos */
 }
 
 #borrarFiltros {
-    display: block; /* Mostrar el enlace */
-    color: black; /* Color del texto */
-    text-decoration: underline; /* Subrayar el texto para que parezca un enlace */
-    cursor: pointer; /* Cambiar el cursor al pasar sobre el enlace */
-    margin-top: 10px; /* Agregar un espacio entre el título y el enlace */
+    display: block;
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: x-large;
+    text-decoration:none;
+    width: 100%;
 }
 
 #borrarFiltros:hover {
-    color: blue; /* Cambiar el color del texto al pasar el cursor sobre el enlace */
+    color: blue;
+    border-radius: 5px;
+    border: 2px solid blue;
+    transform: scale(1.02);
 }
+
+.filtro-label img:hover {
+    border-color: #000000;
+}
+
+.filtro-label img:hover {
+    border-color: #000000;
+}
+
 
 /* Da forma al container de noticias */
 .noticias3 {
@@ -1043,7 +1065,6 @@ anuncios del indice a dispositivos distintos */
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
-    
 }
 
 .imagen-noticia3 {
@@ -1055,20 +1076,20 @@ anuncios del indice a dispositivos distintos */
         display: flex;
         width: 99%;
         margin: 0;
+        
     }
-
     .noticias3 {
         width: 100%;
         padding: 20px;
         background-color: #fff;
         margin-left: 200px;
         margin-right: -200px;
+        text-align: center;
         display: block;
         margin-left: 20px;
         margin-right: auto;
         justify-content: center;
     }
-
     .noticias-container {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
@@ -1083,10 +1104,6 @@ anuncios del indice a dispositivos distintos */
     color: rgb(239, 239, 239);
 }
 
-.titulo-noticia3-h1::first-letter {
-    text-transform: uppercase;
-}
-
 .titulo-noticia3 {
     margin-top: 10px;
 }
@@ -1096,7 +1113,15 @@ anuncios del indice a dispositivos distintos */
     background-color: #a6d789;
 }
 
+#deportes {
+    background-color: #a6d789;
+}
+
 .categoria-economia {
+    background-color: #ffd8c3;
+}
+
+#economia {
     background-color: #ffd8c3;
 }
 
@@ -1104,7 +1129,15 @@ anuncios del indice a dispositivos distintos */
     background-color: #ffe799;
 }
 
+#arte {
+    background-color: #ffe799;
+}
+
 .categoria-tiempo {
+    background-color: #9dd8e3;
+}
+
+#tiempo {
     background-color: #9dd8e3;
 }
 
@@ -1849,68 +1882,6 @@ span {
     background-color: #0056b3;
 }
 
-/* Estilos para el formulario de creación de anuncios */
-.crear-anuncio {
-    padding: 20px;
-}
-
-.crear-anuncio h1 {
-    text-align: center;
-}
-
-.form-crear-anuncio {
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: #f2f2f2;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.form-crear-anuncio label {
-    display: block;
-    font-weight: bold;
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-.form-crear-anuncio input[type='text'],
-.form-crear-anuncio textarea {
-    width: 95%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.form-crear-anuncio input[type='file'] {
-    width: 95%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #fff;
-}
-
-.form-crear-anuncio button {
-    display: block;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 16px;
-    margin: 20px auto 0;
-}
-
-.form-crear-anuncio button:hover {
-    background-color: #0056b3;
-}
-
 /* Estilos para el formulario Mi Perfil */
 .mi-perfil-container {
     max-width: 400px;
@@ -2019,7 +1990,6 @@ span {
     justify-content: center;
     align-items: center;
 }
-
 .no-scroll {
     overflow: hidden;
 }
@@ -2052,19 +2022,40 @@ span {
 .modalEliminarA #confirmar-si,
 .modalValidarN #confirmar-si,
 .modalEliminarN #confirmar-si {
-    background-color: white;
-    color: blue;
-    border-color: blue;
+    background-color: red;
+    color: white;
+    border: 1px solid gray;
 }
+.modal #confirmar-si,
+.modalValidarA #confirmar-si,
+.modalEliminarA #confirmar-si,
+.modalValidarN #confirmar-si,
+.modalEliminarN #confirmar-si:hover {
+    background-color: rgba(255, 0, 0, 0.673);
+    color: white;
+    border: 1px solid gray;
+}
+
+#confirmar-si-validar{
+    background-color: #57aa26;
+    color: white;
+    border: 1px solid gray;
+}
+#confirmar-si-validar:hover{
+    background-color: #56aa26c3;
+    color: white;
+    border: 1px solid gray;
+}
+
 
 .modal #confirmar-no,
 .modalValidarA .confirmar-no,
 .modalEliminarA .confirmar-no,
 .modalValidarN .confirmar-no,
 .modalEliminarN .confirmar-no {
-    background-color: blue;
-    border-color: blue;
-    color: white;
+    background-color: white;
+    color: grey;
+    border: 1px solid gray;
 }
 
 .foto-container {
@@ -2112,9 +2103,7 @@ span {
     height: auto;
     display: flex;
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 30px;
+    margin: 30px auto;
     background-color: #f1f1f15f;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -2127,8 +2116,7 @@ span {
     max-width: 700px;
     min-width: 300px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto;
 }
 
 .ver-anuncio-contenido {

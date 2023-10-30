@@ -4,6 +4,7 @@
     // Inicia la sesión en la página
     session_start();
 
+    $id = $_GET['id'];
     $nombre = ucfirst($_GET['nombre']);
     $foto = $_GET['foto'];
     $descripcion = ucfirst($_GET['descripcion']);
@@ -31,27 +32,78 @@
         }
     ?>
 
-    <section class="ver-anuncio">
-        <div class="ver-anuncio-img">
-            <?php 
-                echo '<img src="img/anuncios/' . $foto . '" height="100%" width="100%">';
-            ?>
-        </div>
-        <div class="ver-anuncio-contenido">
-            <?php
-                echo '<h1>' . $nombre . '</h1>';
-                echo '<h3>' . $descripcion . '</h3>';
-                echo '<h2>Precio: ' . $precio . '€</h2>';
-                echo '<input class="boton" type="button" value="COMPRAR">';
-            ?>
-        </div>
-    </section>
+    <div class="ver-anuncio">
+        <?php
+            echo '<div>';
+                echo '<div class="ver-anuncio-img">';
+                    echo '<img src="img/anuncios/' . $foto . '" height="100%" width="100%">';
+                echo '</div>';
+                echo '<div class="ver-anuncio-contenido">';
+                    $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+                    if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
+                        if ($admin == 1) {
+                            $btnAnadirCarrito = '';
+                        } else if ($admin == 0) {
+                            $btnAnadirCarrito = '<button class="btn-anadir-carrito" name="btn-anadir-carrito" data-id="' . $id . '" data-foto="' . $foto . '" data-nombre="' . $nombre . '" data-descripcion="' . $descripcion . '" data-precio="' . $precio . '">Añadir al Carrito</button>';
+                        }
+                    } else {
+                        $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
+                    }
+                
+                    echo '<h1>' . $nombre . '</h1>';
+                    echo '<p>' . $descripcion . '</p>';
+                    echo '<h2>Precio: ' . $precio . '€</h2>';
+                echo '</div>';
+                echo $btnAnadirCarrito;
+            echo '</div>';
+        ?>
+    </div>
 
     <script>
-        //para prevenir el reenvio del formulario al recargar la pagina
-        if ( window.history.replaceState ) {
-            window.history.replaceState( null, null, window.location.href );
-        }  
+        const btnAnadirCarrito = document.getElementsByClassName('btn-anadir-carrito');
+
+        // Recorre los botones y deshabilita los que estén en el carrito
+        for (const btn of btnAnadirCarrito) {
+            const idAnuncio = btn.getAttribute('data-id');
+            const estaEnCarrito = carrito.some(item => item.id === idAnuncio);
+
+            if (estaEnCarrito) {
+                btn.disabled = true;
+                btn.style.backgroundColor = '#ccc';
+                btn.style.color = '#666';
+                btn.style.cursor = 'not-allowed';
+            }
+
+            btn.addEventListener('click', (e) => {
+                const fotoAnuncio = e.currentTarget.getAttribute('data-foto');
+                const nombreAnuncio = e.currentTarget.getAttribute('data-nombre');
+                const descripcionAnuncio = e.currentTarget.getAttribute('data-descripcion');
+                const precioAnuncio = e.currentTarget.getAttribute('data-precio');
+
+                // Agregar el nuevo producto al carrito
+                const nuevoProducto = {
+                    id: idAnuncio,
+                    foto: fotoAnuncio,
+                    nombre: nombreAnuncio,
+                    descripcion: descripcionAnuncio,
+                    precio: precioAnuncio
+                };
+
+                carrito.push(nuevoProducto);
+
+                // Almacenar la lista actualizada en localStorage
+                localStorage.setItem('carrito => ' + usuario, JSON.stringify(carrito));
+
+                // Deshabilitar el botón después de hacer clic
+                btn.disabled = true;
+                btn.style.backgroundColor = '#ccc';
+                btn.style.color = '#666';
+                btn.style.cursor = 'not-allowed';
+                
+                let numeroCarrito = document.getElementById('numero-carrito');
+                numeroCarrito.innerText = parseInt(numeroCarrito.innerText) + 1;
+            });
+        }
     </script>
     
     <?php

@@ -4,7 +4,7 @@
     // Inicia la sesión en la página
     session_start();
 
-    $nombre_usuario = $_SESSION['usuario'];
+    $nombre_usuario = $_SESSION['usuarioLogin'];
 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' AND nombre_usuario = :nombre_usuario";
     $stmtNoticias = $conn->prepare($sqlNoticias);
@@ -47,16 +47,17 @@
         <?php
             while ($row = $stmtAnuncios->fetch(PDO::FETCH_ASSOC)) {
                 $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
-                echo '<form class="producto" method="POST" action="validar.php">';
+                $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
+                echo '<div class="producto">';
                     echo '<div class="imagen-producto">';
-                        echo '<img src="img/anuncios/' . $row['foto'] . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                        echo '<a href="pagina_anuncio.php?id='.urlencode($row['id_anuncio']).'&nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
                     echo '</div>';
                     echo '<div class = "contenedor-anuncio">';
-                        echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
-                        echo '<p>' . $row['descripcion'] . '</p>';
+                        echo '<h2>' . ucfirst($row['nombre_anuncio']) . '</h2>';
+                        echo '<p>' . ucfirst($row['descripcion']) . '</p>';
                         echo '<p class="precio">' . $row['precio'] . '€</p>';
                     echo '</div>';
-                echo '</form>';
+                echo '</div>';
             }
         ?>
     </div>
@@ -64,15 +65,17 @@
     <div class="productos">
         <?php
             while ($row = $stmtNoticias->fetch(PDO::FETCH_ASSOC)) {
-                echo '<form class="producto" method="POST" action="validar.php">'; // Reemplaza 'tu_script.php' por la URL correcta
+                $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['titulo']);
+                $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
+                echo '<div class="producto">';
                     echo '<div class="imagen-producto">';
-                        echo '<img src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '"class="imagen-noticia3">';
+                    echo '<a href="pagina_noticias.php?titulo='.urlencode($row['titulo']).'&foto='.urlencode($row['foto']).'&categoria='.urlencode($row['categoria']).'&descripcion='.urlencode($row['descripcion']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '" class="imagen-noticia3"></a>';
                     echo '</div>';
                     echo '<div class="contenedor-anuncio">';
-                        echo '<h1 style="color: black" class="titulo-noticia3-h1">' . $row['categoria'] . '</h1>';
-                        echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
+                        echo '<h1 style="color: black" class="titulo-noticia3-h1">' . ucfirst($row['categoria']) . '</h1>';
+                        echo '<h2 class="titulo-noticia3">' . ucfirst($row['titulo']) . '</h2>';
                     echo '</div>';
-                echo '</form>';
+                echo '</div>';
             }
         ?>
     </div>
