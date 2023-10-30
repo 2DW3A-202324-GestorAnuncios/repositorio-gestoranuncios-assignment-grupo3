@@ -28,7 +28,7 @@
         
         $mensaje_exito = '';
         $mensaje_error = '';
-        $usuario = $_SESSION["usuarioLogin"];
+        $usuario = $_SESSION['usuarioLogin'];
 
         $repeticionPK = "";
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -36,7 +36,7 @@
             $nomNoticia = $_POST['titulo'];
             $descNoticia = $_POST['descripcion'];
             $catNoticia = $_POST['categoria'];
-            $usuNoticia = $_SESSION["usuarioLogin"];
+            $usuNoticia = $_SESSION['usuarioLogin'];
             $fotoNoticia = $_FILES['imagen']['name'];
             $foto_temp = $_FILES['imagen']['tmp_name'];
             
@@ -46,6 +46,10 @@
             // Mueve el archivo temporal al directorio de fotos
             if(empty($nomNoticia) && empty($descNoticia) && empty($fotoNoticia)){
                 $mensaje_error = "Debes introducir el titulo la descripcion y la foto de la noticia.";
+            }else if(empty($nomNoticia)){
+                $mensaje_error = "Debes introducir el titulo la noticia.";
+            }else if(empty($descNoticia)){
+                $mensaje_error = "Debes introducir la descripcion de la noticia.";
             }else if(empty($nomNoticia)  && empty($descNoticia)){
                 $mensaje_error = "Debes introducir el titulo  y la descripcion de la noticia.";
             }else if(empty($descNoticia) && empty($fotoNoticia)){

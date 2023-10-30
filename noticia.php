@@ -39,22 +39,22 @@
                     <label class="filtro-label">
                         <input type="radio" name="categoria" id="categoria-deportes" value="deportes">
                         <img id="deportes" src="img/categorias_noticias/deporte.png" alt="Deportes">
-                        <h3 style="margin-top: 5px;">Deportes</h3>
+                        <h3>Deportes</h3>
                     </label><br>
                     <label class="filtro-label">
                         <input type="radio" name="categoria" id="categoria-economia" value="economia">
                         <img id="economia" src="img/categorias_noticias/economia.png" alt="Economía">
-                        <h3 style="margin-top: 5px;">Economía</h3>
+                        <h3>Economía</h3>
                     </label><br>
                     <label class="filtro-label">
                         <input type="radio" name="categoria" id="categoria-arte" value="arte">
                         <img id="arte" src="img/categorias_noticias/arte.png" alt="Arte">
-                        <h3 style="margin-top: 5px;">Arte</h3>
+                        <h3>Arte</h3>
                     </label><br>
                     <label class="filtro-label">
                         <input type="radio" name="categoria" id="categoria-tiempo" value="tiempo">
                         <img id="tiempo" src="img/categorias_noticias/tiempo.png" alt="Tiempo">
-                        <h3 style="margin-top: 5px;">Tiempo</h3>
+                        <h3>Tiempo</h3>
                     </label><br>
                 </form>
             </div>
@@ -69,8 +69,8 @@
                         $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
                         echo '<div class="noticia3 categoria-' . $row['categoria'] . '">';
                             echo '<a href="pagina_noticias.php?titulo='.urlencode($row['titulo']).'&foto='.urlencode($row['foto']).'&categoria='.urlencode($row['categoria']).'&descripcion='.urlencode($row['descripcion']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '" class="imagen-noticia3"></a>';
-                            echo '<h1 class="titulo-noticia3-h1">' . $row['categoria'] . '</h1>';
-                            echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
+                            echo '<h1 class="titulo-noticia3-h1">' . ucfirst($row['categoria']) . '</h1>';
+                            echo '<h2 class="titulo-noticia3">' . ucfirst($row['titulo']) . '</h2>';
                             echo '<input type="hidden" value="'.$row['descripcion'].'">';
                         echo '</div>';
                     }
@@ -95,7 +95,7 @@
                 const selectedCategoria = document.querySelector('input[name="categoria"]:checked').value;
                 const noticiaTipo = document.getElementById("noticia-tipo");
 
-                noticiaTipo.innerText = selectedCategoria.toUpperCase();
+                noticiaTipo.innerText = "Noticias | " + selectedCategoria.charAt(0).toUpperCase() + selectedCategoria.slice(1);
                 // Obtén todas las noticias
                 const noticias = document.querySelectorAll('.noticia3');
 

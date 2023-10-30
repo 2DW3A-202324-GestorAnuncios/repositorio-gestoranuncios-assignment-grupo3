@@ -117,7 +117,7 @@
 
                 echo '<div class="producto">';
                     echo '<div class="imagen-producto">';
-                        echo '<a href="pagina_anuncio.php?nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
+                        echo '<a href="pagina_anuncio.php?id='.urlencode($row['id_anuncio']).'&nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
                     echo '</div>';
                     echo '<div class="contenedor-anuncio">';
                         echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
@@ -136,26 +136,33 @@
     <div id="paginacion">
         <a href="?pagina=<?php echo $paginaActual - 1; ?>" class="botonesPagina <?php if ($paginaActual <= 1) echo 'a-disabled'; ?>">← Anterior</a>
             <?php
-            // Obtener la página actual
-            $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+                // Obtener la página actual
+                $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 
-            // Calcular el número total de páginas (supongamos que tienes esto en $paginasTotales)
-
-            // Mostrar la página actual más 2 y la última página
-            echo '<div id="paginacion">';
-            
-            echo '<a class="botonesPagina" href="?pagina= 1">1</a>';
-            echo '...';
-            for ($i = max(1, $paginaActual - 1); $i <= min($paginaActual + 1, $paginasTotales); $i++) {
-                if($i != 1){
-                    echo '<a class="botonesPagina ' . ($i == $paginaActual ? 'a-disabled' : '') . '" href="?pagina=' . $i . '">' . $i . '</a>';
-                }
-            }
-            if ($paginaActual < $paginasTotales - 1) {
-                echo '...';
-                echo '<a class="botonesPagina" href="?pagina=' . $paginasTotales . '">' . $paginasTotales . '</a>';
-            }
-            echo '</div>';
+                // Calcular el número total de páginas (supongamos que tienes esto en $paginasTotales)
+                // Mostrar la página actual más 2 y la última página
+                echo '<div id="paginacion">';
+                    if ($paginaActual <= 1) {
+                        echo '<a class="botonesPagina a-disabled" href="?pagina= 1">1</a>';
+                    } else {
+                        echo '<a class="botonesPagina" href="?pagina= 1">1</a>';
+                    }
+                    echo '...';
+                    for ($i = max(1, $paginaActual - 1); $i <= min($paginaActual + 1, $paginasTotales); $i++) {
+                        if($i != 1) {
+                            if ($i == $paginasTotales) {
+                                echo '...';
+                                echo '<a class="botonesPagina ' . ($i == $paginaActual ? 'a-disabled' : '') . '" href="?pagina=' . $i . '">' . $i . '</a>';
+                            } else {
+                                echo '<a class="botonesPagina ' . ($i == $paginaActual ? 'a-disabled' : '') . '" href="?pagina=' . $i . '">' . $i . '</a>';
+                            }
+                        }
+                    }
+                    if ($paginaActual < $paginasTotales - 1) {
+                        echo '...';
+                        echo '<a class="botonesPagina" href="?pagina=' . $paginasTotales . '">' . $paginasTotales . '</a>';
+                    }
+                echo '</div>';
             ?>
         <a href="?pagina=<?php echo $paginaActual + 1; ?>" class="botonesPagina <?php if ($paginaActual >= $paginasTotales) echo 'a-disabled'; ?>">Siguiente →</a>
     </div>

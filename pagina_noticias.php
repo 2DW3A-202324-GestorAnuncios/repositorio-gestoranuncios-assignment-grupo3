@@ -42,17 +42,10 @@
         <div class="ver-noticia-contenido">
             <?php
                 echo '<h1>' . $titulo . '</h1>';
-                echo '<h3>' . $descripcion . '</h3>';
+                echo '<p>' . $descripcion . '</p>';
             ?>
         </div>
     </section>
-
-    <script>
-        //para prevenir el reenvio del formulario al recargar la pagina
-        if ( window.history.replaceState ) {
-            window.history.replaceState( null, null, window.location.href );
-        }  
-    </script>
     
     <?php
         include('footer.php');
