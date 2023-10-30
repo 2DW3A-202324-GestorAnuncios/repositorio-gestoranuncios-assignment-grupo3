@@ -7,6 +7,7 @@
 
 <!DOCTYPE html>
 <html lang="es-Es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,7 @@
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Crear Anuncio - CIFP Txurdinaga</title>
 </head>
+
 <body>
     <?php
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
@@ -39,9 +41,12 @@
 
             $directorio_destino = 'img/anuncios/' . $fotoAnuncio;
 
-            if(empty($nomNoticia)){
-                $mensaje_error = "Debes introducir un titulo de noticia.";
-
+            if(empty($nomAnuncio) && empty($descAnuncio)){
+                $mensaje_error = "Debes introducir el titulo y la descripcion del anuncio.";
+            }else if(empty($nomAnuncio)){
+                $mensaje_error = "Debes introducir un titulo del anuncio.";
+            }else if(empty($descAnuncio)){
+                $mensaje_error = "Debes introducir una descripcion del anuncio.";
             }else if (!empty($fotoAnuncio)) {
                 if (move_uploaded_file($foto_temp, $directorio_destino)) {
                     // Inserta los datos a la tabla "Anuncio" con el nombre de la imagen en la base de datos
@@ -73,20 +78,20 @@
             echo '</div>';
         }
     ?>
-    
+
     <section class="crear-anuncio">
         <h1>Crear un Anuncio</h1>
         <div class="form-crear-anuncio">
             <form action="#" method="post" enctype="multipart/form-data">
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo" required>
-                
+
                 <label for="descripcion">Descripción:</label>
                 <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
-                
+
                 <label for="imagen">Imagen:</label>
                 <input type="file" id="imagen" name="imagen" accept="image/*">
-                
+
                 <label for="precio">Precio (€):</label>
                 <input type="number" id="precio" name="precio" required placeholder="0" min="0">
                 <button type="submit">Crear Anuncio</button>
@@ -98,4 +103,5 @@
         include('footer.php');
     ?>
 </body>
+
 </html>

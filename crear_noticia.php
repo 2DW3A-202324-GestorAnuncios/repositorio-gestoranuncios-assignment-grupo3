@@ -44,13 +44,15 @@
             $directorio_destino = 'img/noticias/' . $fotoNoticia;
             
             // Mueve el archivo temporal al directorio de fotos
-            if(empty($nomNoticia)){
-                $mensaje_error = "Debes introducir un titulo de noticia.";
-            }else if(empty($descNoticia)){
-                $mensaje_error = "Debes introducir una descripcion de noticia.";
-            }else if(empty($catNoticia)){
-                $mensaje_error = "Debes seleccionar una categoria de noticia.";
-            }else if (move_uploaded_file($foto_temp, $directorio_destino)) {
+            if(empty($nomNoticia) && empty($descNoticia) && empty($fotoNoticia)){
+                $mensaje_error = "Debes introducir el titulo la descripcion y la foto de la noticia.";
+            }else if(empty($nomNoticia)  && empty($descNoticia)){
+                $mensaje_error = "Debes introducir el titulo  y la descripcion de la noticia.";
+            }else if(empty($descNoticia) && empty($fotoNoticia)){
+                $mensaje_error = "Debes introducir la descripcion y la foto de la noticia.";
+            }else if(empty($nomNoticia)  && empty($fotoNoticia)){
+                $mensaje_error = "Debes introducir el titulo  y la foto de la noticia.";
+            }else if (!empty($nomNoticia) && !empty($descNoticia) && move_uploaded_file($foto_temp, $directorio_destino)) {
                 // Inserta los datos a la tabla "noticia" con el nombre de la imagen en la base de datos
                 $sql = "INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')";
                 $stmt = $conn->prepare($sql);
@@ -77,30 +79,20 @@
         <h1>Crear Noticia</h1>
         <form class="form-crear-noticia" method="post" enctype="multipart/form-data">
             <label for="titulo">Título:</label>
-            <input type="text" id="titulo" name="titulo"
-                value="<?php echo isset($_POST['titulo']) ? $_POST['titulo'] : ''; ?>">
+            <input type="text" id="titulo" name="titulo">
 
             <label for="descripcion">Descripción:</label>
-            <textarea id="descripcion" name="descripcion"
-                rows="4"><?php echo isset($_POST['descripcion']) ? $_POST['descripcion'] : ''; ?></textarea>
+            <textarea id="descripcion" name="descripcion" rows="4"></textarea>
 
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" name="imagen" accept="image/*">
 
             <label for="categoria">Categoría:</label>
             <select id="categoria" name="categoria">
-                <option value="deportes"
-                    <?php echo (isset($_POST['categoria']) && $_POST['categoria'] == 'deportes') ? 'selected' : ''; ?>>
-                    Deportes</option>
-                <option value="economia"
-                    <?php echo (isset($_POST['categoria']) && $_POST['categoria'] == 'economia') ? 'selected' : ''; ?>>
-                    Economía</option>
-                <option value="arte"
-                    <?php echo (isset($_POST['categoria']) && $_POST['categoria'] == 'arte') ? 'selected' : ''; ?>>Arte
-                </option>
-                <option value="tiempo"
-                    <?php echo (isset($_POST['categoria']) && $_POST['categoria'] == 'tiempo') ? 'selected' : ''; ?>>
-                    Tiempo</option>
+                <option value="deportes">Deportes</option>
+                <option value="economia">Economía</option>
+                <option value="arte">Arte</option>
+                <option value="tiempo">Tiempo</option>
             </select>
             <button type="submit">Crear Noticia</button>
         </form>
