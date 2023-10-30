@@ -42,7 +42,14 @@
             $directorio_destino = 'img/noticias/' . $fotoNoticia;
             
             // Mueve el archivo temporal al directorio de fotos
-            if (move_uploaded_file($foto_temp, $directorio_destino)) {
+            if(empty($nomNoticia)){
+                $mensaje_error = "Debes introducir un titulo de noticia.";
+
+            }else if(empty($descNoticia)){
+                $mensaje_error = "Debes introducir una descripcion de noticia.";
+            }else if(empty($catNoticia)){
+                $mensaje_error = "Debes seleccionar una categoria de noticia.";
+            }else if (move_uploaded_file($foto_temp, $directorio_destino)) {
                 // Inserta los datos a la tabla "noticia" con el nombre de la imagen en la base de datos
                 $sql = "INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')";
                 $stmt = $conn->prepare($sql);
@@ -67,7 +74,7 @@
 
     <section class="crear-noticia">
         <h1>Crear Noticia</h1>
-        <form class="form-crear-noticia" action="#" method="post" enctype="multipart/form-data">
+        <form class="form-crear-noticia"  method="post" enctype="multipart/form-data">
             <label for="titulo">Título:</label>
             <input type="text" id="titulo" name="titulo">
 
