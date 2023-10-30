@@ -39,9 +39,12 @@
 
             $directorio_destino = 'img/anuncios/' . $fotoAnuncio;
 
-            if(empty($nomNoticia)){
-                $mensaje_error = "Debes introducir un titulo de noticia.";
-
+            if(empty($nomAnuncio) && empty($descAnuncio)){
+                $mensaje_error = "Debes introducir el titulo y la descripcion del anuncio.";
+            }else if(empty($nomAnuncio)){
+                $mensaje_error = "Debes introducir un titulo del anuncio.";
+            }else if(empty($descAnuncio)){
+                $mensaje_error = "Debes introducir una descripcion del anuncio.";
             }else if (!empty($fotoAnuncio)) {
                 if (move_uploaded_file($foto_temp, $directorio_destino)) {
                     // Inserta los datos a la tabla "Anuncio" con el nombre de la imagen en la base de datos

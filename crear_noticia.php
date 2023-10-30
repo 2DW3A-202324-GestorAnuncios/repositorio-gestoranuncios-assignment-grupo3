@@ -42,14 +42,15 @@
             $directorio_destino = 'img/noticias/' . $fotoNoticia;
             
             // Mueve el archivo temporal al directorio de fotos
-            if(empty($nomNoticia)){
-                $mensaje_error = "Debes introducir un titulo de noticia.";
-
-            }else if(empty($descNoticia)){
-                $mensaje_error = "Debes introducir una descripcion de noticia.";
-            }else if(empty($catNoticia)){
-                $mensaje_error = "Debes seleccionar una categoria de noticia.";
-            }else if (move_uploaded_file($foto_temp, $directorio_destino)) {
+            if(empty($nomNoticia) && empty($descNoticia) && empty($fotoNoticia)){
+                $mensaje_error = "Debes introducir el titulo la descripcion y la foto de la noticia.";
+            }else if(empty($nomNoticia)  && empty($descNoticia)){
+                $mensaje_error = "Debes introducir el titulo  y la descripcion de la noticia.";
+            }else if(empty($descNoticia) && empty($fotoNoticia)){
+                $mensaje_error = "Debes introducir la descripcion y la foto de la noticia.";
+            }else if(empty($nomNoticia)  && empty($fotoNoticia)){
+                $mensaje_error = "Debes introducir el titulo  y la foto de la noticia.";
+            }else if (!empty($nomNoticia) && !empty($descNoticia) && move_uploaded_file($foto_temp, $directorio_destino)) {
                 // Inserta los datos a la tabla "noticia" con el nombre de la imagen en la base de datos
                 $sql = "INSERT INTO noticia (foto, titulo, descripcion, categoria, nombre_usuario) VALUES ('$fotoNoticia','$nomNoticia','$descNoticia','$catNoticia','$usuNoticia')";
                 $stmt = $conn->prepare($sql);
