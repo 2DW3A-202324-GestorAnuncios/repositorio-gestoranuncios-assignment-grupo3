@@ -4,7 +4,7 @@
     // Inicia la sesión en la página
     session_start();
 
-    $usuario = $_SESSION['usuario'];
+    $usuario = $_SESSION['usuarioLogin'];
     $tipo_usuario = $_SESSION['admin'];
 
     $mensaje_exito = '';
@@ -167,6 +167,14 @@
             <button type="submit" name="guardar">Guardar Cambios</button>
             <button id="cancelar-btn" name="cancelar">Cancelar</button>
         </form>
+
+        <?php
+            if (!empty($mensaje_exito)) {
+                echo '<p class="mensaje-exito">' . $mensaje_exito . '</p>';
+            } elseif (!empty($mensaje_error)) {
+                echo '<p class="mensaje-error">' . $mensaje_error . '</p>';
+            }
+        ?>
     </div>
 
     <script>

@@ -195,6 +195,7 @@ header {
         margin-right: -8px;
         visibility: hidden;
     }
+
     /* Ajusta la imagen del desplegable */
     .despImg {
         height: 60px;
@@ -761,11 +762,12 @@ anuncios del indice a dispositivos distintos */
 }
 
 /* Da forma a los botones de validar */
-.productos-slide-anuncios button[name="btn-anadir-carrito"],
-.producto button[name="btn-anadir-carrito"] {
+.productos-slide-anuncios button[name='btn-anadir-carrito'],
+.producto button[name='btn-anadir-carrito'],
+.ver-anuncio button[name='btn-anadir-carrito'] {
     border: none;
-    outline: 0;
     padding: 12px;
+    outline: 0;
     color: white;
     background-color: #007bff;
     text-align: center;
@@ -776,7 +778,8 @@ anuncios del indice a dispositivos distintos */
 }
 
 .productos-slide-anuncios button[name='btn-anadir-carrito']:hover,
-.producto button[name='btn-anadir-carrito']:hover {
+.producto button[name='btn-anadir-carrito']:hover,
+.ver-anuncio button[name='btn-anadir-carrito']:hover {
     opacity: 0.7;
 }
 
@@ -897,6 +900,10 @@ anuncios del indice a dispositivos distintos */
     margin-bottom: 10px;
 }
 
+.filtro-label h3 {
+    margin-top: 5px;
+}
+
 .filtro-label input[type='radio'] {
     display: none;
 }
@@ -917,15 +924,25 @@ anuncios del indice a dispositivos distintos */
 }
 
 #borrarFiltros {
-    display: block; /* Mostrar el enlace */
-    color: black; /* Color del texto */
-    text-decoration: underline; /* Subrayar el texto para que parezca un enlace */
-    cursor: pointer; /* Cambiar el cursor al pasar sobre el enlace */
-    margin-top: 10px; /* Agregar un espacio entre el título y el enlace */
+    display: block;
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: x-large;
+    text-decoration:none;
+    width: 100%;
 }
 
 #borrarFiltros:hover {
-    color: blue; /* Cambiar el color del texto al pasar el cursor sobre el enlace */
+    color: blue;
+    border-radius: 5px;
+    border: 2px solid blue;
+    transform: scale(1.02);
+}
+
+.filtro-label img:hover {
+    border-color: #000000;
 }
 
 /* Da forma al container de noticias */
@@ -963,7 +980,6 @@ anuncios del indice a dispositivos distintos */
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
-    
 }
 
 .imagen-noticia3 {
@@ -975,20 +991,20 @@ anuncios del indice a dispositivos distintos */
         display: flex;
         width: 99%;
         margin: 0;
+        
     }
-
     .noticias3 {
         width: 100%;
         padding: 20px;
         background-color: #fff;
         margin-left: 200px;
         margin-right: -200px;
+        text-align: center;
         display: block;
         margin-left: 20px;
         margin-right: auto;
         justify-content: center;
     }
-
     .noticias-container {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
@@ -1003,10 +1019,6 @@ anuncios del indice a dispositivos distintos */
     color: rgb(239, 239, 239);
 }
 
-.titulo-noticia3-h1::first-letter {
-    text-transform: uppercase;
-}
-
 .titulo-noticia3 {
     margin-top: 10px;
 }
@@ -1016,7 +1028,15 @@ anuncios del indice a dispositivos distintos */
     background-color: #a6d789;
 }
 
+#deportes {
+    background-color: #a6d789;
+}
+
 .categoria-economia {
+    background-color: #ffd8c3;
+}
+
+#economia {
     background-color: #ffd8c3;
 }
 
@@ -1024,7 +1044,15 @@ anuncios del indice a dispositivos distintos */
     background-color: #ffe799;
 }
 
+#arte {
+    background-color: #ffe799;
+}
+
 .categoria-tiempo {
+    background-color: #9dd8e3;
+}
+
+#tiempo {
     background-color: #9dd8e3;
 }
 
@@ -1769,68 +1797,6 @@ span {
     background-color: #0056b3;
 }
 
-/* Estilos para el formulario de creación de anuncios */
-.crear-anuncio {
-    padding: 20px;
-}
-
-.crear-anuncio h1 {
-    text-align: center;
-}
-
-.form-crear-anuncio {
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: #f2f2f2;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.form-crear-anuncio label {
-    display: block;
-    font-weight: bold;
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-.form-crear-anuncio input[type='text'],
-.form-crear-anuncio textarea {
-    width: 95%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.form-crear-anuncio input[type='file'] {
-    width: 95%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #fff;
-}
-
-.form-crear-anuncio button {
-    display: block;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 16px;
-    margin: 20px auto 0;
-}
-
-.form-crear-anuncio button:hover {
-    background-color: #0056b3;
-}
-
 /* Estilos para el formulario Mi Perfil */
 .mi-perfil-container {
     max-width: 400px;
@@ -2031,9 +1997,7 @@ span {
     height: auto;
     display: flex;
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 30px;
+    margin: 30px auto;
     background-color: #f1f1f15f;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -2046,8 +2010,7 @@ span {
     max-width: 700px;
     min-width: 300px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto;
 }
 
 .ver-anuncio-contenido {
@@ -2216,3 +2179,267 @@ span {
     font-size: 1.6em;
     color: #777;
 }
+
+#numero-carrito {
+    margin-top: 10px;
+    height: 30px;
+    width: 20px;
+    text-align: center;
+}
+
+/***** Comienzo Cuentas *****/
+.form-inicio-sesion {
+    width: 70%;
+    max-width: 600px;
+    min-width: 400px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 40px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    height: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 40px;
+}
+
+.form-crear-cuenta {
+    width: 70%;
+    max-width: 600px;
+    min-width: 400px;
+    background-color: white;
+    display: grid;
+    border-radius: 40px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    height: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 40px;
+}
+
+.logo-inicio-sesion {
+    height: 190px;
+    width: 160px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inicio-sesion {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.crear-cuenta {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-text {
+    width: 100%;
+    border: 2px solid rgba( 0, 0, 0, 0.5);
+    border-radius: 10px;
+    height: 30px;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.input-text:hover {
+    border: 2px solid rgba( 0, 0, 0, 1);
+
+}
+
+.boton {
+    width: 125px;
+    height: 40px;
+    background-color: #007bff;
+    border-radius: 12px;
+    font-size: 17px;
+    border: 0px solid black;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: 0.4s;
+    color: white;
+}
+
+.boton:hover {
+    cursor: pointer;
+    background-color: #005b91;
+}
+
+.terminos-crear-cuenta {
+    font-size: 17px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+.terminos-checkbox:hover {
+    cursor: pointer;
+}
+
+.link-crear-cuenta {
+    color: black;
+    font-size: 20px;
+    text-align: center;
+}
+
+.link-crear-cuenta:visited:link {
+    color: black;
+}
+
+.error {
+    color: #FF0000;
+    font-size: 18px;
+}
+.correcto{
+    color: #00cd0a;
+    font-size: 18px;
+}
+
+span {
+    font-size: 15px;
+}
+
+#repPK{
+    color: red;
+    display: block;
+    margin-left: 25px;
+    font-size: 15px;
+}
+
+.botones-crear-cuenta{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: -20px;
+}
+
+.input-genero{
+    font-size: 18px;
+    display: flex;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -8px;
+}
+
+/*-------------------------------------------------------*/
+
+/***** Comienzo Indice *****/
+
+
+
+/*-------------------------------------------------------*/
+
+/***** Comienzo Creacion de Publicacion *****/
+.grid_crear {
+    display: grid;
+    grid-template-columns: 19% 80%;
+}
+
+.crear_publicacion {
+    background-color: white;
+    border-radius: 40px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    height: 350px;
+}
+
+.creacion_p1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.input_titulo {
+    width: 250px;
+    border: 2px solid rgba( 0, 0, 0, 0.5);
+    border-radius: 10px;
+    height: 15px;
+    padding: 10px;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.input_titulo:hover {
+    border: 2px solid rgba( 0, 0, 0, 1);
+}
+
+.descripcion {
+    float: left;
+    width: 100%;
+    min-height: 75px;
+    font-size: 16px;
+    outline: none;
+    resize: none;
+    border: 2px solid rgba( 0, 0, 0, 0.5);
+    border-radius: 5px;
+    transition: 0.4s;
+}
+
+.descripcion:hover {
+    border: 2px solid rgba( 0, 0, 0, 1);
+}
+
+.seleccionar_imagen {
+    position: relative;
+    display: inline-block;
+}
+
+.seleccionar_imagen::before {
+    background-color: rgba(127, 182, 255, 0.6);
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    content: 'Insertar Imagen'; /* testo por defecto */
+    position: absolute;
+    padding: 10px;
+    margin-left: 50px;
+}
+
+.seleccionar_imagen input[type='file'] {
+    opacity: 0;
+    width: 10px;
+    height: auto;
+    display: inline-block;
+    margin-left: 50px;
+}
+
+.texto_insertar_imagen {
+    margin-left: 50px;
+}
+
+.texto_anuncio {
+    margin-top: 110px;
+}
+
+.creacion_p3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    margin-top: -10px;
+}
+/*-------------------------------------------------------*/

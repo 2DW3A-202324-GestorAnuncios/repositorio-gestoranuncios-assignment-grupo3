@@ -26,7 +26,7 @@
         
         $mensaje_exito = '';
         $mensaje_error = '';
-        $usuario = $_SESSION["usuario"];
+        $usuario = $_SESSION['usuarioLogin'];
 
         $repeticionPK = "";
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -34,7 +34,7 @@
 			$nomNoticia = $_POST['titulo'];
             $descNoticia = $_POST['descripcion'];
             $catNoticia = $_POST['categoria'];
-            $usuNoticia = $_SESSION["usuario"];
+            $usuNoticia = $_SESSION['usuarioLogin'];
             $fotoNoticia = $_FILES['imagen']['name'];
             $foto_temp = $_FILES['imagen']['tmp_name'];
             

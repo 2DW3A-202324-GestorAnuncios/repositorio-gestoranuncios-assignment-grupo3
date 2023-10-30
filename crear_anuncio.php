@@ -26,14 +26,14 @@
 
         $mensaje_exito = '';
         $mensaje_error = '';
-        $usuario = $_SESSION["usuario"];
+        $usuario = $_SESSION["usuarioLogin"];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //coje los elementos del formulario
             $nomAnuncio = $_POST['titulo'];
             $descAnuncio = $_POST['descripcion'];
             $precAnuncio = $_POST['precio'];
-            $usuAnuncio = $_SESSION["usuario"];
+            $usuAnuncio = $_SESSION['usuarioLogin'];
             $fotoAnuncio = $_FILES['imagen']['name'];
             $foto_temp = $_FILES['imagen']['tmp_name'];
 
@@ -57,7 +57,6 @@
 
                 $mensaje_exito = "Se ha creado la publicación";
             }
-            
         }
 
         if (!empty($mensaje_exito)) {
@@ -76,16 +75,16 @@
         <div class="form-crear-anuncio">
             <form action="#" method="post" enctype="multipart/form-data">
                 <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" required>
+                <input type="text" id="titulo" name="titulo">
                 
                 <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                <textarea id="descripcion" name="descripcion" rows="4"></textarea>
                 
                 <label for="imagen">Imagen:</label>
                 <input type="file" id="imagen" name="imagen" accept="image/*">
                 
                 <label for="precio">Precio (€):</label>
-                <input type="number" id="precio" name="precio" required placeholder="0" min="0">
+                <input type="number" id="precio" name="precio" placeholder="0" min="0">
                 <button type="submit">Crear Anuncio</button>
             </form>
         </div>
