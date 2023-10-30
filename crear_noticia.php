@@ -34,7 +34,7 @@
 			$nomNoticia = $_POST['titulo'];
             $descNoticia = $_POST['descripcion'];
             $catNoticia = $_POST['categoria'];
-            $usuNoticia = $_SESSION["usuario"];
+            $usuNoticia = $_SESSION["usuarioLogin"];
             $fotoNoticia = $_FILES['imagen']['name'];
             $foto_temp = $_FILES['imagen']['tmp_name'];
             

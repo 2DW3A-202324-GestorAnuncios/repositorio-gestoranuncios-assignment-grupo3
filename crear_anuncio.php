@@ -33,7 +33,7 @@
             $nomAnuncio = $_POST['titulo'];
             $descAnuncio = $_POST['descripcion'];
             $precAnuncio = $_POST['precio'];
-            $usuAnuncio = $_SESSION["usuario"];
+            $usuAnuncio = $_SESSION["usuarioLogin"];
             $fotoAnuncio = $_FILES['imagen']['name'];
             $foto_temp = $_FILES['imagen']['tmp_name'];
 

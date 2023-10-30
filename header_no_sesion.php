@@ -7,62 +7,60 @@
     // Inicializa la variable para mostrar el formulario como verdadera
     $mostrar_formulario = false;
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST["iniciar-sesion"])) {
-        
-            // Validación de campos
-            $usuario = $_POST['usuarioLogin'];
-            $contrasena = $_POST['contrasena'];
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {        
+        // Validación de campos
+        $usuario = $_POST['usuarioLogin'];
+        $contrasena = $_POST['contrasena'];
 
-            if (empty($usuario) && empty($contrasena)) {
-                $mensaje_error = "Por favor, completa ambos campos.";
-                // Establece la variable para mostrar el formulario como verdadera
-                $mostrar_formulario = true;
-            } elseif (empty($usuario)) {
-                $mensaje_error = "El campo de usuario es obligatorio.";
-                // Establece la variable para mostrar el formulario como verdadera
-                $mostrar_formulario = true;
-            } elseif (empty($contrasena)) {
-                $mensaje_error = "El campo de contraseña es obligatorio.";
-                // Establece la variable para mostrar el formulario como verdadera
-                $mostrar_formulario = true;
-            } else {
-                // Realiza una consulta SQL para verificar las credenciales en la base de datos
-                $sql = "SELECT * FROM usuario WHERE nombre_usuario = :usuarioLogin";
-                $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':usuarioLogin', $usuario);
-                $stmt->execute();
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (empty($usuario) && empty($contrasena)) {
+            $mensaje_error = "Por favor, completa ambos campos.";
+            // Establece la variable para mostrar el formulario como verdadera
+            $mostrar_formulario = true;
+        } elseif (empty($usuario)) {
+            $mensaje_error = "El campo de usuario es obligatorio.";
+            // Establece la variable para mostrar el formulario como verdadera
+            $mostrar_formulario = true;
+        } elseif (empty($contrasena)) {
+            $mensaje_error = "El campo de contraseña es obligatorio.";
+            // Establece la variable para mostrar el formulario como verdadera
+            $mostrar_formulario = true;
+        } else {
+            // Realiza una consulta SQL para verificar las credenciales en la base de datos
+            $sql = "SELECT * FROM usuario WHERE nombre_usuario = :usuarioLogin";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':usuarioLogin', $usuario);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                if ($row) {
-                    // Verifica si la contraseña proporcionada coincide con la contraseña almacenada en la base de datos (hasheada)
-                    if (password_verify($contrasena, $row['password'])) {
-                        // Las credenciales son válidas
-                        $_SESSION['sesion_iniciada'] = true;
-                        $_SESSION['usuarioLogin'] = $usuario;
-                        $_SESSION['admin'] = $tipo_usuario;
+            if ($row) {
+                // Verifica si la contraseña proporcionada coincide con la contraseña almacenada en la base de datos (hasheada)
+                if (password_verify($contrasena, $row['password'])) {
+                    // Las credenciales son válidas
+                    $_SESSION['sesion_iniciada'] = true;
+                    $_SESSION['usuarioLogin'] = $usuario;
+                    $_SESSION['admin'] = $tipo_usuario;
 
-                        // Verificar si el usuario es administrador
-                        if ($row['tipo_usuario'] == 'admin') {
-                            $_SESSION['admin'] = true;
-                        }
-
-                        header("Location: index.php");
-                        exit();
-                    } else {
-                        // La contraseña es incorrecta
-                        $mensaje_error = "La contraseña es incorrecta. Inténtalo de nuevo.";
-                        // Establece la variable para mostrar el formulario como verdadera
-                        $mostrar_formulario = true;
+                    // Verificar si el usuario es administrador
+                    if ($row['tipo_usuario'] == 'admin') {
+                        $_SESSION['admin'] = true;
                     }
+
+                    header("Location: index.php");
+                    exit();
                 } else {
-                    // El nombre de usuario no se encontró en la base de datos
-                    $mensaje_error = "El nombre de usuario no existe. Inténtalo de nuevo.";
+                    // La contraseña es incorrecta
+                    $mensaje_error = "La contraseña es incorrecta. Inténtalo de nuevo.";
                     // Establece la variable para mostrar el formulario como verdadera
                     $mostrar_formulario = true;
                 }
+            } else {
+                // El nombre de usuario no se encontró en la base de datos
+                $mensaje_error = "El nombre de usuario no existe. Inténtalo de nuevo.";
+                // Establece la variable para mostrar el formulario como verdadera
+                $mostrar_formulario = true;
             }
         }
+    
     }
 ?>
 

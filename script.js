@@ -120,33 +120,4 @@ function mostrarError(mensaje) {
 
     mensajeError.textContent = mensaje;
     mensajeError.style.display = "block";
-  if(masc.checked || fem.checked || otros.checked) {
-    error9.innerText = "";
-
-  }else{
-    error9.innerText = "Seleccione su genero";
-    num=num+1;
-
-  }
-  const error5 = document.getElementById("error5");
-  //comprobar terminos
-  if (document.getElementById('terminos').checked == false) {
-    error5.innerText = "Debe aceptar los terminos";
-    num=num+1;
-
-  }else{
-    error5.innerText = "";
-
-  }
-
-
-  const btn = document.getElementById('botonSubmit');
-  if (num!=0) {
-    btn.removeAttribute("type","submit")
-    btn.setAttribute("type","button")
-  }else if(num === 0){
-    
-    btn.removeAttribute("type","submit")
-    btn.setAttribute("type","submit")
-  }
 }
