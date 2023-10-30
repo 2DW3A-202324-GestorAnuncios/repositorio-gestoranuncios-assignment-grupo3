@@ -44,6 +44,10 @@
             // Mueve el archivo temporal al directorio de fotos
             if(empty($nomNoticia) && empty($descNoticia) && empty($fotoNoticia)){
                 $mensaje_error = "Debes introducir el titulo la descripcion y la foto de la noticia.";
+            }else if(empty($nomNoticia)){
+                $mensaje_error = "Debes introducir el titulo la noticia.";
+            }else if(empty($descNoticia)){
+                $mensaje_error = "Debes introducir la descripcion de la noticia.";
             }else if(empty($nomNoticia)  && empty($descNoticia)){
                 $mensaje_error = "Debes introducir el titulo  y la descripcion de la noticia.";
             }else if(empty($descNoticia) && empty($fotoNoticia)){
