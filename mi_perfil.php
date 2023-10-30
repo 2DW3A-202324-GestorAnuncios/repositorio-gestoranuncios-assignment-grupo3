@@ -1,9 +1,11 @@
 <?php
 include("conexion.php");
 
-session_start();
+    // Inicia la sesión en la página
+    session_start();
 
-$usuario = $_SESSION["usuario"];
+    $usuario = $_SESSION['usuario'];
+    $tipo_usuario = $_SESSION['admin'];
 
 $mensaje_exito = '';
 $mensaje_error = '';
@@ -16,18 +18,24 @@ $stmt->bindParam(':nombre_usuario', $usuario);
 $stmt->execute();
 $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($usuario_data) {
-        // Datos del usuario obtenidos con éxito
-        $nombre = $usuario_data['nombre'];
-        $apellido = $usuario_data['apellido'];
-        $fecha_nac = $usuario_data['fecha_nac'];
-        $sexo = $usuario_data['sexo'];
-        $correo = $usuario_data['correo'];
-        $foto = $usuario_data['foto'];
-    } else {
-        // Manejar el caso en el que no se encuentren los datos del usuario
-        $mensaje_error = "No se pudieron recuperar los datos del usuario.";
-    }
+        if ($usuario_data) {
+            // Datos del usuario obtenidos con éxito
+            $nombre = $usuario_data['nombre'];
+            $apellido = $usuario_data['apellido'];
+            $fecha_nac = $usuario_data['fecha_nac'];
+            $sexo = $usuario_data['sexo'];
+            $correo = $usuario_data['correo'];
+            $foto = $usuario_data['foto'];
+        } else {
+            // Manejar el caso en el que no se encuentren los datos del usuario
+            $mensaje_error = "No se pudieron recuperar los datos del usuario.";
+        }
+        
+        if ($tipo_usuario == 1) {
+            $tipo_usuario = "Administrador";
+        } else if ($tipo_usuario == 0) {
+            $tipo_usuario = "Usuario";
+        }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['editar'])) {
@@ -67,12 +75,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':foto', $foto);
         $stmt->bindParam(':nombre_usuario', $usuario);
 
-        if ($stmt->execute()) {
-            $mensaje_exito = "Tus datos se han actualizado exitosamente.";
-            // Cambia de nuevo al modo de visualización después de guardar
-            $modo_edicion = false;
-        } else {
-            $mensaje_error = "Hubo un error al actualizar tus datos. Inténtalo de nuevo.";
+            if ($stmt->execute()) {
+                $mensaje_exito = "Tus datos se han actualizado exitosamente.";
+                // Cambia de nuevo al modo de visualización después de guardar
+                $modo_edicion = false;
+            } else {
+                $mensaje_error = "Hubo un error al actualizar tus datos. Inténtalo de nuevo.";
+            }
         }
     }
 }
@@ -80,7 +89,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="es-Es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,16 +96,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="hojaEstilos/fuentes.css">
     <link rel="stylesheet" href="hojaEstilos/estilos.css">
     <link rel="shortcut icon" href="img/favicon.png">
+    <script src="script.js"></script>
     <title>Mi Perfil - CIFP Txurdinaga</title>
 </head>
-
 <body>
     <?php
         include('header_sesion.php');
+
+        if (!empty($mensaje_exito)) {
+            echo '<div class="mensaje-exito">';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
+            echo '</div>';
+        } elseif (!empty($mensaje_error)) {
+            echo '<div class="mensaje-error">';
+                echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+            echo '</div>';
+        }
     ?>
 
     <div class="mi-perfil-container">
-        <h1>Mi Perfil</h1>
+        <h1>Mi Perfil - <?php echo $tipo_usuario; ?></h1>
 
         <div id="datos-modo-visualizacion">
             <p><strong>Nombre Completo:</strong> <?php echo ucwords($nombre) . ' ' . ucwords($apellido); ?></p>
@@ -106,8 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p><strong>Correo Electrónico:</strong> <?php echo $correo; ?></p>
             <p><strong>Foto de Perfil:</strong></p>
             <div class="foto-container">
-                <img src="img/fotoPerfil/<?php echo empty($foto) ? 'sin-foto-perfil.jpg' : $foto; ?>"
-                    alt="Foto de perfil">
+                <img src="img/fotoPerfil/<?php echo empty($foto) ? 'sin-foto-perfil.jpg' : $foto; ?>" alt="Foto de perfil">
             </div>
         </div>
 
@@ -131,15 +148,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" id="apellido" name="apellido" value="<?php echo $apellido; ?>">
 
             <label for="fecha_nac">Fecha de Nacimiento:</label>
-            <input type="date" id="fecha_nac" name="fecha_nac"
-                value="<?php echo date("Y-m-d", strtotime($fecha_nac)); ?>">
+            <input type="date" id="fecha_nac" name="fecha_nac" value="<?php echo date("Y-m-d", strtotime($fecha_nac)); ?>">
 
             <label>Género:</label>
-            <input type="radio" id="masculino" name="sexo" value="Masculino"
-                <?php if ($sexo === 'Masculino') echo 'checked'; ?>>
+            <input type="radio" id="masculino" name="sexo" value="Masculino" <?php if ($sexo === 'Masculino') echo 'checked'; ?>>
             <label class="sexo" for="masculino">Masculino</label>
-            <input type="radio" id="femenino" name="sexo" value="Femenino"
-                <?php if ($sexo === 'Femenino') echo 'checked'; ?>>
+            <input type="radio" id="femenino" name="sexo" value="Femenino" <?php if ($sexo === 'Femenino') echo 'checked'; ?>>
             <label class="sexo" for="femenino">Femenino</label>
             <input type="radio" id="otros" name="sexo" value="Otros" <?php if ($sexo === 'Otros') echo 'checked'; ?>>
             <label class="sexo" for="otros">Otros</label>
@@ -150,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="foto">Foto de Perfil:</label>
             <input type="file" id="foto" name="foto" accept="image/*">
             <?php if ($modo_edicion) : ?>
-            <input type="hidden" name="foto_actual" value="<?php echo $foto; ?>">
+                <input type="hidden" name="foto_actual" value="<?php echo $foto; ?>">
             <?php endif; ?>
 
             <button type="submit" name="guardar">Guardar Cambios</button>
@@ -167,58 +181,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <script>
-    // JavaScript para cambiar entre el modo de visualización y el modo de edición
-    const editarDatosBtn = document.getElementById('editar-datos-btn');
-    const datosModoVisualizacion = document.getElementById('datos-modo-visualizacion');
-    const perfilForm = document.getElementById('perfilForm');
-    const cancelarBtn = document.getElementById('cancelar-btn');
-    const cerrarSesionBtn = document.getElementById('cerrar-sesion-btn');
-    const modal = document.querySelector('.modal');
-    const confirmarSiBtn = document.getElementById('confirmar-si');
-    const confirmarNoBtn = document.getElementById('confirmar-no');
+        // JavaScript para cambiar entre el modo de visualización y el modo de edición
+        const editarDatosBtn = document.getElementById('editar-datos-btn');
+        const datosModoVisualizacion = document.getElementById('datos-modo-visualizacion');
+        const perfilForm = document.getElementById('perfilForm');
+        const cancelarBtn = document.getElementById('cancelar-btn');
+        const cerrarSesionBtn = document.getElementById('cerrar-sesion-btn');
+        const modal = document.querySelector('.modal');
+        const confirmarSiBtn = document.getElementById('confirmar-si');
+        const confirmarNoBtn = document.getElementById('confirmar-no');
 
-    editarDatosBtn.addEventListener('click', () => {
-        datosModoVisualizacion.style.display = 'none';
-        perfilForm.style.display = 'block';
-        editarDatosBtn.style.display = 'none';
-        cerrarSesionBtn.style.display = 'none';
-        cancelarBtn.style.display = 'inline-block';
-    });
+        editarDatosBtn.addEventListener('click', () => {
+            datosModoVisualizacion.style.display = 'none';
+            perfilForm.style.display = 'block';
+            editarDatosBtn.style.display = 'none';
+            cerrarSesionBtn.style.display = 'none';
+            cancelarBtn.style.display = 'inline-block';
+        });
 
-    cerrarSesionBtn.addEventListener('click', () => {
-        // Muestra el desplegable
-        modal.style.display = 'block';
-        document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
-    });
+        cerrarSesionBtn.addEventListener('click', () => {
+            // Muestra el desplegable
+            modal.style.display = 'block';
+            document.body.classList.add('no-scroll');
+        });
 
-    confirmarSiBtn.addEventListener('click', () => {
-        // Aquí debes agregar la lógica para cerrar la sesión
-        // Puedes usar una redirección a la página de cierre de sesión
-        window.location.href =
-        'Cuentas/cerrar_sesion.php'; // Esto es un ejemplo, asegúrate de ajustar la URL a tu configuración
-    });
+        confirmarSiBtn.addEventListener('click', () => {
+            // Aquí debes agregar la lógica para cerrar la sesión
+            // Puedes usar una redirección a la página de cierre de sesión
+            window.location.href = 'Cuentas/cerrar_sesion.php';
+        });
 
+        confirmarNoBtn.addEventListener('click', () => {
+            // Cierra el desplegable y restaura el scroll
+            modal.style.display = 'none';
+            document.body.classList.remove('no-scroll');
+        });
 
-    confirmarNoBtn.addEventListener('click', () => {
-        // Cierra el desplegable y restaura el scroll
-        modal.style.display = 'none';
-        document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
-    });
-
-    cancelarBtn.addEventListener('click', () => {
-        datosModoVisualizacion.style.display = 'block';
-        perfilForm.style.display = 'none';
-        editarDatosBtn.style.display = 'block';
-        cerrarSesionBtn.style.display = 'block';
-        cancelarBtn.style.display = 'none';
-    });
+        cancelarBtn.addEventListener('click', () => {
+            datosModoVisualizacion.style.display = 'block';
+            perfilForm.style.display = 'none';
+            editarDatosBtn.style.display = 'block';
+            cerrarSesionBtn.style.display = 'block';
+            cancelarBtn.style.display = 'none';
+        });
     </script>
-
-
 
     <?php
         include('footer.php');
     ?>
 </body>
-
 </html>

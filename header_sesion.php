@@ -17,9 +17,29 @@
             <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
             <div class="centrado-header">Mi Perfil</div>
         </a>
-        <a class="header-buttons imagen-carrito" href="carrito_compra.php">
-            <img src="img/carrito_compra.png" name="imagen-carrito" alt="Inicio" width="50px" height="50px" style="margin-top: 20px;">
-        </a>
+
+        <?php
+            // Comprobar si el usuario es administrador y agregar la opción "Validar"
+            if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+                // Código para administradores
+            } else {
+                echo '<a class="header-buttons" href="carrito_compra.php">';
+                    echo '<img src="img/carrito_compra.png" alt="Inicio" width="50px" height="50px" style="margin-top: 20px;">';
+                echo '</a>';
+                
+                // Agrega un elemento div con el ID 'numero-carrito' para mostrar la longitud del carrito
+                echo '<h1 id="numero-carrito"></h1>';
+            }
+        ?>
+
+        <script>
+            const usuario = "<?php echo $_SESSION['usuario']; ?>";
+
+            let carrito = JSON.parse(localStorage.getItem('carrito => ' + usuario ))|| [];
+            let carritoLength = carrito.length;
+            
+            document.getElementById('numero-carrito').innerText = carritoLength;
+        </script>
     </div>
 </header>
 
@@ -33,12 +53,10 @@
             // Comprobar si el usuario es administrador y agregar la opción "Validar"
             if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
                 echo '<li class="menu-item"><a href="validar.php">Validar</a></li>';
-            }
-            else{
-                echo'<li class="menu-item"><a href="contacto.php">Contacto</a></li>';
+            } else {
+                echo '<li class="menu-item"><a href="contacto.php">Contacto</a></li>';
             }
         ?>
-
     </ul>
 </div>
 <nav>
@@ -49,8 +67,14 @@
                 <li class="menu-item"><a href="noticia.php">Noticias</a></li>
                 <li class="menu-item"><a href="anuncio.php">Anuncios</a></li>
                 <li class="menu-item"><a href="mis_publicaciones.php">Mis Publicaciones</a></li>
-                <li class="menu-item"><a href="validar.php">Validar</a></li>
-
+                <?php
+                    // Comprobar si el usuario es administrador y agregar la opción "Validar"
+                    if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+                        echo '<li class="menu-item"><a href="validar.php">Validar</a></li>';
+                    } else {
+                        echo '<li class="menu-item"><a href="contacto.php">Contacto</a></li>';
+                    }
+                ?>
             </ul>
         </li>
     </ul>
