@@ -18,24 +18,24 @@ $stmt->bindParam(':nombre_usuario', $usuario);
 $stmt->execute();
 $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($usuario_data) {
-        // Datos del usuario obtenidos con éxito
-        $nombre = $usuario_data['nombre'];
-        $apellido = $usuario_data['apellido'];
-        $fecha_nac = $usuario_data['fecha_nac'];
-        $sexo = $usuario_data['sexo'];
-        $correo = $usuario_data['correo'];
-        $foto = $usuario_data['foto'];
-    } else {
-        // Manejar el caso en el que no se encuentren los datos del usuario
-        $mensaje_error = "No se pudieron recuperar los datos del usuario.";
-    }
-    
-    if ($tipo_usuario == 1) {
-        $tipo_usuario = "Administrador";
-    } else if ($tipo_usuario == 0) {
-        $tipo_usuario = "Usuario";
-    }
+        if ($usuario_data) {
+            // Datos del usuario obtenidos con éxito
+            $nombre = $usuario_data['nombre'];
+            $apellido = $usuario_data['apellido'];
+            $fecha_nac = $usuario_data['fecha_nac'];
+            $sexo = $usuario_data['sexo'];
+            $correo = $usuario_data['correo'];
+            $foto = $usuario_data['foto'];
+        } else {
+            // Manejar el caso en el que no se encuentren los datos del usuario
+            $mensaje_error = "No se pudieron recuperar los datos del usuario.";
+        }
+        
+        if ($tipo_usuario == 1) {
+            $tipo_usuario = "Administrador";
+        } else if ($tipo_usuario == 0) {
+            $tipo_usuario = "Usuario";
+        }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['editar'])) {
@@ -95,11 +95,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="hojaEstilos/fuentes.css">
     <link rel="stylesheet" href="hojaEstilos/estilos.css">
     <link rel="shortcut icon" href="img/favicon.png">
+    <script src="script.js"></script>
     <title>Mi Perfil - CIFP Txurdinaga</title>
 </head>
 <body>
     <?php
         include('header_sesion.php');
+
+        if (!empty($mensaje_exito)) {
+            echo '<div class="mensaje-exito">';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
+            echo '</div>';
+        } elseif (!empty($mensaje_error)) {
+            echo '<div class="mensaje-error">';
+                echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+            echo '</div>';
+        }
     ?>
 
     <div class="mi-perfil-container">
@@ -112,8 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p><strong>Correo Electrónico:</strong> <?php echo $correo; ?></p>
             <p><strong>Foto de Perfil:</strong></p>
             <div class="foto-container">
-                <img src="img/fotoPerfil/<?php echo empty($foto) ? 'sin-foto-perfil.jpg' : $foto; ?>"
-                    alt="Foto de perfil">
+                <img src="img/fotoPerfil/<?php echo empty($foto) ? 'sin-foto-perfil.jpg' : $foto; ?>" alt="Foto de perfil">
             </div>
         </div>
 
@@ -137,15 +147,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" id="apellido" name="apellido" value="<?php echo $apellido; ?>">
 
             <label for="fecha_nac">Fecha de Nacimiento:</label>
-            <input type="date" id="fecha_nac" name="fecha_nac"
-                value="<?php echo date("Y-m-d", strtotime($fecha_nac)); ?>">
+            <input type="date" id="fecha_nac" name="fecha_nac" value="<?php echo date("Y-m-d", strtotime($fecha_nac)); ?>">
 
             <label>Género:</label>
-            <input type="radio" id="masculino" name="sexo" value="Masculino"
-                <?php if ($sexo === 'Masculino') echo 'checked'; ?>>
+            <input type="radio" id="masculino" name="sexo" value="Masculino" <?php if ($sexo === 'Masculino') echo 'checked'; ?>>
             <label class="sexo" for="masculino">Masculino</label>
-            <input type="radio" id="femenino" name="sexo" value="Femenino"
-                <?php if ($sexo === 'Femenino') echo 'checked'; ?>>
+            <input type="radio" id="femenino" name="sexo" value="Femenino" <?php if ($sexo === 'Femenino') echo 'checked'; ?>>
             <label class="sexo" for="femenino">Femenino</label>
             <input type="radio" id="otros" name="sexo" value="Otros" <?php if ($sexo === 'Otros') echo 'checked'; ?>>
             <label class="sexo" for="otros">Otros</label>
@@ -182,7 +189,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         const modal = document.querySelector('.modal');
         const confirmarSiBtn = document.getElementById('confirmar-si');
         const confirmarNoBtn = document.getElementById('confirmar-no');
-        // const usuario = document.getElementById('usuario').value;
 
         editarDatosBtn.addEventListener('click', () => {
             datosModoVisualizacion.style.display = 'none';
@@ -195,12 +201,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         cerrarSesionBtn.addEventListener('click', () => {
             // Muestra el desplegable
             modal.style.display = 'block';
-            document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+            document.body.classList.add('no-scroll');
         });
 
         confirmarSiBtn.addEventListener('click', () => {
-            // Borrar el carrito del Local Storage del usuario
-            // localStorage.removeItem('carrito => ' + usuario);
+            // Aquí debes agregar la lógica para cerrar la sesión
             // Puedes usar una redirección a la página de cierre de sesión
             window.location.href = 'Cuentas/cerrar_sesion.php';
         });
@@ -208,7 +213,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         confirmarNoBtn.addEventListener('click', () => {
             // Cierra el desplegable y restaura el scroll
             modal.style.display = 'none';
-            document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
+            document.body.classList.remove('no-scroll');
         });
 
         cancelarBtn.addEventListener('click', () => {

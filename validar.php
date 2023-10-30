@@ -108,8 +108,6 @@
 
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
-            // Comprobar si el usuario es administrador
-            $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
         } else {
             include('header_no_sesion.php');
         }
@@ -132,7 +130,7 @@
                     }
                     echo '<form class="producto" method="POST" action="validar.php">';
                         echo '<div class="imagen-producto">';
-                            echo '<img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '">';
+                            echo '<a href="pagina_anuncio.php?nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
                         echo '</div>';
                         echo '<div class="contenedor-anuncio">';
                             echo '<h2>' . $row['nombre_anuncio'] . '</h2>';

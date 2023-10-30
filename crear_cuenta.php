@@ -63,7 +63,6 @@
             }
         }
     ?>
-        
     <div class="form-crear-cuenta">
         <img src="img/Logo_Inicio_Sesion.png" alt="logo" class="logo-inicio-sesion">
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" id="id-form">
