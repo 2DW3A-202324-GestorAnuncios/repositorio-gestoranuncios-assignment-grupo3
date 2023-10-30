@@ -117,7 +117,7 @@
         <div class="seccion-titulo">
             <h1 class="titulo-llamativo">Validación de Anuncios</h1>
         </div>
-        <div class="productos">
+        <div class="productos-validar">
             <?php
                 while ($row = $resultAnuncios->fetch(PDO::FETCH_ASSOC)) {
                     $nombre_anuncio = $row['nombre_anuncio'];
@@ -165,7 +165,7 @@
         <div class="seccion-titulo">
             <h1 class="titulo-llamativo">Validación de Noticias</h1>
         </div>
-        <div id="noticiasContainer" class="productos">
+        <div id="noticiasContainer" class="productos-validar">
             <?php
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     echo '<form class="producto" method="POST" action="validar.php">';
