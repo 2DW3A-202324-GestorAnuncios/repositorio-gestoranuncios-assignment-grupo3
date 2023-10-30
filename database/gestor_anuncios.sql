@@ -6,6 +6,8 @@
 -- Tiempo de generación: 18-10-2023 a las 12:44:01
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
+CREATE DATABASE IF NOT EXISTS gestor_anuncios;
+USE gestor_anuncios;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;

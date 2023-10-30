@@ -1,149 +1,123 @@
-var num = 1;
+function validarCampos() {
+  var num = 0;
 
-function validarCampos() { 
-  //comprueba nombre
-  var nombre = document.getElementById('nombre').value;
-  const error6 = document.getElementById("error6");
-  if (nombre.length == 0) {
-    error6.innerText = "Introduce un nombre";
-    num = num + 1;
-  } else{
-    error6.innerText = "";
-    num = 0;
+  function showError(element, message) {
+    element.innerText = message;
+    num++;
   }
-  //comprueba apellido
-  var apellido = document.getElementById('apellido').value;
-  const error7 = document.getElementById("error7");
-  if (apellido.length == 0) {
-    error7.innerText = "Introduce un apellido";
-    num = num + 1;
-  }else{
-    error7.innerText = "";
-    num = 0;
-  } 
-  //validar contraseña 
-  var c = document.getElementById('validar-contraseña').value;
-  var box = document.getElementById("expresiones");
-  var field = document.createElement('span');
-  const boton = document.getElementById("boton");
-  const error3 = document.getElementById("error3");
-  var cont = 0; 
-  if (c.length < 6 ) {
-    document.getElementById("expresiones").innerHTML = "";         
-    var salto = document.createElement('br');
-    field.appendChild(document.createTextNode("Tu contraseña debe tener al menos 6 caracteres"));
-    field.setAttribute('class','error');
-    box.appendChild(field);
-    field.appendChild(salto);
-    cont = cont + 1;
-    num=num+1;
-  }
-  if (c.search(/[a-z]/i) < 0) {
-    document.getElementById("expresiones").innerHTML = "";   
-    var salto = document.createElement('br');
-    field.appendChild(document.createTextNode("Tu contraseña debe tener al menos una letra minuscula"));
-    field.setAttribute('class','error');
-    box.appendChild(field);
-    field.appendChild(salto);
-    cont = cont + 1;
-    num=num+1;
-  }
-  if (c.search(/[0-9]/) < 0) {
-    document.getElementById("expresiones").innerHTML = "";   
-    var salto = document.createElement('br');
-    field.appendChild(document.createTextNode("Tu contraseña debe tener al menos un digito"));
-    field.setAttribute('class','error');
-    box.appendChild(field);
-    field.appendChild(salto);
-    cont = cont + 1;
-    num=num+1;
-  }
-  if (c.search(/[A-Z]/) < 0) { 
-    document.getElementById("expresiones").innerHTML = "";   
-    var salto = document.createElement('br');                
-    field.appendChild(document.createTextNode("Tu contraseña debe tener al menos una letra mayuscula"));
-    field.setAttribute('class','error');
-    box.appendChild(field);
-    field.appendChild(salto);
-    cont = cont + 1;
-    num=num+1;
-  }
-  if(cont==0){
-    error3.innerText = "";
-    num = 0;
-  }
-//confirmar contraseña
-  var c = document.getElementById('validar-contraseña').value;
-  var c2 = document.getElementById('validar-contraseña2').value;
-  const error4 = document.getElementById("error4");
-  if (c === c2) {
-    error4.innerText = "";
-    num = 0;
 
-  }else{
-    error4.innerText = "Las contraseñas tienen que ser identicas";
-    num=num+6;
+  function clearError(element) {
+    element.innerText = "";
   }
-//validar usuario
-  const usuario = document.getElementById("usuario").value;
-  const error1 = document.getElementById("error1");
-  if (usuario.length < 3) {
-    error1.innerText = "El usuario debe tener 4 o mas caracteres";
-    num=num+1;
-  }else{
-    error1.innerText = "";
-    num = 0;
-  }
-//validar email
+
+  // Obtener referencias a los elementos del formulario
+  var nombre = document.getElementById('nombre');
+  var apellido = document.getElementById('apellido');
+  var contrasena = document.getElementById('validar-contraseña');
+  var contrasena2 = document.getElementById('validar-contraseña2');
+  var usuario = document.getElementById('usuario');
   var email = document.getElementById('email');
-  const error2 = document.getElementById("error2");
-  var emailRE =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-	if( emailRE.test(email.value) ){
-    error2.innerText = "";
-    num = 0;
-	}else{
-    error2.innerText = "El email no es valido";
-    num=num+1;
-	}
+  var fecha = document.getElementById('fecha');
+  var genero = document.querySelectorAll('input[name="genero"]');
+  var terminos = document.getElementById('terminos');
 
-  //validar fechaNacimiento
-  var fechaNac = document.getElementById('fecha').value;
-  const error8 = document.getElementById("error8");
-
-  if(!fechaNac){
-    error8.innerText = "Introduce una fecha";
-    num=num+1;
-  }else{
-    error8.innerText = "";
-    num = 0;
+  // Limpiar mensajes de error
+  var errorMessages = document.getElementsByClassName('error');
+  for (var i = 0; i < errorMessages.length; i++) {
+    clearError(errorMessages[i]);
   }
-  //validar genero
-  const error9 = document.getElementById("error9");
-  var masc = document.getElementById('masculino');
-  var fem = document.getElementById('femenino');
-  var otros = document.getElementById('otros');
 
+  // Validar nombre
+  if (nombre.value.trim() === "") {
+    showError(document.getElementById('error6'), "Introduce un nombre");
+  }
 
-  if(masc.checked || fem.checked || otros.checked) {
-    error9.innerText = "";
-    num = 0;
-  }else{
-    error9.innerText = "Seleccione su genero";
-    num=num+1;
+  // Validar apellido
+  if (apellido.value.trim() === "") {
+    showError(document.getElementById('error7'), "Introduce un apellido");
   }
-  const error5 = document.getElementById("error5");
-  //comprobar terminos
-  if (document.getElementById('terminos').checked == false) {
-    error5.innerText = "Debe aceptar los terminos";
-    num = num + 1;
-  }else{
-    error5.innerText = "";
-    num = 0;
+
+  // Validar contraseña
+  if (contrasena.value.length < 6) {
+    showError(document.getElementById('error3'), "Tu contraseña debe tener al menos 6 caracteres");
+  } else if (!/[a-z]/i.test(contrasena.value)) {
+    showError(document.getElementById('error3'), "Tu contraseña debe tener al menos una letra minúscula");
+  } else if (!/\d/.test(contrasena.value)) {
+    showError(document.getElementById('error3'), "Tu contraseña debe tener al menos un dígito");
+  } else if (!/[A-Z]/.test(contrasena.value)) {
+    showError(document.getElementById('error3'), "Tu contraseña debe tener al menos una letra mayúscula");
   }
-  
-  if (num!=0) {
-    document.getElementById("id-form").addEventListener("click", function(event){
-      event.preventDefault()
-    });
-  } 
+
+  // Confirmar contraseña
+  if (contrasena.value !== contrasena2.value) {
+    showError(document.getElementById('error4'), "Las contraseñas deben coincidir");
+  }
+
+  // Validar usuario
+    if (usuario.value.length < 3) {
+    showError(document.getElementById('error1'), "El usuario debe tener al menos 3 caracteres");
+  } else {
+    clearError(document.getElementById('error1'));
+  }
+
+  // Validar email
+  var emailRE = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+  if (!emailRE.test(email.value)) {
+    showError(document.getElementById('error2'), "El correo electrónico no es válido");
+  }
+
+  // Validar fecha de nacimiento
+  if (!fecha.value) {
+    showError(document.getElementById('error8'), "Introduce una fecha de nacimiento");
+  }
+
+  // Validar género
+  var generoChecked = false;
+  for (var i = 0; i < genero.length; i++) {
+    if (genero[i].checked) {
+      generoChecked = true;
+      break;
+    }
+  }
+  if (!generoChecked) {
+    showError(document.getElementById('error9'), "Selecciona tu género");
+  }
+
+  // Validar términos y condiciones
+  if (!terminos.checked) {
+    showError(document.getElementById('error5'), "Debes aceptar los términos y condiciones");
+  }
+
+  // Comprobar si hay errores y cambiar el tipo del botón
+  var botonSubmit = document.getElementById('botonSubmit');
+  if (num !== 0) {
+    botonSubmit.type = "button";
+  } else {
+    botonSubmit.type = "submit";
+  }
+}
+// Funciones del Login
+function toggleDropdown() {
+    var formSesion = document.getElementById("form-inicio-sesion");
+
+    if (formSesion.style.display === "none" || formSesion.style.display === "") {
+        formSesion.style.display = "block";
+    } else {
+        formSesion.style.display = "none";
+    }
+}
+
+function anadirCarritoAndToggleDropdown() {
+    // Llama a la función toggleDropdown() directamente
+    toggleDropdown();
+
+    // Desplázate hacia la parte superior de la página
+    window.scrollTo(0, 0);
+}
+
+function mostrarError(mensaje) {
+    var mensajeError = document.getElementById("mensaje-error");
+
+    mensajeError.textContent = mensaje;
+    mensajeError.style.display = "block";
 }
