@@ -168,13 +168,15 @@
         <div id="noticiasContainer" class="productos">
             <?php
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
+                    $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['titulo']);
+                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
                     echo '<form class="producto" method="POST" action="validar.php">';
                         echo '<div class="imagen-producto">';
-                            echo '<img src="img/noticias/' . $row['foto'] . '" alt="' . htmlspecialchars($row['titulo']) . '" class="imagen-noticia3">';
+                            echo '<a href="pagina_noticias.php?titulo='.urlencode($row['titulo']).'&foto='.urlencode($row['foto']).'&categoria='.urlencode($row['categoria']).'&descripcion='.urlencode($row['descripcion']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '" class="imagen-noticia3"></a>';
                         echo '</div>';
                         echo '<div class="contenedor-anuncio">';
-                            echo '<h1 style="color: black" class="titulo-noticia3-h1">' . $row['categoria'] . '</h1>';
-                            echo '<h2 class="titulo-noticia3">' . $row['titulo'] . '</h2>';
+                            echo '<h1 style="color: black" class="titulo-noticia3-h1">' . ucfirst($row['categoria']) . '</h1>';
+                            echo '<h2 class="titulo-noticia3">' . ucfirst($row['titulo']) . '</h2>';
                         echo '</div>';
                         echo '<div class="btn-container">';
                             echo '<button type="button" name="validar-noticia" class="btn-validar" data-modal="modalValidarN_' . $row['id_noticia'] . '">Validar</button>';

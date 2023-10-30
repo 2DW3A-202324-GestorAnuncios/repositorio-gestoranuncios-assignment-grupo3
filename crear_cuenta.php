@@ -47,7 +47,7 @@
                     $imagen = $_POST['imagen'];
 
                     // Inserta los datos en la tabla "usuario"
-                    $sql = "INSERT INTO usuario (nombre_usuario, nombre, apellido,fecha_nac,sexo, correo, password, foto) VALUES ('$usuario','$nombre','$apellido','$fecha','$genero','$email','$contraseña','$imagen')";
+                    $sql = "INSERT INTO usuario (nombre_usuario, nombre, apellido, fecha_nac, sexo, correo, password, foto) VALUES ('$usuario','$nombre','$apellido','$fecha','$genero','$email','$contraseña','$imagen')";
                     $stmt = $conn->prepare($sql);
                     $stmt->execute();
                     $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);

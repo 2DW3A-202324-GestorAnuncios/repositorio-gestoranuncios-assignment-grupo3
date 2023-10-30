@@ -195,6 +195,7 @@ header {
         margin-right: -8px;
         visibility: hidden;
     }
+
     /* Ajusta la imagen del desplegable */
     .despImg {
         height: 60px;
@@ -761,11 +762,12 @@ anuncios del indice a dispositivos distintos */
 }
 
 /* Da forma a los botones de validar */
-.productos-slide-anuncios button[name="btn-anadir-carrito"],
-.producto button[name="btn-anadir-carrito"] {
+.productos-slide-anuncios button[name='btn-anadir-carrito'],
+.producto button[name='btn-anadir-carrito'],
+.ver-anuncio button[name='btn-anadir-carrito'] {
     border: none;
-    outline: 0;
     padding: 12px;
+    outline: 0;
     color: white;
     background-color: #007bff;
     text-align: center;
@@ -776,7 +778,8 @@ anuncios del indice a dispositivos distintos */
 }
 
 .productos-slide-anuncios button[name='btn-anadir-carrito']:hover,
-.producto button[name='btn-anadir-carrito']:hover {
+.producto button[name='btn-anadir-carrito']:hover,
+.ver-anuncio button[name='btn-anadir-carrito']:hover {
     opacity: 0.7;
 }
 
@@ -897,6 +900,10 @@ anuncios del indice a dispositivos distintos */
     margin-bottom: 10px;
 }
 
+.filtro-label h3 {
+    margin-top: 5px;
+}
+
 .filtro-label input[type='radio'] {
     display: none;
 }
@@ -929,10 +936,13 @@ anuncios del indice a dispositivos distintos */
 
 #borrarFiltros:hover {
     color: blue;
-
     border-radius: 5px;
     border: 2px solid blue;
     transform: scale(1.02);
+}
+
+.filtro-label img:hover {
+    border-color: #000000;
 }
 
 .filtro-label img:hover {
@@ -975,7 +985,6 @@ anuncios del indice a dispositivos distintos */
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
-    
 }
 
 .imagen-noticia3 {
@@ -1013,10 +1022,6 @@ anuncios del indice a dispositivos distintos */
     margin-top: 5px;
     font-weight: bold;
     color: rgb(239, 239, 239);
-}
-
-.titulo-noticia3-h1::first-letter {
-    text-transform: uppercase;
 }
 
 .titulo-noticia3 {
@@ -1796,68 +1801,6 @@ span {
     background-color: #0056b3;
 }
 
-/* Estilos para el formulario de creación de anuncios */
-.crear-anuncio {
-    padding: 20px;
-}
-
-.crear-anuncio h1 {
-    text-align: center;
-}
-
-.form-crear-anuncio {
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: #f2f2f2;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.form-crear-anuncio label {
-    display: block;
-    font-weight: bold;
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-.form-crear-anuncio input[type='text'],
-.form-crear-anuncio textarea {
-    width: 95%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.form-crear-anuncio input[type='file'] {
-    width: 95%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #fff;
-}
-
-.form-crear-anuncio button {
-    display: block;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 16px;
-    margin: 20px auto 0;
-}
-
-.form-crear-anuncio button:hover {
-    background-color: #0056b3;
-}
-
 /* Estilos para el formulario Mi Perfil */
 .mi-perfil-container {
     max-width: 400px;
@@ -2057,9 +2000,7 @@ span {
     height: auto;
     display: flex;
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 30px;
+    margin: 30px auto;
     background-color: #f1f1f15f;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -2072,8 +2013,7 @@ span {
     max-width: 700px;
     min-width: 300px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto;
 }
 
 .ver-anuncio-contenido {
