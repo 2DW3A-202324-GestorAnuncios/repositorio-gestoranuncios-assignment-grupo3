@@ -85,7 +85,7 @@
                 <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
             </div>    
             <div id="buscador-debajo">
-                <a href="anuncio.php"><img src="img/botonX.png" width="25px"></a>
+                <a href="anuncio.php"><img src="img/botonX.png" id="x"></a>
             </div>
         </form>
     </div>
@@ -118,6 +118,8 @@
                 echo '<div class="producto">';
                     echo '<div class="imagen-producto">';
                         echo '<a href="pagina_anuncio.php?id='.urlencode($row['id_anuncio']).'&nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
+                    echo '</div>';
+                    echo '<div id="linea">';
                     echo '</div>';
                     echo '<div class="contenedor-anuncio">';
                         echo '<h2>' . $row['nombre_anuncio'] . '</h2>';

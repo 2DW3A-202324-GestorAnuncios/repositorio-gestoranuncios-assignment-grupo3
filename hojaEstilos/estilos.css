@@ -745,6 +745,11 @@ anuncios del indice a dispositivos distintos */
     margin: 20px auto;
 }
 
+#x {
+    width:18px;
+    margin-top: 3px;
+}
+
 #input-buscador {
     background-image: url('../img/searchicon.png');
     background-position: 10px 10px;
@@ -802,14 +807,17 @@ anuncios del indice a dispositivos distintos */
 .producto .precio,
 .productos-slide-anuncios .precio {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .imagen-producto {
     flex: 1;
+	object-fit: cover;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ddd;
 }
 
 /* Ajusta el tamaño de las fotos en los anuncios */
@@ -826,6 +834,7 @@ anuncios del indice a dispositivos distintos */
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: larger;
 }
 
 .producto h2::first-letter,
@@ -847,6 +856,7 @@ anuncios del indice a dispositivos distintos */
     width: 100%;
     font-size: 18px;
     transition: opacity 0.3s ease-in-out;
+    margin-bottom: 20px;
 }
 
 .productos-slide-anuncios button[name='btn-anadir-carrito']:hover,
@@ -998,6 +1008,8 @@ anuncios del indice a dispositivos distintos */
 #borrarFiltros {
     display: block;
     color: black;
+    border: 2px solid black;
+    border-radius: 5px;
     text-decoration: underline;
     cursor: pointer;
     margin-top: 10px;
@@ -2091,6 +2103,8 @@ span {
     box-sizing: border-box;
     max-width: 700px;
     height: auto;
+    overflow: hidden;
+    padding: 0px 20px 0px 20px;
     display: flex;
     flex-direction: column;
     margin: 30px auto;
@@ -2099,12 +2113,13 @@ span {
 }
 
 .ver-anuncio-img {
+    max-width: 450px;
+	height: auto;
+    overflow: hidden;
+	object-fit: cover;
     margin-top: 15px;
     padding: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    height: auto;
-    max-width: 700px;
-    min-width: 300px;
     display: block;
     margin: 20px auto;
 }
