@@ -88,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="es-Es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,6 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="script.js"></script>
     <title>Mi Perfil - CIFP Txurdinaga</title>
 </head>
+
 <body>
     <?php
         include('header_sesion.php');
@@ -123,7 +125,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p><strong>Correo Electrónico:</strong> <?php echo $correo; ?></p>
             <p><strong>Foto de Perfil:</strong></p>
             <div class="foto-container">
-                <img src="img/fotoPerfil/<?php echo empty($foto) ? 'sin-foto-perfil.jpg' : $foto; ?>" alt="Foto de perfil">
+                <img src="img/fotoPerfil/<?php echo empty($foto) ? 'sin-foto-perfil.jpg' : $foto; ?>"
+                    alt="Foto de perfil">
             </div>
         </div>
 
@@ -147,12 +150,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" id="apellido" name="apellido" value="<?php echo $apellido; ?>">
 
             <label for="fecha_nac">Fecha de Nacimiento:</label>
-            <input type="date" id="fecha_nac" name="fecha_nac" value="<?php echo date("Y-m-d", strtotime($fecha_nac)); ?>">
+            <input type="date" id="fecha_nac" name="fecha_nac"
+                value="<?php echo date("Y-m-d", strtotime($fecha_nac)); ?>">
 
             <label>Género:</label>
-            <input type="radio" id="masculino" name="sexo" value="Masculino" <?php if ($sexo === 'Masculino') echo 'checked'; ?>>
+            <input type="radio" id="masculino" name="sexo" value="Masculino"
+                <?php if ($sexo === 'Masculino') echo 'checked'; ?>>
             <label class="sexo" for="masculino">Masculino</label>
-            <input type="radio" id="femenino" name="sexo" value="Femenino" <?php if ($sexo === 'Femenino') echo 'checked'; ?>>
+            <input type="radio" id="femenino" name="sexo" value="Femenino"
+                <?php if ($sexo === 'Femenino') echo 'checked'; ?>>
             <label class="sexo" for="femenino">Femenino</label>
             <input type="radio" id="otros" name="sexo" value="Otros" <?php if ($sexo === 'Otros') echo 'checked'; ?>>
             <label class="sexo" for="otros">Otros</label>
@@ -163,70 +169,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="foto">Foto de Perfil:</label>
             <input type="file" id="foto" name="foto" accept="image/*">
             <?php if ($modo_edicion) : ?>
-                <input type="hidden" name="foto_actual" value="<?php echo $foto; ?>">
+            <input type="hidden" name="foto_actual" value="<?php echo $foto; ?>">
             <?php endif; ?>
 
             <button type="submit" name="guardar">Guardar Cambios</button>
             <button id="cancelar-btn" name="cancelar">Cancelar</button>
         </form>
-
-        <?php
-            if (!empty($mensaje_exito)) {
-                echo '<p class="mensaje-exito">' . $mensaje_exito . '</p>';
-            } elseif (!empty($mensaje_error)) {
-                echo '<p class="mensaje-error">' . $mensaje_error . '</p>';
-            }
-        ?>
     </div>
 
     <script>
-        // JavaScript para cambiar entre el modo de visualización y el modo de edición
-        const editarDatosBtn = document.getElementById('editar-datos-btn');
-        const datosModoVisualizacion = document.getElementById('datos-modo-visualizacion');
-        const perfilForm = document.getElementById('perfilForm');
-        const cancelarBtn = document.getElementById('cancelar-btn');
-        const cerrarSesionBtn = document.getElementById('cerrar-sesion-btn');
-        const modal = document.querySelector('.modal');
-        const confirmarSiBtn = document.getElementById('confirmar-si');
-        const confirmarNoBtn = document.getElementById('confirmar-no');
+    // JavaScript para cambiar entre el modo de visualización y el modo de edición
+    const editarDatosBtn = document.getElementById('editar-datos-btn');
+    const datosModoVisualizacion = document.getElementById('datos-modo-visualizacion');
+    const perfilForm = document.getElementById('perfilForm');
+    const cancelarBtn = document.getElementById('cancelar-btn');
+    const cerrarSesionBtn = document.getElementById('cerrar-sesion-btn');
+    const modal = document.querySelector('.modal');
+    const confirmarSiBtn = document.getElementById('confirmar-si');
+    const confirmarNoBtn = document.getElementById('confirmar-no');
 
-        editarDatosBtn.addEventListener('click', () => {
-            datosModoVisualizacion.style.display = 'none';
-            perfilForm.style.display = 'block';
-            editarDatosBtn.style.display = 'none';
-            cerrarSesionBtn.style.display = 'none';
-            cancelarBtn.style.display = 'inline-block';
-        });
+    editarDatosBtn.addEventListener('click', () => {
+        datosModoVisualizacion.style.display = 'none';
+        perfilForm.style.display = 'block';
+        editarDatosBtn.style.display = 'none';
+        cerrarSesionBtn.style.display = 'none';
+        cancelarBtn.style.display = 'inline-block';
+    });
 
-        cerrarSesionBtn.addEventListener('click', () => {
-            // Muestra el desplegable
-            modal.style.display = 'block';
-            document.body.classList.add('no-scroll');
-        });
+    cerrarSesionBtn.addEventListener('click', () => {
+        // Muestra el desplegable
+        modal.style.display = 'block';
+        document.body.classList.add('no-scroll');
+    });
 
-        confirmarSiBtn.addEventListener('click', () => {
-            // Aquí debes agregar la lógica para cerrar la sesión
-            // Puedes usar una redirección a la página de cierre de sesión
-            window.location.href = 'Cuentas/cerrar_sesion.php';
-        });
+    confirmarSiBtn.addEventListener('click', () => {
+        // Aquí debes agregar la lógica para cerrar la sesión
+        // Puedes usar una redirección a la página de cierre de sesión
+        window.location.href = 'Cuentas/cerrar_sesion.php';
+    });
 
-        confirmarNoBtn.addEventListener('click', () => {
-            // Cierra el desplegable y restaura el scroll
-            modal.style.display = 'none';
-            document.body.classList.remove('no-scroll');
-        });
+    confirmarNoBtn.addEventListener('click', () => {
+        // Cierra el desplegable y restaura el scroll
+        modal.style.display = 'none';
+        document.body.classList.remove('no-scroll');
+    });
 
-        cancelarBtn.addEventListener('click', () => {
-            datosModoVisualizacion.style.display = 'block';
-            perfilForm.style.display = 'none';
-            editarDatosBtn.style.display = 'block';
-            cerrarSesionBtn.style.display = 'block';
-            cancelarBtn.style.display = 'none';
-        });
+    cancelarBtn.addEventListener('click', () => {
+        datosModoVisualizacion.style.display = 'block';
+        perfilForm.style.display = 'none';
+        editarDatosBtn.style.display = 'block';
+        cerrarSesionBtn.style.display = 'block';
+        cancelarBtn.style.display = 'none';
+    });
     </script>
 
     <?php
         include('footer.php');
     ?>
 </body>
+
 </html>
