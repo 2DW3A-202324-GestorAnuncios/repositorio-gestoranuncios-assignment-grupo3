@@ -199,3 +199,77 @@ function mostrarError(mensaje) {
     mensajeError.textContent = mensaje;
     mensajeError.style.display = "block";
 }
+
+// Función para eliminar un producto del carrito
+function eliminarProducto(id) {
+    carrito = carrito.filter(producto => producto.id !== id);
+    actualizarCarrito();
+
+    let numeroCarrito = document.getElementById('numero-carrito');
+    numeroCarrito.innerText = parseInt(numeroCarrito.innerText) - 1;
+}
+
+// Función para actualizar el carrito en el Local Storage y en la interfaz de usuario
+function actualizarCarrito() {
+    localStorage.setItem('carrito => ' + usuario, JSON.stringify(carrito));
+
+    // Limpiar la vista del carrito
+    const carritoContainer = document.getElementById("carrito-items");
+    carritoContainer.innerHTML = "";
+
+    // Reiniciar los totales
+    let precioTotal = 0.0; // Inicializar como número de punto flotante
+    let totalProductos = 0;
+
+    // Recrear la vista del carrito con los productos actualizados
+    carrito.forEach(producto => {
+        const itemContainer = document.createElement("div");
+        itemContainer.classList.add("carrito-item");
+
+        const fotoCarrito = document.createElement("div");
+        fotoCarrito.classList.add("foto-carrito");
+        fotoCarrito.innerHTML = `<img src="img/anuncios/${producto.foto}" alt="${producto.nombre}">`;
+
+        const carritoContent = document.createElement("div");
+        carritoContent.classList.add("carrito-content");
+        // Reemplazar el punto por coma en la representación del precio
+        const precioConComa = parseFloat(producto.precio).toFixed(2).replace(".", ",");
+        carritoContent.innerHTML = `
+            <p class="producto-nombre">${producto.nombre}</p>
+            <p class="producto-descripcion">${producto.descripcion}</p>
+            <p>Precio: <span class="producto-precio">${precioConComa} €</span></p>
+        `;
+
+        const eliminarButton = document.createElement("button");
+        eliminarButton.classList.add("eliminar-button");
+        eliminarButton.setAttribute("data-id", producto.id);
+        eliminarButton.innerHTML = '<img src="img/papelera.png" alt="Eliminar" width="40px" height="40px">';
+        eliminarButton.addEventListener('click', () => eliminarProducto(producto.id));
+
+        itemContainer.appendChild(fotoCarrito);
+        itemContainer.appendChild(carritoContent);
+        itemContainer.appendChild(eliminarButton);
+
+        carritoContainer.appendChild(itemContainer);
+
+        // Actualizar los totales
+        precioTotal += parseFloat(producto.precio); // Convertir a número de punto flotante
+        totalProductos++;
+    });
+
+    // Reemplazar el punto por coma en la representación del precio total
+    const precioTotalConComa = precioTotal.toFixed(2).replace(".", ",");
+    
+    // Actualizar la interfaz con los totales
+    const totalPrecioElement = document.getElementById("total-precio");
+    const totalProductosElement = document.getElementById("total-productos");
+
+    totalPrecioElement.innerText = precioTotalConComa + " €";
+    totalProductosElement.innerText = totalProductos + " productos";
+
+    if (carrito.length === 0) {
+        // Si el carrito está vacío, muestra un mensaje
+        carritoContainer.innerHTML = `<p class="carrito-vacio">El carrito está vacío.</p>`;
+        localStorage.removeItem('carrito => ' + usuario);
+    }
+}

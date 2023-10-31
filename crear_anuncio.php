@@ -103,7 +103,7 @@
                 <input type="file" id="imagen" name="imagen" accept="image/*">
 
                 <label for="precio">Precio (€):</label>
-                <input type="number" id="precio" name="precio" placeholder="0" min="0">
+                <input type="number" id="precio" name="precio" placeholder="0" min="0" step=".01">
                 <button type="submit">Crear Anuncio</button>
             </form>
         </div>

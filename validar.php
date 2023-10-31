@@ -4,6 +4,9 @@
     // Inicia la sesión en la página
     session_start();
 
+    $mensaje_info_anuncio = "";
+    $mensaje_info_noticia = "";
+
     function eliminarFotoAnuncios($nombreArchivo) {
         $directorio_destino = 'img/anuncios/' . $nombreArchivo;
         if (file_exists($directorio_destino)) {
@@ -91,6 +94,18 @@
             $resultNoticias = $conn->query($sqlNoticias);
         }
     }
+
+    // Verificar si se encontraron publicaciones de anuncios o noticias para validar
+    $anunciosNoValidados = $resultAnuncios->rowCount() > 0;
+    $noticiasNoValidados = $resultNoticias->rowCount() > 0;
+
+    if (!$anunciosNoValidados) {
+        $mensaje_info_anuncio = "No hay ningun anuncio para validar.";
+    }
+
+    if (!$noticiasNoValidados) {
+        $mensaje_info_noticia = "No hay ninguna noticia para validar.";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -117,6 +132,13 @@
         <div class="seccion-titulo">
             <h1 class="titulo-llamativo">Validación de Anuncios</h1>
         </div>
+        <?php
+            if (!empty($mensaje_info_anuncio)) {
+                echo '<div class="mensaje-info">';
+                    echo '<p><strong>Info!</strong> ' . $mensaje_info_anuncio . '</p>';
+                echo '</div>';
+            }
+        ?>
         <div class="productos">
             <?php
                 while ($row = $resultAnuncios->fetch(PDO::FETCH_ASSOC)) {
@@ -165,6 +187,13 @@
         <div class="seccion-titulo">
             <h1 class="titulo-llamativo">Validación de Noticias</h1>
         </div>
+        <?php
+            if (!empty($mensaje_info_noticia)) {
+                echo '<div class="mensaje-info">';
+                    echo '<p><strong>Info!</strong> ' . $mensaje_info_noticia . '</p>';
+                echo '</div>';
+            }
+        ?>
         <div id="noticiasContainer" class="productos">
             <?php
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
