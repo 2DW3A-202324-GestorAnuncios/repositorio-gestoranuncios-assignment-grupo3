@@ -1,6 +1,9 @@
 <?php
     include("conexion.php");
 
+    // Inicia la sesión en la página
+    session_start();
+
     function eliminarFotoAnuncios($nombreArchivo) {
         $directorio_destino = 'img/anuncios/' . $nombreArchivo;
         if (file_exists($directorio_destino)) {
@@ -103,9 +106,6 @@
 </head>
 <body>
     <?php
-        // Inicia la sesión en la página
-        session_start();
-
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
         } else {
@@ -130,7 +130,7 @@
                     }
                     echo '<form class="producto" method="POST" action="validar.php">';
                         echo '<div class="imagen-producto">';
-                            echo '<a href="pagina_anuncio.php?nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
+                            echo '<a href="pagina_anuncio.php?id='.urlencode($row['id_anuncio']).'&nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
                         echo '</div>';
                         echo '<div class="contenedor-anuncio">';
                             echo '<h2>' . $row['nombre_anuncio'] . '</h2>';
@@ -151,7 +151,7 @@
                                 echo '<div class="modal-content">';
                                     echo '<p>¿Está seguro de eliminar el anuncio?</p>';
                                     echo '<button type="button" class="confirmar-no">Cancelar</button>';
-                                    echo '<button id="confirmar-si" name="eliminar_anuncio" value="' . $row['id_anuncio'] . '">Eliminar</button>';
+                                    echo '<button id="confirmar-si-eliminar" name="eliminar_anuncio" value="' . $row['id_anuncio'] . '">Eliminar</button>';
                                 echo '</div>';
                             echo '</div>';
                         echo '</div>';
@@ -190,9 +190,9 @@
                             echo '<button type="button" name="eliminar-noticia" class="btn-eliminar" data-modal="modalEliminarN_' . $row['id_noticia'] . '">Eliminar</button>';
                             echo '<div id="modalEliminarN_' . $row['id_noticia'] . '" class="modalEliminarN" style="display: none;">';
                                 echo '<div class="modal-content">';
-                                    echo '<p>¿Está seguro de eliminar la noticia?</p>';                                    
+                                    echo '<p>¿Está seguro de eliminar la noticia?</p>';
                                     echo '<button type="button" class="confirmar-no">Cancelar</button>';
-                                    echo '<button id="confirmar-si" name="eliminar_noticia" value="' . $row['id_noticia'] . '">Eliminar</button>';
+                                    echo '<button id="confirmar-si-eliminar" name="eliminar_noticia" value="' . $row['id_noticia'] . '">Eliminar</button>';
                                 echo '</div>';
                             echo '</div>';
                         echo '</div>';

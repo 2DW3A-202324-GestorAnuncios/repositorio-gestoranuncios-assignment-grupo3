@@ -1,13 +1,12 @@
 <?php
-include("conexion.php");
-
-// Inicia la sesión en la página
-session_start();
+    include("conexion.php");
+    
+    // Inicia la sesión en la página
+    session_start();
 ?>
 
 <!DOCTYPE html>
 <html lang="es-Es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +16,6 @@ session_start();
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Crear Noticia - CIFP Txurdinaga</title>
 </head>
-
 <body>
     <?php
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
@@ -25,7 +23,7 @@ session_start();
         } else {
             include('header_no_sesion.php');
         }
-
+        
         $mensaje_exito = '';
         $mensaje_error = '';
         $usuario = $_SESSION['usuarioLogin'];
@@ -69,11 +67,11 @@ session_start();
         
         if (!empty($mensaje_exito)) {
             echo '<div class="mensaje-exito">';
-            echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
             echo '</div>';
         } else if (!empty($mensaje_error)) {
             echo '<div class="mensaje-error">';
-            echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+                echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
             echo '</div>';
         }
     ?>
@@ -102,9 +100,7 @@ session_start();
     </section>
 
     <?php
-    include('footer.php');
+        include('footer.php');
     ?>
-
 </body>
-
 </html>

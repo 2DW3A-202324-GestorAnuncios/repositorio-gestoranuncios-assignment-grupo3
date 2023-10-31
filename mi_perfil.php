@@ -1,5 +1,5 @@
 <?php
-include("conexion.php");
+    include("conexion.php");
 
     // Inicia la sesión en la página
     session_start();
@@ -7,83 +7,83 @@ include("conexion.php");
     $usuario = $_SESSION['usuarioLogin'];
     $tipo_usuario = $_SESSION['admin'];
 
-$mensaje_exito = '';
-$mensaje_error = '';
-$modo_edicion = false;
+    $mensaje_exito = '';
+    $mensaje_error = '';
+    $modo_edicion = false;
 
-// Obtener los datos del usuario desde la base de datos
-$sql = "SELECT * FROM usuario WHERE nombre_usuario = :nombre_usuario";
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':nombre_usuario', $usuario);
-$stmt->execute();
-$usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Obtener los datos del usuario desde la base de datos
+    $sql = "SELECT * FROM usuario WHERE nombre_usuario = :nombre_usuario";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':nombre_usuario', $usuario);
+    $stmt->execute();
+    $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($usuario_data) {
-            // Datos del usuario obtenidos con éxito
-            $nombre = $usuario_data['nombre'];
-            $apellido = $usuario_data['apellido'];
-            $fecha_nac = $usuario_data['fecha_nac'];
-            $sexo = $usuario_data['sexo'];
-            $correo = $usuario_data['correo'];
-            $foto = $usuario_data['foto'];
-        } else {
-            // Manejar el caso en el que no se encuentren los datos del usuario
-            $mensaje_error = "No se pudieron recuperar los datos del usuario.";
-        }
-        
-        if ($tipo_usuario == 1) {
-            $tipo_usuario = "Administrador";
-        } else if ($tipo_usuario == 0) {
-            $tipo_usuario = "Usuario";
-        }
+    if ($usuario_data) {
+        // Datos del usuario obtenidos con éxito
+        $nombre = $usuario_data['nombre'];
+        $apellido = $usuario_data['apellido'];
+        $fecha_nac = $usuario_data['fecha_nac'];
+        $sexo = $usuario_data['sexo'];
+        $correo = $usuario_data['correo'];
+        $foto = $usuario_data['foto'];
+    } else {
+        // Manejar el caso en el que no se encuentren los datos del usuario
+        $mensaje_error = "No se pudieron recuperar los datos del usuario.";
+    }
+    
+    if ($tipo_usuario == 1) {
+        $tipo_usuario = "Administrador";
+    } else if ($tipo_usuario == 0) {
+        $tipo_usuario = "Usuario";
+    }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['editar'])) {
-        // Cambiar al modo de edición
-        $modo_edicion = true;
-    } elseif (isset($_POST['guardar'])) {
-        // Modo de guardado, actualiza los datos
-        $nombre = $_POST['nombre'];
-        $apellido = $_POST['apellido'];
-        $fecha_nac = $_POST['fecha_nac'];
-        $sexo = $_POST['sexo'];
-        $correo = $_POST['correo'];
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['editar'])) {
+            // Cambiar al modo de edición
+            $modo_edicion = true;
+        } elseif (isset($_POST['guardar'])) {
+            // Modo de guardado, actualiza los datos
+            $nombre = $_POST['nombre'];
+            $apellido = $_POST['apellido'];
+            $fecha_nac = $_POST['fecha_nac'];
+            $sexo = $_POST['sexo'];
+            $correo = $_POST['correo'];
 
-        // Comprueba si se seleccionó un archivo nuevo
-        if (!empty($_FILES['foto']['name'])) {
-            // Se seleccionó un archivo nuevo, procesa la subida
-            $foto = $_FILES['foto']['name'];
-            $foto_temp = $_FILES['foto']['tmp_name'];
+            // Comprueba si se seleccionó un archivo nuevo
+            if (!empty($_FILES['foto']['name'])) {
+                // Se seleccionó un archivo nuevo, procesa la subida
+                $foto = $_FILES['foto']['name'];
+                $foto_temp = $_FILES['foto']['tmp_name'];
 
-            // Mueve el archivo temporal al directorio de fotos
-            move_uploaded_file($foto_temp, 'img/fotoPerfil/' . $foto);
-        }
+                // Mueve el archivo temporal al directorio de fotos
+                move_uploaded_file($foto_temp, 'img/fotoPerfil/' . $foto);
+            }
 
-        // Si no se selecciona un archivo nuevo, se mantiene la foto actual
-        if (empty($foto) && isset($_POST['foto_actual'])) {
-            $foto = $_POST['foto_actual'];
-        }
+            // Si no se selecciona un archivo nuevo, se mantiene la foto actual
+            if (empty($foto) && isset($_POST['foto_actual'])) {
+                $foto = $_POST['foto_actual'];
+            }
 
-        // Realiza la actualización en la base de datos
-        $sql = "UPDATE usuario SET nombre = :nombre, apellido = :apellido, fecha_nac = :fecha_nac, sexo = :sexo, correo = :correo, foto = :foto WHERE nombre_usuario = :nombre_usuario";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':apellido', $apellido);
-        $stmt->bindParam(':fecha_nac', $fecha_nac);
-        $stmt->bindParam(':sexo', $sexo);
-        $stmt->bindParam(':correo', $correo);
-        $stmt->bindParam(':foto', $foto);
-        $stmt->bindParam(':nombre_usuario', $usuario);
+            // Realiza la actualización en la base de datos
+            $sql = "UPDATE usuario SET nombre = :nombre, apellido = :apellido, fecha_nac = :fecha_nac, sexo = :sexo, correo = :correo, foto = :foto WHERE nombre_usuario = :nombre_usuario";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':apellido', $apellido);
+            $stmt->bindParam(':fecha_nac', $fecha_nac);
+            $stmt->bindParam(':sexo', $sexo);
+            $stmt->bindParam(':correo', $correo);
+            $stmt->bindParam(':foto', $foto);
+            $stmt->bindParam(':nombre_usuario', $usuario);
 
-        if ($stmt->execute()) {
-            $mensaje_exito = "Tus datos se han actualizado exitosamente.";
-            // Cambia de nuevo al modo de visualización después de guardar
-            $modo_edicion = false;
-        } else {
-            $mensaje_error = "Hubo un error al actualizar tus datos. Inténtalo de nuevo.";
+            if ($stmt->execute()) {
+                $mensaje_exito = "Tus datos se han actualizado exitosamente.";
+                // Cambia de nuevo al modo de visualización después de guardar
+                $modo_edicion = false;
+            } else {
+                $mensaje_error = "Hubo un error al actualizar tus datos. Inténtalo de nuevo.";
+            }
         }
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -132,12 +132,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div id="confirmar-cierre" class="modal" style="display: none;">
             <div class="modal-content">
                 <p>¿Estás seguro de que deseas cerrar la sesión?</p>
-                <button id="confirmar-si">Sí</button>
                 <button id="confirmar-no">No</button>
+                <button id="confirmar-si">Sí</button>
             </div>
         </div>
-
-
 
         <form id="perfilForm" action="mi_perfil.php" method="POST" enctype="multipart/form-data" class="modo-edicion">
             <label for="nombre">Nombre:</label>
@@ -169,14 +167,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit" name="guardar">Guardar Cambios</button>
             <button id="cancelar-btn" name="cancelar">Cancelar</button>
         </form>
-
-        <?php
-            if (!empty($mensaje_exito)) {
-                echo '<p class="mensaje-exito">' . $mensaje_exito . '</p>';
-            } elseif (!empty($mensaje_error)) {
-                echo '<p class="mensaje-error">' . $mensaje_error . '</p>';
-            }
-        ?>
     </div>
 
     <script>

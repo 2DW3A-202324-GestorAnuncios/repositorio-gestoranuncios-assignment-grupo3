@@ -1,13 +1,12 @@
 <?php
-include("conexion.php");
+    include("conexion.php");
 
-// Inicia la sesión en la página
-session_start();
+    // Inicia la sesión en la página
+    session_start();
 ?>
 
 <!DOCTYPE html>
 <html lang="es-Es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +16,6 @@ session_start();
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Crear Anuncio - CIFP Txurdinaga</title>
 </head>
-
 <body>
     <?php
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
@@ -79,26 +77,25 @@ session_start();
                 }
             }
         }
-    
+
         if (!empty($mensaje_exito)) {
             echo '<div class="mensaje-exito">';
-            echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
             echo '</div>';
         } else if (!empty($mensaje_error)) {
             echo '<div class="mensaje-error">';
-            echo '<p><strong>Error!</strong> ' . $mensaje_error .'</p>';
+                echo '<p><strong>Error!</strong> ' . $mensaje_error .'</p>';
             echo '</div>';
         }
     ?>
-
+    
     <section class="crear-anuncio">
         <h1>Crear un Anuncio</h1>
-
         <div class="form-crear-anuncio">
             <form action="#" method="post" enctype="multipart/form-data">
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo" value="<?php echo $nomAnuncio; ?>">
-
+                
                 <label for="descripcion">Descripción:</label>
                 <textarea id="descripcion" name="descripcion" rows="4"><?php echo $descAnuncio; ?></textarea>
 
@@ -113,8 +110,7 @@ session_start();
     </section>
 
     <?php
-    include('footer.php');
+        include('footer.php');
     ?>
 </body>
-
 </html>

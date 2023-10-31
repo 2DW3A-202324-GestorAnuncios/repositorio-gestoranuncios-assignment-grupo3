@@ -74,8 +74,6 @@
                             echo '<input type="hidden" value="'.$row['descripcion'].'">';
                         echo '</div>';
                     }
-                    
-                    
                 ?>
             </div>
         </div>

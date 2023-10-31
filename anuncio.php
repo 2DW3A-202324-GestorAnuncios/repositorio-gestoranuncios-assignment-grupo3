@@ -129,10 +129,7 @@
                     echo $btnAnadirCarrito;
                 echo '</div>';
             }
-
         ?>
-
-        
     </div>
 
     <div id="paginacion">

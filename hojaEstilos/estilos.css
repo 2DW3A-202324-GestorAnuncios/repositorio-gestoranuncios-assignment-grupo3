@@ -1,22 +1,19 @@
-
-
 @import url(fuentes.css);
 
 *,
 ::after,
-::before{
+::before {
     box-sizing: inherit;
 }
+
 html {
     scroll-behavior: smooth;
 }
-
 
 body {
     margin: 0;
     font-family: 'PT Sans Narrow';
 }
-
 
 h1,
 h2,
@@ -28,16 +25,13 @@ h6 {
     font-weight: 700;
 }
 
-
 div {
     display: block;
 }
 
-
 .ct-text-block {
     max-width: 100%;
 }
-
 
 .ct-div-block {
     display: flex;
@@ -45,7 +39,6 @@ div {
     flex-direction: column;
     align-items: flex-start;
 }
-
 
 .ct-new-columns {
     display: flex;
@@ -56,14 +49,12 @@ div {
     flex-wrap: wrap;
 }
 
-
 .ct-new-columns > .ct-div-block {
     padding-top: 20px;
     padding-right: 10px;
     padding-bottom: 20px;
     padding-left: 10px;
 }
-
 
 .ct-link {
     display: flex;
@@ -75,7 +66,6 @@ div {
     justify-content: center;
 }
 
-
 /* Estilos para el encabezado */
 header {
     display: flex;
@@ -85,12 +75,10 @@ header {
     margin: 0;
 }
 
-
 /* Estilos para los botones */
 #logo {
     margin-left: 75px;
 }
-
 
 #logo2 {
     visibility: hidden;
@@ -99,12 +87,10 @@ header {
     height: 1px;
 }
 
-
 @media only screen and (max-width: 750px) {
     #logo {
         visibility: hidden;
     }
-
 
     #logo2 {
         visibility: visible;
@@ -113,14 +99,12 @@ header {
     }
 }
 
-
 #buttons-container {
     display: flex;
     gap: 10px;
     margin-top: -30px;
     margin-right: 15px;
 }
-
 
 .centrado {
     align-items: center;
@@ -130,7 +114,6 @@ header {
     width: 200px;
 }
 
-
 .centrado-header {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -139,25 +122,21 @@ header {
     color: white;
 }
 
-
 .header-buttons {
     display: inline-block;
     text-align: center;
     position: relative;
 }
 
-
 .imagen-carrito img {
     margin-right: 10px;
 }
-
 
 /* Media query para hacer los botones del header mas pequeños */
 @media only screen and (max-width: 670px) {
     #logo2 {
         visibility: hidden;
     }
-
 
     #logo {
         position: absolute;
@@ -167,7 +146,6 @@ header {
         width: auto;
     }
 }
-
 
 /* Estilos barra de navegación */
 #pro-menu-principal {
@@ -183,7 +161,6 @@ header {
     position: sticky;
 }
 
-
 /* Esconde el desplegable */
 .navdesp {
     visibility: hidden;
@@ -191,13 +168,11 @@ header {
     width: 1px;
 }
 
-
 .pro-menu-list {
     padding: 0;
     display: flex;
     justify-content: space-around;
 }
-
 
 /* Media query para la visualicacion del desplegable */
 @media only screen and (max-width: 800px) {
@@ -210,10 +185,8 @@ header {
         height: 1px;
         width: 1px;
         grid-template-rows: auto;
-       
         visibility: hidden;
     }
-
 
     /* Ajusta la imagen del desplegable */
     .despImg {
@@ -226,17 +199,15 @@ header {
         transition: 0.3s;
     }
 
-
     .despImg:hover {
         cursor: pointer;
         border: 3px solid rgba(0, 0, 0, 1);
     }
 
-
     ul, ol {
-        list-style:none;
-    }  
-   
+        list-style: none;
+    }
+
     /* Hace visible la imagen del desplegable */
     .navdesp {
         margin-top: -30px;
@@ -246,11 +217,9 @@ header {
         width: auto; /*Le establecemos un ancho*/
     }
 
-
     .navdesp > li {
         float: right;
     }
-
 
     .navdesp li a {
         color: white;
@@ -260,7 +229,7 @@ header {
         text-align: center;
         font-size: 20px;
     }
-   
+
     .navdesp li ul {
         margin-top: -25px;
         display:none;
@@ -269,66 +238,60 @@ header {
         width: 150px;
         margin-left: -118px;
     }
-   
+    
     .navdesp li:hover > ul {
         display: block;
     }
-   
+    
     .navdesp li ul li {
         position: relative;
     }
-   
+    
     .navdesp li ul li ul {
         top: 0px;
     }
-
 
     /* Asigna un color de fondo a cada apartado del desplegable */
     .coloresDesp li:first-child {
         background-color: #57aa26;
     }
-   
+    
     .coloresDesp li:first-child:hover {
         background-color: #3d771b;
     }
 
-
     .coloresDesp li:nth-child(2) {
         background-color: #1aa4c1;
     }
-   
+    
     .coloresDesp li:nth-child(2):hover {
         background-color: #106c7e;
     }
 
-
     .coloresDesp li:nth-child(3) {
         background-color: #fcc204;
     }
-   
+    
     .coloresDesp li:nth-child(3):hover {
         background-color: #c09404;
     }
 
-
     .coloresDesp li:nth-child(4) {
         background-color: #e95f15;
     }
-   
+    
     .coloresDesp li:nth-child(4):hover {
         background-color: #bb4d11;
     }
 
-
     .coloresDesp li:nth-child(5) {
         background-color: #229c69;
     }
-   
+    
     .coloresDesp li:nth-child(5):hover {
         background-color: #19734e;
     }
 }
-
 
 .pro-menu .pro-menu-list .menu-item {
     list-style-type: none;
@@ -338,36 +301,29 @@ header {
     transition-property: background-color, color, border-color;
 }
 
-
 #menu-principal li:first-child {
     background-color: #57aa26;
 }
-
 
 #menu-principal li:nth-child(2) {
     background-color: #1aa4c1;
 }
 
-
 #menu-principal li:nth-child(3) {
     background-color: #fcc204;
 }
-
 
 #menu-principal li:nth-child(4) {
     background-color: #e95f15;
 }
 
-
 #menu-principal li:nth-child(5) {
     background-color: #229c69;
 }
 
-
 #menu-principal li:nth-child(6) {
     background-color: #ba007b;
 }
-
 
 .menu-item a {
     text-decoration: none;
@@ -382,25 +338,20 @@ header {
     transition-duration: 0.2s;
 }
 
-
 .menu-item a {
     padding: 12px 0;
 }
-
 
 #menu-principal li:hover {
     background-color: #000;
 }
 
-
 #menu-principal li a:hover {
     text-decoration: none;
 }
 
-
 /* Estilos Carrusel Noticias página principal */
 .mySlides {display: none}
-
 
 .slideshow-container {
     max-width: 1200px;
@@ -420,7 +371,6 @@ header {
     border-radius: 15px 15px 0 0;
 }
 
-
 /* Media query para ajustar las imagenes del carrusel a la pagina */
 @media screen and (max-width:800px) {
     .slideshow-container {
@@ -434,7 +384,6 @@ header {
         position: relative;
     }
 
-
     .slideshow-container img {
         min-width: 350px;
         height: 290px;
@@ -446,7 +395,6 @@ header {
         border-radius: 15px 15px 0 0;
     }
 }
-
 
 .prev,
 .next {
@@ -463,7 +411,6 @@ header {
     user-select: none;
 }
 
-
 .next {
     right: 0;
     border-radius: 7px 0 0 7px;
@@ -473,12 +420,10 @@ header {
     border-radius: 0 7px 7px 0;
 }
 
-
 .prev:hover,
 .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
-
 
 .text {
     color: white;
@@ -499,7 +444,6 @@ header {
     margin: auto;
     border-radius: 0 0 15px 15px;
 }
-
 
 /* Media query para ajustar el texto del carrusel a la pagina */
 @media screen and (max-width:1000px) {
@@ -523,7 +467,6 @@ header {
     }
 }
 
-
 .dot {
     cursor: pointer;
     height: 15px;
@@ -535,24 +478,20 @@ header {
     transition: background-color 0.6s ease;
 }
 
-
 .active,
 .dot:hover {
     background-color: #717171;
 }
-
 
 .fade {
     animation-name: fade;
     animation-duration: 1.5s;
 }
 
-
 @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
 }
-
 
 /* Estilos para las secciones destacadas */
 .seccion-destacada {
@@ -565,7 +504,6 @@ header {
     margin-bottom: 20px;
 }
 
-
 /* Estilos para el título llamativo */
 .titulo-llamativo {
     font-size: 36px;
@@ -574,7 +512,6 @@ header {
     padding-bottom: 10px;
     border-bottom: 2px solid #0077b6;
 }
-
 
 /* Estilos para el botón "Explorar Más" */
 #ver-mas-noticias,
@@ -590,12 +527,10 @@ header {
     transition: background-color 0.3s ease-in-out;
 }
 
-
 #ver-mas-noticias:hover,
 #ver-mas-anuncios:hover {
     background-color: #005b91;
 }
-
 
 /* Estilos para los productos */
 .productos-anuncios-inicio {
@@ -609,7 +544,6 @@ header {
     width: 100%;
 }
 
-
 /* width */
 .productos-anuncios-inicio::-webkit-scrollbar {
     width: 9px;
@@ -618,21 +552,20 @@ header {
 
 /* Track */
 .productos-anuncios-inicio::-webkit-scrollbar-track {
-box-shadow: inset 0 0 5px grey;
-border-radius: 8px;
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 8px;
 }
 
 /* Handle */
 .productos-anuncios-inicio::-webkit-scrollbar-thumb {
-background: #0077b6;
-border-radius: 10px;
+    background: #0077b6;
+    border-radius: 10px;
 }
 
 /* Handle on hover */
 .productos-anuncios-inicio::-webkit-scrollbar-thumb:hover {
-background: #006094;
+    background: #006094;
 }
-
 
 /* Media queries para ajustar el apartado de
 anuncios del indice a dispositivos distintos */
@@ -643,11 +576,8 @@ anuncios del indice a dispositivos distintos */
         margin-top: 20px;
         width: 100%;
         padding: 0 20px 20px 0;
-
-
     }
 }
-
 
 @media only screen and (max-width: 650px) {
     .productos-anuncios-inicio {
@@ -656,11 +586,8 @@ anuncios del indice a dispositivos distintos */
         margin-top: 20px;
         width: 100%;
         padding: 0 20px 20px 0;
-
-
     }
 }
-
 
 .productos-slide-anuncios {
     display: flex;
@@ -672,9 +599,7 @@ anuncios del indice a dispositivos distintos */
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     flex: 0 0 calc(25% - 20px);
-   
 }
-
 
 @media only screen and (max-width: 1100px) {
     .productos-slide-anuncios {
@@ -689,7 +614,6 @@ anuncios del indice a dispositivos distintos */
     }
 }
 
-
 @media only screen and (max-width: 1500px) and (min-width: 1101px) {
     .productos-slide-anuncios {
         background-color: #fff;
@@ -703,7 +627,6 @@ anuncios del indice a dispositivos distintos */
     }
 }
 
-
 /* Ajusta el tamaño de las imagenes del deslizable */
 .productos-slide-anuncios img {
     max-width: 100%;
@@ -711,24 +634,20 @@ anuncios del indice a dispositivos distintos */
     margin-bottom: 10px;
 }
 
-
 /* Estilo para los textos del deslizable */
 .productos-slide-anuncios h2 {
     font-size: 18px;
     margin: 10px 0;
 }
 
-
 .productos-slide-anuncios p {
     font-size: 14px;
 }
-
 
 .productos-slide-anuncios h2::first-letter,
 .productos-slide-anuncios p::first-letter {
     text-transform: uppercase;
 }
-
 
 /* Estilo para la sección de productos */
 .productos {
@@ -740,6 +659,7 @@ anuncios del indice a dispositivos distintos */
     margin: 0 auto;
     justify-content: center;
 }
+
 .productos-validar {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -748,10 +668,7 @@ anuncios del indice a dispositivos distintos */
     width: 80%;
     margin: 0 auto;
     justify-content: center;
-
-
 }
-
 
 @media only screen and (max-width: 1300px) and (min-width: 851px) {
     .productos {
@@ -762,6 +679,7 @@ anuncios del indice a dispositivos distintos */
         width: 70%;
         margin: 0 auto;
     }
+
     .productos-validar {    
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -770,12 +688,8 @@ anuncios del indice a dispositivos distintos */
         width: 70%;
         margin: 0 auto;
         justify-content: center;
-   
     }
 }
-
-
-
 
 @media only screen and (max-width: 850px) {
     .productos {
@@ -787,6 +701,7 @@ anuncios del indice a dispositivos distintos */
         width: 70%;
         margin: 0 auto;
     }
+
     .productos-validar {
         display: flex;
         justify-content: flex-start;
@@ -797,30 +712,30 @@ anuncios del indice a dispositivos distintos */
         padding: 0 20px 20px 0;
         width: 100%;
     }
+
     /* width */
     .productos-validar::-webkit-scrollbar {
-    width: 9px;
-    height: 9px;
-  }
- 
-  /* Track */
-  .productos-validar::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 8px;
-  }
-   
-  /* Handle */
-  .productos-validar::-webkit-scrollbar-thumb {
-    background: #0077b6;
-    border-radius: 10px;
-  }
- 
-  /* Handle on hover */
-  .productos-validar::-webkit-scrollbar-thumb:hover {
-    background: #006094;
-  }
-}
+        width: 9px;
+        height: 9px;
+    }
+    
+    /* Track */
+    .productos-validar::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 8px;
+    }
 
+    /* Handle */
+    .productos-validar::-webkit-scrollbar-thumb {
+        background: #0077b6;
+        border-radius: 10px;
+    }
+    
+    /* Handle on hover */
+    .productos-validar::-webkit-scrollbar-thumb:hover {
+        background: #006094;
+    }
+}
 
 #buscador {
     width: 100%;
@@ -833,7 +748,6 @@ anuncios del indice a dispositivos distintos */
 #x {
     width:18px;
     margin-top: 3px;
-
 }
 
 #input-buscador {
@@ -851,29 +765,24 @@ anuncios del indice a dispositivos distintos */
     text-decoration: none;
 }
 
-
 #input-buscador::placeholder {
     color: #777;
 }
 
-
 #input-buscador:focus {
-    background-color: #fff; /* Cambia el fondo al enfocar */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega una suave sombra al enfocar */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-
 
 #buscador-encima {
     z-index: 1;
 }
-
 
 #buscador-debajo {
     z-index: 2;
     margin-top: -47px;
     margin-left: 270px;
 }
-
 
 #mensajeBusqueda {
     display: flex;
@@ -882,7 +791,6 @@ anuncios del indice a dispositivos distintos */
     margin-left: 20px;
     font-size: larger;
 }
-
 
 .producto {
     display: flex;
@@ -895,7 +803,6 @@ anuncios del indice a dispositivos distintos */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
 }
-
 
 .producto .precio,
 .productos-slide-anuncios .precio {
@@ -913,8 +820,6 @@ anuncios del indice a dispositivos distintos */
     border-bottom: 2px solid #ddd;
 }
 
-
-
 /* Ajusta el tamaño de las fotos en los anuncios */
 .imagen-producto img {
     max-width: 100%;
@@ -922,7 +827,6 @@ anuncios del indice a dispositivos distintos */
     object-fit: cover;
     margin-bottom: 10px;
 }
-
 
 .contenedor-anuncio {
     flex: 1;
@@ -933,12 +837,10 @@ anuncios del indice a dispositivos distintos */
     font-size: larger;
 }
 
-
 .producto h2::first-letter,
 .producto p::first-letter {
     text-transform: uppercase;
 }
-
 
 /* Da forma a los botones de validar */
 .productos-slide-anuncios button[name='btn-anadir-carrito'],
@@ -957,18 +859,15 @@ anuncios del indice a dispositivos distintos */
     margin-bottom: 20px;
 }
 
-
 .productos-slide-anuncios button[name='btn-anadir-carrito']:hover,
 .producto button[name='btn-anadir-carrito']:hover,
 .ver-anuncio button[name='btn-anadir-carrito']:hover {
     opacity: 0.7;
 }
 
-
 .btn-container {
     display: inline;
 }
-
 
 .producto button[name='validar-anuncio'],
 .producto button[name='eliminar-anuncio'],
@@ -984,30 +883,25 @@ anuncios del indice a dispositivos distintos */
     margin: 0 20px 20px;
 }
 
-
 .producto button[name='validar-anuncio'],
 .producto button[name='validar-noticia'] {
     background-color: #57aa26;
 }
-
 
 .producto button[name='validar-anuncio']:hover,
 .producto button[name='validar-noticia']:hover {
     background-color: #56aa26c3;
 }
 
-
 .producto button[name='eliminar-anuncio'],
 .producto button[name='eliminar-noticia'] {
     background-color: red;
 }
 
-
 .producto button[name='eliminar-anuncio']:hover,
 .producto button[name='eliminar-noticia']:hover {
     background-color: rgba(255, 0, 0, 0.673);
 }
-
 
 #paginacion {
     display: flex;
@@ -1015,7 +909,6 @@ anuncios del indice a dispositivos distintos */
     align-items: center;
     font-size: 18px;
 }
-
 
 #paginacion a {
     border-color: #888c8c;
@@ -1027,7 +920,6 @@ anuncios del indice a dispositivos distintos */
     margin: 20px 4px;
 }
 
-
 #paginacion .a-disabled {
     background: #fff;
     border: 1px solid #d5d9d9;
@@ -1037,13 +929,11 @@ anuncios del indice a dispositivos distintos */
     pointer-events: none;
 }
 
-
 #paginacion a,
 #paginacion .a-disabled,
 .botonesPagina {
     padding: 8px 14px;
 }
-
 
 /* PAGINA DE NOTICIAS (NOTICIA.PHP) */
 .container {
@@ -1052,11 +942,9 @@ anuncios del indice a dispositivos distintos */
     margin: 0;
 }
 
-
 .filtro-container {
     position: sticky;
 }
-
 
 .filtro {
     width: 130%;
@@ -1066,7 +954,6 @@ anuncios del indice a dispositivos distintos */
     position: sticky;
     top: 0;
 }
-
 
 @media only screen and (max-width: 800px) {
     .filtro {
@@ -1079,11 +966,8 @@ anuncios del indice a dispositivos distintos */
     }
 }
 
-
 .filtro h3 {
     margin-bottom: 10px;
-
-
     text-align: center;
     display: block;
     margin-left: auto;
@@ -1092,23 +976,19 @@ anuncios del indice a dispositivos distintos */
     justify-content: center;
 }
 
-
 .filtro-label {
     display: block;
     margin-bottom: 10px;
 }
-
 
 .filtro-label h3 {
     font-size: 25px;
     margin-top: 5px;
 }
 
-
 .filtro-label input[type='radio'] {
     display: none;
 }
-
 
 .filtro-label img {
     width: 70px;
@@ -1121,11 +1001,9 @@ anuncios del indice a dispositivos distintos */
     transition: border-color 0.3s ease;
 }
 
-
 .filtro-label img:hover {
     border-color: #000000;
 }
-
 
 #borrarFiltros {
     display: block;
@@ -1140,7 +1018,6 @@ anuncios del indice a dispositivos distintos */
     width: 100%;
 }
 
-
 #borrarFiltros:hover {
     color: blue;
     border-radius: 5px;
@@ -1148,18 +1025,13 @@ anuncios del indice a dispositivos distintos */
     transform: scale(1.02);
 }
 
-
 .filtro-label img:hover {
     border-color: #000000;
 }
 
-
 .filtro-label img:hover {
     border-color: #000000;
 }
-
-
-
 
 /* Da forma al container de noticias */
 .noticias3 {
@@ -1174,14 +1046,12 @@ anuncios del indice a dispositivos distintos */
     justify-content: center;
 }
 
-
 /* Estilos para las noticias */
 .noticias-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
 }
-
 
 .noticia3 {
     width: 100%;
@@ -1192,7 +1062,6 @@ anuncios del indice a dispositivos distintos */
     background-color: #fff;    
 }
 
-
 @media only screen and (max-width: 1000px) and (min-width: 801px) {
     .noticias-container {
         display: grid;
@@ -1201,19 +1070,17 @@ anuncios del indice a dispositivos distintos */
     }
 }
 
-
 .imagen-noticia3 {
     max-width: 100%;
 }
-
 
 @media only screen and (max-width: 800px) {
     .container {
         display: flex;
         width: 99%;
         margin: 0;
-       
     }
+
     .noticias3 {
         width: 100%;
         padding: 20px;
@@ -1226,13 +1093,13 @@ anuncios del indice a dispositivos distintos */
         margin-right: auto;
         justify-content: center;
     }
+
     .noticias-container {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         gap: 15px;
     }
 }
-
 
 .titulo-noticia3-h1 {
     font-size: 22.5px;
@@ -1241,53 +1108,43 @@ anuncios del indice a dispositivos distintos */
     color: rgb(239, 239, 239);
 }
 
-
 .titulo-noticia3 {
     font-size: 33px;
     margin-top: 10px;
 }
-
 
 /* Asignar categoría a noticias específicas */
 .categoria-deportes {
     background-color: #a6d789;
 }
 
-
 #deportes {
     background-color: #a6d789;
 }
-
 
 .categoria-economia {
     background-color: #ffd8c3;
 }
 
-
 #economia {
     background-color: #ffd8c3;
 }
-
 
 .categoria-arte {
     background-color: #ffe799;
 }
 
-
 #arte {
     background-color: #ffe799;
 }
-
 
 .categoria-tiempo {
     background-color: #9dd8e3;
 }
 
-
 #tiempo {
     background-color: #9dd8e3;
 }
-
 
 /*CONTACTO*/
 .nuestroContacto {
@@ -1298,23 +1155,19 @@ anuncios del indice a dispositivos distintos */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
 .nuestroContacto h1 {
     font-size: 24px;
     margin-bottom: 20px;
 }
 
-
 .nuestroContacto p {
     line-height: 1.5;
 }
-
 
 /* Estilos para la sección de contacto */
 .nuestroContacto .informacion-contacto {
     margin-bottom: 20px;
 }
-
 
 .nuestroContacto .informacion-contacto h2 {
     font-size: 18px;
@@ -1322,12 +1175,10 @@ anuncios del indice a dispositivos distintos */
     color: #333;
 }
 
-
 .nuestroContacto .informacion-contacto p {
     font-size: 16px;
     color: #666;
 }
-
 
 .nuestroContacto .formulario-contacto {
     background-color: #f9f9f9;
@@ -1336,19 +1187,16 @@ anuncios del indice a dispositivos distintos */
     border-radius: 5px;
 }
 
-
 .nuestroContacto .formulario-contacto h2 {
     font-size: 18px;
     margin-bottom: 10px;
     color: #333;
 }
 
-
 .nuestroContacto .formulario-contacto label {
     font-weight: bold;
     font-size: 16px;
 }
-
 
 .nuestroContacto .formulario-contacto input[type='text'],
 .nuestroContacto .formulario-contacto input[type='email'],
@@ -1360,7 +1208,6 @@ anuncios del indice a dispositivos distintos */
     border-radius: 3px;
 }
 
-
 .nuestroContacto .formulario-contacto button {
     background-color: #333;
     color: white;
@@ -1370,7 +1217,6 @@ anuncios del indice a dispositivos distintos */
     font-size: 16px;
     font-weight: bold;
 }
-
 
 /* Estilos para el footer */
 #footer {
@@ -1382,13 +1228,11 @@ anuncios del indice a dispositivos distintos */
     display: block;
 }
 
-
 .ct-section {
     width: 100%;
     background-size: cover;
     background-repeat: repeat;
 }
-
 
 #footer > .footer-container {
     max-width: 100%;
@@ -1401,14 +1245,12 @@ anuncios del indice a dispositivos distintos */
     align-items: center;
 }
 
-
 .footer-container {
     margin-left: auto;
     margin-right: auto;
     height: 100%;
     min-height: inherit;
 }
-
 
 #footer-content {
     display: flex;
@@ -1419,11 +1261,9 @@ anuncios del indice a dispositivos distintos */
     flex-wrap: wrap;
 }
 
-
 #footer-left {
     width: 25%;
 }
-
 
 #image-footer-container {
     text-align: center;
@@ -1431,12 +1271,10 @@ anuncios del indice a dispositivos distintos */
     margin-bottom: 3em;
 }
 
-
 #image-footer {
     max-width: 100%;
     width: 40%;
 }
-
 
 /* Estilo para el primer texto de ubicación (verde) */
 #ubicacion-green-text {
@@ -1446,7 +1284,6 @@ anuncios del indice a dispositivos distintos */
     font-size: 1em;
 }
 
-
 /* Estilo para el segundo texto de ubicación (amarillo) */
 #ubicacion-yellow-text {
     color: #fcc204;
@@ -1455,14 +1292,12 @@ anuncios del indice a dispositivos distintos */
     font-size: 1em;
 }
 
-
 /* Estilo para el texto de teléfono (azul clarito) */
 #contacto-blue-text {
     color: rgba(26, 164, 193, 0.7);
     font-weight: 800;
     font-size: 1em;
 }
-
 
 /* Estilo para el texto de correo con fondo morado */
 #contacto-purple-text {
@@ -1471,12 +1306,10 @@ anuncios del indice a dispositivos distintos */
     font-size: 1em;
 }
 
-
 /* Estilos para la parte central del footer */
 #footer-center {
     width: 25%;
 }
-
 
 .social-icons-content {
     flex-direction: row;
@@ -1488,7 +1321,6 @@ anuncios del indice a dispositivos distintos */
     justify-content: flex-start;
 }
 
-
 #social-icons.social-icons-content a svg {
     width: 0.5em;
     height: 0.5em;
@@ -1497,7 +1329,6 @@ anuncios del indice a dispositivos distintos */
     stroke: currentColor;
     fill: currentColor;
 }
-
 
 .social-icons-content a {
     font-size: 40px;
@@ -1513,21 +1344,17 @@ anuncios del indice a dispositivos distintos */
     text-decoration: none;
 }
 
-
 .social-icons.instagram {
     background-color: #da0067;
 }
-
 
 .social-icons.twitter {
     background-color: #00b6f1 !important;
 }
 
-
 .social-icons.linkedin {
     background-color: #007bb6 !important;
 }
-
 
 /* Estilo para el primer texto en el centro (fucsia) */
 #text-pink {
@@ -1535,13 +1362,11 @@ anuncios del indice a dispositivos distintos */
     color: #da0067;
 }
 
-
 /* Estilo para el segundo texto en el centro (amarillo) */
 #text-yellow {
     margin-top: 0px;
     color: #fcc204;
 }
-
 
 /* Estilo para el tercer texto en el centro (azul) */
 #text-blue {
@@ -1549,13 +1374,11 @@ anuncios del indice a dispositivos distintos */
     color: rgba(26, 164, 193, 0.7);
 }
 
-
 /* Estilo para el cuarto texto en el centro (verde) */
 #text-green {
     margin-top: 0px;
     color: #57aa26;
 }
-
 
 .etiqueta {
     background-color: black;
@@ -1566,14 +1389,12 @@ anuncios del indice a dispositivos distintos */
     font-size: 1em;
 }
 
-
 /* Estilos para los fondos negros */
 .black-bg {
     background-color: black;
     padding: 0px 10px;
     margin-bottom: 10px;
 }
-
 
 /* Estilos para la parte derecha del footer */
 #footer-right {
@@ -1587,7 +1408,6 @@ anuncios del indice a dispositivos distintos */
     justify-content: space-around;
 }
 
-
 #seccion-logos-arriba {
     width: 100%;
     flex-direction: row;
@@ -1596,23 +1416,19 @@ anuncios del indice a dispositivos distintos */
     text-align: justify;
 }
 
-
 #fpeuskadi-img,
 #lanbide-img,
 #ivafeiei-img {
     height: 70px;
 }
 
-
 #gobiernovasco-img {
     height: 60px;
 }
 
-
 #ikaslan-img {
     height: 79px;
 }
-
 
 #seccion-logos-abajo {
     width: 100%;
@@ -1621,7 +1437,6 @@ anuncios del indice a dispositivos distintos */
     justify-content: space-between;
     text-align: justify;
 }
-
 
 @media only screen and (max-width: 1184px) {
     #footer {
@@ -1633,18 +1448,14 @@ anuncios del indice a dispositivos distintos */
         display: block;
     }
 
-
     #footer-right {
         width: 500px;
     }
 
-
     #seccion-logos-arriba {
         width: 500px;
-       
     }
 }
-
 
 @media only screen and (max-width: 764px) {
     #footer {
@@ -1656,27 +1467,22 @@ anuncios del indice a dispositivos distintos */
         display: block;
     }
 
-
     #footer-left {
         min-width: 200px;
     }
-
 
     #footer-center {
         min-width: 200px;
     }
 
-
     #footer-right {
         width: 500px;
     }
-
 
     #seccion-logos-arriba {
         width: 500px;  
     }
 }
-
 
 @media only screen and (max-width: 647px) {
     #footer {
@@ -1688,11 +1494,9 @@ anuncios del indice a dispositivos distintos */
         display: block;
     }
 
-
     #footer-right {
         width: 400px;
     }
-
 
     #seccion-logos-arriba {
         width: 400px;
@@ -1702,7 +1506,6 @@ anuncios del indice a dispositivos distintos */
         align-items: center;
         justify-content: center;
     }
-
 
     #seccion-logos-abajo {
         width: 400px;
@@ -1714,12 +1517,10 @@ anuncios del indice a dispositivos distintos */
     }
 }
 
-
 /* Hace visible el pop-up de "inciar sesion" */
 #iniciar-sesion-dropdown {
     position: relative;
 }
-
 
 .form-sesion {
     display: none;
@@ -1734,19 +1535,16 @@ anuncios del indice a dispositivos distintos */
     border-radius: 5px;
 }
 
-
 .form-sesion h2 {
     text-align: center;
     margin: 10px 0;
 }
-
 
 .form-sesion label {
     display: block;
     font-weight: bold;
     margin-top: 10px;
 }
-
 
 .form-sesion input[type='text'],
 .form-sesion input[type='password'] {
@@ -1756,7 +1554,6 @@ anuncios del indice a dispositivos distintos */
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-
 
 .form-sesion button {
     background-color: #007bff;
@@ -1770,17 +1567,14 @@ anuncios del indice a dispositivos distintos */
     text-align: center;
 }
 
-
 .form-sesion button:hover {
     background-color: #0056b3;
 }
-
 
 #mensaje-error-login {
     color: red;
     font-weight: bold;
 }
-
 
 .registrarseContainer {
     color: rgb(22, 24, 35);
@@ -1798,23 +1592,19 @@ anuncios del indice a dispositivos distintos */
     font-family: 'PT Sans Narrow';
 }
 
-
 #btnRegistrarse {
     color: #007bff;
     font-weight: 600;
     font-size: 12px;
 }
 
-
 .registrarseContainer a {
     text-decoration: none;
 }
 
-
 .registrarseContainer a:hover {
     text-decoration: underline;
 }
-
 
 .registrarseContainer span {
     margin-left: 5px;
@@ -1823,7 +1613,6 @@ anuncios del indice a dispositivos distintos */
     line-height: 18px;
     color: #007bff;
 }
-
 
 /* Estilos para la creacion de cuenta */
 /* Da forma al formulario en "crear cuenta" */
@@ -1844,7 +1633,6 @@ anuncios del indice a dispositivos distintos */
     margin-bottom: 40px;
 }
 
-
 /* Da forma al logo en "crear cuenta" */
 .logo-inicio-sesion {
     height: 190px;
@@ -1853,7 +1641,6 @@ anuncios del indice a dispositivos distintos */
     margin-left: auto;
     margin-right: auto;
 }
-
 
 /* Da forma a la estructura de "crear cuenta" */
 .crear-cuenta {
@@ -1865,7 +1652,6 @@ anuncios del indice a dispositivos distintos */
     margin-right: auto;
 }
 
-
 /* Da forma a los inputs en "crear cuenta" */
 .input-text {
     width: 100%;
@@ -1876,11 +1662,9 @@ anuncios del indice a dispositivos distintos */
     transition: 0.4s;
 }
 
-
 .input-text:hover {
     border: 2px solid rgba( 0, 0, 0, 1);
 }
-
 
 /* Da forma a los botones en "crear cuenta" */
 .boton {
@@ -1900,12 +1684,10 @@ anuncios del indice a dispositivos distintos */
     color: white;
 }
 
-
 .boton:hover {
     cursor: pointer;
     background-color: #005b91;
 }
-
 
 .botones-crear-cuenta{
     display: flex;
@@ -1913,7 +1695,6 @@ anuncios del indice a dispositivos distintos */
     margin-top: 10px;
     margin-bottom: -20px;
 }
-
 
 /* Da forma al checkbox en "crear cuenta" */
 .terminos-crear-cuenta {
@@ -1924,27 +1705,24 @@ anuncios del indice a dispositivos distintos */
     width: 90%;
 }
 
-
 .terminos-checkbox:hover {
     cursor: pointer;
 }
-
 
 /* Da color a los spans de error y correcto en "crear cuenta" */
 .error {
     color: #FF0000;
     font-size: 18px;
 }
+
 .correcto{
     color: #00cd0a;
     font-size: 18px;
 }
 
-
 span {
     font-size: 15px;
 }
-
 
 /* Da color al mensaje de repeticion en "crear cuenta" */
 #repPK{
@@ -1954,24 +1732,20 @@ span {
     font-size: 15px;
 }
 
-
 .input-genero{
     font-size: 18px;
     margin-top: -8px;
     margin-left: 10px;
 }
 
-
 /* Estilos para el formulario de creación de anuncios */
 .crear-anuncio {
     padding: 20px;
 }
 
-
 .crear-anuncio h1 {
     text-align: center;
 }
-
 
 .form-crear-anuncio {
     max-width: 500px;
@@ -1982,14 +1756,12 @@ span {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-
 .form-crear-anuncio label {
     display: block;
     font-weight: bold;
     margin-top: 10px;
     font-size: 18px;
 }
-
 
 .form-crear-anuncio input[type='text'],
 .form-crear-anuncio textarea {
@@ -2001,12 +1773,10 @@ span {
     font-size: 16px;
 }
 
-
 .form-crear-anuncio textarea,
 .form-crear-noticia textarea {
     resize: none;
 }
-
 
 .form-crear-anuncio input[type='file'] {
     width: 95%;
@@ -2017,7 +1787,6 @@ span {
     font-size: 16px;
     background-color: #fff;
 }
-
 
 .form-crear-anuncio button {
     display: block;
@@ -2032,11 +1801,9 @@ span {
     margin: 20px auto 0;
 }
 
-
 .form-crear-anuncio button:hover {
     background-color: #0056b3;
 }
-
 
 .form-crear-anuncio input[type='number'] {
     width: 16%;
@@ -2048,17 +1815,14 @@ span {
     background-color: #fff;
 }
 
-
 /* Estilos para el formulario de creación de noticias */
 .crear-noticia {
     padding: 20px;
 }
 
-
 .crear-noticia h1 {
     text-align: center;
 }
-
 
 .form-crear-noticia {
     max-width: 500px;
@@ -2069,14 +1833,12 @@ span {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-
 .form-crear-noticia label {
     display: block;
     font-weight: bold;
     margin-top: 10px;
     font-size: 18px;
 }
-
 
 .form-crear-noticia input[type='text'],
 .form-crear-noticia textarea {
@@ -2088,7 +1850,6 @@ span {
     font-size: 16px;
 }
 
-
 .form-crear-noticia select {
     width: 95%;
     padding: 10px;
@@ -2099,7 +1860,6 @@ span {
     background-color: #fff;
 }
 
-
 .form-crear-noticia input[type='file'] {
     width: 95%;
     padding: 10px;
@@ -2109,7 +1869,6 @@ span {
     font-size: 16px;
     background-color: #fff;
 }
-
 
 .form-crear-noticia button {
     display: block;
@@ -2124,11 +1883,9 @@ span {
     margin: 20px auto 0;
 }
 
-
 .form-crear-noticia button:hover {
     background-color: #0056b3;
 }
-
 
 /* Estilos para el formulario Mi Perfil */
 .mi-perfil-container {
@@ -2140,21 +1897,18 @@ span {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
 .mi-perfil-container h1 {
     font-size: 2em;
 }
-
 
 #datos-modo-visualizacion p {
     margin: 10px auto;
     font-size: 1.2em;
 }
 
-
 .mi-perfil-container button[name='editar'],
 .mi-perfil-container button[name='guardar'] {
-    background-color: #0077b6;
+    background-color: #1aa4c1;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -2165,22 +1919,19 @@ span {
     transition: background-color 0.3s ease-in-out;
 }
 
-
 .mi-perfil-container button[name='editar']:hover,
 .mi-perfil-container button[name='guardar']:hover {
-    background-color: #005b91;
+    background-color: #1aa5c1b2;
 }
-
 
 .mi-perfil-container button[name='guardar'],
 .mi-perfil-container button[name='cancelar'] {
     display: inline-block;
 }
 
-
 .mi-perfil-container button[name='cancelar'],
 .mi-perfil-container button[name='cerrar-sesion'] {
-    background-color: #b60000;
+    background-color: red;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -2191,27 +1942,22 @@ span {
     transition: background-color 0.3s ease-in-out;
 }
 
-
 .mi-perfil-container button[name='cancelar'] {
     float: right;
 }
-
 
 .mi-perfil-container button[name='cerrar-sesion'] {
     margin-left: 30px;
 }
 
-
 .mi-perfil-container button[name='cancelar']:hover,
 .mi-perfil-container button[name='cerrar-sesion']:hover {
-    background-color: #910000;
+    background-color: rgba(255, 0, 0, 0.673);
 }
-
 
 .modo-edicion {
     display: none;
 }
-
 
 .mi-perfil-container label {
     display: block;
@@ -2219,7 +1965,6 @@ span {
     margin: 10px 0;
     font-size: 1.2em;
 }
-
 
 .mi-perfil-container input[type='text'],
 .mi-perfil-container input[type='date'],
@@ -2232,7 +1977,6 @@ span {
     border-radius: 5px;
     font-size: 16px;
 }
-
 
 .modal,
 .modalValidarA,
@@ -2251,10 +1995,10 @@ span {
     justify-content: center;
     align-items: center;
 }
+
 .no-scroll {
     overflow: hidden;
 }
-
 
 .modal-content {
     margin-top: 15%;
@@ -2264,9 +2008,7 @@ span {
     padding: 20px;
     border-radius: 5px;
     text-align: center;
-    margin-top: 40%;
 }
-
 
 .modal button,
 .modalValidarA button,
@@ -2280,40 +2022,33 @@ span {
     cursor: pointer;
 }
 
-
 .modal #confirmar-si,
-.modalValidarA #confirmar-si,
-.modalEliminarA #confirmar-si,
-.modalValidarN #confirmar-si,
-.modalEliminarN #confirmar-si {
+#confirmar-si-eliminar {
     background-color: red;
     color: white;
     border: 1px solid gray;
+    transition: background-color 0.3s ease-in-out;
 }
-.modal #confirmar-si,
-.modalValidarA #confirmar-si,
-.modalEliminarA #confirmar-si,
-.modalValidarN #confirmar-si,
-.modalEliminarN #confirmar-si:hover {
+
+.modal #confirmar-si:hover,
+#confirmar-si-eliminar:hover {
     background-color: rgba(255, 0, 0, 0.673);
     color: white;
     border: 1px solid gray;
 }
 
-
-#confirmar-si-validar{
+#confirmar-si-validar {
     background-color: #57aa26;
     color: white;
     border: 1px solid gray;
+    transition: background-color 0.3s ease-in-out;
 }
-#confirmar-si-validar:hover{
+
+#confirmar-si-validar:hover {
     background-color: #56aa26c3;
     color: white;
     border: 1px solid gray;
 }
-
-
-
 
 .modal #confirmar-no,
 .modalValidarA .confirmar-no,
@@ -2324,7 +2059,6 @@ span {
     color: grey;
     border: 1px solid gray;
 }
-
 
 .foto-container {
     border-radius: 50%;
@@ -2338,20 +2072,16 @@ span {
     align-items: center;
 }
 
-
 .foto-container img {
-    max-width: 100%;
     max-height: 100%;
     object-fit: cover;
     border: 2px solid transparent;
 }
 
-
 .mi-perfil-container .sexo {
     display: inline-block;
     font-weight: 100;
 }
-
 
 .mensaje-exito, .mensaje-error {
     font-size: 1.6em;
@@ -2359,18 +2089,15 @@ span {
     padding: 4px 12px;
 }
 
-
 .mensaje-exito {
     background-color: #ddffdd;
     border-left: 6px solid #04AA6D;
 }
 
-
 .mensaje-error {
     background-color: #ffdddd;
     border-left: 6px solid #f44336;
 }
-
 
 .ver-anuncio {
     box-sizing: border-box;
@@ -2385,7 +2112,6 @@ span {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
 .ver-anuncio-img {
     max-width: 450px;
 	height: auto;
@@ -2398,22 +2124,18 @@ span {
     margin: 20px auto;
 }
 
-
 .ver-anuncio-contenido {
     padding: 25px;
 }
-
 
 .ver-anuncio-contenido h2 {
     padding: 25px;
     text-align: end;
 }
 
-
 .ver-anuncio-contenido img {
     margin-top: auto;
 }
-
 
 .ver-noticia {
     max-width: 70%;
@@ -2427,7 +2149,6 @@ span {
     height: auto;
 }
 
-
 .ver-noticia-img {
     padding: 15px;
     padding-bottom: 30px;
@@ -2439,12 +2160,10 @@ span {
     margin-right: 15px;
 }
 
-
 .ver-noticia-img h3 {
     margin-top: -12px;
     margin-bottom: 3px;
 }
-
 
 @media only screen and (max-width: 1150px) {
     .ver-noticia {
@@ -2452,7 +2171,6 @@ span {
         display: flex;
         flex-direction: column;
     }
-
 
     .ver-noticia-img {
         margin-top: 30px;
@@ -2463,18 +2181,18 @@ span {
         margin-right: auto;
     }
 
-
     .ver-noticia-contenido {
         padding: 10px;
     }
 }
+
 @media only screen and (max-width: 750px) {
     .ver-noticia {
         max-width: 100%;
         display: flex;
         flex-direction: column;
     }
-   
+
     .ver-noticia-img {
         margin-top: 0px;
         min-width: 300px;
@@ -2484,12 +2202,10 @@ span {
         margin-right: auto;
     }
 
-
     .ver-noticia-contenido {
         padding: 10px;
     }
 }
-
 
 /* Estilos del Carrito de Compra */
 .carrito-container {
@@ -2503,13 +2219,11 @@ span {
     text-align: center;
 }
 
-
 .carrito-container h2 {
     text-align: left;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
 }
-
 
 .carrito-item {
     display: flex;
@@ -2519,11 +2233,9 @@ span {
     padding: 10px 0;
 }
 
-
 .foto-carrito {
     flex: 0 0 150px;
 }
-
 
 .foto-carrito img {
     max-width: 100%;
@@ -2531,13 +2243,11 @@ span {
     border-radius: 5px;
 }
 
-
 .carrito-content {
     flex: 1;
     margin-left: 20px;
     text-align: left;
 }
-
 
 .producto-nombre,
 .producto-descripcion,
@@ -2546,25 +2256,20 @@ span {
     font-size: 1.3em;
 }
 
-
 .producto-nombre::first-letter,
 .producto-descripcion::first-letter {
     text-transform: uppercase;
 }
 
-
 .producto-descripcion {
     font-size: 1.1em;
 }
-
 
 .producto-precio {
     font-weight: bold;
 }
 
-
 .eliminar-button {
-    background: #e74c3c;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -2574,11 +2279,9 @@ span {
     margin-left: 30px;
 }
 
-
 .eliminar-button:hover {
     background: #c0392b;
 }
-
 
 .carrito-container .carrito-vacio {
     text-align: right;
@@ -2587,6 +2290,7 @@ span {
     font-size: 1.6em;
     color: #777;
 }
+
 .numero-carrito{
     position: absolute;
     margin-left: 365px;
@@ -2599,11 +2303,8 @@ span {
     text-align: center;
     font-size: 12px;
     vertical-align: baseline;
-
-
-}.numero-carrito h1{
-    margin-top: -1px;
 }
 
-
-
+.numero-carrito h1{
+    margin-top: -1px;
+}
