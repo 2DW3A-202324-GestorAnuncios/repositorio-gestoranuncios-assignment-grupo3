@@ -18,24 +18,24 @@
     $stmt->execute();
     $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($usuario_data) {
-            // Datos del usuario obtenidos con éxito
-            $nombre = $usuario_data['nombre'];
-            $apellido = $usuario_data['apellido'];
-            $fecha_nac = $usuario_data['fecha_nac'];
-            $sexo = $usuario_data['sexo'];
-            $correo = $usuario_data['correo'];
-            $foto = $usuario_data['foto'];
-        } else {
-            // Manejar el caso en el que no se encuentren los datos del usuario
-            $mensaje_error = "No se pudieron recuperar los datos del usuario.";
-        }
-        
-        if ($tipo_usuario == 1) {
-            $tipo_usuario = "Administrador";
-        } else if ($tipo_usuario == 0) {
-            $tipo_usuario = "Usuario";
-        }
+    if ($usuario_data) {
+        // Datos del usuario obtenidos con éxito
+        $nombre = $usuario_data['nombre'];
+        $apellido = $usuario_data['apellido'];
+        $fecha_nac = $usuario_data['fecha_nac'];
+        $sexo = $usuario_data['sexo'];
+        $correo = $usuario_data['correo'];
+        $foto = $usuario_data['foto'];
+    } else {
+        // Manejar el caso en el que no se encuentren los datos del usuario
+        $mensaje_error = "No se pudieron recuperar los datos del usuario.";
+    }
+    
+    if ($tipo_usuario == 1) {
+        $tipo_usuario = "Administrador";
+    } else if ($tipo_usuario == 0) {
+        $tipo_usuario = "Usuario";
+    }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['editar'])) {
@@ -132,8 +132,8 @@
         <div id="confirmar-cierre" class="modal" style="display: none;">
             <div class="modal-content">
                 <p>¿Estás seguro de que deseas cerrar la sesión?</p>
-                <button id="confirmar-si">Sí</button>
                 <button id="confirmar-no">No</button>
+                <button id="confirmar-si">Sí</button>
             </div>
         </div>
 
@@ -167,14 +167,6 @@
             <button type="submit" name="guardar">Guardar Cambios</button>
             <button id="cancelar-btn" name="cancelar">Cancelar</button>
         </form>
-
-        <?php
-            if (!empty($mensaje_exito)) {
-                echo '<p class="mensaje-exito">' . $mensaje_exito . '</p>';
-            } elseif (!empty($mensaje_error)) {
-                echo '<p class="mensaje-error">' . $mensaje_error . '</p>';
-            }
-        ?>
     </div>
 
     <script>

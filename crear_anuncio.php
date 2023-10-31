@@ -1,6 +1,6 @@
 <?php
     include("conexion.php");
-        
+
     // Inicia la sesión en la página
     session_start();
 ?>
@@ -28,6 +28,9 @@
         $mensaje_error = '';
         $usuario = $_SESSION["usuarioLogin"];
 
+        $nomAnuncio = '';
+        $descAnuncio = '';
+        
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //coje los elementos del formulario
             $nomAnuncio = $_POST['titulo'];
@@ -39,23 +42,39 @@
 
             $directorio_destino = 'img/anuncios/' . $fotoAnuncio;
 
-            if (!empty($fotoAnuncio)) {
-                if (move_uploaded_file($foto_temp, $directorio_destino)) {
-                    // Inserta los datos a la tabla "Anuncio" con el nombre de la imagen en la base de datos
-                    $sql = "INSERT INTO anuncio (nombre_anuncio, precio, descripcion, foto, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$fotoAnuncio','$usuAnuncio')";
+            if (empty($nomAnuncio) && empty($descAnuncio)) {
+                $mensaje_error = "Debes introducir el título y la descripción del anuncio.";
+            } else if (empty($nomAnuncio)) {
+                $mensaje_error = "Debes introducir un título del anuncio.";
+            } else if (empty($descAnuncio)) {
+                $mensaje_error = "Debes introducir una descripción del anuncio.";
+            } else {
+                if (!empty($fotoAnuncio)) {
+                    if (move_uploaded_file($foto_temp, $directorio_destino)) {
+                        // Inserta los datos a la tabla "Anuncio" con el nombre de la imagen en la base de datos
+                        $sql = "INSERT INTO anuncio (nombre_anuncio, precio, descripcion, foto, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$fotoAnuncio','$usuAnuncio')";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->execute();
+                        $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                        $mensaje_exito = "Se ha creado la publicación";
+                        
+                        // Restablecer los campos a cadenas vacías después de un envío exitoso
+                        $nomAnuncio = '';
+                        $descAnuncio = '';
+                    }
+                } else {
+                    $sql = "INSERT INTO anuncio (nombre_anuncio, precio, descripcion, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$usuAnuncio')";
                     $stmt = $conn->prepare($sql);
                     $stmt->execute();
                     $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-                    $mensaje_exito = "Se ha creado la publicación";
-                }
-            } else {
-                $sql = "INSERT INTO anuncio (nombre_anuncio, precio, descripcion, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$usuAnuncio')";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-                $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                $mensaje_exito = "Se ha creado la publicación";
+                    $mensaje_exito = "Se ha creado la publicación";
+                    
+                    // Restablecer los campos a cadenas vacías después de un envío exitoso
+                    $nomAnuncio = '';
+                    $descAnuncio = '';
+                }
             }
         }
 
@@ -75,14 +94,14 @@
         <div class="form-crear-anuncio">
             <form action="#" method="post" enctype="multipart/form-data">
                 <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo">
+                <input type="text" id="titulo" name="titulo" value="<?php echo $nomAnuncio; ?>">
                 
                 <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" rows="4"></textarea>
-                
+                <textarea id="descripcion" name="descripcion" rows="4"><?php echo $descAnuncio; ?></textarea>
+
                 <label for="imagen">Imagen:</label>
                 <input type="file" id="imagen" name="imagen" accept="image/*">
-                
+
                 <label for="precio">Precio (€):</label>
                 <input type="number" id="precio" name="precio" placeholder="0" min="0">
                 <button type="submit">Crear Anuncio</button>

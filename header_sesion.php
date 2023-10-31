@@ -28,7 +28,9 @@
                 echo '</a>';
                 
                 // Agrega un elemento div con el ID 'numero-carrito' para mostrar la longitud del carrito
-                echo '<h1 id="numero-carrito"></h1>';
+                echo'<div class="numero-carrito">';
+                    echo '<h1 id="numero-carrito"></h1>';
+                echo'</div>';
             }
         ?>
 
