@@ -6,6 +6,8 @@
 
     $nombre_usuario = $_SESSION['usuarioLogin'];
 
+    $mensaje_info = "";
+
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' AND nombre_usuario = :nombre_usuario";
     $stmtNoticias = $conn->prepare($sqlNoticias);
     $stmtNoticias->bindValue(':nombre_usuario', $nombre_usuario, PDO::PARAM_STR);
@@ -15,6 +17,14 @@
     $stmtAnuncios = $conn->prepare($sqlAnuncios);
     $stmtAnuncios->bindValue(':nombre_usuario', $nombre_usuario, PDO::PARAM_STR);
     $stmtAnuncios->execute();
+
+    // Verificar si se encontraron publicaciones de anuncios o noticias
+    $anunciosEncontrados = $stmtAnuncios->rowCount() > 0;
+    $noticiasEncontradas = $stmtNoticias->rowCount() > 0;
+
+    if (!$anunciosEncontrados && !$noticiasEncontradas) {
+        $mensaje_info = "No has creado ninguna publicación de anuncios ni noticias.";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +52,14 @@
             <h1 class="titulo-llamativo">Mis Publicaciones</h1>
         </div>
     </section>
+
+    <?php
+        if (!empty($mensaje_info)) {
+            echo '<div class="mensaje-info">';
+                echo '<p><strong>Info!</strong> ' . $mensaje_info . '</p>';
+            echo '</div>';
+        }
+    ?>
 
     <div class="productos">
         <?php

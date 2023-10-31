@@ -1720,7 +1720,7 @@ anuncios del indice a dispositivos distintos */
     font-size: 18px;
 }
 
-span {
+.form-crear-cuenta span {
     font-size: 15px;
 }
 
@@ -2083,10 +2083,13 @@ span {
     font-weight: 100;
 }
 
-.mensaje-exito, .mensaje-error {
+.mensaje-exito,
+.mensaje-error,
+.mensaje-info {
     font-size: 1.6em;
     margin: 15px 30px;
     padding: 4px 12px;
+    text-align: left;
 }
 
 .mensaje-exito {
@@ -2097,6 +2100,11 @@ span {
 .mensaje-error {
     background-color: #ffdddd;
     border-left: 6px solid #f44336;
+}
+
+.mensaje-info {
+    background-color: #e7f3fe;
+    border-left: 6px solid #2196F3;
 }
 
 .ver-anuncio {
@@ -2209,7 +2217,7 @@ span {
 
 /* Estilos del Carrito de Compra */
 .carrito-container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto 30px;
     padding: 20px;
     background-color: #fff;
@@ -2249,11 +2257,9 @@ span {
     text-align: left;
 }
 
-.producto-nombre,
-.producto-descripcion,
-.producto-precio {
+.carrito-content p {
     text-align: left;
-    font-size: 1.3em;
+    font-size: 1.5em;
 }
 
 .producto-nombre::first-letter,
@@ -2261,12 +2267,14 @@ span {
     text-transform: uppercase;
 }
 
-.producto-descripcion {
-    font-size: 1.1em;
+.producto-nombre,
+.producto-precio,
+#total-precio {
+    font-weight: bold;
 }
 
-.producto-precio {
-    font-weight: bold;
+.producto-descripcion {
+    font-size: 1.3em;
 }
 
 .eliminar-button {
@@ -2284,11 +2292,16 @@ span {
 }
 
 .carrito-container .carrito-vacio {
-    text-align: right;
+    text-align: left;
     margin-top: 10px;
     font-weight: bold;
     font-size: 1.6em;
     color: #777;
+}
+
+.subtotal-carrito {
+    text-align: right;
+    font-size: 1.5em;
 }
 
 .numero-carrito{
