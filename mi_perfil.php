@@ -100,13 +100,17 @@
 </head>
 <body>
     <?php
+        // Cargamos el header con sesion por que solo se puede acceder a esta pagina con la sesion iniciada
         include('header_sesion.php');
 
+        
+        // Comprobamos que haya algo en mensaje_exiti, al no estar vacio muestra el mensaje consecuente
         if (!empty($mensaje_exito)) {
             echo '<div class="mensaje-exito">';
                 echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
             echo '</div>';
-        } elseif (!empty($mensaje_error)) {
+        } else {
+        // Si el Mensaje error no esta vacio muestra el mensaje de error consecuente  elseif (!empty($mensaje_error)) {
             echo '<div class="mensaje-error">';
                 echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
             echo '</div>';
@@ -114,9 +118,11 @@
     ?>
 
     <div class="mi-perfil-container">
+        <!-- Cargamos el tipo de usuario para mostrarselo al usuario -->
         <h1>Mi Perfil - <?php echo $tipo_usuario; ?></h1>
 
         <div id="datos-modo-visualizacion">
+            <!-- Cargamos los datos del usuaio para mostrarlos  -->
             <p><strong>Nombre Completo:</strong> <?php echo ucwords($nombre) . ' ' . ucwords($apellido); ?></p>
             <p><strong>Fecha Nacimiento:</strong> <?php echo date("d-m-Y", strtotime($fecha_nac)); ?></p>
             <p><strong>Género:</strong> <?php echo $sexo; ?></p>
@@ -137,6 +143,7 @@
             </div>
         </div>
 
+        <!-- Creamos el formulario de edicion de datos metiendo todos los datos introducidos en los inputs en variables para poder hacer la consulta -->
         <form id="perfilForm" action="mi_perfil.php" method="POST" enctype="multipart/form-data" class="modo-edicion">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" value="<?php echo $nombre; ?>">
@@ -214,7 +221,7 @@
             cancelarBtn.style.display = 'none';
         });
     </script>
-
+    <!-- Incluimos el footer mediante php -->
     <?php
         include('footer.php');
     ?>

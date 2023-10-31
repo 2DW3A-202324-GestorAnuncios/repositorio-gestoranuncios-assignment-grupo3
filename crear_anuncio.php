@@ -1,4 +1,5 @@
 <?php
+    // Incluimos la conexion a la base de datos
     include("conexion.php");
 
     // Inicia la sesión en la página
@@ -17,13 +18,16 @@
     <title>Crear Anuncio - CIFP Txurdinaga</title>
 </head>
 <body>
+    <!-- Cargamos el header dependiendo de si la sesion esta iniciada utilizando php -->
     <?php
+        // Comprobamos que la session este iniciada y que no este vacia
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
         } else {
             include('header_no_sesion.php');
         }
 
+        // Generamos variables de mensajes y datos vacios para poder darles valores despues
         $mensaje_exito = '';
         $mensaje_error = '';
         $usuario = $_SESSION["usuarioLogin"];
@@ -32,7 +36,7 @@
         $descAnuncio = '';
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            //coje los elementos del formulario
+            // Recoje los elementos del formulario
             $nomAnuncio = $_POST['titulo'];
             $descAnuncio = $_POST['descripcion'];
             $precAnuncio = $_POST['precio'];
@@ -42,6 +46,7 @@
 
             $directorio_destino = 'img/anuncios/' . $fotoAnuncio;
 
+            // Comprobamos que los campos no esten vacios para poder subirlo a la base de datos
             if (empty($nomAnuncio) && empty($descAnuncio)) {
                 $mensaje_error = "Debes introducir el título y la descripción del anuncio.";
             } else if (empty($nomAnuncio)) {
@@ -49,7 +54,9 @@
             } else if (empty($descAnuncio)) {
                 $mensaje_error = "Debes introducir una descripción del anuncio.";
             } else {
+                // Comprobamos que haya alguna foto en el input
                 if (!empty($fotoAnuncio)) {
+                    // Movemos la foto a el directorio especifico
                     if (move_uploaded_file($foto_temp, $directorio_destino)) {
                         // Inserta los datos a la tabla "Anuncio" con el nombre de la imagen en la base de datos
                         $sql = "INSERT INTO anuncio (nombre_anuncio, precio, descripcion, foto, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$fotoAnuncio','$usuAnuncio')";
@@ -64,6 +71,7 @@
                         $descAnuncio = '';
                     }
                 } else {
+                    // Si o tiene foto inserta el anuncio en la base de datos igualmente y luego lo mostrara con una foto predefinida
                     $sql = "INSERT INTO anuncio (nombre_anuncio, precio, descripcion, nombre_usuario) VALUES ('$nomAnuncio','$precAnuncio','$descAnuncio','$usuAnuncio')";
                     $stmt = $conn->prepare($sql);
                     $stmt->execute();
@@ -78,11 +86,14 @@
             }
         }
 
+        // Comprobamos que haya algo en mensaje_exiti, al no estar vacio muestra el mensaje consecuente
         if (!empty($mensaje_exito)) {
             echo '<div class="mensaje-exito">';
                 echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
             echo '</div>';
-        } else if (!empty($mensaje_error)) {
+        } 
+        // Si el Mensaje error no esta vacio muestra el mensaje de error consecuente 
+        else if (!empty($mensaje_error)) {
             echo '<div class="mensaje-error">';
                 echo '<p><strong>Error!</strong> ' . $mensaje_error .'</p>';
             echo '</div>';
@@ -94,9 +105,11 @@
         <div class="form-crear-anuncio">
             <form action="#" method="post" enctype="multipart/form-data">
                 <label for="titulo">Título:</label>
+                <!-- Hacemos que el valor que recoge el input entre en la variavle $nomAnuncio -->
                 <input type="text" id="titulo" name="titulo" value="<?php echo $nomAnuncio; ?>">
                 
                 <label for="descripcion">Descripción:</label>
+                <!-- Hacemos que el valor que recoge el textarea entre en la variavle $descAnuncio -->
                 <textarea id="descripcion" name="descripcion" rows="4"><?php echo $descAnuncio; ?></textarea>
 
                 <label for="imagen">Imagen:</label>
@@ -109,6 +122,7 @@
         </div>
     </section>
 
+    <!-- Incluimos el footer mediante php -->
     <?php
         include('footer.php');
     ?>

@@ -1,9 +1,11 @@
 <?php
+    //Incluimos la conexion de la base de datos  
     include("conexion.php");
 
     // Inicia la sesión en la página
     session_start();
 
+    //Generamos el numero especificado de anuncios por pagina en el apartado de anuncios 
     $elementosPorPagina = 9;
     $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 
@@ -71,7 +73,9 @@
     <title>Anuncios - CIFP Txurdinaga</title>
 </head>
 <body>
+    <!-- Cargamos el header dependiendo de si la sesion esta iniciada utilizando php -->
     <?php
+        // Comprobamos que la session este iniciada y que no este vacia
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
         } else {
@@ -82,6 +86,7 @@
     <div id="buscador">
         <form method="GET" action="anuncio.php" id="search-form">
             <div id="buscador-encima">
+                <!-- Hacemos que el valor que recoge el input entre en la variavle $busqueda -->
                 <input id="input-buscador" type="text" name="busqueda" placeholder="Buscar por nombre de artículo" value="<?php echo $busqueda; ?>">
             </div>    
             <div id="buscador-debajo">
@@ -91,6 +96,7 @@
     </div>
 
     <?php
+        // Generamos un div con un aviso de que la busqueda no ha dado resultados y mostramos lo que ha buscado el usuario
         if($totalProductos === 0){
             echo '<div>';
                 echo'<p id="mensajeBusqueda"> No hay resultados para "<b> ' . $busqueda . ' </b>".</p>';
@@ -100,10 +106,12 @@
 
     <div class="productos">
         <?php
+            // Cargamos los anuncios desde la base de datos
             while ($row = $stmtProductos->fetch(PDO::FETCH_ASSOC)) {
                 $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                 $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
 
+                // Comprobamos que no sea admin, por que al ser admin hacemos que el contenido de "btnAnadirCarrito" este vacio 
                 $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
                 if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
                     if ($admin == 1) {
@@ -112,6 +120,7 @@
                         $btnAnadirCarrito = '<button class="btn-anadir-carrito" name="btn-anadir-carrito" data-id="' . $row['id_anuncio'] . '" data-foto="' . $row['foto'] . '" data-nombre="' . $row['nombre_anuncio'] . '" data-descripcion="' . $row['descripcion'] . '" data-precio="' . $row['precio'] . '">Añadir al Carrito</button>';
                     }
                 } else {
+                    // Si no esta iniciada la sesion al darle al boton te habre el desplegable de inicio sesion
                     $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
                 }
 
@@ -133,6 +142,7 @@
     </div>
 
     <div id="paginacion">
+        <!-- Hacemos un apartado de paginacion donde se muestran 4 botones fijos -->
         <a href="?pagina=<?php echo $paginaActual - 1; ?>" class="botonesPagina <?php if ($paginaActual <= 1) echo 'a-disabled'; ?>">← Anterior</a>
             <?php
                 // Obtener la página actual
@@ -141,12 +151,14 @@
                 // Calcular el número total de páginas (supongamos que tienes esto en $paginasTotales)
                 // Mostrar la página actual más 2 y la última página
                 echo '<div id="paginacion">';
+                // Comprobamos que la pagina actual sea la primera para desavilitar el boton
                     if ($paginaActual <= 1) {
                         echo '<a class="botonesPagina a-disabled" href="?pagina= 1">1</a>';
                     } else {
                         echo '<a class="botonesPagina" href="?pagina= 1">1</a>';
                     }
                     echo '...';
+                    // Generamos el numero anterior y posterior en base a la pagina en la que esta actualmente
                     for ($i = max(1, $paginaActual - 1); $i <= min($paginaActual + 1, $paginasTotales); $i++) {
                         if($i != 1) {
                             if ($i == $paginasTotales) {
@@ -157,6 +169,7 @@
                             }
                         }
                     }
+                    // Comprobamos que este en la anteultima pagina para que genere el ultimo boton dinamico con tres puntos delante, siguiendo el estilo
                     if ($paginaActual < $paginasTotales - 1) {
                         echo '...';
                         echo '<a class="botonesPagina" href="?pagina=' . $paginasTotales . '">' . $paginasTotales . '</a>';
@@ -167,6 +180,7 @@
     </div>
 
     <script>
+        // Hacemos que al recargar el buscador haga foco en el campo del buscador 
         var inputBuscador = document.getElementById("input-buscador");
 
         window.addEventListener('load', function() {
@@ -176,6 +190,7 @@
             inputBuscador.setSelectionRange(inputBuscador.value.length, inputBuscador.value.length);
         });
 
+        // Hacemos que al levantar la tecla de enter haga la busqueda 
         inputBuscador.addEventListener("keyup", function(event) {
             if (event.keyCode === 13 || event.key === "Enter") {
                 var form = document.getElementById("search-form");
@@ -184,12 +199,14 @@
             }
         });
         
+        // Creamos la variable de boton carrito para poder meter el anuncio seleccionado en el localstorage
         const btnAnadirCarrito = document.getElementsByClassName('btn-anadir-carrito');
         // Recorre los botones y deshabilita los que estén en el carrito
         for (const btn of btnAnadirCarrito) {
             const idAnuncio = btn.getAttribute('data-id');
             const estaEnCarrito = carrito.some(item => item.id === idAnuncio);
 
+            //Comprovamos que si esta en el localstorage desavilite el boton
             if (estaEnCarrito) {
                 btn.disabled = true;
                 btn.style.backgroundColor = '#ccc';
@@ -197,6 +214,7 @@
                 btn.style.cursor = 'not-allowed';
             }
 
+            // Recogemos los datos del anuncio para crear un objeto
             btn.addEventListener('click', (e) => {
                 const fotoAnuncio = e.currentTarget.getAttribute('data-foto');
                 const nombreAnuncio = e.currentTarget.getAttribute('data-nombre');
@@ -212,6 +230,7 @@
                     precio: precioAnuncio
                 };
 
+                // Metemos dentro del carrito el objeto que acabamos de crear
                 carrito.push(nuevoProducto);
 
                 // Almacenar la lista actualizada en localStorage
@@ -223,12 +242,14 @@
                 btn.style.color = '#666';
                 btn.style.cursor = 'not-allowed';
                 
+                // Creamos la variable de numeroCarrito para que sume al insertar el objeto al localstorage
                 let numeroCarrito = document.getElementById('numero-carrito');
                 numeroCarrito.innerText = parseInt(numeroCarrito.innerText) + 1;
             });
         }
     </script>
 
+    <!-- Incluimos el footer mediante php -->
     <?php
         include('footer.php');
     ?>

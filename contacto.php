@@ -17,8 +17,10 @@
     <title>Contacto - CIFP Txurdinaga</title>
 </head>
 
-<body>
+<body> 
+    <!-- Cargamos el header dependiendo de si la sesion esta iniciada utilizando php -->
     <?php
+        // Comprobamos que la session este iniciada y que no este vacia
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
         } else {
@@ -60,6 +62,7 @@
         </div>
     </section>
 
+    <!-- Incluimos el footer mediante php -->
     <?php
         include('footer.php');
     ?>

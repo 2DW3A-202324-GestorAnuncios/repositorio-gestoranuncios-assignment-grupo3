@@ -11,13 +11,17 @@
     <title>Crear Cuenta - CIFP Txurdinaga</title>
 </head>
 <body>
+    <!-- Cargamos el header dependiendo de si la sesion esta iniciada utilizando php -->
     <?php
+        // Comprobamos que la session este iniciada y que no este vacia
         include('header_no_sesion.php');
 
+        // Incluimos la conexion con la base de datos
         include("conexion.php");
 
         $repeticionPK = ""; // Inicializa la variable de mensaje de error
 
+        // Si se ha enviado el formulario recogemos los datos en variables para hacer las comprovaciones y por consecuente el insert en la base de datos
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $usu = $_POST['usuario'];
             $corr = $_POST['email'];
@@ -65,6 +69,7 @@
     ?>
     <div class="form-crear-cuenta">
         <img src="img/Logo_Inicio_Sesion.png" alt="logo" class="logo-inicio-sesion">
+        <!-- Seteamos el action a el mismo documento para que vuelva a la misma pagina y poder hacer las validaciones -->
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" id="id-form">
             <div class="crear-cuenta">
                 <div>
@@ -127,6 +132,7 @@
                 <label class="terminos-checkbox" for="terminos-crear-cuenta">Acepto los terminos y condiciones</label><br>
                 <span class="error" id="error5" name="error5"></span>
             </div>
+            <!-- metemos la variable de error dentro de el span para que muestre los errores pertinentes -->
             <span id="repPK"><?php echo $repeticionPK ?></span>            
             <div class="botones-crear-cuenta">
                 <input type="submit" value="Crear Cuenta" name="submit" class="boton" id="botonSubmit" onclick="validarCampos()">
@@ -135,13 +141,15 @@
     </div>
     
     <script>
-        //para el reenvio del formulario al recargar la pagina
+        // Para que el reenvio del formulario se ejecute al recargar la pagina
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
         }
     </script>
     <br>
     <br>
+
+    <!-- Incluimos el footer mediante php -->
     <?php             
         include('footer.php');
     ?>

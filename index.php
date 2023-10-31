@@ -1,4 +1,5 @@
 <?php
+    // Incluimos la conexion 
     include("conexion.php");
     
     // Inicia la sesión en la página
@@ -9,6 +10,7 @@
         $_SESSION['carrito'] = array();
     }
 
+    // Hacemos el select de anuncios y de noticias cuando esten validadas 
     $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1' ORDER BY id_anuncio DESC LIMIT 10";
     $resultProductos = $conn->query($sqlProductos);
 
@@ -29,7 +31,9 @@
     <title>Inicio - CIFP Txurdinaga</title>
 </head>
 <body>
+    <!-- Cargamos el header dependiendo de si la sesion esta iniciada utilizando php -->
     <?php
+        // Comprobamos que la session este iniciada y que no este vacia
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
         } else {
@@ -41,6 +45,7 @@
         <h2 class="titulo-llamativo">¡Mantente al Día!</h2>
         <div class="slideshow-container">
             <?php
+                // cargamos las imagenes que se mostraran en el carrousel 
                 while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     // Verifica si la URL de la imagen es nula o vacía
                     $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
@@ -64,6 +69,7 @@
         </div>
 
         <script>
+            // creamos las funciones del carrousel para que se mueva de posicion 
             let slideIndex = 1;
             showSlides(slideIndex);
 
@@ -75,6 +81,7 @@
                 showSlides(slideIndex = n);
             }
 
+            // Creamos la funcion que muestra la imagen segun la posicion en la que esta 
             function showSlides(n) {
                 let i;
                 let slides = document.getElementsByClassName("mySlides");
@@ -152,6 +159,7 @@
             const idAnuncio = btn.getAttribute('data-id');
             const estaEnCarrito = carrito.some(item => item.id === idAnuncio);
 
+            // Comprobamos haber si el objeto esta en el carrito, y si esta desavilitamos el boton
             if (estaEnCarrito) {
                 btn.disabled = true;
                 btn.style.backgroundColor = '#ccc';
@@ -159,6 +167,7 @@
                 btn.style.cursor = 'not-allowed';
             }
 
+            // Recogemos los datos de el anuncio especifico para posteriormente meterlos en el localstorage
             btn.addEventListener('click', (e) => {
                 const fotoAnuncio = e.currentTarget.getAttribute('data-foto');
                 const nombreAnuncio = e.currentTarget.getAttribute('data-nombre');
@@ -191,6 +200,7 @@
         }
     </script>
     
+    <!-- Incluimos el footer en la pagina -->
     <?php
         include('footer.php');
     ?>

@@ -1,9 +1,11 @@
 <?php
+    // Incluimos la conexion de la base de datos
     include("conexion.php");
     
     // Inicia la sesión en la página
     session_start();
 
+    // Hacemos el select de las noticias validadas para cargarlas en la pagina
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1'";
     $resultNoticias = $conn->query($sqlNoticias);
 ?>
@@ -21,7 +23,9 @@
     <title>Noticias - CIFP Txurdinaga</title>
 </head>
 <body>
+    <!-- Cargamos el header dependiendo de si la sesion esta iniciada utilizando php -->
     <?php
+        // Comprobamos que la session este iniciada y que no este vacia
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
         } else {
@@ -64,6 +68,7 @@
             <h1 id="noticia-tipo">Noticias </h1>
             <div id="noticiasContainer" class="noticias-container">
                 <?php 
+                // Cargamos las noticias con los colores correspondientes a cada categoria
                     while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                         $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['titulo']);
                         $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
@@ -81,23 +86,23 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Obtén una referencia al formulario de filtro
+            // Obténemois una referencia al formulario de filtro
             const filtroForm = document.getElementById("filtroForm");
 
-            // Obtén una referencia al enlace "Borrar filtros"
+            // Obténemos una referencia al enlace "Borrar filtros"
             const borrarFiltrosLink = document.getElementById("borrarFiltros");
 
-            // Agrega un evento de cambio al formulario
+            // Agregamos un evento de cambio al formulario
             filtroForm.addEventListener("change", function() {
-                // Obtén el valor de la categoría seleccionada
+                // Obténemos el valor de la categoría seleccionada
                 const selectedCategoria = document.querySelector('input[name="categoria"]:checked').value;
                 const noticiaTipo = document.getElementById("noticia-tipo");
 
                 noticiaTipo.innerText = "Noticias | " + selectedCategoria.charAt(0).toUpperCase() + selectedCategoria.slice(1);
-                // Obtén todas las noticias
+                // Obténemos todas las noticias
                 const noticias = document.querySelectorAll('.noticia3');
 
-                // Recorre todas las noticias y ocúltalas si no coinciden con la categoría seleccionada
+                // Recorremos todas las noticias y ocúltalas si no coinciden con la categoría seleccionada
                 noticias.forEach(function(noticia) {
                     const categoriaNoticia = noticia.className.match(/categoria-(\w+)/)[1];
 
@@ -108,26 +113,27 @@
                     }
                 });
 
-                // Muestra el enlace "Borrar filtros" cuando se aplique algún filtro
+                // Mostramos el enlace "Borrar filtros" cuando se aplique algún filtro
                 borrarFiltrosLink.style.display = "block";
             });
 
-            // Agrega un evento de clic al enlace "Borrar filtros"
+            // Agregamos un evento de clic al enlace "Borrar filtros"
             borrarFiltrosLink.addEventListener("click", function() {
-                // Restablece el formulario de filtro (quita todas las selecciones)
+                // Restablecemos el formulario de filtro (quita todas las selecciones)
                 filtroForm.reset();
 
-                // Muestra todas las noticias nuevamente
+                // Muestramos todas las noticias nuevamente
                 noticias.forEach(function(noticia) {
                     noticia.style.display = "block";
                 });
 
-                // Oculta el enlace "Borrar filtros" nuevamente
+                // Ocultamos el enlace "Borrar filtros" nuevamente
                 borrarFiltrosLink.style.display = "none";
             });
         });
     </script>
 
+    <!-- Incluimos el footer mediante php -->
     <?php
         include('footer.php');
     ?>

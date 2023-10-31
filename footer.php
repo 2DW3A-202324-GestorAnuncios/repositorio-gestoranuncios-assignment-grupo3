@@ -35,6 +35,7 @@
                 <div id="text-yellow" class="ct-text-block etiqueta">COOKIES<br></div>
                 <div id="text-blue" class="ct-text-block etiqueta">MAPA WEB<br></div>
                 <?php
+                    // Comprobamos si la session es admin para que uno de los botones reenvie a la pagina de contacto
                     if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
                         echo '<div id="text-green" class="ct-text-block etiqueta">CONTACTO<br></div>';
                     } else {

@@ -2,6 +2,7 @@
     // Inicia la sesión en la página
     include("conexion.php");
 
+    // Iniciamos la sesion 
     session_start();
 
     $categoria = ucfirst($_GET['categoria']);

@@ -45,7 +45,7 @@
 
     </div>
 </header>
-
+<!-- Dos tipos de menus de opciones para cuando se hacen las medias queris -->
 <div id="pro-menu-principal" class="pro-menu">
     <ul id="menu-principal" class="pro-menu-list">
         <li class="menu-item"><a href="index.php">Inicio</a></li>
