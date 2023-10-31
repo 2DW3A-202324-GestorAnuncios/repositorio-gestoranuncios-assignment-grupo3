@@ -130,7 +130,7 @@
                     }
                     echo '<form class="producto" method="POST" action="validar.php">';
                         echo '<div class="imagen-producto">';
-                            echo '<a href="pagina_anuncio.php?nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
+                            echo '<a href="pagina_anuncio.php?id='.urlencode($row['id_anuncio']).'&nombre='.urlencode($row['nombre_anuncio']).'&foto='.urlencode($row['foto']).'&descripcion='.urlencode($row['descripcion']).'&precio='.urlencode($row['precio']).'"><img src="' . $imagenURL . '" alt="' . htmlspecialchars($imagenAlt) . '"></a>';
                         echo '</div>';
                         echo '<div class="contenedor-anuncio">';
                             echo '<h2>' . $row['nombre_anuncio'] . '</h2>';

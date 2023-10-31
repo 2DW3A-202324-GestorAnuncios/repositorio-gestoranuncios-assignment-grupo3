@@ -63,7 +63,7 @@
                 const eliminarButton = document.createElement("button");
                 eliminarButton.classList.add("eliminar-button");
                 eliminarButton.setAttribute("data-id", producto.id);
-                eliminarButton.innerHTML = '<img src="img/papelera.png" alt="Eliminar">';
+                eliminarButton.innerHTML = '<img src="img/papelera.png" alt="Eliminar" width="40px" heigth="40px">';
                 eliminarButton.addEventListener('click', () => eliminarProducto(producto.id));
 
                 itemContainer.appendChild(fotoCarrito);
