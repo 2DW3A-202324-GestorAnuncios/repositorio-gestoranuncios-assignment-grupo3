@@ -35,7 +35,7 @@
                 echo '<script>
                     const usuario = "' . $_SESSION['usuarioLogin'] . '";
                     
-                    let carrito = JSON.parse(localStorage.getItem("carrito-" + usuario)) || [];
+                    let carrito = JSON.parse(localStorage.getItem("carrito => " + usuario)) || [];
                     let carritoLength = carrito.length;
                     
                     document.getElementById("numero-carrito").innerText = carritoLength;
