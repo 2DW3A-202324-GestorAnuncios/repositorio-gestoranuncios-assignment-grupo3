@@ -28,12 +28,12 @@
             $c1 = $_POST['contraseña'];
             $c2 = $_POST['contraseña2'];
 
-            $sql = 'SELECT nombre_usuario FROM usuario where nombre_usuario = "' . $usu . '"';
+            $sql = "SELECT nombre_usuario FROM usuario where nombre_usuario = ' . $usu . '";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $sql2 = 'SELECT correo FROM usuario where correo = "' . $corr . '"';
+            $sql2 = "SELECT correo FROM usuario where correo = ' . $corr . '";
             $stmt2 = $conn->prepare($sql2);
             $stmt2->execute();
             $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
@@ -51,7 +51,7 @@
                     $imagen = $_POST['imagen'];
 
                     // Inserta los datos en la tabla "usuario"
-                    $sql = 'INSERT INTO usuario (nombre_usuario, nombre, apellido, fecha_nac, sexo, correo, password, foto) VALUES ("$usuario","$nombre","$apellido","$fecha","$genero","$email","$contraseña","$imagen")';
+                    $sql = "INSERT INTO usuario (nombre_usuario, nombre, apellido, fecha_nac, sexo, correo, password, foto) VALUES ('$usuario','$nombre','$apellido','$fecha','$genero','$email','$contraseña','$imagen')";
                     $stmt = $conn->prepare($sql);
                     $stmt->execute();
                     $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
