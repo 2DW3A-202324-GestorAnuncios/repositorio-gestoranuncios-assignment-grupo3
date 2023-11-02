@@ -1,156 +1,96 @@
-var num = 0;
+// Creamos la funcion para validar el formulario de registro
+function validarCampos() {
+    // Creamos una variable llamada "errorNum" que aumentara si hay errores
+    var errorNum = 0;
 
-function validarCampos() { 
-    num = 0;
+    //Creamos una funcion interna que muestra el mensaje debajo de cada elemento y incrementamos la variable "errorNum"
+    function showError(element, message) {
+        element.innerText = message;
+        errorNum++;
+    }
 
-    // Comprueba nombre
-    var nombre = document.getElementById('nombre').value;
-    const error6 = document.getElementById("error6");
+    // Utilizamos variables que hacen referencias a los elementos del formulario
+    var nombre = document.getElementById('nombre');
+    var apellido = document.getElementById('apellido');
+    var contrasena = document.getElementById('validar-contraseña');
+    var contrasena2 = document.getElementById('validar-contraseña2');
+    var usuario = document.getElementById('usuario');
+    var email = document.getElementById('email');
+    var fecha = document.getElementById('fecha');
+    var genero = document.querySelectorAll('input[name="genero"]');
+    var terminos = document.getElementById('terminos');
 
-    if (nombre.length == 0) {
-        error6.innerText = "Introduce un nombre";
-        num = num + 1;
+    // Limpiar mensajes de error
+    var errorMessages = document.getElementsByClassName('error');
+    for (var i = 0; i < errorMessages.length; i++) {
+        clearError(errorMessages[i]);
+    }
+
+    // Validar nombre
+    if (nombre.value.trim() === "") {
+        showError(document.getElementById('error6'), "Introduce un nombre");
+    }
+
+    // Validar apellido
+    if (apellido.value.trim() === "") {
+        showError(document.getElementById('error7'), "Introduce un apellido");
+    }
+
+    // Validar contraseña
+    if (contrasena.value.length < 6) {
+        showError(document.getElementById('error3'), "Tu contraseña debe tener al menos 6 caracteres");
+    } else if (!/[a-z]/i.test(contrasena.value)) {
+        showError(document.getElementById('error3'), "Tu contraseña debe tener al menos una letra minúscula");
+    } else if (!/\d/.test(contrasena.value)) {
+        showError(document.getElementById('error3'), "Tu contraseña debe tener al menos un dígito");
+    } else if (!/[A-Z]/.test(contrasena.value)) {
+        showError(document.getElementById('error3'), "Tu contraseña debe tener al menos una letra mayúscula");
+    }
+
+    // Confirmar segunda contraseña
+    if (contrasena.value !== contrasena2.value) {
+        showError(document.getElementById('error4'), "Las contraseñas deben coincidir");
+    }
+
+    // Validar usuario
+        if (usuario.value.length < 3) {
+        showError(document.getElementById('error1'), "El usuario debe tener al menos 3 caracteres");
     } else {
-        error6.innerText = "";
-    }
-
-    // Comprueba apellido
-    var apellido = document.getElementById('apellido').value;
-    const error7 = document.getElementById("error7");
-
-    if (apellido.length == 0) {
-        error7.innerText = "Introduce un apellido";
-        num = num + 1;
-    } else {
-        error7.innerText = "";
-    }
-
-    var c = document.getElementById('validar-contraseña').value;
-    var box = document.getElementById("expresiones");
-    var field = document.createElement('span');
-    const boton = document.getElementById("boton");
-    const error3 = document.getElementById("error3");
-    var cont = 0;
-
-    if (c.length < 6 ) {
-        document.getElementById("expresiones").innerHTML = "";         
-        var salto = document.createElement('br');
-        field.appendChild(document.createTextNode("Tu contraseña debe tener al menos 6 caracteres"));
-        field.setAttribute('class','error');
-        box.appendChild(field);
-        field.appendChild(salto);
-        cont = cont + 1;
-        num = num + 1;
-    }
-    if (c.search(/[a-z]/i) < 0) {
-        document.getElementById("expresiones").innerHTML = "";   
-        var salto = document.createElement('br');
-        field.appendChild(document.createTextNode("Tu contraseña debe tener al menos una letra minuscula"));
-        field.setAttribute('class','error');
-        box.appendChild(field);
-        field.appendChild(salto);
-        cont = cont + 1;
-        num = num + 1;
-    }
-    if (c.search(/[0-9]/) < 0) {
-        document.getElementById("expresiones").innerHTML = "";   
-        var salto = document.createElement('br');
-        field.appendChild(document.createTextNode("Tu contraseña debe tener al menos un digito"));
-        field.setAttribute('class','error');
-        box.appendChild(field);
-        field.appendChild(salto);
-        cont = cont + 1;
-        num = num + 1;
-    }
-    if (c.search(/[A-Z]/) < 0) { 
-        document.getElementById("expresiones").innerHTML = "";   
-        var salto = document.createElement('br');                
-        field.appendChild(document.createTextNode("Tu contraseña debe tener al menos una letra mayuscula"));
-        field.setAttribute('class','error');
-        box.appendChild(field);
-        field.appendChild(salto);
-        cont = cont + 1;
-        num = num + 1;
-    }
-    if (cont == 0) {
-        document.getElementById("expresiones").innerHTML = "";   
-        var salto = document.createElement('br');
-        field.appendChild(document.createTextNode("Tu contraseña es adecuada"));
-        field.setAttribute('class','correcto');
-        box.appendChild(field);
-        field.appendChild(salto);
-    }
-
-    // Confirmar contraseña
-    const usuario = document.getElementById("usuario").value;
-    const error1 = document.getElementById("error1");
-
-    if (usuario.length < 3) {
-        error1.innerText = "El usuario debe tener 3 o mas caracteres";
-        num = num + 1;
-    } else {
-        error1.innerText = "";
+        clearError(document.getElementById('error1'));
     }
 
     // Validar email
-    var email = document.getElementById('email');
-    const error2 = document.getElementById("error2");
-    var emailRE =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-
-    if (emailRE.test(email.value)) {
-        error2.innerText = "";
-    } else {
-        error2.innerText = "El email no es valido";
-        num = num + 1;
+    var emailRE = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    if (!emailRE.test(email.value)) {
+        showError(document.getElementById('error2'), "El correo electrónico no es válido");
     }
 
-    // Validar fechaNacimiento
-    var fechaNac = document.getElementById('fecha').value;
-    const error8 = document.getElementById("error8");
-
-    if (!fechaNac) {
-        error8.innerText = "Introduce una fecha";
-        num = num + 1;
-    } else {
-        error8.innerText = "";
+    // Validar fecha de nacimiento
+    if (!fecha.value) {
+        showError(document.getElementById('error8'), "Introduce una fecha de nacimiento");
     }
 
-    // Validar genero
-    const error9 = document.getElementById("error9");
-    var masc = document.getElementById('masculino');
-    var fem = document.getElementById('femenino');
-    var otros = document.getElementById('otros');
-
-    if (masc.checked || fem.checked || otros.checked) {
-        error9.innerText = "";
-    } else {
-        error9.innerText = "Seleccione su genero";
-        num = num + 1;
+    // Validar género
+    var generoChecked = false;
+    for (var i = 0; i < genero.length; i++) {
+        if (genero[i].checked) {
+        generoChecked = true;
+        break;
+        }
+    }
+    // Validar género vacio
+    if (!generoChecked) {
+        showError(document.getElementById('error9'), "Selecciona tu género");
     }
 
-    //comprobar terminos
-    const error5 = document.getElementById("error5");
-    
-    if (document.getElementById('terminos').checked == false) {
-        error5.innerText = "Debe aceptar los terminos";
-        num = num + 1;
-    } else {
-        error5.innerText = "";
-    }
-
-    const btn = document.getElementById('botonSubmit');
-
-    if (num!=0) {
-        btn.removeAttribute("type","submit")
-        btn.setAttribute("type","button")
-    } else if (num === 0) {
-        btn.removeAttribute("type","submit")
-        btn.setAttribute("type","submit")
+    // Creamos otra funcion interna que elimina el mensaje de error
+    function clearError(element) {
+        element.innerText = "";
     }
 }
 
-// Funciones del Login
-function toggleDropdown() {
+// Funcion para mostrar el desplegable del Login
+function formularioInicioSession() {
     var formSesion = document.getElementById("form-inicio-sesion");
 
     if (formSesion.style.display === "none" || formSesion.style.display === "") {
@@ -160,17 +100,93 @@ function toggleDropdown() {
     }
 }
 
-function anadirCarritoAndToggleDropdown() {
+// Funcion que al no estar con la session iniciada saca el "formularioInicioSession" cuando se hace click en el boton de añadir carrito
+function anadirCarritoFormularioInicioSession() {
     // Llama a la función toggleDropdown() directamente
-    toggleDropdown();
+    formularioInicioSession();
 
     // Desplázate hacia la parte superior de la página
     window.scrollTo(0, 0);
 }
 
+// Funcion que muestra el error en el formulario de inicio sesion
 function mostrarError(mensaje) {
-    var mensajeError = document.getElementById("mensaje-error");
+    var mensajeError = document.getElementById("mensaje-error-login");
 
     mensajeError.textContent = mensaje;
     mensajeError.style.display = "block";
+}
+
+// Función para eliminar un producto del carrito
+function eliminarProducto(id) {
+    carrito = carrito.filter(producto => producto.id !== id);
+    actualizarCarrito();
+
+    let numeroCarrito = document.getElementById('numero-carrito');
+    numeroCarrito.innerText = parseInt(numeroCarrito.innerText) - 1;
+}
+
+// Función para actualizar el carrito en el Local Storage y en la interfaz de usuario
+function actualizarCarrito() {
+    localStorage.setItem('carrito => ' + usuario, JSON.stringify(carrito));
+
+    // Limpiar la vista del carrito
+    const carritoContainer = document.getElementById("carrito-items");
+    carritoContainer.innerHTML = "";
+
+    // Reiniciar los totales
+    let precioTotal = 0.0; // Inicializar como número de punto flotante
+    let totalProductos = 0;
+
+    // Recrear la vista del carrito con los productos actualizados
+    carrito.forEach(producto => {
+        const itemContainer = document.createElement("div");
+        itemContainer.classList.add("carrito-item");
+
+        const fotoCarrito = document.createElement("div");
+        fotoCarrito.classList.add("foto-carrito");
+        fotoCarrito.innerHTML = `<img src="img/anuncios/${producto.foto}" alt="${producto.nombre}">`;
+
+        const carritoContent = document.createElement("div");
+        carritoContent.classList.add("carrito-content");
+        // Reemplazar el punto por coma en la representación del precio
+        const precioConComa = parseFloat(producto.precio).toFixed(2).replace(".", ",");
+        carritoContent.innerHTML = `
+            <p class="producto-nombre">${producto.nombre}</p>
+            <p class="producto-descripcion">${producto.descripcion}</p>
+            <p>Precio: <span class="producto-precio">${precioConComa} €</span></p>
+        `;
+
+        const eliminarButton = document.createElement("button");
+        eliminarButton.classList.add("eliminar-button");
+        eliminarButton.setAttribute("data-id", producto.id);
+        eliminarButton.innerHTML = '<img src="img/papelera.png" alt="Eliminar" width="40px" heigth="40px">';
+        eliminarButton.addEventListener('click', () => eliminarProducto(producto.id));
+
+        itemContainer.appendChild(fotoCarrito);
+        itemContainer.appendChild(carritoContent);
+        itemContainer.appendChild(eliminarButton);
+
+        carritoContainer.appendChild(itemContainer);
+
+        // Actualizar los totales
+        precioTotal += parseFloat(producto.precio); // Convertir a número de punto flotante
+        totalProductos++;
+    });
+
+    // Reemplazar el punto por coma en la representación del precio total
+    const precioTotalConComa = precioTotal.toFixed(2).replace(".", ",");
+    
+    // Actualizar la interfaz con los totales
+    const totalPrecioElement = document.getElementById("total-precio");
+    const totalProductosElement = document.getElementById("total-productos");
+
+    totalPrecioElement.innerText = precioTotalConComa + " €";
+    totalProductosElement.innerText = totalProductos + " productos";
+
+    if (carrito.length === 0) {
+        // Si el carrito está vacío, muestra un mensaje
+        carritoContainer.innerHTML = `<p class="carrito-vacio">El carrito está vacío.</p>`;
+        localStorage.removeItem('carrito => ' + usuario);
+    }
 }

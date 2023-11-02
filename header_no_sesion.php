@@ -1,5 +1,6 @@
 <?php
-    include("conexion.php"); // Incluye el archivo de conexión a la base de datos
+    // Incluye el archivo de conexión a la base de datos
+    include("conexion.php"); 
 
     // Inicializa la variable de error como vacía
     $mensaje_error = '';
@@ -9,7 +10,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Validación de campos
-        $usuario = $_POST['usuario'];
+        $usuario = $_POST['usuarioLogin'];
         $contrasena = $_POST['contrasena'];
 
         if (empty($usuario) && empty($contrasena)) {
@@ -26,9 +27,9 @@
             $mostrar_formulario = true;
         } else {
             // Realiza una consulta SQL para verificar las credenciales en la base de datos
-            $sql = "SELECT * FROM usuario WHERE nombre_usuario = :usuario";
+            $sql = "SELECT * FROM usuario WHERE nombre_usuario = :usuarioLogin";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':usuario', $usuario);
+            $stmt->bindParam(':usuarioLogin', $usuario);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -37,7 +38,7 @@
                 if (password_verify($contrasena, $row['password'])) {
                     // Las credenciales son válidas
                     $_SESSION['sesion_iniciada'] = true;
-                    $_SESSION['usuario'] = $usuario;
+                    $_SESSION['usuarioLogin'] = $usuario;
                     $_SESSION['admin'] = $tipo_usuario;
 
                     // Verificar si el usuario es administrador
@@ -64,36 +65,35 @@
 ?>
 
 <header>
-    <a href="index.php">
+    <a class="link-logo" href="index.php">
         <img src="img/Logo_Home3.png" alt="Inicio" height="80px" id="logo">
-        <img src="img/logotxur.png" alt="Inicio" height="90px" id="logo2">
 
     </a>
     <div id="buttons-container">
-        <a class="header-buttons" href="javascript:void(0)" onclick="toggleDropdown()">
+        <a class="header-buttons" href="javascript:void(0)" onclick="formularioInicioSession()">
             <img src="img/boton_profesores.png" alt="Inicio" width="100px" height="80px">
             <div class="centrado-header">Crear Noticia</div>
         </a>
-        <a class="header-buttons" href="javascript:void(0)" onclick="toggleDropdown()">
+        <a class="header-buttons" href="javascript:void(0)" onclick="formularioInicioSession()">
             <img src="img/boton_alumnos.png" alt="Inicio" width="100px" height="80px">
             <div class="centrado-header">Crear Anuncio</div>
         </a>
         <div class="header-dropdown" id="iniciar-sesion-dropdown">
-            <a class="header-buttons" href="javascript:void(0)" onclick="toggleDropdown()">
+            <a class="header-buttons" href="javascript:void(0)" onclick="formularioInicioSession()">
                 <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
                 <div class="centrado-header">Iniciar Sesión</div>
             </a>
             <div id="form-inicio-sesion" class="form-sesion">
                 <h2>Iniciar Sesión</h2>
-                <form action="index.php" method="POST">
-                    <label for="usuario">Usuario:</label>
-                    <input type="text" id="usuario" name="usuario">
+                <form action="index.php" method="POST" >
+                    <label for="usuarioLogin">Usuario:</label>
+                    <input type="text" id="usuarioLogin" name="usuarioLogin">
                     <label for="contrasena">Contraseña:</label>
                     <input type="password" id="contrasena" name="contrasena">
-                    <button id="btnIniciarSesion" type="submit">Iniciar Sesión</button>
+                    <button id="btnIniciarSesion" type="submit" name="iniciar-sesion" >Iniciar Sesión</button>
                     <div class="registrarseContainer">
                         <div id="textRegistrarse">¿No tienes cuenta? </div>
-                        <a href="Cuentas/crear_cuenta.php" id="btnRegistrarse"><span>Registrarse</span></a>
+                        <a href="crear_cuenta.php" id="btnRegistrarse"><span>Registrarse</span></a>
                     </div>
                     <div id="mensaje-error-login" style="display: none;"></div>
                 </form>
@@ -111,18 +111,7 @@
     </ul>
 </div>
 
-<nav>
-    <ul class="navdesp">
-        <li><img class="despImg" src="img/desplegable.png" alt="">
-            <ul class="coloresDesp">
-                <li class="menu-item"><a href="index.php">Inicio</a></li>
-                <li class="menu-item"><a href="noticia.php">Noticias</a></li>
-                <li class="menu-item"><a href="anuncio.php">Anuncios</a></li>
-                <li class="menu-item"><a href="contacto.php">Contacto</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
+
 
 <script>
     // Verifica si hay un mensaje de error y lo muestra si es necesario
@@ -135,7 +124,7 @@
     // Verifica si se debe mostrar el formulario
     <?php
         if ($mostrar_formulario) {
-            echo 'toggleDropdown();';
+            echo 'formularioInicioSession();';
         }
     ?>
 </script>

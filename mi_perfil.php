@@ -4,7 +4,7 @@
     // Inicia la sesión en la página
     session_start();
 
-    $usuario = $_SESSION['usuario'];
+    $usuario = $_SESSION['usuarioLogin'];
     $tipo_usuario = $_SESSION['admin'];
 
     $mensaje_exito = '';
@@ -36,6 +36,7 @@
     } else if ($tipo_usuario == 0) {
         $tipo_usuario = "Usuario";
     }
+
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['editar'])) {
@@ -80,7 +81,7 @@
                 // Cambia de nuevo al modo de visualización después de guardar
                 $modo_edicion = false;
             } else {
-                $mensaje_error = "Error al actualizar tus datos. Inténtalo de nuevo.";
+                $mensaje_error = "Hubo un error al actualizar tus datos. Inténtalo de nuevo.";
             }
         }
     }
@@ -95,35 +96,39 @@
     <link rel="stylesheet" href="hojaEstilos/fuentes.css">
     <link rel="stylesheet" href="hojaEstilos/estilos.css">
     <link rel="shortcut icon" href="img/favicon.png">
+    <script src="script.js"></script>
     <title>Mi Perfil - CIFP Txurdinaga</title>
 </head>
 <body>
     <?php
+        // Cargamos el header con sesion por que solo se puede acceder a esta pagina con la sesion iniciada
         include('header_sesion.php');
-        
-        if (!empty($mensaje_exito)) {
-            echo '<div class="mensaje-exito">';
-                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
-            echo '</div>';
-        } elseif (!empty($mensaje_error)) {
+        // Comprobamos que haya algo en mensaje_exiti, al no estar vacio muestra el mensaje consecuente
+        if (!empty($mensaje_error)) {
+            // Si el Mensaje error no esta vacio muestra el mensaje de error consecuente  elseif (!empty($mensaje_error)) {
             echo '<div class="mensaje-error">';
                 echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+            echo '</div>';
+        } else if(!empty($mensaje_exito)){
+            echo '<div class="mensaje-exito">';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
             echo '</div>';
         }
     ?>
 
     <div class="mi-perfil-container">
+        <!-- Cargamos el tipo de usuario para mostrarselo al usuario -->
         <h1>Mi Perfil - <?php echo $tipo_usuario; ?></h1>
 
         <div id="datos-modo-visualizacion">
+            <!-- Cargamos los datos del usuaio para mostrarlos  -->
             <p><strong>Nombre Completo:</strong> <?php echo ucwords($nombre) . ' ' . ucwords($apellido); ?></p>
             <p><strong>Fecha Nacimiento:</strong> <?php echo date("d-m-Y", strtotime($fecha_nac)); ?></p>
             <p><strong>Género:</strong> <?php echo $sexo; ?></p>
             <p><strong>Correo Electrónico:</strong> <?php echo $correo; ?></p>
             <p><strong>Foto de Perfil:</strong></p>
             <div class="foto-container">
-                <img src="img/fotoPerfil/<?php echo empty($foto) ? 'sin-foto-perfil.jpg' : $foto; ?>"
-                    alt="Foto de perfil">
+                <img src="img/fotoPerfil/<?php echo empty($foto) ? 'sin-foto-perfil.jpg' : $foto; ?>" alt="Foto de perfil">
             </div>
         </div>
 
@@ -132,11 +137,12 @@
         <div id="confirmar-cierre" class="modal" style="display: none;">
             <div class="modal-content">
                 <p>¿Estás seguro de que deseas cerrar la sesión?</p>
-                <button id="confirmar-si">Sí</button>
                 <button id="confirmar-no">No</button>
+                <button id="confirmar-si">Sí</button>
             </div>
         </div>
 
+        <!-- Creamos el formulario de edicion de datos metiendo todos los datos introducidos en los inputs en variables para poder hacer la consulta -->
         <form id="perfilForm" action="mi_perfil.php" method="POST" enctype="multipart/form-data" class="modo-edicion">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" value="<?php echo $nombre; ?>">
@@ -145,15 +151,12 @@
             <input type="text" id="apellido" name="apellido" value="<?php echo $apellido; ?>">
 
             <label for="fecha_nac">Fecha de Nacimiento:</label>
-            <input type="date" id="fecha_nac" name="fecha_nac"
-                value="<?php echo date("Y-m-d", strtotime($fecha_nac)); ?>">
+            <input type="date" id="fecha_nac" name="fecha_nac" value="<?php echo date("Y-m-d", strtotime($fecha_nac)); ?>">
 
             <label>Género:</label>
-            <input type="radio" id="masculino" name="sexo" value="Masculino"
-                <?php if ($sexo === 'Masculino') echo 'checked'; ?>>
+            <input type="radio" id="masculino" name="sexo" value="Masculino" <?php if ($sexo === 'Masculino') echo 'checked'; ?>>
             <label class="sexo" for="masculino">Masculino</label>
-            <input type="radio" id="femenino" name="sexo" value="Femenino"
-                <?php if ($sexo === 'Femenino') echo 'checked'; ?>>
+            <input type="radio" id="femenino" name="sexo" value="Femenino" <?php if ($sexo === 'Femenino') echo 'checked'; ?>>
             <label class="sexo" for="femenino">Femenino</label>
             <input type="radio" id="otros" name="sexo" value="Otros" <?php if ($sexo === 'Otros') echo 'checked'; ?>>
             <label class="sexo" for="otros">Otros</label>
@@ -182,7 +185,6 @@
         const modal = document.querySelector('.modal');
         const confirmarSiBtn = document.getElementById('confirmar-si');
         const confirmarNoBtn = document.getElementById('confirmar-no');
-        // const usuario = document.getElementById('usuario').value;
 
         editarDatosBtn.addEventListener('click', () => {
             datosModoVisualizacion.style.display = 'none';
@@ -195,12 +197,11 @@
         cerrarSesionBtn.addEventListener('click', () => {
             // Muestra el desplegable
             modal.style.display = 'block';
-            document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+            document.body.classList.add('no-scroll');
         });
 
         confirmarSiBtn.addEventListener('click', () => {
-            // Borrar el carrito del Local Storage del usuario
-            // localStorage.removeItem('carrito => ' + usuario);
+            // Aquí debes agregar la lógica para cerrar la sesión
             // Puedes usar una redirección a la página de cierre de sesión
             window.location.href = 'Cuentas/cerrar_sesion.php';
         });
@@ -208,7 +209,7 @@
         confirmarNoBtn.addEventListener('click', () => {
             // Cierra el desplegable y restaura el scroll
             modal.style.display = 'none';
-            document.body.classList.remove('no-scroll'); // Quita la clase para restaurar el scroll
+            document.body.classList.remove('no-scroll');
         });
 
         cancelarBtn.addEventListener('click', () => {
@@ -219,7 +220,7 @@
             cancelarBtn.style.display = 'none';
         });
     </script>
-
+    <!-- Incluimos el footer mediante php -->
     <?php
         include('footer.php');
     ?>
