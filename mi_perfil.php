@@ -37,6 +37,7 @@
         $tipo_usuario = "Usuario";
     }
 
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['editar'])) {
             // Cambiar al modo de edición
