@@ -3,7 +3,7 @@
         $servername = "base-g3.cv2cmtkat6wh.us-east-1.rds.amazonaws.com";
         $username = "admin";
         $password = "123456789";
-        $dbname = "gestor_anuncios";
+        $dbname = "gestor-anuncios-g3";
 
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
