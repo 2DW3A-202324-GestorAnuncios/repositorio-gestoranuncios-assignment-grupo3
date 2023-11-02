@@ -66,7 +66,8 @@ div {
     justify-content: center;
 }
 
-/* Estilos para el encabezado */
+/* <------------------------------ Estilos para el encabezado ------------------------------> */ 
+
 header {
     display: flex;
     justify-content: space-between;
@@ -75,7 +76,8 @@ header {
     margin: 0;
 }
 
-/* Estilos para los botones */
+/* <------------------------------ Estilos para los botones ------------------------------> */
+
 #logo {
     margin-left: 75px;
 }
@@ -132,7 +134,8 @@ header {
     margin-right: 10px;
 }
 
-/* Media query para hacer los botones del header mas pequeños */
+/* <------------------------------ Media query para hacer los botones del header mas pequeños ------------------------------> */
+
 @media only screen and (max-width: 670px) {
     #logo2 {
         visibility: hidden;
@@ -147,7 +150,8 @@ header {
     }
 }
 
-/* Estilos barra de navegación */
+/* <------------------------------ Estilos barra de navegación ------------------------------> */
+
 #pro-menu-principal {
     padding-top: 4px;
     padding-bottom: 0px;
@@ -161,7 +165,8 @@ header {
     position: sticky;
 }
 
-/* Esconde el desplegable */
+/* <------------------------------ Esconde el desplegable ------------------------------> */
+
 .navdesp {
     visibility: hidden;
     height: 1px;
@@ -174,9 +179,11 @@ header {
     justify-content: space-around;
 }
 
-/* Media query para la visualicacion del desplegable */
+/* <------------------------------ Media query para la visualicacion del desplegable ------------------------------> */
+
 @media only screen and (max-width: 800px) {
-    /* Esconde y minimiza la barra de navegacion */
+    /* <------------------------------ Esconde y minimiza la barra de navegacion ------------------------------> */
+
     .pro-menu-list {
         overflow: hidden;
         background-color: #c6c6f6;
@@ -188,7 +195,8 @@ header {
         visibility: hidden;
     }
 
-    /* Ajusta la imagen del desplegable */
+    /* <------------------------------ Ajusta la imagen del desplegable ------------------------------> */
+
     .despImg {
         height: 60px;
         border: 3px solid rgba(0,0,0, 0.3);
@@ -208,13 +216,13 @@ header {
         list-style: none;
     }
 
-    /* Hace visible la imagen del desplegable */
+    /* <------------------------------ Hace visible la imagen del desplegable ------------------------------> */
     .navdesp {
         margin-top: -30px;
         height: auto;
         visibility: visible;
         padding-top: 30px;
-        width: auto; /*Le establecemos un ancho*/
+        width: auto; 
     }
 
     .navdesp > li {
@@ -251,7 +259,8 @@ header {
         top: 0px;
     }
 
-    /* Asigna un color de fondo a cada apartado del desplegable */
+    /* <------------------------------ Asigna un color de fondo a cada apartado del desplegable ------------------------------> */
+
     .coloresDesp li:first-child {
         background-color: #57aa26;
     }
@@ -350,7 +359,8 @@ header {
     text-decoration: none;
 }
 
-/* Estilos Carrusel Noticias página principal */
+/* <------------------------------ Estilos Carrusel Noticias página principal ------------------------------> */
+
 .mySlides {display: none}
 
 .slideshow-container {
@@ -371,7 +381,8 @@ header {
     border-radius: 15px 15px 0 0;
 }
 
-/* Media query para ajustar las imagenes del carrusel a la pagina */
+/* <------------------------------ Media query para ajustar las imagenes del carrusel a la pagina ------------------------------> */
+
 @media screen and (max-width:800px) {
     .slideshow-container {
         min-width: 350px;
@@ -445,7 +456,8 @@ header {
     border-radius: 0 0 15px 15px;
 }
 
-/* Media query para ajustar el texto del carrusel a la pagina */
+/* <------------------------------ Media query para ajustar el texto del carrusel a la pagina ------------------------------> */
+
 @media screen and (max-width:1000px) {
     .text {
         color: white;
@@ -493,7 +505,8 @@ header {
     to {opacity: 1}
 }
 
-/* Estilos para las secciones destacadas */
+/* <------------------------------ Estilos para las secciones destacadas ------------------------------> */
+
 .seccion-destacada {
     box-sizing: border-box;
     margin-top: 20px;
@@ -504,7 +517,8 @@ header {
     margin-bottom: 20px;
 }
 
-/* Estilos para el título llamativo */
+/* <------------------------------ Estilos para el título llamativo ------------------------------> */
+
 .titulo-llamativo {
     font-size: 36px;
     color: #0077b6;
@@ -513,7 +527,8 @@ header {
     border-bottom: 2px solid #0077b6;
 }
 
-/* Estilos para el botón "Explorar Más" */
+/* <------------------------------ Estilos para el botón "Explorar Más" ------------------------------> */
+
 #ver-mas-noticias,
 #ver-mas-anuncios {
     background-color: #0077b6;
@@ -532,7 +547,8 @@ header {
     background-color: #005b91;
 }
 
-/* Estilos para los productos */
+/* <------------------------------ Estilos para los productos ------------------------------> */
+
 .productos-anuncios-inicio {
     display: flex;
     justify-content: flex-start;
@@ -567,8 +583,8 @@ header {
     background: #006094;
 }
 
-/* Media queries para ajustar el apartado de
-anuncios del indice a dispositivos distintos */
+/* <------------------------------ Media queries para ajustar el apartado de anuncios del indice a dispositivos distintos ------------------------------> */
+
 @media only screen and (max-width: 1500px) and (min-width: 1101px) {
     .productos-anuncios-inicio {
         gap: 20px;
@@ -627,14 +643,16 @@ anuncios del indice a dispositivos distintos */
     }
 }
 
-/* Ajusta el tamaño de las imagenes del deslizable */
+/* <------------------------------ Ajusta el tamaño de las imagenes del deslizable ------------------------------> */
+
 .productos-slide-anuncios img {
     max-width: 100%;
     height: 300px;
     margin-bottom: 10px;
 }
 
-/* Estilo para los textos del deslizable */
+/* <------------------------------ Estilo para los textos del deslizable ------------------------------> */
+
 .productos-slide-anuncios h2 {
     font-size: 18px;
     margin: 10px 0;
@@ -649,7 +667,8 @@ anuncios del indice a dispositivos distintos */
     text-transform: uppercase;
 }
 
-/* Estilo para la sección de productos */
+/* <------------------------------ Estilo para la sección de productos ------------------------------> */
+
 .productos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -820,7 +839,8 @@ anuncios del indice a dispositivos distintos */
     border-bottom: 2px solid #ddd;
 }
 
-/* Ajusta el tamaño de las fotos en los anuncios */
+/* <------------------------------ Ajusta el tamaño de las fotos en los anuncios ------------------------------> */
+
 .imagen-producto img {
     max-width: 100%;
     height: 100%;
@@ -935,7 +955,8 @@ anuncios del indice a dispositivos distintos */
     padding: 8px 14px;
 }
 
-/* PAGINA DE NOTICIAS (NOTICIA.PHP) */
+/* <------------------------------ PAGINA DE NOTICIAS (NOTICIA.PHP) ------------------------------> */
+
 .container {
     display: flex;
     max-width: 100%;
@@ -1033,7 +1054,8 @@ anuncios del indice a dispositivos distintos */
     border-color: #000000;
 }
 
-/* Da forma al container de noticias */
+/* <------------------------------ Da forma al container de noticias ------------------------------> */
+
 .noticias3 {
     width: 100%;
     padding: 20px;
@@ -1046,7 +1068,7 @@ anuncios del indice a dispositivos distintos */
     justify-content: center;
 }
 
-/* Estilos para las noticias */
+/* <------------------------------ Estilos para las noticias ------------------------------> */
 .noticias-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1113,7 +1135,8 @@ anuncios del indice a dispositivos distintos */
     margin-top: 10px;
 }
 
-/* Asignar categoría a noticias específicas */
+/* <------------------------------ Asignar categoría a noticias específicas ------------------------------> */
+
 .categoria-deportes {
     background-color: #a6d789;
 }
@@ -1164,7 +1187,8 @@ anuncios del indice a dispositivos distintos */
     line-height: 1.5;
 }
 
-/* Estilos para la sección de contacto */
+/* <------------------------------ Estilos para la sección de contacto ------------------------------> */
+
 .nuestroContacto .informacion-contacto {
     margin-bottom: 20px;
 }
@@ -1218,7 +1242,8 @@ anuncios del indice a dispositivos distintos */
     font-weight: bold;
 }
 
-/* Estilos para el footer */
+/* <------------------------------ Estilos para el footer ------------------------------> */
+
 #footer {
     background-color: #ffffff;
     border-top-color: #eee;
@@ -1276,7 +1301,8 @@ anuncios del indice a dispositivos distintos */
     width: 40%;
 }
 
-/* Estilo para el primer texto de ubicación (verde) */
+/* <------------------------------ Estilo para el primer texto de ubicación (verde) ------------------------------> */
+
 #ubicacion-green-text {
     color: #229c6a;
     font-family: 'PT Sans Narrow';
@@ -1284,7 +1310,8 @@ anuncios del indice a dispositivos distintos */
     font-size: 1em;
 }
 
-/* Estilo para el segundo texto de ubicación (amarillo) */
+/* <------------------------------ Estilo para el segundo texto de ubicación (amarillo) ------------------------------> */
+
 #ubicacion-yellow-text {
     color: #fcc204;
     font-weight: 800;
@@ -1292,21 +1319,22 @@ anuncios del indice a dispositivos distintos */
     font-size: 1em;
 }
 
-/* Estilo para el texto de teléfono (azul clarito) */
+/* <------------------------------ Estilo para el texto de teléfono (azul clarito) ------------------------------> */
+
 #contacto-blue-text {
     color: rgba(26, 164, 193, 0.7);
     font-weight: 800;
     font-size: 1em;
 }
 
-/* Estilo para el texto de correo con fondo morado */
+/* <------------------------------ Estilo para el texto de correo con fondo morado ------------------------------> */
 #contacto-purple-text {
     color: #60227a;
     font-weight: 800;
     font-size: 1em;
 }
 
-/* Estilos para la parte central del footer */
+/* <------------------------------ Estilos para la parte central del footer ------------------------------>*/
 #footer-center {
     width: 25%;
 }
@@ -1356,25 +1384,29 @@ anuncios del indice a dispositivos distintos */
     background-color: #007bb6 !important;
 }
 
-/* Estilo para el primer texto en el centro (fucsia) */
+/* <------------------------------ Estilo para el primer texto en el centro (fucsia) ------------------------------> */
+
 #text-pink {
     margin-top: 50px;
     color: #da0067;
 }
 
-/* Estilo para el segundo texto en el centro (amarillo) */
+/* <------------------------------ Estilo para el segundo texto en el centro (amarillo) ------------------------------> */
+
 #text-yellow {
     margin-top: 0px;
     color: #fcc204;
 }
 
-/* Estilo para el tercer texto en el centro (azul) */
+/* <------------------------------ Estilo para el tercer texto en el centro (azul) ------------------------------> */
+
 #text-blue {
     margin-top: 0px;
     color: rgba(26, 164, 193, 0.7);
 }
 
-/* Estilo para el cuarto texto en el centro (verde) */
+/* <------------------------------ Estilo para el cuarto texto en el centro (verde) ------------------------------> */
+
 #text-green {
     margin-top: 0px;
     color: #57aa26;
@@ -1389,14 +1421,16 @@ anuncios del indice a dispositivos distintos */
     font-size: 1em;
 }
 
-/* Estilos para los fondos negros */
+/* <----------------------------- Estilos para los fondos negros ------------------------------> */
+
 .black-bg {
     background-color: black;
     padding: 0px 10px;
     margin-bottom: 10px;
 }
 
-/* Estilos para la parte derecha del footer */
+/* <------------------------------ Estilos para la parte derecha del footer ------------------------------> */
+
 #footer-right {
     width: 45%;
     flex-direction: column;
@@ -1517,7 +1551,7 @@ anuncios del indice a dispositivos distintos */
     }
 }
 
-/* Hace visible el pop-up de "inciar sesion" */
+/* <------------------------------ Hace visible el pop-up de "inciar sesion" ------------------------------> */
 #iniciar-sesion-dropdown {
     position: relative;
 }
@@ -1614,8 +1648,9 @@ anuncios del indice a dispositivos distintos */
     color: #007bff;
 }
 
-/* Estilos para la creacion de cuenta */
-/* Da forma al formulario en "crear cuenta" */
+/* <------------------------------ Estilos para la creacion de cuenta ------------------------------> */
+/* <------------------------------ Da forma al formulario en "crear cuenta" ------------------------------> */
+
 .form-crear-cuenta {
     width: 70%;
     max-width: 600px;
@@ -1633,7 +1668,8 @@ anuncios del indice a dispositivos distintos */
     margin-bottom: 40px;
 }
 
-/* Da forma al logo en "crear cuenta" */
+/* <------------------------------ Da forma al logo en "crear cuenta" ------------------------------>*/
+
 .logo-inicio-sesion {
     height: 190px;
     width: 160px;
@@ -1642,7 +1678,8 @@ anuncios del indice a dispositivos distintos */
     margin-right: auto;
 }
 
-/* Da forma a la estructura de "crear cuenta" */
+/* <------------------------------ Da forma a la estructura de "crear cuenta" ------------------------------> */
+
 .crear-cuenta {
     display: grid;
     grid-template-columns: auto auto;
@@ -1652,7 +1689,8 @@ anuncios del indice a dispositivos distintos */
     margin-right: auto;
 }
 
-/* Da forma a los inputs en "crear cuenta" */
+/* <------------------------------ Da forma a los inputs en "crear cuenta" ------------------------------> */
+
 .input-text {
     width: 100%;
     border: 2px solid rgba( 0, 0, 0, 0.5);
@@ -1666,7 +1704,8 @@ anuncios del indice a dispositivos distintos */
     border: 2px solid rgba( 0, 0, 0, 1);
 }
 
-/* Da forma a los botones en "crear cuenta" */
+/* <------------------------------ Da forma a los botones en "crear cuenta" ------------------------------> */
+
 .boton {
     width: 125px;
     height: 40px;
@@ -1696,7 +1735,8 @@ anuncios del indice a dispositivos distintos */
     margin-bottom: -20px;
 }
 
-/* Da forma al checkbox en "crear cuenta" */
+/* <------------------------------ Da forma al checkbox en "crear cuenta" ------------------------------> */
+
 .terminos-crear-cuenta {
     font-size: 17px;
     display: block;
@@ -1709,7 +1749,8 @@ anuncios del indice a dispositivos distintos */
     cursor: pointer;
 }
 
-/* Da color a los spans de error y correcto en "crear cuenta" */
+/* <------------------------------ Da color a los spans de error y correcto en "crear cuenta" ------------------------------> */
+
 .error {
     color: #FF0000;
     font-size: 18px;
@@ -1724,7 +1765,8 @@ span {
     font-size: 15px;
 }
 
-/* Da color al mensaje de repeticion en "crear cuenta" */
+/* <------------------------------ Da color al mensaje de repeticion en "crear cuenta" ------------------------------> */
+
 #repPK{
     color: red;
     display: block;
@@ -1738,7 +1780,8 @@ span {
     margin-left: 10px;
 }
 
-/* Estilos para el formulario de creación de anuncios */
+/* <------------------------------ Estilos para el formulario de creación de anuncios ------------------------------> */
+
 .crear-anuncio {
     padding: 20px;
 }
@@ -1815,7 +1858,8 @@ span {
     background-color: #fff;
 }
 
-/* Estilos para el formulario de creación de noticias */
+/* <------------------------------ Estilos para el formulario de creación de noticias ------------------------------> */
+
 .crear-noticia {
     padding: 20px;
 }
@@ -1887,7 +1931,8 @@ span {
     background-color: #0056b3;
 }
 
-/* Estilos para el formulario Mi Perfil */
+/* <------------------------------ Estilos para el formulario Mi Perfil ------------------------------> */
+
 .mi-perfil-container {
     max-width: 400px;
     background-color: #fff;
@@ -2207,7 +2252,8 @@ span {
     }
 }
 
-/* Estilos del Carrito de Compra */
+/* <------------------------------ Estilos del Carrito de Compra ------------------------------> */
+
 .carrito-container {
     max-width: 600px;
     margin: 0 auto 30px;

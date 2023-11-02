@@ -53,7 +53,7 @@
                             $btnAnadirCarrito = '<button class="btn-anadir-carrito" name="btn-anadir-carrito" data-id="' . $id . '" data-foto="' . $foto . '" data-nombre="' . $nombre . '" data-descripcion="' . $descripcion . '" data-precio="' . $precio . '">Añadir al Carrito</button>';
                         }
                     } else {
-                        $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
+                        $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoFormularioInicioSession()">Añadir al Carrito</button>';
                     }
                 
                     echo '<h1>' . $nombre . '</h1>';

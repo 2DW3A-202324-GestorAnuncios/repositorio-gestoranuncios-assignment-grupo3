@@ -102,17 +102,15 @@
     <?php
         // Cargamos el header con sesion por que solo se puede acceder a esta pagina con la sesion iniciada
         include('header_sesion.php');
-
-        
         // Comprobamos que haya algo en mensaje_exiti, al no estar vacio muestra el mensaje consecuente
-        if (!empty($mensaje_exito)) {
-            echo '<div class="mensaje-exito">';
-                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
-            echo '</div>';
-        } else {
-        // Si el Mensaje error no esta vacio muestra el mensaje de error consecuente  elseif (!empty($mensaje_error)) {
+        if (!empty($mensaje_error)) {
+            // Si el Mensaje error no esta vacio muestra el mensaje de error consecuente  elseif (!empty($mensaje_error)) {
             echo '<div class="mensaje-error">';
                 echo '<p><strong>Error!</strong> ' . $mensaje_error . '</p>';
+            echo '</div>';
+        } else if(!empty($mensaje_exito)){
+            echo '<div class="mensaje-exito">';
+                echo '<p><strong>Éxito!</strong> ' . $mensaje_exito . '</p>';
             echo '</div>';
         }
     ?>

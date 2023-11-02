@@ -121,7 +121,7 @@
                     }
                 } else {
                     // Si no esta iniciada la sesion al darle al boton te habre el desplegable de inicio sesion
-                    $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoAndToggleDropdown()">Añadir al Carrito</button>';
+                    $btnAnadirCarrito = '<button type="button" name="btn-anadir-carrito" onclick="anadirCarritoFormularioInicioSession()">Añadir al Carrito</button>';
                 }
 
                 echo '<div class="producto">';

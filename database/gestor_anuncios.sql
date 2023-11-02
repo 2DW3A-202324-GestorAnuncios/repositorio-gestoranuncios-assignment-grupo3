@@ -70,7 +70,7 @@ CREATE TABLE `noticia` (
   `id_noticia` int(11) NOT NULL,
   `foto` varchar(250) NOT NULL,
   `titulo` varchar(250) NOT NULL,
-  `descripcion` varchar(300) NOT NULL,
+  `descripcion` varchar(1000) NOT NULL,
   `categoria` enum('deportes','economia','arte','tiempo') NOT NULL,
   `nombre_usuario` varchar(30) NOT NULL,
   `validado` enum('0','1') NOT NULL DEFAULT '0'
