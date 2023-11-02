@@ -406,7 +406,6 @@ header {
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    border-radius: 15px 15px 0 0;
 }
 
 /* <------------------------------ Media query para ajustar las imagenes del carrusel a la pagina ------------------------------> */
@@ -431,7 +430,6 @@ header {
         display: block;
         margin-right: auto;
         margin-left: auto;
-        border-radius: 15px 15px 0 0;
     }
 }
 
@@ -479,7 +477,6 @@ header {
     left: 0;
     right: 0;
     margin: auto;
-    border-radius: 0 0 15px 15px;
 }
 
 /* <------------------------------ Media query para ajustar el texto del carrusel a la pagina ------------------------------> */
@@ -501,7 +498,6 @@ header {
         height: 90px;
         max-height: 90px;
         min-height: 90px;
-        border-radius: 0 0 15px 15px;
     }
 }
 
