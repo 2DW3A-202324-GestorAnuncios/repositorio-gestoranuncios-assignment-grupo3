@@ -134,6 +134,10 @@ function actualizarCarrito() {
     const carritoContainer = document.getElementById("carrito-items");
     carritoContainer.innerHTML = "";
 
+    // Reiniciar los totales
+    let precioTotal = 0.0; // Inicializar como número de punto flotante
+    let totalProductos = 0;
+
     // Recrear la vista del carrito con los productos actualizados
     carrito.forEach(producto => {
         const itemContainer = document.createElement("div");
@@ -145,10 +149,12 @@ function actualizarCarrito() {
 
         const carritoContent = document.createElement("div");
         carritoContent.classList.add("carrito-content");
+        // Reemplazar el punto por coma en la representación del precio
+        const precioConComa = parseFloat(producto.precio).toFixed(2).replace(".", ",");
         carritoContent.innerHTML = `
             <p class="producto-nombre">${producto.nombre}</p>
             <p class="producto-descripcion">${producto.descripcion}</p>
-            <p class="producto-precio">${producto.precio}€</p>
+            <p>Precio: <span class="producto-precio">${precioConComa} €</span></p>
         `;
 
         const eliminarButton = document.createElement("button");
@@ -162,7 +168,21 @@ function actualizarCarrito() {
         itemContainer.appendChild(eliminarButton);
 
         carritoContainer.appendChild(itemContainer);
+
+        // Actualizar los totales
+        precioTotal += parseFloat(producto.precio); // Convertir a número de punto flotante
+        totalProductos++;
     });
+
+    // Reemplazar el punto por coma en la representación del precio total
+    const precioTotalConComa = precioTotal.toFixed(2).replace(".", ",");
+    
+    // Actualizar la interfaz con los totales
+    const totalPrecioElement = document.getElementById("total-precio");
+    const totalProductosElement = document.getElementById("total-productos");
+
+    totalPrecioElement.innerText = precioTotalConComa + " €";
+    totalProductosElement.innerText = totalProductos + " productos";
 
     if (carrito.length === 0) {
         // Si el carrito está vacío, muestra un mensaje
