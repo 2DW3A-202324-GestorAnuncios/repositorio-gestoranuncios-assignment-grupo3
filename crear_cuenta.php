@@ -12,9 +12,9 @@
 </head>
 <body>
     <?php
-        include('header_no_sesion.php');
-
         include("conexion.php");
+
+        include("header_no_sesion.php");
 
         $repeticionPK = ""; // Inicializa la variable de mensaje de error
 
@@ -24,12 +24,12 @@
             $c1 = $_POST['contraseña'];
             $c2 = $_POST['contraseña2'];
 
-            $sql = "SELECT nombre_usuario FROM usuario where nombre_usuario = '".$usu."'";
+            $sql = 'SELECT nombre_usuario FROM usuario where nombre_usuario = "' . $usu . '"';
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $sql2 = "SELECT correo FROM usuario where correo = '".$corr."'";
+            $sql2 = 'SELECT correo FROM usuario where correo = "' . $corr . '"';
             $stmt2 = $conn->prepare($sql2);
             $stmt2->execute();
             $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
@@ -47,7 +47,7 @@
                     $imagen = $_POST['imagen'];
 
                     // Inserta los datos en la tabla "usuario"
-                    $sql = "INSERT INTO usuario (nombre_usuario, nombre, apellido, fecha_nac, sexo, correo, password, foto) VALUES ('$usuario','$nombre','$apellido','$fecha','$genero','$email','$contraseña','$imagen')";
+                    $sql = 'INSERT INTO usuario (nombre_usuario, nombre, apellido, fecha_nac, sexo, correo, password, foto) VALUES ("$usuario","$nombre","$apellido","$fecha","$genero","$email","$contraseña","$imagen")';
                     $stmt = $conn->prepare($sql);
                     $stmt->execute();
                     $usuario_data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -63,87 +63,79 @@
             }
         }
     ?>
+
     <div class="form-crear-cuenta">
-        <img src="img/Logo_Inicio_Sesion.png" alt="logo" class="logo-inicio-sesion">
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" id="id-form">
-            <div class="crear-cuenta">
-                <div>
-                    <p>Nombre:</p>
-                    <input type="text" class="input-text" autofocus maxlength="15" name="nombre" id="nombre">
+        <h2>Crear Cuenta</h2>
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" id="id-form" class="crear-cuenta">
+            <div class="nombre-completo-container">
+                <div class="nombre-container">
+                    <input type="text" autofocus maxlength="15" name="nombre" id="nombre" placeholder="Nombre *">
                     <span class="error" id="error6" name="error6"></span>
                 </div>
-                <div>
-                    <p>Apellido:</p>
-                    <input type="text" class="input-text" maxlength="15" name="apellido" id="apellido">
+                <div class="apellido-container">
+                    <input type="text" maxlength="15" name="apellido" id="apellido" placeholder="Apellido *">
                     <span class="error" id="error7" name="error7"></span>
                 </div>
-                <div>
-                    <p>Usuario:</p>
-                    <input type="text" class="input-text" maxlength="15" name="usuario" id="usuario">
+            </div>
+            <div class="usuario-correo-container">
+                <div class="usuario-container">
+                    <input type="text" maxlength="15" name="usuario" id="usuario" placeholder="Usuario *">
                     <span class="error" id="error1" name="error1"></span>
                 </div>
-                <div>
-                    <p>Correo:</p>
-                    <input type="mail" class="input-text" name="email" id='email'>
+                <div class="correo-container">
+                    <input type="email" name="email" id="email" placeholder="Correo electrónico *">
                     <span class="error" id="error2" name="error2"></span>
                 </div>
-                <div>
-                    <p>Contraseña:</p>
-                    <input type="password"  class="input-text" name="contraseña" aria-laballedby="password" id="validar-contraseña">
+            </div>
+            <div class="contrasenas-container">
+                <div class="contrasena-container">
+                    <input type="password" name="contraseña" aria-labeledby="password" id="validar-contraseña" placeholder="Contraseña *">
                     <span class="error" id="error3" name="error3"></span>
-                    <div id="expresiones">
-                    </div>
+                    <div id="expresiones"></div>
                 </div>
-                <div>
-                    <p>Confirmar contraseña:</p>
-                    <input type="password" class="input-text" name="contraseña2" id="validar-contraseña2">
+                <div class="confirmar-contrasena-container">
+                    <input type="password" name="contraseña2" id="validar-contraseña2" placeholder="Confirmar la contraseña *">
                     <span class="error" id="error4" name="error4"></span>
                 </div>
-                <div>
-                    <p>Fecha de nacimiento:</p>
-                    <input type="date" class="input-text" name="fecha" id="fecha">
+            </div>
+            <div class="fecha-genero-container">
+                <div class="fecha-container">
+                    <label for="fecha">Fecha de nacimiento: *</label>
+                    <input type="date" name="fecha" id="fecha">
                     <span class="error" id="error8" name="error8"></span>
                 </div>
-                <div>
-                    <p>Genero:</p>
+                <div class="genero-container">
+                    <label>Género: *</label>
                     <div class="input-genero">
-                        <input type="radio" id="masculino" name="genero" value="masculino">
-                        <label for="html">Masculino</label><br>
-                        <input type="radio" id="femenino" name="genero" value="femenino">
-                        <label for="css">Femenino</label><br>
-                        <input type="radio" id="otros" name="genero" value="otros">
-                        <label for="css">Otros</label><br>
+                        <label class="genero-radio"><input type="radio" id="masculino" name="genero" value="masculino" class="genero-radio">Masculino</label>
+                        <label class="genero-radio"><input type="radio" id="femenino" name="genero" value="femenino" class="genero-radio">Femenino</label>
+                        <label class="genero-radio"><input type="radio" id="otros" name="genero" value="otros" class="genero-radio">Otros</label>
                     </div>
                     <span class="error" id="error9" name="error9"></span>
                 </div>
             </div>
-            <br>
-            <div id="imagen">
-                <p>Foto de perfil(opcional):</p>
-                <input type="file" accept="image/*" name="imagen">
-            </div><br><br>
-            <div class="terminos-crear-cuenta" >
-                <input id="terminos" type="checkbox" name="terminos" class="terminos-checkbox" id="terminos-crear-cuenta" name="terminos" id="terminos" >
-                <label class="terminos-checkbox" for="terminos-crear-cuenta">Acepto los terminos y condiciones</label><br>
+            <div class="imagen-container">
+                <label>Foto de perfil(opcional):</label>
+                <input type="file" name="imagen" accept="image/*">
+            </div>
+            <div class="terminos-crear-cuenta">
+                <label class="terminos-checkbox" for="terminos"><input id="terminos" type="checkbox" name="terminos" class="terminos-checkbox" id="terminos-crear-cuenta" name="terminos" id="terminos">Acepto los Términos y Condiciones *</label>
                 <span class="error" id="error5" name="error5"></span>
             </div>
-            <span id="repPK"><?php echo $repeticionPK ?></span>            
-            <div class="botones-crear-cuenta">
-                <input type="submit" value="Crear Cuenta" name="submit" class="boton" id="botonSubmit" onclick="validarCampos()">
-            </div>
+            <span id="repPK"><?php echo $repeticionPK ?></span>
+            <input type="submit" value="Crear Cuenta" name="submit" id="botonSubmit" onclick="validarCampos()">
         </form>
     </div>
-    
+
     <script>
         //para el reenvio del formulario al recargar la pagina
-        if ( window.history.replaceState ) {
-            window.history.replaceState( null, null, window.location.href );
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
         }
     </script>
-    <br>
-    <br>
+
     <?php             
-        include('footer.php');
+        include("footer.php");
     ?>
 </body>
 </html>

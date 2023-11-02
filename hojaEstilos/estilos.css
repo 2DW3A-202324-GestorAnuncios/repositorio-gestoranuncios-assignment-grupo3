@@ -1614,128 +1614,135 @@ anuncios del indice a dispositivos distintos */
     color: #007bff;
 }
 
-/* Estilos para la creacion de cuenta */
-/* Da forma al formulario en "crear cuenta" */
+/* Estilos para el formulario de creación de cuentas */
 .form-crear-cuenta {
-    width: 70%;
     max-width: 600px;
-    min-width: 400px;
-    background-color: white;
-    display: grid;
-    border-radius: 40px;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.7);
+    margin: 30px auto;
+    background-color: #f2f2f2;
     padding: 20px;
-    height: auto;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-/* Da forma al logo en "crear cuenta" */
-.logo-inicio-sesion {
-    height: 190px;
-    width: 160px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Da forma a la estructura de "crear cuenta" */
-.crear-cuenta {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 20px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Da forma a los inputs en "crear cuenta" */
-.input-text {
-    width: 100%;
-    border: 2px solid rgba( 0, 0, 0, 0.5);
     border-radius: 10px;
-    height: 30px;
-    font-size: 15px;
-    transition: 0.4s;
-}
-
-.input-text:hover {
-    border: 2px solid rgba( 0, 0, 0, 1);
-}
-
-/* Da forma a los botones en "crear cuenta" */
-.boton {
-    width: 125px;
-    height: 40px;
-    background-color: #007bff;
-    border-radius: 12px;
-    font-size: 17px;
-    border: 0px solid black;
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    transition: 0.4s;
-    color: white;
-}
-
-.boton:hover {
-    cursor: pointer;
-    background-color: #005b91;
-}
-
-.botones-crear-cuenta{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    margin-bottom: -20px;
+    flex-direction: column;
 }
 
-/* Da forma al checkbox en "crear cuenta" */
+.form-crear-cuenta h2 {
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.crear-cuenta > div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nombre-completo-container > div,
+.usuario-correo-container > div,
+.contrasenas-container > div,
+.fecha-genero-container > div {
+    width: 47%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.usuario-container {
+    width: 25% !important;
+}
+
+.correo-container {
+    width: 69% !important;
+}
+
+.nombre-container,
+.apellido-container,
+.usuario-container,
+.correo-container,
+.contrasena-container,
+.confirmar-contrasena-container,
+.fecha-container,
+.genero-container {
+    align-items: flex-start !important;
+}
+
+.nombre-container input[type='text'],
+.apellido-container input[type='text'],
+.usuario-container input[type='text'],
+.correo-container input[type='email'],
+.contrasena-container input[type='password'],
+.confirmar-contrasena-container input[type='password'],
+.fecha-container input[type='date'],
+.imagen-container input[type='file'] {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.imagen-container input[type='file'] {
+    background-color: #fff;
+    width: 70%;
+}
+
+.crear-cuenta input[name='submit'] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    margin: 0 auto;
+}
+
+.crear-cuenta input[name='submit']:hover {
+    background-color: #0056b3;
+}
+
+.fecha-container label,
+.genero-container label {
+    margin-bottom: 5px;
+}
+
 .terminos-crear-cuenta {
     font-size: 17px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100%;
+    margin-top: 10px;
 }
 
-.terminos-checkbox:hover {
+.terminos-checkbox:hover,
+.genero-radio:hover {
     cursor: pointer;
 }
 
-/* Da color a los spans de error y correcto en "crear cuenta" */
-.error {
-    color: #FF0000;
-    font-size: 18px;
-}
-
-.correcto{
-    color: #00cd0a;
-    font-size: 18px;
-}
-
-.form-crear-cuenta span {
-    font-size: 15px;
-}
-
-/* Da color al mensaje de repeticion en "crear cuenta" */
-#repPK{
+.crear-cuenta span {
     color: red;
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+#repPK {
     display: block;
     margin-left: 25px;
-    font-size: 15px;
 }
 
-.input-genero{
-    font-size: 18px;
-    margin-top: -8px;
-    margin-left: 10px;
+.crear-cuenta .input-genero {
+    display: flex;
+    flex-direction: row;
+}
+
+.crear-cuenta .input-genero label,
+.terminos-checkbox {
+    margin-right: 10px;
 }
 
 /* Estilos para el formulario de creación de anuncios */
