@@ -14,7 +14,7 @@
     $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1' ORDER BY id_anuncio DESC LIMIT 10";
     $resultProductos = $conn->query($sqlProductos);
 
-    $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' ORDER BY id_noticia DESC LIMIT 3";
+    $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' ORDER BY id_noticia DESC LIMIT 5";
     $resultNoticias = $conn->query($sqlNoticias);
 ?>
 
@@ -43,73 +43,106 @@
 
     <section id="ultimas-noticias" class="seccion-destacada">
         <h2 class="titulo-llamativo">¡Mantente al Día!</h2>
-        <div class="slideshow-container">
-            <?php
-                // cargamos las imagenes que se mostraran en el carrousel 
-                while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
+        <div class="carousel">
+            <div class="carousel__body">
+                <div class="carousel__slider">
+                <?php
+                    while ($row = $resultNoticias->fetch(PDO::FETCH_ASSOC)) {
                     // Verifica si la URL de la imagen es nula o vacía
-                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
-                    echo '<div class="mySlides fade">';
-                        echo '<a href="pagina_noticias.php?titulo='.urlencode($row['titulo']).'&foto='.urlencode($row['foto']).'&categoria='.urlencode($row['categoria']).'&descripcion='.urlencode($row['descripcion']).'"><img src="' . $imagenURL . '" style="width:100%"></a>';
-                        echo '<div class="text">' . $row['descripcion'] . '</div>';
+                    $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];                   
+                    echo '<div class="carousel__slider__item">';
+                        echo '<div class="item__3d-frame">';
+                            echo '<div class="item__3d-frame__box item__3d-frame__box--front">';
+                            echo '<div class="slideshow-container">';
+                                echo '<a href="pagina_noticias.php?titulo='.urlencode($row['titulo']).'&foto='.urlencode($row['foto']).'&categoria='.urlencode($row['categoria']).'&descripcion='.urlencode($row['descripcion']).'"><img src="' . $imagenURL . '" style="width:100%"></a>';
+                                echo '<div class="text">' . $row['descripcion'] . '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '<div class="item__3d-frame__box item__3d-frame__box--left"></div>';
+                            echo '<div class="item__3d-frame__box item__3d-frame__box--right"> </div>';
+                        echo '</div>';
                     echo '</div>';
-                }
-            ?>
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-
-        <div style="text-align:center">
-            <?php
-                // Generar puntos (indicadores) dinámicamente
-                for ($i = 1; $i <= $resultNoticias->rowCount(); $i++) {
-                    echo '<span class="dot" onclick="currentSlide(' . $i . ')"></span>';
-                }
-            ?>
+                    }
+                ?>
+                </div>
+                <div class="carousel__prev"><p>&#10094;</p></div>
+                <div class="carousel__next"><p>&#10095;</p></div>
+                
+            </div>
         </div>
 
         <script>
-            // creamos las funciones del carrousel para que se mueva de posicion 
-            let slideIndex = 1;
-            showSlides(slideIndex);
+            (function() {
+            "use strict";
 
-            function plusSlides(n) {
-                showSlides(slideIndex += n);
+            var carousel = document.getElementsByClassName('carousel')[0],
+                slider = carousel.getElementsByClassName('carousel__slider')[0],
+                items = carousel.getElementsByClassName('carousel__slider__item'),
+                prevBtn = carousel.getElementsByClassName('carousel__prev')[0],
+                nextBtn = carousel.getElementsByClassName('carousel__next')[0];
+            
+            var width, height, totalWidth, margin = 20,
+                currIndex = 0,
+                interval, intervalTime = 4000;
+            
+            function init() {
+                resize();
+                move(Math.floor(items.length / 2));
+                bindEvents();
+                
+                timer();
             }
-
-            function currentSlide(n) {
-                showSlides(slideIndex = n);
+            function resize() {
+                width = Math.max(window.innerWidth * .25, 275),
+                height = window.innerHeight * .5,
+                totalWidth = width * items.length;
+                slider.style.width = totalWidth+"px";
+                for(var i = 0; i < items.length; i++) {
+                    let item = items[i];
+                    item.style.width = (width - (margin * 2)) + "px";
+                    item.style.height = height + "px";
+                }
             }
-
-            // Creamos la funcion que muestra la imagen segun la posicion en la que esta 
-            function showSlides(n) {
-                let i;
-                let slides = document.getElementsByClassName("mySlides");
-                let dots = document.getElementsByClassName("dot");
-                if (n > slides.length) {
-                    slideIndex = 1;
+            function move(index) {
+                if(index < 1) index = items.length;
+                if(index > items.length) index = 1;
+                currIndex = index;
+                
+                for(var i = 0; i < items.length; i++) {
+                    let item = items[i],
+                        box = item.getElementsByClassName('item__3d-frame')[0];
+                    if(i == (index - 1)) {
+                        item.classList.add('carousel__slider__item--active');
+                        box.style.transform = "perspective(1200px)"; 
+                    } else {
+                        item.classList.remove('carousel__slider__item--active');
+                        box.style.transform = "perspective(1200px) rotateY(" + (i < (index - 1) ? 40 : -40) + "deg)";
+                    }
                 }
-                if (n < 1) {
-                    slideIndex = slides.length;
-                }
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-                for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                }
-                slides[slideIndex - 1].style.display = "block";
-                dots[slideIndex - 1].className += " active";
+                slider.style.transform = "translate3d(" + ((index * -width ) -25 +  (width / 2) + window.innerWidth / 2) + "px, 0, 0)";
             }
-
-            // Añade esta función para cambiar de diapositiva cada 10 segundos
-            function autoSlide() {
-                plusSlides(1);
+            function timer() {
+                clearInterval(interval);    
+                interval = setInterval(() => {
+                    move(++currIndex);
+                }, intervalTime);    
             }
-
-            // Llama a autoSlide cada 10 segundos (10000 milisegundos)
-            setInterval(autoSlide, 10000);
-        </script>
+            function prev() {
+                move(--currIndex);
+                timer();
+            }
+            function next() {
+                move(++currIndex);    
+                timer();
+            }
+            function bindEvents() {
+                window.onresize = resize;
+                prevBtn.addEventListener('click', () => { prev(); });
+                nextBtn.addEventListener('click', () => { next(); });    
+            }
+            init();
+        })();
+    </script>
 
         <a href="noticia.php"><button id="ver-mas-noticias" class="ver-mas-button">Ver Más Noticias</button></a>
     </section>
@@ -152,6 +185,7 @@
     </section>
 
     <script>
+
         const btnAnadirCarrito = document.getElementsByClassName('btn-anadir-carrito');
 
         // Recorre los botones y deshabilita los que estén en el carrito
@@ -198,7 +232,13 @@
                 numeroCarrito.innerText = parseInt(numeroCarrito.innerText) + 1;
             });
         }
+
+
+
+            
     </script>
+
+    
     
     <!-- Incluimos el footer en la pagina -->
     <?php

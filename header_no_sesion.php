@@ -65,9 +65,8 @@
 ?>
 
 <header>
-    <a href="index.php">
+    <a class="link-logo" href="index.php">
         <img src="img/Logo_Home3.png" alt="Inicio" height="80px" id="logo">
-        <img src="img/logotxur.png" alt="Inicio" height="90px" id="logo2">
 
     </a>
     <div id="buttons-container">
@@ -112,18 +111,7 @@
     </ul>
 </div>
 
-<nav>
-    <ul class="navdesp">
-        <li><img class="despImg" src="img/desplegable.png" alt="">
-            <ul class="coloresDesp">
-                <li class="menu-item"><a href="index.php">Inicio</a></li>
-                <li class="menu-item"><a href="noticia.php">Noticias</a></li>
-                <li class="menu-item"><a href="anuncio.php">Anuncios</a></li>
-                <li class="menu-item"><a href="contacto.php">Contacto</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
+
 
 <script>
     // Verifica si hay un mensaje de error y lo muestra si es necesario
