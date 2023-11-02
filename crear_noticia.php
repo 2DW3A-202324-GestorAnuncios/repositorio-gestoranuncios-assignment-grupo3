@@ -49,6 +49,8 @@
                 $mensaje_error = "Debes introducir el título de la noticia.";
             } else if (empty($descNoticia)) {
                 $mensaje_error = "Debes introducir la descripción de la noticia.";
+            }else if (strlen($descNoticia) > 1000) {
+                $mensaje_error = "La descripción de la noticia no puede superar los 1000 caracteres";
             } else if (empty($fotoNoticia)) {
                 $mensaje_error = "Debes introducir una foto.";
             } else if (move_uploaded_file($foto_temp, $directorio_destino)) {

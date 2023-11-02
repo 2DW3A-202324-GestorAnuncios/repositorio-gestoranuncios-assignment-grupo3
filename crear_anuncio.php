@@ -44,6 +44,8 @@
             $fotoAnuncio = $_FILES['imagen']['name'];
             $foto_temp = $_FILES['imagen']['tmp_name'];
 
+            
+
             $directorio_destino = 'img/anuncios/' . $fotoAnuncio;
 
             // Comprobamos que los campos no esten vacios para poder subirlo a la base de datos
@@ -53,6 +55,10 @@
                 $mensaje_error = "Debes introducir un título del anuncio.";
             } else if (empty($descAnuncio)) {
                 $mensaje_error = "Debes introducir una descripción del anuncio.";
+            }else if ($precAnuncio < -1) {
+                $mensaje_error = "Debes introducir un precio igual o superior a 0 ";
+            } else if ($precAnuncio > 10000) {
+                $mensaje_error = "Debes introducir un precio menor a 9999 ";
             } else {
                 // Comprobamos que haya alguna foto en el input
                 if (!empty($fotoAnuncio)) {
@@ -116,7 +122,7 @@
                 <input type="file" id="imagen" name="imagen" accept="image/*">
 
                 <label for="precio">Precio (€):</label>
-                <input type="number" id="precio" name="precio" placeholder="0" min="0">
+                <input type="number" id="precio" name="precio" min="0" max="10000">
                 <button type="submit">Crear Anuncio</button>
             </form>
         </div>
