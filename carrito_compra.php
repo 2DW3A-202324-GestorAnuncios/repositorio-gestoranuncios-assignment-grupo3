@@ -16,18 +16,16 @@
     <title>Carrito de Compra - CIFP Txurdinaga</title>
 </head>
 <body onload="actualizarCarrito()">
-    <!-- Incluimos el header con la sesion por que solo se puede hacceder con la sesion iniciada -->
     <?php
         include('header_sesion.php');
     ?>
-
+    
     <div class="carrito-container">
         <h2>Carrito de Compra</h2>
         <div id="carrito-items"></div>
         <p class="subtotal-carrito">Subtotal (<span id="total-productos">0 productos</span>): <span id="total-precio">0 €</span></p>
     </div>
-    
-    <!-- Incluimos el footer -->
+
     <?php
         include('footer.php');
     ?>

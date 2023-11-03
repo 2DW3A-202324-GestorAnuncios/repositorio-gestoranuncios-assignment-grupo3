@@ -1,17 +1,13 @@
-<?php   
-    // Incluimos la conexion a a base de datos 
+<?php     
     include("conexion.php");
     
     // Inicia la sesión en la página
     session_start();
 
-    // Metemos el contenido de la sesion en la variavle que acabamos de crear 
     $nombre_usuario = $_SESSION['usuarioLogin'];
 
-    // Creamos una variable vacia de "mensaje_info" en el que meteremos el mensaje que queramos
     $mensaje_info = "";
 
-    // Seleccionamos las noticias y los anuncios que ha echo el usuario con la sesion iniciada 
     $sqlNoticias = "SELECT * FROM noticia WHERE validado = '1' AND nombre_usuario = :nombre_usuario";
     $stmtNoticias = $conn->prepare($sqlNoticias);
     $stmtNoticias->bindValue(':nombre_usuario', $nombre_usuario, PDO::PARAM_STR);
@@ -43,9 +39,7 @@
     <title>Mis Publicaciones - CIFP Txurdinaga</title>
 </head>
 <body>
-    <!-- Cargamos el header dependiendo de si la sesion esta iniciada utilizando php -->
     <?php
-        // Comprobamos que la session este iniciada y que no este vacia
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
         } else {
@@ -69,7 +63,6 @@
 
     <div class="productos">
         <?php
-        // Cargamos los anuncios del usuario
             while ($row = $stmtAnuncios->fetch(PDO::FETCH_ASSOC)) {
                 $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['nombre_anuncio']);
                 $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/anuncios/' . $row['foto'];
@@ -89,7 +82,6 @@
     
     <div class="productos">
         <?php
-            // Cargamos las noticias del usuario usuario
             while ($row = $stmtNoticias->fetch(PDO::FETCH_ASSOC)) {
                 $imagenAlt = empty($row['foto']) ? 'Sin Foto' : ucfirst($row['titulo']);
                 $imagenURL = empty($row['foto']) ? 'img/sin-foto.jpg' : 'img/noticias/' . $row['foto'];
@@ -106,7 +98,6 @@
         ?>
     </div>
 
-    <!-- Incluimos el php que contiene el footer -->
     <?php
         include('footer.php');
     ?>

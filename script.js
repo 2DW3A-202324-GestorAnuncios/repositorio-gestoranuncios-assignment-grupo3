@@ -1,15 +1,16 @@
-// Creamos la funcion para validar el formulario de registro
 function validarCampos() {
-    // Creamos una variable llamada "errorNum" que aumentara si hay errores
-    var errorNum = 0;
+    var num = 0;
 
-    //Creamos una funcion interna que muestra el mensaje debajo de cada elemento y incrementamos la variable "errorNum"
     function showError(element, message) {
         element.innerText = message;
-        errorNum++;
+        num++;
     }
 
-    // Utilizamos variables que hacen referencias a los elementos del formulario
+    function clearError(element) {
+        element.innerText = "";
+    }
+
+    // Obtener referencias a los elementos del formulario
     var nombre = document.getElementById('nombre');
     var apellido = document.getElementById('apellido');
     var contrasena = document.getElementById('validar-contraseña');
@@ -47,7 +48,7 @@ function validarCampos() {
         showError(document.getElementById('error3'), "Tu contraseña debe tener al menos una letra mayúscula");
     }
 
-    // Confirmar segunda contraseña
+    // Confirmar contraseña
     if (contrasena.value !== contrasena2.value) {
         showError(document.getElementById('error4'), "Las contraseñas deben coincidir");
     }
@@ -78,18 +79,29 @@ function validarCampos() {
         break;
         }
     }
-    // Validar género vacio
     if (!generoChecked) {
         showError(document.getElementById('error9'), "Selecciona tu género");
     }
 
-    // Creamos otra funcion interna que elimina el mensaje de error
     function clearError(element) {
         element.innerText = "";
     }
+
+    // Validar términos y condiciones
+    if (!terminos.checked) {
+        showError(document.getElementById('error5'), "Debes aceptar los términos y condiciones");
+    }
+
+    // Comprobar si hay errores y cambiar el tipo del botón
+    var botonSubmit = document.getElementById('botonSubmit');
+    if (num !== 0) {
+        botonSubmit.type = "button";
+    } else {
+        botonSubmit.type = "submit";
+    }
 }
 
-// Funcion para mostrar el desplegable del Login
+// Funciones del Login
 function formularioInicioSession() {
     var formSesion = document.getElementById("form-inicio-sesion");
 
@@ -100,16 +112,14 @@ function formularioInicioSession() {
     }
 }
 
-// Funcion que al no estar con la session iniciada saca el "formularioInicioSession" cuando se hace click en el boton de añadir carrito
 function anadirCarritoFormularioInicioSession() {
-    // Llama a la función toggleDropdown() directamente
+    // Llama a la función formularioInicioSession() directamente
     formularioInicioSession();
 
     // Desplázate hacia la parte superior de la página
     window.scrollTo(0, 0);
 }
 
-// Funcion que muestra el error en el formulario de inicio sesion
 function mostrarError(mensaje) {
     var mensajeError = document.getElementById("mensaje-error-login");
 
@@ -160,7 +170,7 @@ function actualizarCarrito() {
         const eliminarButton = document.createElement("button");
         eliminarButton.classList.add("eliminar-button");
         eliminarButton.setAttribute("data-id", producto.id);
-        eliminarButton.innerHTML = '<img src="img/papelera.png" alt="Eliminar" width="40px" heigth="40px">';
+        eliminarButton.innerHTML = '<img src="img/papelera.png" alt="Eliminar" width="40px" height="40px">';
         eliminarButton.addEventListener('click', () => eliminarProducto(producto.id));
 
         itemContainer.appendChild(fotoCarrito);

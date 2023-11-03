@@ -1,11 +1,9 @@
 <?php
-    // Incluimos la conexion
     include("conexion.php");
     
     // Inicia la sesión en la página
     session_start();
 
-    // Recogemos los datos y los metemos en las variables 
     $id = $_GET['id'];
     $nombre = ucfirst($_GET['nombre']);
     $foto = $_GET['foto'];
@@ -26,9 +24,7 @@
     <title><?php echo $nombre ?> - CIFP Txurdinaga</title>
 </head>
 <body>
-    <!-- Cargamos el header dependiendo de si la sesion esta iniciada utilizando php -->
     <?php
-        // Comprobamos que la session este iniciada y que no este vacia
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
         } else {
@@ -38,13 +34,11 @@
 
     <div class="ver-anuncio">
         <?php
-            // Cargamos el anuncio con sus datos correspondientes 
             echo '<div>';
                 echo '<div class="ver-anuncio-img">';
                     echo '<img src="img/anuncios/' . $foto . '" height="100%" width="100%">';
                 echo '</div>';
                 echo '<div class="ver-anuncio-contenido">';
-                    // Comprobamos la sesion para ver si no es administrador y mostrar o no el boton
                     $admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
                     if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
                         if ($admin == 1) {
@@ -73,7 +67,6 @@
             const idAnuncio = btn.getAttribute('data-id');
             const estaEnCarrito = carrito.some(item => item.id === idAnuncio);
 
-            // Comprobamos que el anuncio este ya en el localstorage para desavilitar el boton 
             if (estaEnCarrito) {
                 btn.disabled = true;
                 btn.style.backgroundColor = '#ccc';
@@ -113,7 +106,6 @@
         }
     </script>
     
-    <!-- Incluimos el footer  -->
     <?php
         include('footer.php');
     ?>

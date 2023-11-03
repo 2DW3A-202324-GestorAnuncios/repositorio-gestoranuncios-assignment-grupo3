@@ -17,9 +17,7 @@
     <title>Crear Noticia - CIFP Txurdinaga</title>
 </head>
 <body>
-    <!-- Cargamos el header dependiendo de si la sesion esta iniciada utilizando php -->
     <?php
-        // Comprobamos que la session este iniciada y que no este vacia
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
         } else {
@@ -49,8 +47,6 @@
                 $mensaje_error = "Debes introducir el título de la noticia.";
             } else if (empty($descNoticia)) {
                 $mensaje_error = "Debes introducir la descripción de la noticia.";
-            }else if (strlen($descNoticia) > 1000) {
-                $mensaje_error = "La descripción de la noticia no puede superar los 1000 caracteres";
             } else if (empty($fotoNoticia)) {
                 $mensaje_error = "Debes introducir una foto.";
             } else if (move_uploaded_file($foto_temp, $directorio_destino)) {
@@ -103,7 +99,6 @@
         </form>
     </section>
 
-    <!-- Incluimos el footer mediante php -->
     <?php
         include('footer.php');
     ?>

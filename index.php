@@ -1,5 +1,4 @@
 <?php
-    // Incluimos la conexion 
     include("conexion.php");
     
     // Inicia la sesión en la página
@@ -10,7 +9,6 @@
         $_SESSION['carrito'] = array();
     }
 
-    // Hacemos el select de anuncios y de noticias cuando esten validadas 
     $sqlProductos = "SELECT * FROM anuncio WHERE validado = '1' ORDER BY id_anuncio DESC LIMIT 10";
     $resultProductos = $conn->query($sqlProductos);
 
@@ -31,9 +29,7 @@
     <title>Inicio - CIFP Txurdinaga</title>
 </head>
 <body>
-    <!-- Cargamos el header dependiendo de si la sesion esta iniciada utilizando php -->
     <?php
-        // Comprobamos que la session este iniciada y que no este vacia
         if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
             include('header_sesion.php');
         } else {
@@ -193,7 +189,6 @@
             const idAnuncio = btn.getAttribute('data-id');
             const estaEnCarrito = carrito.some(item => item.id === idAnuncio);
 
-            // Comprobamos haber si el objeto esta en el carrito, y si esta desavilitamos el boton
             if (estaEnCarrito) {
                 btn.disabled = true;
                 btn.style.backgroundColor = '#ccc';
@@ -201,7 +196,6 @@
                 btn.style.cursor = 'not-allowed';
             }
 
-            // Recogemos los datos de el anuncio especifico para posteriormente meterlos en el localstorage
             btn.addEventListener('click', (e) => {
                 const fotoAnuncio = e.currentTarget.getAttribute('data-foto');
                 const nombreAnuncio = e.currentTarget.getAttribute('data-nombre');
@@ -240,7 +234,6 @@
 
     
     
-    <!-- Incluimos el footer en la pagina -->
     <?php
         include('footer.php');
     ?>

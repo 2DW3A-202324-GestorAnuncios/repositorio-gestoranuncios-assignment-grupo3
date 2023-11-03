@@ -1,6 +1,5 @@
 <?php
-    // Incluye el archivo de conexión a la base de datos
-    include("conexion.php"); 
+    include("conexion.php"); // Incluye el archivo de conexión a la base de datos
 
     // Inicializa la variable de error como vacía
     $mensaje_error = '';

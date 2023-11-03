@@ -27,23 +27,23 @@
                 echo '</a>';
                 
                 // Agrega un elemento div con el ID 'numero-carrito' para mostrar la longitud del carrito
-                echo'<div class="numero-carrito">';
-                echo '<h1 id="numero-carrito"></h1>';
+                echo '<div class="numero-carrito">';
+                	echo '<h1 id="numero-carrito"></h1>';
+                echo '</div>';
+                
                 echo '<script>
                     const usuario = "' . $_SESSION['usuarioLogin'] . '";
                     
-                    let carrito = JSON.parse(localStorage.getItem("carrito-" + usuario)) || [];
+                    let carrito = JSON.parse(localStorage.getItem("carrito => " + usuario)) || [];
                     let carritoLength = carrito.length;
                     
                     document.getElementById("numero-carrito").innerText = carritoLength;
                 </script>';
             }
         ?>
-
-        
     </div>
 </header>
-<!-- Dos tipos de menus de opciones para cuando se hacen las medias queris -->
+
 <div id="pro-menu-principal" class="pro-menu">
     <ul id="menu-principal" class="pro-menu-list">
         <li class="menu-item"><a href="index.php">Inicio</a></li>

@@ -11,8 +11,7 @@
 }
 
 html, body {
-	
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2f3539",endColorstr="#1e272e",GradientType=1);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = "#2f3539", endColorstr = "#1e272e",GradientType=1);
 }
 
 html {
@@ -75,8 +74,7 @@ div {
     justify-content: center;
 }
 
-/* <------------------------------ Estilos para el encabezado ------------------------------> */ 
-
+/* Estilos para el encabezado */
 header {
     display: flex;
     justify-content: space-between;
@@ -85,8 +83,7 @@ header {
     margin: 0;
 }
 
-/* <------------------------------ Estilos para los botones ------------------------------> */
-
+/* Estilos para los botones */
 #logo {
     margin-left: 25px;
 }
@@ -152,24 +149,7 @@ header {
     margin-right: 10px;
 }
 
-/* <------------------------------ Media query para hacer los botones del header mas pequeños ------------------------------> */
-
-@media only screen and (max-width: 670px) {
-    #logo2 {
-        visibility: hidden;
-    }
-
-    #logo {
-        position: absolute;
-        margin-top: 80px;
-        visibility: visible;
-        height: 90px;
-        width: auto;
-    }
-}
-
-/* <------------------------------ Estilos barra de navegación ------------------------------> */
-
+/* Estilos barra de navegación */
 #pro-menu-principal {
     padding-top: 4px;
     padding-bottom: 0px;
@@ -183,141 +163,11 @@ header {
     position: sticky;
 }
 
-/* <------------------------------ Esconde el desplegable ------------------------------> */
-
-.navdesp {
-    visibility: hidden;
-    height: 1px;
-    width: 1px;
-}
-
 .pro-menu-list {
     padding: 0;
     display: flex;
-    justify-content: space-around;
-}
-
-/* <------------------------------ Media query para la visualicacion del desplegable ------------------------------> */
-
-@media only screen and (max-width: 800px) {
-    /* <------------------------------ Esconde y minimiza la barra de navegacion ------------------------------> */
-
-    .pro-menu-list {
-        overflow: hidden;
-        background-color: #c6c6f6;
-        display: grid;
-        width: auto;
-        height: 1px;
-        width: 1px;
-        grid-template-rows: auto;
-        visibility: hidden;
-    }
-
-    /* <------------------------------ Ajusta la imagen del desplegable ------------------------------> */
-
-    .despImg {
-        height: 60px;
-        border: 3px solid rgba(0,0,0, 0.3);
-        border-radius: 15px;
-        margin-top: -50px;
-        margin-bottom: 20px;
-        margin-right: 30px;
-        transition: 0.3s;
-    }
-
-    .despImg:hover {
-        cursor: pointer;
-        border: 3px solid rgba(0, 0, 0, 1);
-    }
-
-    ul, ol {
-        list-style: none;
-    }
-
-    /* <------------------------------ Hace visible la imagen del desplegable ------------------------------> */
-    .navdesp {
-        margin-top: -30px;
-        height: auto;
-        visibility: visible;
-        padding-top: 30px;
-        width: auto; 
-    }
-
-    .navdesp > li {
-        float: right;
-    }
-
-    .navdesp li a {
-        color: white;
-        text-decoration: none;
-        display: block;
-        width: 150px;
-        text-align: center;
-        font-size: 20px;
-    }
-
-    .navdesp li ul {
-        margin-top: -25px;
-        display:none;
-        position:absolute;
-        z-index: 12121212;
-        width: 150px;
-        margin-left: -118px;
-    }
-    
-    .navdesp li:hover > ul {
-        display: block;
-    }
-    
-    .navdesp li ul li {
-        position: relative;
-    }
-    
-    .navdesp li ul li ul {
-        top: 0px;
-    }
-
-    /* <------------------------------ Asigna un color de fondo a cada apartado del desplegable ------------------------------> */
-
-    .coloresDesp li:first-child {
-        background-color: #57aa26;
-    }
-    
-    .coloresDesp li:first-child:hover {
-        background-color: #3d771b;
-    }
-
-    .coloresDesp li:nth-child(2) {
-        background-color: #1aa4c1;
-    }
-    
-    .coloresDesp li:nth-child(2):hover {
-        background-color: #106c7e;
-    }
-
-    .coloresDesp li:nth-child(3) {
-        background-color: #fcc204;
-    }
-    
-    .coloresDesp li:nth-child(3):hover {
-        background-color: #c09404;
-    }
-
-    .coloresDesp li:nth-child(4) {
-        background-color: #e95f15;
-    }
-    
-    .coloresDesp li:nth-child(4):hover {
-        background-color: #bb4d11;
-    }
-
-    .coloresDesp li:nth-child(5) {
-        background-color: #229c69;
-    }
-    
-    .coloresDesp li:nth-child(5):hover {
-        background-color: #19734e;
-    }
+    flex-wrap: wrap;
+    width: auto;
 }
 
 .pro-menu .pro-menu-list .menu-item {
@@ -328,8 +178,6 @@ header {
     width: auto;
     transition-property: background-color, color, border-color;
     min-width: 10%;
-
-
 }
 
 /* Media query para la visualicacion del desplegable */
@@ -389,8 +237,7 @@ header {
     text-decoration: none;
 }
 
-/* <------------------------------ Estilos Carrusel Noticias página principal ------------------------------> */
-
+/* Estilos Carrusel Noticias página principal */
 .mySlides {display: none}
 
 .slideshow-container {
@@ -406,62 +253,7 @@ header {
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    border-radius: 15px 15px 0 0;
-}
-
-/* <------------------------------ Media query para ajustar las imagenes del carrusel a la pagina ------------------------------> */
-
-@media screen and (max-width:800px) {
-    .slideshow-container {
-        min-width: 350px;
-        height: 380px;
-        margin: 0 auto;
-        overflow: hidden;
-        display: block;
-        margin-top: auto;
-        margin-bottom: auto;
-        position: relative;
-    }
-
-    .slideshow-container img {
-        min-width: 350px;
-        height: 290px;
-        border-radius: 15px;
-        position: absolute;
-        display: block;
-        margin-right: auto;
-        margin-left: auto;
-        border-radius: 15px 15px 0 0;
-    }
-}
-
-.prev,
-.next {
-    cursor: pointer;
-    position: absolute;
-    top: 40%;
-    width: auto;
-    padding: 30px;
-    margin-top: -22px;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    transition: 0.6s ease;
-    user-select: none;
-}
-
-.next {
-    right: 0;
-    border-radius: 7px 0 0 7px;
-}
-.prev{
-    left: 0;
-    border-radius: 0 7px 7px 0;
-}
-
-.prev:hover,
-.next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    object-fit: cover;
 }
 
 .text {
@@ -479,30 +271,6 @@ header {
     left: 0;
     right: 0;
     margin: auto;
-    border-radius: 0 0 15px 15px;
-}
-
-/* <------------------------------ Media query para ajustar el texto del carrusel a la pagina ------------------------------> */
-
-@media screen and (max-width:1000px) {
-    .text {
-        color: white;
-        font-size: 20px;
-        padding: 8px 12px;
-        max-width: auto;
-        min-width: 300px;
-        text-align: center;
-        background-color: rgba(51, 51, 51, 0.8);
-        font-style: italic;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        height: 90px;
-        max-height: 90px;
-        min-height: 90px;
-        border-radius: 0 0 15px 15px;
-    }
 }
 
 .dot {
@@ -530,14 +298,13 @@ header {
 @keyframes fade {
     from {
         opacity: 0.1;
-      }
-      to {
-        opacity: 1;
-      }
+    }
+    to {
+    opacity: 1;
+    }
 }
 
-/* <------------------------------ Estilos para las secciones destacadas ------------------------------> */
-
+/* Estilos para las secciones destacadas */
 .seccion-destacada {
     box-sizing: border-box;
     margin-top: 20px;
@@ -548,8 +315,7 @@ header {
     margin-bottom: 20px;
 }
 
-/* <------------------------------ Estilos para el título llamativo ------------------------------> */
-
+/* Estilos para el título llamativo */
 .titulo-llamativo {
     font-size: 36px;
     color: #0077b6;
@@ -558,8 +324,7 @@ header {
     border-bottom: 2px solid #0077b6;
 }
 
-/* <------------------------------ Estilos para el botón "Explorar Más" ------------------------------> */
-
+/* Estilos para el botón "Explorar Más" */
 #ver-mas-noticias,
 #ver-mas-anuncios {
     background-color: #0077b6;
@@ -578,8 +343,7 @@ header {
     background-color: #005b91;
 }
 
-/* <------------------------------ Estilos para los productos ------------------------------> */
-
+/* Estilos para los productos */
 .productos-anuncios-inicio {
     display: flex;
     justify-content: flex-start;
@@ -614,8 +378,8 @@ header {
     background: #006094;
 }
 
-/* <------------------------------ Media queries para ajustar el apartado de anuncios del indice a dispositivos distintos ------------------------------> */
-
+/* Media queries para ajustar el apartado de
+anuncios del indice a dispositivos distintos */
 @media only screen and (max-width: 1500px) and (min-width: 1101px) {
     .productos-anuncios-inicio {
         gap: 20px;
@@ -674,16 +438,14 @@ header {
     }
 }
 
-/* <------------------------------ Ajusta el tamaño de las imagenes del deslizable ------------------------------> */
-
+/* Ajusta el tamaño de las imagenes del deslizable */
 .productos-slide-anuncios img {
     max-width: 100%;
     height: 300px;
     margin-bottom: 10px;
 }
 
-/* <------------------------------ Estilo para los textos del deslizable ------------------------------> */
-
+/* Estilo para los textos del deslizable */
 .productos-slide-anuncios h2 {
     font-size: 18px;
     margin: 10px 0;
@@ -698,8 +460,7 @@ header {
     text-transform: uppercase;
 }
 
-/* <------------------------------ Estilo para la sección de productos ------------------------------> */
-
+/* Estilo para la sección de productos */
 .productos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -870,8 +631,7 @@ header {
     border-bottom: 2px solid #ddd;
 }
 
-/* <------------------------------ Ajusta el tamaño de las fotos en los anuncios ------------------------------> */
-
+/* Ajusta el tamaño de las fotos en los anuncios */
 .imagen-producto img {
     max-width: 100%;
     height: 100%;
@@ -907,13 +667,16 @@ header {
     width: 100%;
     font-size: 18px;
     transition: opacity 0.3s ease-in-out;
-    margin-bottom: 20px;
 }
 
 .productos-slide-anuncios button[name='btn-anadir-carrito']:hover,
 .producto button[name='btn-anadir-carrito']:hover,
 .ver-anuncio button[name='btn-anadir-carrito']:hover {
     opacity: 0.7;
+}
+
+.ver-anuncio button[name='btn-anadir-carrito'] {
+    margin-bottom: 20px;
 }
 
 .btn-container {
@@ -986,8 +749,7 @@ header {
     padding: 8px 14px;
 }
 
-/* <------------------------------ PAGINA DE NOTICIAS (NOTICIA.PHP) ------------------------------> */
-
+/* PAGINA DE NOTICIAS (NOTICIA.PHP) */
 .container {
     display: flex;
     max-width: 100%;
@@ -1085,8 +847,7 @@ header {
     border-color: #000000;
 }
 
-/* <------------------------------ Da forma al container de noticias ------------------------------> */
-
+/* Da forma al container de noticias */
 .noticias3 {
     width: 100%;
     padding: 20px;
@@ -1099,7 +860,7 @@ header {
     justify-content: center;
 }
 
-/* <------------------------------ Estilos para las noticias ------------------------------> */
+/* Estilos para las noticias */
 .noticias-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1166,8 +927,7 @@ header {
     margin-top: 10px;
 }
 
-/* <------------------------------ Asignar categoría a noticias específicas ------------------------------> */
-
+/* Asignar categoría a noticias específicas */
 .categoria-deportes {
     background-color: #a6d789;
 }
@@ -1218,8 +978,7 @@ header {
     line-height: 1.5;
 }
 
-/* <------------------------------ Estilos para la sección de contacto ------------------------------> */
-
+/* Estilos para la sección de contacto */
 .nuestroContacto .informacion-contacto {
     margin-bottom: 20px;
 }
@@ -1273,8 +1032,7 @@ header {
     font-weight: bold;
 }
 
-/* <------------------------------ Estilos para el footer ------------------------------> */
-
+/* Estilos para el footer */
 #footer {
     background-color: #ffffff;
     border-top-color: #eee;
@@ -1332,8 +1090,7 @@ header {
     width: 40%;
 }
 
-/* <------------------------------ Estilo para el primer texto de ubicación (verde) ------------------------------> */
-
+/* Estilo para el primer texto de ubicación (verde) */
 #ubicacion-green-text {
     color: #229c6a;
     font-family: 'PT Sans Narrow';
@@ -1341,8 +1098,7 @@ header {
     font-size: 1em;
 }
 
-/* <------------------------------ Estilo para el segundo texto de ubicación (amarillo) ------------------------------> */
-
+/* Estilo para el segundo texto de ubicación (amarillo) */
 #ubicacion-yellow-text {
     color: #fcc204;
     font-weight: 800;
@@ -1350,22 +1106,21 @@ header {
     font-size: 1em;
 }
 
-/* <------------------------------ Estilo para el texto de teléfono (azul clarito) ------------------------------> */
-
+/* Estilo para el texto de teléfono (azul clarito) */
 #contacto-blue-text {
     color: rgba(26, 164, 193, 0.7);
     font-weight: 800;
     font-size: 1em;
 }
 
-/* <------------------------------ Estilo para el texto de correo con fondo morado ------------------------------> */
+/* Estilo para el texto de correo con fondo morado */
 #contacto-purple-text {
     color: #60227a;
     font-weight: 800;
     font-size: 1em;
 }
 
-/* <------------------------------ Estilos para la parte central del footer ------------------------------>*/
+/* Estilos para la parte central del footer */
 #footer-center {
     width: 25%;
 }
@@ -1415,29 +1170,25 @@ header {
     background-color: #007bb6 !important;
 }
 
-/* <------------------------------ Estilo para el primer texto en el centro (fucsia) ------------------------------> */
-
+/* Estilo para el primer texto en el centro (fucsia) */
 #text-pink {
     margin-top: 50px;
     color: #da0067;
 }
 
-/* <------------------------------ Estilo para el segundo texto en el centro (amarillo) ------------------------------> */
-
+/* Estilo para el segundo texto en el centro (amarillo) */
 #text-yellow {
     margin-top: 0px;
     color: #fcc204;
 }
 
-/* <------------------------------ Estilo para el tercer texto en el centro (azul) ------------------------------> */
-
+/* Estilo para el tercer texto en el centro (azul) */
 #text-blue {
     margin-top: 0px;
     color: rgba(26, 164, 193, 0.7);
 }
 
-/* <------------------------------ Estilo para el cuarto texto en el centro (verde) ------------------------------> */
-
+/* Estilo para el cuarto texto en el centro (verde) */
 #text-green {
     margin-top: 0px;
     color: #57aa26;
@@ -1452,16 +1203,14 @@ header {
     font-size: 1em;
 }
 
-/* <----------------------------- Estilos para los fondos negros ------------------------------> */
-
+/* Estilos para los fondos negros */
 .black-bg {
     background-color: black;
     padding: 0px 10px;
     margin-bottom: 10px;
 }
 
-/* <------------------------------ Estilos para la parte derecha del footer ------------------------------> */
-
+/* Estilos para la parte derecha del footer */
 #footer-right {
     width: 45%;
     flex-direction: column;
@@ -1582,7 +1331,7 @@ header {
     }
 }
 
-/* <------------------------------ Hace visible el pop-up de "inciar sesion" ------------------------------> */
+/* Hace visible el pop-up de "inciar sesion" */
 #iniciar-sesion-dropdown {
     position: relative;
 }
@@ -1679,9 +1428,7 @@ header {
     color: #007bff;
 }
 
-/* <------------------------------ Estilos para la creacion de cuenta ------------------------------> */
-/* <------------------------------ Da forma al formulario en "crear cuenta" ------------------------------> */
-
+/* Estilos para el formulario de creación de cuentas */
 .form-crear-cuenta {
     max-width: 600px;
     margin: 30px auto;
@@ -1778,8 +1525,6 @@ header {
     margin-bottom: 5px;
 }
 
-/* <------------------------------ Da forma al checkbox en "crear cuenta" ------------------------------> */
-
 .terminos-crear-cuenta {
     font-size: 17px;
     flex-direction: column !important;
@@ -1793,25 +1538,7 @@ header {
     cursor: pointer;
 }
 
-/* <------------------------------ Da color a los spans de error y correcto en "crear cuenta" ------------------------------> */
-
-.error {
-    color: #FF0000;
-    font-size: 18px;
-}
-
-.correcto{
-    color: #00cd0a;
-    font-size: 18px;
-}
-
-span {
-    font-size: 15px;
-}
-
-/* <------------------------------ Da color al mensaje de repeticion en "crear cuenta" ------------------------------> */
-
-#repPK{
+.crear-cuenta span {
     color: red;
     font-size: 18px;
     margin: 0 0 10px;
@@ -1832,8 +1559,7 @@ span {
     margin-right: 10px;
 }
 
-/* <------------------------------ Estilos para el formulario de creación de anuncios ------------------------------> */
-
+/* Estilos para el formulario de creación de anuncios */
 .crear-anuncio {
     padding: 20px;
 }
@@ -1910,8 +1636,7 @@ span {
     background-color: #fff;
 }
 
-/* <------------------------------ Estilos para el formulario de creación de noticias ------------------------------> */
-
+/* Estilos para el formulario de creación de noticias */
 .crear-noticia {
     padding: 20px;
 }
@@ -1983,8 +1708,7 @@ span {
     background-color: #0056b3;
 }
 
-/* <------------------------------ Estilos para el formulario Mi Perfil ------------------------------> */
-
+/* Estilos para el formulario Mi Perfil */
 .mi-perfil-container {
     max-width: 400px;
     background-color: #fff;
@@ -2021,6 +1745,8 @@ span {
     background-color: #1aa5c1b2;
 }
 
+.mi-perfil-container button[name='editar'],
+.mi-perfil-container button[name='cerrar-sesion'],
 .mi-perfil-container button[name='guardar'],
 .mi-perfil-container button[name='cancelar'] {
     display: inline-block;
@@ -2039,10 +1765,7 @@ span {
     transition: background-color 0.3s ease-in-out;
 }
 
-.mi-perfil-container button[name='cancelar'] {
-    float: right;
-}
-
+.mi-perfil-container button[name='cancelar'],
 .mi-perfil-container button[name='cerrar-sesion'] {
     margin-left: 30px;
 }
@@ -2073,6 +1796,96 @@ span {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+}
+
+/* Estilo para el botón "Cambiar Contraseña" */
+.cambiar-contrasena-btn {
+    cursor: pointer;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #000;
+    transition: transform 0.3s ease, border-width 0.3s ease;
+}
+
+.cambiar-contrasena-btn i {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.cambiar-contrasena-btn.active i {
+    transform: rotate(180deg);
+}
+
+/* Agregar estilo al pasar el cursor por encima */
+.cambiar-contrasena-btn:hover {
+    border-width: 2px;
+    transform: scale(1.05);
+}
+
+/* Estilo para el formulario de contraseña */
+.contrasena-form {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.contrasena-form label {
+    display: block;
+    margin: 5px 0;
+}
+
+.password-input-container input[type='password'],
+.password-input-container input[type='text'] {
+    width: auto;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    display: block;
+}
+
+/* Estilo para los mensajes de error */
+.error-mi-perfil-input {
+    border: 2px solid red !important;
+}
+
+.error-mi-perfil {
+    display: block;
+    color: red;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.password-input-container {
+    position: relative;
+    display: inline-block;
+}
+
+.show-password,
+.hide-password {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.show-password {
+    display: none;
+}
+
+.hide-password {
+    display: inline-block;
 }
 
 .modal,
@@ -2295,6 +2108,7 @@ span {
         display: flex;
         flex-direction: column;
     }
+
     .ver-noticia-img {
         margin-top: 0px;
         min-width: 300px;
@@ -2308,8 +2122,7 @@ span {
     }
 }
 
-/* <------------------------------ Estilos del Carrito de Compra ------------------------------> */
-
+/* Estilos del Carrito de Compra */
 .carrito-container {
     max-width: 800px;
     margin: 0 auto 30px;
@@ -2393,7 +2206,12 @@ span {
     color: #777;
 }
 
-.numero-carrito{
+.subtotal-carrito {
+    text-align: right;
+    font-size: 1.5em;
+}
+
+.numero-carrito {
     position: absolute;
     margin-left: 365px;
     margin-top: 15px;
@@ -2411,21 +2229,21 @@ span {
     margin-top: -1px;
 }
 
- html > p, body > p {
-	 font-size: 0.95em;
-	 font-weight: bold;
-	 position: absolute;
-	 top: 7.5%;
-	 width: 100%;
-	 letter-spacing: 4px;
-	 text-transform: uppercase;
-	 text-align: center;
-	 color: white;
-	 user-select: none;
+html > p, body > p {
+    font-size: 0.95em;
+    font-weight: bold;
+    position: absolute;
+    top: 7.5%;
+    width: 100%;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    user-select: none;
 }
 
- html > .carousel, body > .carousel {
-	 padding-top: 125px;
+html > .carousel, body > .carousel {
+    padding-top: 125px;
 }
 
 .carousel {
@@ -2464,11 +2282,13 @@ span {
     padding: 20px 0 50px 0;
     overflow: hidden;
 }
+
 .carousel__body .carousel__slider {
     position: relative;
     transition: transform 1s ease-in-out;
     background: var(--crsl-bg);
 }
+
 .carousel__body .carousel__slider__item {
     position: relative;
     display: block;
@@ -2476,8 +2296,8 @@ span {
     box-sizing: border-box;
     margin-left: 20px;
     margin-right: 20px;
-    
 }
+
 .carousel__body .carousel__slider__item .item__3d-frame {
     position: relative;
     width: 100%;
@@ -2486,6 +2306,7 @@ span {
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
+
 @media only screen and (max-width: 1150px) {
     .carousel__body .carousel__slider__item .item__3d-frame {
         position: relative;
@@ -2497,7 +2318,8 @@ span {
         -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
     }
-} 
+}
+
 .carousel__body .carousel__slider__item .item__3d-frame:after {
     content: '';
     position: absolute;
