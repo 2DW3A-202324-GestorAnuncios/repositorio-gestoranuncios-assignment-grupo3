@@ -111,7 +111,7 @@
                         // Validación de las contraseñas nuevas
                         if (empty($nueva_contrasena)) {
                             $errores['nueva-contrasena'] = "El campo Nueva Contraseña es obligatorio.";
-                        } elseif (strlen($nueva_contrasena) < 3) {
+                        } elseif (strlen($nueva_contrasena) < 6) {
                             $errores['nueva-contrasena'] = "La nueva contraseña debe tener al menos 6 caracteres.";
                         }
                         
