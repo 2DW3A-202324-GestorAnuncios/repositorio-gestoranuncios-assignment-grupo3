@@ -69,16 +69,16 @@
 
     </a>
     <div id="buttons-container">
-        <a class="header-buttons" href="javascript:void(0)" onclick="toggleDropdown()">
+        <a class="header-buttons" href="javascript:void(0)" onclick="formularioInicioSession()">
             <img src="img/boton_profesores.png" alt="Inicio" width="100px" height="80px">
             <div class="centrado-header">Crear Noticia</div>
         </a>
-        <a class="header-buttons" href="javascript:void(0)" onclick="toggleDropdown()">
+        <a class="header-buttons" href="javascript:void(0)" onclick="formularioInicioSession()">
             <img src="img/boton_alumnos.png" alt="Inicio" width="100px" height="80px">
             <div class="centrado-header">Crear Anuncio</div>
         </a>
         <div class="header-dropdown" id="iniciar-sesion-dropdown">
-            <a class="header-buttons" href="javascript:void(0)" onclick="toggleDropdown()">
+            <a class="header-buttons" href="javascript:void(0)" onclick="formularioInicioSession()">
                 <img src="img/boton_empresas.png" alt="Inicio" width="100px" height="80px">
                 <div class="centrado-header">Iniciar Sesión</div>
             </a>
@@ -123,7 +123,7 @@
     // Verifica si se debe mostrar el formulario
     <?php
         if ($mostrar_formulario) {
-            echo 'toggleDropdown();';
+            echo 'formularioInicioSession();';
         }
     ?>
 </script>

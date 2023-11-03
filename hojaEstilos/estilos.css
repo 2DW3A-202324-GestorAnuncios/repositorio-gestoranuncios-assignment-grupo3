@@ -667,13 +667,16 @@ anuncios del indice a dispositivos distintos */
     width: 100%;
     font-size: 18px;
     transition: opacity 0.3s ease-in-out;
-    margin-bottom: 20px;
 }
 
 .productos-slide-anuncios button[name='btn-anadir-carrito']:hover,
 .producto button[name='btn-anadir-carrito']:hover,
 .ver-anuncio button[name='btn-anadir-carrito']:hover {
     opacity: 0.7;
+}
+
+.ver-anuncio button[name='btn-anadir-carrito'] {
+    margin-bottom: 20px;
 }
 
 .btn-container {
@@ -1742,6 +1745,8 @@ anuncios del indice a dispositivos distintos */
     background-color: #1aa5c1b2;
 }
 
+.mi-perfil-container button[name='editar'],
+.mi-perfil-container button[name='cerrar-sesion'],
 .mi-perfil-container button[name='guardar'],
 .mi-perfil-container button[name='cancelar'] {
     display: inline-block;
@@ -1760,10 +1765,7 @@ anuncios del indice a dispositivos distintos */
     transition: background-color 0.3s ease-in-out;
 }
 
-.mi-perfil-container button[name='cancelar'] {
-    float: right;
-}
-
+.mi-perfil-container button[name='cancelar'],
 .mi-perfil-container button[name='cerrar-sesion'] {
     margin-left: 30px;
 }
@@ -1794,6 +1796,96 @@ anuncios del indice a dispositivos distintos */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+}
+
+/* Estilo para el botón "Cambiar Contraseña" */
+.cambiar-contrasena-btn {
+    cursor: pointer;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #000;
+    transition: transform 0.3s ease, border-width 0.3s ease;
+}
+
+.cambiar-contrasena-btn i {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.cambiar-contrasena-btn.active i {
+    transform: rotate(180deg);
+}
+
+/* Agregar estilo al pasar el cursor por encima */
+.cambiar-contrasena-btn:hover {
+    border-width: 2px;
+    transform: scale(1.05);
+}
+
+/* Estilo para el formulario de contraseña */
+.contrasena-form {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.contrasena-form label {
+    display: block;
+    margin: 5px 0;
+}
+
+.password-input-container input[type='password'],
+.password-input-container input[type='text'] {
+    width: auto;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    display: block;
+}
+
+/* Estilo para los mensajes de error */
+.error-mi-perfil-input {
+    border: 2px solid red !important;
+}
+
+.error-mi-perfil {
+    display: block;
+    color: red;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.password-input-container {
+    position: relative;
+    display: inline-block;
+}
+
+.show-password,
+.hide-password {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.show-password {
+    display: none;
+}
+
+.hide-password {
+    display: inline-block;
 }
 
 .modal,
