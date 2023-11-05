@@ -10,5 +10,3 @@ Para poder instalar nuestro proyecto en local hay que seguir una serie de pasos
 2. entrar en la carpeta de "database" donde está el SQL de nuestra base de datos
 3. exportar o copiar el SQL en el panel de control de xammp
 4. acceder al documento de "conexion.php" y cambiar la conexion a la de "local"
-
-Footer
